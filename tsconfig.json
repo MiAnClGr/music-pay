@@ -7,6 +7,6 @@
     // "strict": true,
     "skipLibCheck": true,
     "jsx": "preserve" },
-    "esModuleInterop": true,
-    "resolveJsonModule": true
-  }
+  //   "esModuleInterop": true,
+  //   "resolveJsonModule": true
+  // }
