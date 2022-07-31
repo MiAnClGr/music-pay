@@ -1,25 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import {ethers} from 'ethers'
+import CreateArtist from './components/CreateArtist'
+import TitlePage from './components/TitlePage'
+
+declare var window: any
+
+
+// const contractABI = abi.output.abi
+
+// console.log(contractABI)
+    
+// const contractAddress =     
+//         '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+
+const provider : ethers.providers.Web3Provider = new ethers.providers.Web3Provider(window.ethereum)
+
+const signer : ethers.providers.JsonRpcSigner = provider.getSigner()
+
+
+// const Contract = 
+//       new ethers.Contract(contractAddress, contractABI, signer);
+
+
+
+
 
 function App() {
+
+  const [notConnected, setNotConnected] = useState(true)
+
+
+  console.log(window.ethereum.isConnected())
+  console.log(notConnected)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    { notConnected
+
+    ?
+      <TitlePage
+      provider= {provider}
+      notConnected= {notConnected}
+      setNotConnected= {setNotConnected}
+      />
+    :  
+      <CreateArtist/>
+
+    }
+    </>
   );
 }
 
