@@ -50,8 +50,8 @@ contract PerformanceContract {
 
 // Constructor
 
-    constructor() {
-        msg.sender == owner;
+    constructor(address artist) {
+        artist == owner;
     }
 
 // Create the Booking - intialiased by the booking agent

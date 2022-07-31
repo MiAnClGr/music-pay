@@ -8,43 +8,42 @@ import "./ArtistFactory.sol";
 contract ArtistProfile {
 
     string public artistName;
-    address payable public artistAddress;
-    address public owner;
+    address payable public artist;
     
 
-    PerformanceContract[] public performanceContractArray;
-    
-    constructor(string memory _artistName, address _owner) {
-        artistName = _artistName;
-        artistAddress = payable(address(this));
-        owner = _owner;
-    }
-
-    modifier onlyOwner() {  
-        require(msg.sender == owner);
+    // PerformanceContract[] public performanceContractArray;
+   
+    modifier onlyArtist() {  
+        require(msg.sender == artist);
         _;
     }
 
-    function createPerformanceContract(address venue, string memory venueName, uint payment, uint time) public {
-        PerformanceContract performanceContract = new PerformanceContract(owner, artistAddress, venue, venueName, payment, time );
-        performanceContractArray.push(performanceContract);
+    constructor(string memory _artistName, address _artist) {
+        artistName = _artistName;
+        artist = payable(_artist);
+        
+        createPerformanceContract(artist);
+    }
 
+    receive() external payable {
+    
+    }
+
+    function createPerformanceContract(address _artist) public {
+        new PerformanceContract(_artist );
+    }
+
+    function withdraw() onlyArtist public {
+        payable(artist).transfer(address(this).balance);
     }
 
     function deposit() public payable {
         
     }
 
-    receive() external payable {
-        deposit();
-
-    }
-
     function balance() public view returns(uint) {
         return address(this).balance;
     }
 
-    function withdraw() onlyOwner public {
-        payable(owner).transfer(address(this).balance);
-    }
+  
 }
