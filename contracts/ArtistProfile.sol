@@ -7,16 +7,22 @@ import "./ArtistFactory.sol";
 
 contract ArtistProfile {
 
+// State Variables
+
     string public artistName;
     address payable public artist;
     
 
     // PerformanceContract[] public performanceContractArray;
+
+/// Modifiers
    
     modifier onlyArtist() {  
         require(msg.sender == artist);
         _;
     }
+
+/// Constructor
 
     constructor(string memory _artistName, address _artist) {
         artistName = _artistName;
@@ -25,9 +31,13 @@ contract ArtistProfile {
         createPerformanceContract(artist);
     }
 
+/// Receive
+
     receive() external payable {
     
     }
+
+/// Public
 
     function createPerformanceContract(address _artist) public {
         new PerformanceContract(_artist );
@@ -40,6 +50,8 @@ contract ArtistProfile {
     function deposit() public payable {
         
     }
+
+/// View
 
     function balance() public view returns(uint) {
         return address(this).balance;
