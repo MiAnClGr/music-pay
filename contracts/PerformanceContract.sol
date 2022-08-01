@@ -38,8 +38,8 @@ contract PerformanceContract {
     
 // Events
 
-    event bookingMade (uint _payment, uint _time, string _venueName);
-    event bookingFeePaid (bool _depositPaid);
+    event BookingMade (uint _payment, uint _time, string _venueName);
+    event BookingFeePaid (bool _depositPaid);
 
 // Modifiers
 
@@ -54,7 +54,9 @@ contract PerformanceContract {
         artist == owner;
     }
 
-// Create the Booking - intialiased by the booking agent
+// Public
+
+    // Create the Booking - intialiased by the booking agent
 
     function createBooking(
         uint _payment, 
@@ -74,7 +76,7 @@ contract PerformanceContract {
         booking.bookingAgent = msg.sender;
     }
 
-// Agree to the Booking - initialised by the artist
+    // Agree to the Booking - initialised by the artist
 
     function agreement(uint _gigNumber) onlyOwner public {
 
@@ -84,24 +86,24 @@ contract PerformanceContract {
         booking.agreementTime = block.timestamp;
     }
 
-// Booking agent pays 50% of the payment as a deposit lock in performance
+    // Booking agent pays 50% of the payment as a deposit 
         
     function payBookingDeposit(uint _gigNumber) public payable {
         
         Booking storage booking = Bookings[_gigNumber];
 
-        require(block.timestamp < (booking.agreementTime + 86400)); // 24 hours to pay 
+        require(block.timestamp < (booking.agreementTime + 1 days)); // 24 hours to pay 
         require(msg.sender == booking.bookingAgent);
-        require(msg.value == booking.payment / 2); // 50% of payment
-        require(booking.agreed == true);
+        require(msg.value == booking.payment / 5); // 20% of payment
+        require(booking.agreed);
 
         booking.depositPaid = true;
         booking.currentState = State.bookingComplete;
 
-        emit bookingFeePaid(true);    
+        emit BookingFeePaid(true);    
     }
 
-// Booking agent confirms the performance was completed
+    // Booking agent confirms the performance was completed
 
     function confirmPerformance(uint _gigNumber) public {
 
@@ -109,13 +111,13 @@ contract PerformanceContract {
         
         require(msg.sender == booking.bookingAgent);
         require(block.timestamp > booking.time);
-        require(booking.depositPaid == true);
+        require(booking.depositPaid);
         require(booking.currentState == State.bookingComplete);
 
         booking.currentState = State.performanceCompleted; 
     }
 
-// Booking agent completes the remaining 50% of the payment once the performance is complete
+    // Booking agent completes the remaining 50% of the payment once the performance is complete
 
     function finalisePayment(uint _gigNumber) public payable {
         
@@ -125,8 +127,17 @@ contract PerformanceContract {
         require(msg.value == booking.payment /2);
     }
 
+    // Withdraw funds - can only be called by the owner
 
-// Returns true is the performance time has passed 
+    function withdraw() onlyOwner public {
+
+        payable(owner).transfer(address(this).balance); 
+    }
+
+
+// View
+
+    // Returns true if the performance time has passed 
 
     function isPerformanceComplete(uint _gigNumber) public view returns(bool){
 
@@ -139,7 +150,7 @@ contract PerformanceContract {
     }
 
 
-// Returns true if the deposit has been paid 
+    // Returns true if the deposit has been paid 
 
     function beenPaid(uint _gigNumber) public view returns(bool) {
 
@@ -152,12 +163,6 @@ contract PerformanceContract {
 
     } 
     
-// Withdraw funds - can only be called by the owner
-
-    function withdraw() onlyOwner public {
-
-        payable(owner).transfer(address(this).balance); 
-    }
 
 // Returns Contract balance
 
