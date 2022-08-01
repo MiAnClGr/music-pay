@@ -64,8 +64,7 @@ contract PerformanceContract {
         string memory _date, 
         string memory _extraInfo, 
         string memory _venueName
-        ) public {
-        
+        ) public {       
         Booking storage booking = Bookings[gigNumber];
 
         booking.payment = _payment;
@@ -79,7 +78,6 @@ contract PerformanceContract {
     // Agree to the Booking - initialised by the artist
 
     function agreement(uint _gigNumber) onlyOwner public {
-
         Booking storage booking = Bookings[_gigNumber];
         
         booking.agreed = true;
@@ -88,8 +86,7 @@ contract PerformanceContract {
 
     // Booking agent pays 50% of the payment as a deposit 
         
-    function payBookingDeposit(uint _gigNumber) public payable {
-        
+    function payBookingDeposit(uint _gigNumber) public payable {        
         Booking storage booking = Bookings[_gigNumber];
 
         require(block.timestamp < (booking.agreementTime + 1 days)); // 24 hours to pay 
@@ -106,9 +103,8 @@ contract PerformanceContract {
     // Booking agent confirms the performance was completed
 
     function confirmPerformance(uint _gigNumber) public {
-
         Booking storage booking = Bookings[_gigNumber];
-        
+
         require(msg.sender == booking.bookingAgent);
         require(block.timestamp > booking.time);
         require(booking.depositPaid);
@@ -119,8 +115,7 @@ contract PerformanceContract {
 
     // Booking agent completes the remaining 50% of the payment once the performance is complete
 
-    function finalisePayment(uint _gigNumber) public payable {
-        
+    function finalisePayment(uint _gigNumber) public payable {        
         Booking storage booking = Bookings[_gigNumber];
 
         require(booking.currentState == State.bookingComplete);
@@ -140,7 +135,6 @@ contract PerformanceContract {
     // Returns true if the performance time has passed 
 
     function isPerformanceComplete(uint _gigNumber) public view returns(bool){
-
         Booking storage booking = Bookings[_gigNumber];
 
         bool complete;
@@ -153,7 +147,6 @@ contract PerformanceContract {
     // Returns true if the deposit has been paid 
 
     function beenPaid(uint _gigNumber) public view returns(bool) {
-
         Booking storage booking = Bookings[_gigNumber];
 
         bool paid;
