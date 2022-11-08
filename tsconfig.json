@@ -4,9 +4,10 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    // "strict": true,
+    "strict": true,
     "skipLibCheck": true,
     "jsx": "preserve" },
-  //   "esModuleInterop": true,
-  //   "resolveJsonModule": true
-  // }
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+  }
+  
