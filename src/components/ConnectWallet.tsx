@@ -1,5 +1,6 @@
 import React, {FC, useEffect} from 'react'
 import {ethers} from 'ethers'
+import {useNavigate} from 'react-router-dom'
 
 declare var window : any 
 
@@ -18,6 +19,8 @@ const ConnectWallet : FC<props> = ({provider, notConnected, setNotConnected}) =>
 
     //connecting wallet//
 
+    const navigate = useNavigate() 
+
   const connect = async () =>  {
 
     console.log('clicked')
@@ -29,6 +32,9 @@ const ConnectWallet : FC<props> = ({provider, notConnected, setNotConnected}) =>
     }else{
       setNotConnected(true)
     }
+    navigate("/CreateArtist")
+
+
 
     
 

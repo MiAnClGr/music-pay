@@ -1,43 +1,35 @@
-import React, {useState} from 'react'
-import {ethers} from 'ethers'
-// import abi from './contractABIs/ArtistFactory.json'
+import React, {FC, MouseEventHandler, useState} from 'react'
+import {ethers, Contract} from 'ethers'
+import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
+
 
 declare var window: any
 
-const CreateArtist = () => {
+type props = {
+    ArtistFactoryContract : Contract
+}
 
-const contractABI = ''
-    
-const contractAddress =     
-        '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
+const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
 
-const provider = 
-        new ethers.providers.Web3Provider(window.ethereum)
+ 
+    const [inputArtistName, setInputArtistName] = useState("")
 
-const signer = provider.getSigner()   
-
-
-// const createArtist = 
-//       new ethers.Contract(contractAddress, contractABI, signer);
-
-
-
-    const [artistName, setArtistName] = useState('')
+    const navigate = useNavigate()
 
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-        setArtistName(e.target.value)
+        setInputArtistName(e.target.value)
+
     }  
 
-    console.log(artistName)
-
-    const handleSubmit = () => {
-
+    const handleSubmit = async () => {
+        await ArtistFactoryContract.createArtist(inputArtistName)
+        navigate("/Profile")
     }
 
-
     return (
-        
+       
+
         <div className= 'CreateArtist'>
             <input
             className= 'Inputs'
@@ -50,9 +42,13 @@ const signer = provider.getSigner()
             className= 'Submit' 
             onClick= {handleSubmit}
             >
-             Create
+            Create
             </button>
+       
         </div>
+
+       
+        
     )
 }
 
@@ -60,3 +56,12 @@ const signer = provider.getSigner()
 
 
 export default CreateArtist
+
+
+
+///TO FIX 
+
+///profile gets created and the profile address is passed to ArtistProfile and then artist name is retreived from ArtistProfile
+///contract to be displayed in artist profile but Routes need to be in the same place 
+/// need to figure out routes better
+///

@@ -1,55 +1,55 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import {ethers} from 'ethers'
+import {ethers, Contract} from 'ethers'
 import CreateArtist from './components/CreateArtist'
 import TitlePage from './components/TitlePage'
+import ArtistProfile from './components/ArtistProfile'
+import {ArtistFactoryContract, provider} from "./ContractObjects"
+import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
 
 declare var window: any
 
-
-// const contractABI = abi.output.abi
-
-// console.log(contractABI)
-    
-// const contractAddress =     
-//         '0x5FbDB2315678afecb367f032d93F642f64180aa3'
-
-const provider : ethers.providers.Web3Provider = new ethers.providers.Web3Provider(window.ethereum)
-
-const signer : ethers.providers.JsonRpcSigner = provider.getSigner()
-
-
-// const Contract = 
-//       new ethers.Contract(contractAddress, contractABI, signer);
-
-
-
-
+type Connected = {
+  ArtistFactoryContract : Contract
+  setArtistName : React.Dispatch<React.SetStateAction<string>>
+  setArtistAddress : React.Dispatch<React.SetStateAction<string>>
+  artistName : string
+}
 
 function App() {
 
   const [notConnected, setNotConnected] = useState(true)
 
 
-  console.log(window.ethereum.isConnected())
+  // console.log(window.ethereum.isConnected())
   console.log(notConnected)
 
 
   return (
-    <>
-    { notConnected
+    <Router>
+      <Routes>
 
-    ?
-      <TitlePage
-      provider= {provider}
-      notConnected= {notConnected}
-      setNotConnected= {setNotConnected}
-      />
-    :  
-      <CreateArtist/>
+        <>
+          <Route path= "/CreateArtist" element = {
 
-    }
-    </>
+            <CreateArtist
+            ArtistFactoryContract = {ArtistFactoryContract}
+            />
+          }/>
+
+        
+
+          <Route path= "/Profile" element = {
+            <ArtistProfile
+      
+            />
+          }/>
+        </>
+
+      </Routes>
+
+
+    </Router>
   );
 }
 
