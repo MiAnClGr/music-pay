@@ -1,43 +1,31 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity ^0.8.9;
+pragma solidity 0.8.17;
 
 import "./ArtistProfile.sol";
 
 contract ArtistFactory {
 
-    mapping(string => address) public ArtistbyName;
-    mapping(address => string) public ArtistbyAddress;
-    //uint artistNumber = 1;
+    mapping(string => address) public artistByName;
+    mapping(address => string) public artistByAddress;
+    mapping(address => address) public artistProfileToArtist;
     mapping(string => bool) public doesArtistExist;
 
-    ArtistProfile[] public ArtistArray;
+    address[] public Artists;
 
+    event NewArtist(address);
 
+    function createArtist(string memory _artistName) external {
     
-    function createArtist(string memory _artistName) public {
-      
-        require(doesArtistExist[_artistName] == false, "Artist already Exists");
+        require(!doesArtistExist[_artistName], "Artist already Exists");
         
         ArtistProfile artistProfile = new ArtistProfile(_artistName, msg.sender);
-        ArtistbyName[_artistName] = address(artistProfile);
-        ArtistbyAddress[address(artistProfile)] = _artistName;
+        artistByName[_artistName] = address(artistProfile);
+        artistByAddress[address(artistProfile)] = _artistName;
+        artistProfileToArtist[address(artistProfile)] = msg.sender;
         doesArtistExist[_artistName] = true;
-        ArtistArray.push(artistProfile);
-
+        Artists.push(address(artistProfile));
+        
+        emit NewArtist(address(artistProfile));
     }
-
-
-
-    function findArtistbyAddress(address _artist) public view returns(string memory) { 
-        return ArtistbyAddress[_artist];
-
-    }
-
-    function findArtistbyName(string memory _name) public view returns(address) {
-        return ArtistbyName[_name];
-    }
-
-
-
 }
