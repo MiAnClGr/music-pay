@@ -42,7 +42,7 @@ body {
 }
 
 .Connect {
-  background-color: black;
+  background-color: yellowgreen;
   border-color: darkred;
   color: darkred;
   padding: 5px;
@@ -56,4 +56,8 @@ body {
   align-items: center;
   height: 100vh;
   text-align: center;
+}
+
+.ArtistProfile {
+  background-color: white;
 }
