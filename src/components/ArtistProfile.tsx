@@ -1,4 +1,4 @@
-import React, {FC, MouseEventHandler, useState, useEffect} from 'react'
+import React, {FC, useState, useEffect} from 'react'
 import {ethers, Contract} from 'ethers'
 import {ArtistFactoryContract, signer, provider}from "../ContractObjects"
 import ArtistProfileABI from '../ABI/ArtistProfile'
@@ -8,47 +8,62 @@ import ArtistProfileABI from '../ABI/ArtistProfile'
 declare var window: any
 
 
+
 const ArtistProfile :FC = () => {
 
     const [artistName, setArtistName] = useState("")
     const [artistAddress, setArtistAddress] = useState("")
     const [artistProfileAddress, setArtistProfileAddress] = useState("")
+    const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
 
+    const setArtistContract = async () => {
+        ArtistFactoryContract.on("Artist", async (artist, status) => {
 
-  
+            const ArtistProfileContract : Contract = 
+            new ethers.Contract(artist, ArtistProfileABI, signer) 
+
+            setArtistProfileContract(ArtistProfileContract)
+            setArtistProfileAddress(artist)
+            console.log(artist)
+            console.log(status)
+        })
+        
+    }
 
     const setArtist = async () => {
-        ArtistFactoryContract.on("NewArtist", (newArtist) => {
-
-            setArtistProfileAddress(newArtist)
-            console.log(newArtist)
-        })
-
-        const ArtistProfileContract : Contract = 
-            new ethers.Contract(artistProfileAddress, ArtistProfileABI, signer)
-        console.log(ArtistProfileContract)      
-            const artist = await ArtistProfileContract.artist()
-        console.log(artist)
+        const artist = await artistProfileContract?.artist()
+        console.log(artistProfileContract)
         if(artist == await signer.getAddress()){
             setArtistAddress(artist)
         }
 
-        const name = await ArtistProfileContract.artistName()
+        const name = await artistProfileContract?.artistName()
+        console.log(name)
         setArtistName(name)
     }
 
     useEffect(() => {
-        setArtist()
+        setArtistContract()
 
-    })
+    }, [])
+
+    useEffect(() => {
+        setArtist()
+    }, [artistProfileContract])
 
 
     return(
         <div
         className='ArtistProfile'>
-            <h2>Artist Name: {artistName}</h2>
-            <h2>Artist Address: {artistAddress}</h2>
-            <h2>Artist Profile Address: {artistProfileAddress}</h2>
+            
+            <div>
+
+                <h6 className='Addresses'>Artist Address: {artistAddress}</h6>
+                <h6 className='Addresses'>Artist Profile Address: {artistProfileAddress}</h6>
+
+            </div>
+
+            <h1 className='ArtistName'>{artistName}</h1>
 
         </div>
     )

@@ -6,7 +6,6 @@ body {
 
 
 .CreateArtist {
-
   margin-top: 250px;
   margin-bottom: 20px;
   padding-top: 0;
@@ -42,7 +41,7 @@ body {
 }
 
 .Connect {
-  background-color: yellowgreen;
+  background-color: black;
   border-color: darkred;
   color: darkred;
   padding: 5px;
@@ -59,5 +58,26 @@ body {
 }
 
 .ArtistProfile {
-  background-color: white;
+  margin: auto;
+  color:darkred;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  padding: 20px;
+
+}
+
+.ArtistName {
+  text-align: center;
+}
+
+.LoadingScreen {
+  text-align: center;
+  margin-top: 350px;
+  color:darkred
+}
+
+.HeaderText {
+  color:darkred
 }

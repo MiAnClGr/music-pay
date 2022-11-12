@@ -12,12 +12,6 @@ type props = {
 
 const ConnectWallet : FC<props> = ({provider, notConnected, setNotConnected}) => {
 
-  // const [currentAccount, setCurrentAccount] = React.useState('Ox')
-  // const [userBalance, setUserBalance] = React.useState('')
-  // const [contractBalance, setContractBalance] = React.useState('')
-  // const [admin, setAdmin] = React.useState('')
-
-    //connecting wallet//
 
     const navigate = useNavigate() 
 
@@ -32,30 +26,7 @@ const ConnectWallet : FC<props> = ({provider, notConnected, setNotConnected}) =>
     }else{
       setNotConnected(true)
     }
-    navigate("/CreateArtist")
-
-
-
-    
-
-
-    // const currentAddress = await signer.getAddress()
-    //   await console.log(currentAddress)
-
-    // setCurrentAccount(currentAddress)
-    //   await console.log(currentAccount)
-
-    // const balance = await provider.getBalance(currentAddress)
-    // await console.log(ethers.utils.formatEther(balance))
-    
-
-    // setUserBalance(ethers.utils.formatEther(balance))
-
-    // const contractBalance = await crowdFundingContract.getBalance()
-
-    // setContractBalance(ethers.utils.formatEther(contractBalance))
-
-    // console.log(contractBalance)
+    navigate("CreateArtist")
 
   }
 
