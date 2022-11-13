@@ -17,10 +17,9 @@ const ArtistProfile :FC = () => {
     const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
 
     const setArtistContract = async () => {
-        ArtistFactoryContract.on("Artist", async (artist, status) => {
+        ArtistFactoryContract.on("Artist", (artist, status) => {
 
-            const ArtistProfileContract : Contract = 
-            new ethers.Contract(artist, ArtistProfileABI, signer) 
+            const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
 
             setArtistProfileContract(ArtistProfileContract)
             setArtistProfileAddress(artist)
@@ -32,7 +31,6 @@ const ArtistProfile :FC = () => {
 
     const setArtist = async () => {
         const artist = await artistProfileContract?.artist()
-        console.log(artistProfileContract)
         if(artist == await signer.getAddress()){
             setArtistAddress(artist)
         }

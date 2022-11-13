@@ -4,6 +4,8 @@ import {ethers, Contract} from 'ethers'
 import CreateArtist from './components/CreateArtist'
 import TitlePage from './components/TitlePage'
 import ArtistProfile from './components/ArtistProfile'
+import SearchArtist from './components/SearchArtist';
+import ArtistBooking from './components/ArtistBooking';
 import Loading from './LoadingAndError/Loading';
 import NotOwner from './LoadingAndError/NotOwner';
 import {ArtistFactoryContract, provider, signer} from "./ContractObjects"
@@ -21,6 +23,7 @@ type Connected = {
 function App() {
 
   const [notConnected, setNotConnected] = useState(true)
+  const [artistAddress, setArtistAddress] = useState<string>("")
   
  
 
@@ -48,6 +51,22 @@ function App() {
 
             <CreateArtist
             ArtistFactoryContract = {ArtistFactoryContract}/>
+          }/>
+
+          <Route path = "/SearchArtist" element = {
+
+          <SearchArtist
+          setArtistName = {setArtistAddress}
+          />
+
+          }/>
+
+          <Route path = "/ArtistBooking" element = {
+
+          <ArtistBooking 
+          artistAddress = {artistAddress} 
+          />
+
           }/>
 
 

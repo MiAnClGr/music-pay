@@ -81,3 +81,9 @@ body {
 .HeaderText {
   color:darkred
 }
+
+.BookArtist {
+  width: 250px;
+  margin-left: 83%;
+  margin-top: 5px;
+}

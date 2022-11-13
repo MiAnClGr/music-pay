@@ -1,7 +1,8 @@
-import React, {FC, MouseEventHandler, useState} from 'react'
+import React, {FC, useState} from 'react'
 import {ethers, Contract} from 'ethers'
 import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract, signer, provider}from "../ContractObjects"
+import BookArtist from "./SearchArtist"
 
 
 
@@ -52,42 +53,43 @@ const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
 
     return (
        
+        <>
+            <div className= 'CreateArtist'>
 
-        <div className= 'CreateArtist'>
-
-            <h3 className= "HeaderText">Create New Artist</h3>      
-            <input
-            className= 'Inputs'
-            placeholder= 'Artist Name' 
-            onChange= {handleChange}
-            name= 'contractName'
-            >
-            </input> 
-            <button 
-            className= 'Submit' 
-            onClick= {handleSubmitCreate}
-            >
-            Create
-            </button>
-            <br></br>
-            <br></br>
-            <br></br>
-            <h3 className= "HeaderText">Or Log in</h3>
-            <input
-            className= 'Inputs'
-            placeholder= 'Artist Name' 
-            onChange= {handleChange}
-            name= 'contractName'
-            >
-            </input> 
-            <button 
-            className= 'Submit' 
-            onClick= {handleSubmitLogIn}
-            >
-            Log In
-            </button>
-       
-        </div>
+                <h3 className= "HeaderText">Create New Artist</h3>      
+                <input
+                className= 'Inputs'
+                placeholder= 'Artist Name' 
+                onChange= {handleChange}
+                name= 'contractName'
+                >
+                </input> 
+                <button 
+                className= 'Submit' 
+                onClick= {handleSubmitCreate}
+                >
+                Create
+                </button>
+                <br></br>
+                <br></br>
+                <br></br>
+                <h3 className= "HeaderText">Log in</h3>
+                <input
+                className= 'Inputs'
+                placeholder= 'Artist Name' 
+                onChange= {handleChange}
+                name= 'contractName'
+                >
+                </input> 
+                <button 
+                className= 'Submit' 
+                onClick= {handleSubmitLogIn}
+                >
+                Log In
+                </button>
+        
+            </div>
+        </>
 
        
         
