@@ -56,7 +56,7 @@ const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
         <>
             <div className= 'CreateArtist'>
 
-                <h3 className= "HeaderText">Create New Artist</h3>      
+                <h3 className= "HeaderText">New Artist</h3>      
                 <input
                 className= 'Inputs'
                 placeholder= 'Artist Name' 
@@ -73,7 +73,7 @@ const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
                 <br></br>
                 <br></br>
                 <br></br>
-                <h3 className= "HeaderText">Log in</h3>
+                <h3 className= "HeaderText">Existing Artist</h3>
                 <input
                 className= 'Inputs'
                 placeholder= 'Artist Name' 
