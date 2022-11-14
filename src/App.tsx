@@ -8,6 +8,7 @@ import SearchArtist from './components/SearchArtist';
 import ArtistBooking from './components/ArtistBooking';
 import Loading from './LoadingAndError/Loading';
 import NotOwner from './LoadingAndError/NotOwner';
+import RoutingUser from './components/RoutingUser';
 import {ArtistFactoryContract, provider, signer} from "./ContractObjects"
 import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
 
@@ -32,8 +33,8 @@ function App() {
       <Routes>
 
         <>
-
-          <Route path= "/" element = {
+          
+          <Route path= "/Music-Pay" element = {
 
             <TitlePage
             provider = {provider}
@@ -41,6 +42,12 @@ function App() {
             setNotConnected = {setNotConnected}
             />
           }/>
+
+          <Route path= "/Routing User" element = {
+            
+            <RoutingUser/>
+          }/>
+
 
           <Route path= "/Profile" element = {
             

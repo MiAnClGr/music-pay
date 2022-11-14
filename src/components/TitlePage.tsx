@@ -19,29 +19,17 @@ const TitlePage : FC<props> = ({provider, notConnected, setNotConnected}) => {
 
   const navigate = useNavigate()
 
-  // const doesArtistExist = async () => {
-  //   setArtistsLoading(true)
-  //   const address = await signer.getAddress()
-  //   const ownerToArtist = await ArtistFactoryContract.ownerToArtist(address)
-  //   console.log(ownerToArtist)
-  //   if(ownerToArtist !== "0x0000000000000000000000000000000000000000"){
-  //     setArtistExists(true)
-  //   }
-  //   setArtistsLoading(false)
-  // }
+  const toCreateArtist = () => {
+    navigate("/CreateArtist")
+  }
 
-  // useEffect(() => {
-  //   doesArtistExist();
-  // }, [])
+  const toSearchArtist = () => {
+    navigate("/SearchArtist")
+  }
 
-  // useEffect(() => {
-  //   if(artistExists){
-  //     navigate("Profile")
-  //   } else {
-  //     navigate("CreateArtist")
-  //   }
 
-  // }, [artistsLoading === false]) 
+
+ 
 
   return (
     <div className= 'TitlePage'>
@@ -50,6 +38,8 @@ const TitlePage : FC<props> = ({provider, notConnected, setNotConnected}) => {
         notConnected= {notConnected}
         setNotConnected= {setNotConnected}
         />
+
+
     </div>
   )
 }

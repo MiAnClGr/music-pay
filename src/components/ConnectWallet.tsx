@@ -26,7 +26,7 @@ const ConnectWallet : FC<props> = ({provider, notConnected, setNotConnected}) =>
     }else{
       setNotConnected(true)
     }
-    navigate("CreateArtist")
+    navigate("/RoutingUser")
 
   }
 
