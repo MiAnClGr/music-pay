@@ -1,16 +1,25 @@
 body {
   background-color: black;
   height: 100%;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+
 }
 
 
 
 .CreateArtist {
-  margin-top: 250px;
+  width: 437px;
+  height: 230px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
   margin-bottom: 20px;
-  padding-top: 0;
+  padding-top: 7%;
+  padding-bottom: 7%;
   text-align: center;
   align-items: center;
+  border-style: solid;
+  border-color: darkred;
 
 }
 
@@ -24,19 +33,26 @@ body {
 }
 
 .Inputs {
+  transform: scale(1.25);
   color: darkred;
   border-color: darkred;
   background-color: black;
+  
 }
 
 .Submit {
+  transform: scale(1.25);
+  margin-left: 28px;
   color: darkred;
   border-color: darkred;
   background-color: transparent;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: darkred;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+  font-weight: bold;
  
 }
 
@@ -74,7 +90,7 @@ body {
 
 .LoadingScreen {
   text-align: center;
-  margin-top: 350px;
+  margin-top: 300px;
   color:darkred
 }
 
@@ -86,4 +102,13 @@ body {
   width: 250px;
   margin-left: 83%;
   margin-top: 5px;
+}
+
+.Back {
+  transform: scale(1.5);
+  margin-left: 28px;
+  color: darkred;
+  border-color: darkred;
+  background-color: transparent;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
