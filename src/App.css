@@ -104,6 +104,20 @@ body {
   margin-top: 5px;
 }
 
+.SearchArtist {
+  width: 437px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  margin-bottom: 20px;
+  padding-top: 7%;
+  padding-bottom: 7%;
+  text-align: center;
+  align-items: center;
+ 
+}
+
 .Back {
   transform: scale(1.5);
   margin-left: 28px;
