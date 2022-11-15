@@ -1,12 +1,7 @@
 import React, {FC, useState} from 'react'
-import {ethers, Contract} from 'ethers'
-import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
-import {ArtistFactoryContract, signer, provider}from "../ContractObjects"
-import BookArtist from "./SearchArtist"
+import {Contract} from 'ethers'
+import {useNavigate} from 'react-router-dom'
 
-
-
-declare var window: any
 
 type props = {
     ArtistFactoryContract : Contract
@@ -14,12 +9,9 @@ type props = {
 
 const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
 
- 
     const [inputArtistName, setInputArtistName] = useState("")
-    
 
     const navigate = useNavigate()
-
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
         setInputArtistName(e.target.value)
@@ -48,7 +40,7 @@ const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
             navigate("/Profile")
         }catch(e){
             navigate("/NotOwner")
-         }   
+        }   
     }
 
     return (

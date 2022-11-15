@@ -13,28 +13,22 @@ type props = {
 const ConnectWallet : FC<props> = ({provider, notConnected, setNotConnected}) => {
 
 
-    const navigate = useNavigate() 
+  const navigate = useNavigate() 
 
   const connect = async () =>  {
-
-    console.log('clicked')
 
     await provider.send("eth_requestAccounts", [])
     
     if (window.ethereum.isConnected()){
-      setNotConnected(false)
-    }else{
-      setNotConnected(true)
+      navigate("/RoutingUser")
     }
-    navigate("/RoutingUser")
-
   }
 
-    useEffect(() =>{
-      
-     }, [window.ethereum.isConnected()])
+  useEffect(() =>{
     
+  }, [window.ethereum.isConnected()])
   
+
 
 
   return (

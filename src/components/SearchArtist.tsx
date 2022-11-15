@@ -1,5 +1,5 @@
 import React, {FC, useState}from 'react'
-import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract}from "../ContractObjects"
 
 type props = {
@@ -8,29 +8,25 @@ type props = {
 
 const SearchArtist : FC<props> = ({setArtistAddress}) => {
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const [searchInput, setSearchInput] = useState("")
-    
+  const [searchInput, setSearchInput] = useState("")
+  
 
-    const search = (e : React.ChangeEvent<HTMLInputElement>) => {
-        setSearchInput(e.target.value)
+  const search = (e : React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value)
+  }
+
+  const submitSearch = async () => {
+    const address = await ArtistFactoryContract.artistByName(searchInput)
+    console.log(address)      
+    if(address !== "0x0000000000000000000000000000000000000000"){
+      setArtistAddress(address)
+      navigate("/ArtistBooking")
+    }else{
+      navigate("/NotOwner")
     }
-
-    const submitSearch = async () => {
-        const address = await ArtistFactoryContract.artistByName(searchInput)
-        console.log(address)      
-        if(address !== "0x0000000000000000000000000000000000000000"){
-          setArtistAddress(address)
-          navigate("/ArtistBooking")
-        }else{
-          navigate("/NotOwner")
-        }
-        
-        
-    }
-
-    console.log()
+  }
 
   return (
     <div className='SearchArtist'>

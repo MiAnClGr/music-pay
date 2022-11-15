@@ -1,9 +1,7 @@
-import React, {FC, useState, useEffect} from 'react'
+import React, {FC} from 'react'
 import {ethers} from 'ethers'
-import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
-import {ArtistFactoryContract, signer, provider}from "../ContractObjects"
 import ConnectWallet from './ConnectWallet'
-import { unstable_createStaticHandler } from '@remix-run/router'
+
 
 type props = {
   provider :  ethers.providers.Web3Provider
@@ -22,8 +20,6 @@ const TitlePage : FC<props> = ({provider, notConnected, setNotConnected}) => {
         notConnected= {notConnected}
         setNotConnected= {setNotConnected}
         />
-
-
     </div>
   )
 }
