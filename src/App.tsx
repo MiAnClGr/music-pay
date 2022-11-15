@@ -17,14 +17,14 @@ declare var window: any
 type Connected = {
   ArtistFactoryContract : Contract
   setArtistName : React.Dispatch<React.SetStateAction<string>>
-  setArtistAddress : React.Dispatch<React.SetStateAction<string>>
+  setArtistAddress : React.Dispatch<React.SetStateAction<object>>
   artistName : string
 }
 
 function App() {
 
   const [notConnected, setNotConnected] = useState(true)
-  const [artistAddress, setArtistAddress] = useState<string>("")
+  const [artistAddress, setArtistAddress] = useState(localStorage.getItem("artistAddress") || "")
   
  
 
@@ -43,7 +43,7 @@ function App() {
             />
           }/>
 
-          <Route path= "/Routing User" element = {
+          <Route path= "/RoutingUser" element = {
             
             <RoutingUser/>
           }/>
@@ -63,7 +63,7 @@ function App() {
           <Route path = "/SearchArtist" element = {
 
           <SearchArtist
-          setArtistName = {setArtistAddress}
+          setArtistAddress = {setArtistAddress}
           />
 
           }/>

@@ -14,13 +14,14 @@ const navigate = useNavigate()
   }
 
   return (
-    <div>
+    <div className='Route'>
         <button 
         className='Submit'
         onClick={toCreateArtist}
         >
         Artists
         </button>
+        <br></br>
         <br></br>
         <br></br>
         <button 

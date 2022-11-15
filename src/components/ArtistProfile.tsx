@@ -56,8 +56,8 @@ const ArtistProfile :FC = () => {
             
             <div>
 
-                <h6 className='Addresses'>Artist Address: {artistAddress}</h6>
-                <h6 className='Addresses'>Artist Profile Address: {artistProfileAddress}</h6>
+                <h5 className='Addresses'>Artist Address: {artistAddress}</h5>
+                <h5 className='Addresses'>Artist Profile Address: {artistProfileAddress}</h5>
 
             </div>
 
