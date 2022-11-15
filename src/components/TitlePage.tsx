@@ -13,22 +13,6 @@ type props = {
 
 const TitlePage : FC<props> = ({provider, notConnected, setNotConnected}) => {
 
-  const [artistExists, setArtistExists] = useState<boolean | null>()
-  const [artistsLoading, setArtistsLoading] = useState<boolean | null>()
-  
-
-  const navigate = useNavigate()
-
-  const toCreateArtist = () => {
-    navigate("/CreateArtist")
-  }
-
-  const toSearchArtist = () => {
-    navigate("/SearchArtist")
-  }
-
-
-
  
 
   return (
