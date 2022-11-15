@@ -96,7 +96,7 @@ body {
 }
 
 .HeaderText {
-  color:darkred
+  color:darkred;
 }
 
 .BookArtist {
@@ -122,6 +122,57 @@ body {
 .Back {
   transform: scale(1.5);
   margin-left: 28px;
+  color: darkred;
+  border-color: darkred;
+  background-color: transparent;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+}
+
+.Route {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 300px;
+  margin-bottom: 20px;
+}
+
+.ArtistBooking {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.ArtistBookingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.BookingForm {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  align-items: center;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.BookingForm input {
+  margin: 10px;
+  transform: scale(1.25);
+  color: darkred;
+  border-color: darkred;
+  background-color: black;
+}
+
+.SubmitBooking {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  transform: scale(1.25);
   color: darkred;
   border-color: darkred;
   background-color: transparent;
