@@ -2,6 +2,7 @@ import {ethers} from 'ethers'
 import {Contract} from 'ethers'
 import ArtistFactoryABI from './ABI/ArtistFactory'
 import ArtistProfileABI from './ABI/ArtistProfile'
+import PerformanceContractABI from "./ABI/PerformanceContract"
 
 declare var window: any
 
@@ -15,5 +16,5 @@ export const ArtistFactoryContract : Contract = new ethers.Contract(ArtistFactor
 
 /// Artist Profile 
 
-export const ArtistProfileAddress = ""
-export const ArtistProfileContract : Contract = new ethers.Contract(ArtistProfileAddress, ArtistProfileABI, signer);
+export const PerformanceContractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+export const PerformanceContract : Contract = new ethers.Contract(PerformanceContractAddress, PerformanceContractABI, signer);
