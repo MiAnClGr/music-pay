@@ -1,13 +1,12 @@
 import React, {FC, useState}from 'react'
 import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
-import ArtistBooking from './ArtistBooking'
 import {ArtistFactoryContract}from "../ContractObjects"
 
 type props = {
-  setArtistName : React.Dispatch<React.SetStateAction<string>>
+  setArtistAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
-const SearchArtist : FC<props> = ({setArtistName}) => {
+const SearchArtist : FC<props> = ({setArtistAddress}) => {
 
     const navigate = useNavigate()
 
@@ -19,10 +18,16 @@ const SearchArtist : FC<props> = ({setArtistName}) => {
     }
 
     const submitSearch = async () => {
-        const name = await ArtistFactoryContract.artistByName(searchInput)      
-        setArtistName(name)
-
-        navigate("/ArtistBooking")
+        const address = await ArtistFactoryContract.artistByName(searchInput)
+        console.log(address)      
+        if(address !== "0x0000000000000000000000000000000000000000"){
+          setArtistAddress(address)
+          navigate("/ArtistBooking")
+        }else{
+          navigate("/NotOwner")
+        }
+        
+        
     }
 
     console.log()
