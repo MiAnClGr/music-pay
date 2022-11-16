@@ -1,13 +1,10 @@
 import React, {FC, useState, useEffect} from 'react'
 import {ethers, Contract} from 'ethers'
-import {ArtistFactoryContract, signer, provider}from "../ContractObjects"
+import {ArtistFactoryContract, signer}from "../ContractObjects"
 import ArtistProfileABI from '../ABI/ArtistProfile'
-
-
+import AboutMe from "./Artist/AboutMe"
 
 declare var window: any
-
-
 
 const ArtistProfile :FC = () => {
 
@@ -51,17 +48,23 @@ const ArtistProfile :FC = () => {
 
 
     return(
-        <div
-        className='ArtistProfile'>
-            
-            <div>
+        <div>
+            <div
+            className='ArtistProfile'>
+                
+                <div>
 
-                <h5 className='Addresses'>Artist Address: {artistAddress}</h5>
-                <h5 className='Addresses'>Artist Profile Address: {artistProfileAddress}</h5>
+                    <h5 className='Addresses'>Artist Address: {artistAddress}</h5>
+                    <h5 className='Addresses'>Artist Profile Address: {artistProfileAddress}</h5>
 
-            </div>
+                </div>
 
-            <h1 className='ArtistName'>{artistName}</h1>
+                <h1 className='ArtistName'>{artistName}</h1>
+        </div>
+
+            <AboutMe
+            artistProfileContract = {artistProfileContract}
+            />
 
         </div>
     )
