@@ -39,6 +39,8 @@ contract ArtistProfile {
     string public artistName;
     address public artist;
 
+    string public aboutMe;
+
     mapping(uint => Booking) public bookings;
 
     enum State {notCompleted, bookingComplete, performanceCompleted, paymentComplete}
@@ -92,6 +94,10 @@ contract ArtistProfile {
 
         // proofOfBooking.mintProofOfBooking(artist, gigNumber, _artistName, _payment.toString(), _date, _venueName);
 
+    }
+
+    function updateAboutMe(string memory _update) external {
+        aboutMe = _update;
     }
 
     function agreement(uint _gigNumber) external onlyArtist {
