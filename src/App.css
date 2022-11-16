@@ -178,3 +178,13 @@ body {
   background-color: transparent;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
+
+.AboutMe {
+  color: darkred;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  margin-right: 0px;
+  margin-left: auto;
+  padding: 20px;
+}
