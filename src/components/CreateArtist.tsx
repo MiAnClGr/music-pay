@@ -53,7 +53,6 @@ const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
                 className= 'Inputs'
                 placeholder= 'Artist Name' 
                 onChange= {handleChange}
-                name= 'contractName'
                 >
                 </input> 
                 <button 
@@ -70,7 +69,6 @@ const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
                 className= 'Inputs'
                 placeholder= 'Artist Name' 
                 onChange= {handleChange}
-                name= 'contractName'
                 >
                 </input> 
                 <button 
