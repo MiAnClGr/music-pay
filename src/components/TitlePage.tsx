@@ -15,11 +15,12 @@ const TitlePage : FC<props> = ({provider, notConnected, setNotConnected}) => {
 
   return (
     <div className= 'TitlePage'>
-        <ConnectWallet
-        provider= {provider}
-        notConnected= {notConnected}
-        setNotConnected= {setNotConnected}
-        />
+      <h1 className='HeaderText'>Music-Pay</h1>
+      <ConnectWallet
+      provider= {provider}
+      notConnected= {notConnected}
+      setNotConnected= {setNotConnected}
+      />
     </div>
   )
 }
