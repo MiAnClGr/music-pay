@@ -1,9 +1,14 @@
 body {
   background-color: black;
-  height: 100%;
+  background-size: cover;
+  max-height: 100%;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 
 }
+
+/* .Parent-div {
+  height: 100vh; 
+} */
 
 
 
@@ -23,7 +28,7 @@ body {
 
 }
 
-.Header{
+.Header {
   display: flex;
   align-items: center;
   gap: 66%;
@@ -68,10 +73,19 @@ body {
 
 .TitlePage {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0%;
+  margin-top: 200px;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   text-align: center;
+}
+
+.Music-Pay-Title {
+  color: darkred;
+  font-size: 80px;
+  font-weight: lighter;
 }
 
 .ArtistProfile {
@@ -153,8 +167,11 @@ body {
   display: flex;
   flex-direction: column;
   width: 100px;
+  height: 150px;
   align-items: center;
   margin-top: 100px;
+  /* position: absolute;
+  left: 46%; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -168,11 +185,16 @@ body {
 }
 
 .SubmitBooking {
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 200px;
+  position: absolute;
+  left: 41%;
+  top: 55%;
   text-align: center;
   transform: scale(1.25);
+  
+}
+
+.SubmitBooking button {
   color: darkred;
   border-color: darkred;
   background-color: transparent;
@@ -184,7 +206,23 @@ body {
   width: 200px;
   height: 200px;
   text-align: center;
-  margin-right: 0px;
-  margin-left: auto;
+  position: absolute;
+  right: 10px;
   padding: 20px;
+}
+
+.HomeButton {
+  width: 60px;
+  position: absolute;
+  top: 90%;
+  left: 2%;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+}
+
+.HomeButton button {
+  transform: scale(1.25);
+  color: darkred;
+  border-color: darkred;
+  background-color: transparent;
+
 }
