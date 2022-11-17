@@ -14,8 +14,8 @@ contract PerformanceContract {
 
 /// Types
 
-    ProofOfBooking public proofOfBooking;
-    ProofOfPayment public proofOfPayment;
+    // ProofOfBooking public proofOfBooking;
+    // ProofOfPayment public proofOfPayment;
 
     
 // Events
@@ -27,8 +27,8 @@ contract PerformanceContract {
 
     constructor() {
 
-        proofOfBooking = new ProofOfBooking("Booking Token", "BOOKING" );
-        proofOfPayment = new ProofOfPayment("Payment Token", "PAYMENT");
+        // proofOfBooking = new ProofOfBooking("Booking Token", "BOOKING" );
+        // proofOfPayment = new ProofOfPayment("Payment Token", "PAYMENT");
 
     }
 
@@ -47,13 +47,7 @@ contract PerformanceContract {
         //require(_artist exists) ADD
         ArtistProfile artist = ArtistProfile(_artist);
         
-       {
-
         artist.updateBooking(_artist, msg.sender, _artistName, _payment, _time, _date, _venueName);
-
-       }
-        
-
     }
 
 

@@ -23,22 +23,23 @@ contract ProofOfBooking is ERC721 {
         string memory _date,
         string memory _venueName
         ) public {
-        require(msg.sender == owner);
         _mint(_to, _tokenId);
-        string memory tokenURI = createTokenURI(_artistName, _payment, _date, _venueName);
+        string memory tokenURI = createTokenURI(_artistName, _to, _payment, _date, _venueName, msg.sender);
         tokenIdToTokenURI[_tokenId] = tokenURI;
 
     }
 
       
-    function createTokenURI(string memory name, string memory payment, string memory date, string memory venueName) internal pure returns (string memory){
+    function createTokenURI(string memory name, address artistAddress, string memory payment, string memory date, string memory venueName, address bookingAgent) internal pure returns (string memory){
        
         bytes memory dataURI = abi.encodePacked(
            '{',
                 'name: ', name, "," ' '
+                'artist-address: ', artistAddress, "," ' '
                 'payment: ', "$", payment, "," ' '
                 'date: ', date, "," ' '
-                'venue: ', venueName,  
+                'venue: ', venueName, "," ' '
+                'booking-agent-address: ', bookingAgent, 
             '}'
         );
         return string(
