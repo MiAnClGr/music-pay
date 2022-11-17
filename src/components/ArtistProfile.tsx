@@ -3,6 +3,7 @@ import {ethers, Contract} from 'ethers'
 import {ArtistFactoryContract, signer}from "../ContractObjects"
 import ArtistProfileABI from '../ABI/ArtistProfile'
 import AboutMe from "./Artist/AboutMe"
+import BackToTitlePage from "./shared/BackToTitlePage"
 
 declare var window: any
 
@@ -48,7 +49,7 @@ const ArtistProfile :FC = () => {
 
 
     return(
-        <div>
+        <div className='Parent-div'>
             <div
             className='ArtistProfile'>
                 
@@ -60,11 +61,12 @@ const ArtistProfile :FC = () => {
                 </div>
 
                 <h1 className='ArtistName'>{artistName}</h1>
-        </div>
+            </div>
 
             <AboutMe
             artistProfileContract = {artistProfileContract}
             />
+            <BackToTitlePage/>
 
         </div>
     )

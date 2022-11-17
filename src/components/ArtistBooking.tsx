@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from 'react'
 import {ethers} from 'ethers'
 import {ArtistFactoryContract, PerformanceContract, signer} from "../ContractObjects"
+import BackToTitlePage from './shared/BackToTitlePage'
 
 
 type props = {
@@ -60,49 +61,51 @@ const ArtistBooking : FC<props> = ({artistAddress}) => {
 
 
   return (
-    <div className='ArtistBooking'>
-      <div className='ArtistBookingHeader'>
-        <h5 className='HeaderText'>{artistAddress}</h5>
-        <h1 className='HeaderText'>{artistName}</h1>
+    <div className='Parent-div'>
+      <div className='ArtistBooking'>
+        <div className='ArtistBookingHeader'>
+          <h5 className='HeaderText'>{artistAddress}</h5>
+          <h1 className='HeaderText'>{artistName}</h1>
+        </div>
+        <form className='BookingForm'>
+          <input 
+          placeholder="Payment" 
+          name= "payment"
+          onChange={handleChange}
+          >
+
+          </input>
+          <input 
+          placeholder="Time" 
+          name="time"
+          onChange={handleChange}
+          >
+
+          </input>
+          <input 
+          placeholder="Date" 
+          name="date"
+          onChange={handleChange}
+          >
+
+          </input>
+          <input 
+          placeholder="Venue" 
+          name="venue"
+          onChange={handleChange}
+          >
+
+          </input>
+        </form>
+        <div className="SubmitBooking">
+          <button 
+          onClick= {handleSubmit}
+          >
+            Book Artist
+          </button>
+        </div>
       </div>
-      <form className='BookingForm'>
-        <input 
-        placeholder="Payment" 
-        name= "payment"
-        onChange={handleChange}
-        >
-
-        </input>
-        <input 
-        placeholder="Time" 
-        name="time"
-        onChange={handleChange}
-        >
-
-        </input>
-        <input 
-        placeholder="Date" 
-        name="date"
-        onChange={handleChange}
-        >
-
-        </input>
-        <input 
-        placeholder="Venue" 
-        name="venue"
-        onChange={handleChange}
-        >
-
-        </input>
-      </form>
-      <div>
-        <button 
-        className="SubmitBooking"
-        onClick= {handleSubmit}
-        >
-          Book Artist
-        </button>
-      </div>
+      <BackToTitlePage/>
     </div>
   )
 }
