@@ -19,72 +19,67 @@ function App() {
  
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
+        
+        <Route path= "/Music-Pay" element = {
 
-        <>
+          <TitlePage
+          provider = {provider}
+          notConnected = {notConnected}
+          setNotConnected = {setNotConnected}
+          />
+        }/>
+
+        <Route path= "/RoutingUser" element = {
           
-          <Route path= "/Music-Pay" element = {
-
-            <TitlePage
-            provider = {provider}
-            notConnected = {notConnected}
-            setNotConnected = {setNotConnected}
-            />
-          }/>
-
-          <Route path= "/RoutingUser" element = {
-            
-            <RoutingUser/>
-          }/>
+          <RoutingUser/>
+        }/>
 
 
-          <Route path= "/Profile" element = {
-            
-            <ArtistProfile/>
-          }/>
+        <Route path= "/Profile" element = {
+          
+          <ArtistProfile/>
+        }/>
 
-          <Route path= "/CreateArtist" element = {
+        <Route path= "/CreateArtist" element = {
 
-            <CreateArtist
-            ArtistFactoryContract = {ArtistFactoryContract}/>
-          }/>
+          <CreateArtist
+          ArtistFactoryContract = {ArtistFactoryContract}/>
+        }/>
 
-          <Route path = "/SearchArtist" element = {
+        <Route path = "/SearchArtist" element = {
 
-          <SearchArtist
-          setArtistAddress = {setArtistAddress}
-          />
+        <SearchArtist
+        setArtistAddress = {setArtistAddress}
+        />
 
-          }/>
+        }/>
 
-          <Route path = "/ArtistBooking" element = {
+        <Route path = "/ArtistBooking" element = {
 
-          <ArtistBooking 
-          artistAddress = {artistAddress} 
-          />
+        <ArtistBooking 
+        artistAddress = {artistAddress} 
+        />
 
-          }/>
+        }/>
 
 
-          <Route path = "/Loading" element = {
+        <Route path = "/Loading" element = {
 
-            <Loading/>
+          <Loading/>
 
-          }/>
+        }/>
 
-          <Route path = "/NotOwner" element = {
+        <Route path = "/NotOwner" element = {
 
-          <NotOwner/>
+        <NotOwner/>
 
-          }/>
-    
-        </>
+        }/>
+  
 
       </Routes>
-
-
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

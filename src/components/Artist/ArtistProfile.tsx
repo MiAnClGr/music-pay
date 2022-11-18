@@ -9,22 +9,27 @@ declare var window: any
 
 const ArtistProfile :FC = () => {
 
-    const [artistName, setArtistName] = useState("")
+    const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
     const [artistAddress, setArtistAddress] = useState("")
-    const [artistProfileAddress, setArtistProfileAddress] = useState("")
+    const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
     const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
 
     const setArtistContract = async () => {
         ArtistFactoryContract.on("Artist", (artist, status) => {
+            console.log("set")
 
-            const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
-
-            setArtistProfileContract(ArtistProfileContract)
+            createInstance(artist)
             setArtistProfileAddress(artist)
             console.log(artist)
             console.log(status)
         })
         
+    }
+
+    const createInstance = (artist : string) => {
+        const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
+
+            setArtistProfileContract(ArtistProfileContract)
     }
 
     const setArtist = async () => {
@@ -36,11 +41,18 @@ const ArtistProfile :FC = () => {
         const name = await artistProfileContract?.artistName()
         console.log(name)
         setArtistName(name)
-    }
+    } 
+
+    useEffect(() => {
+        localStorage.setItem("artistProfileAddress", artistProfileAddress)
+    },[artistProfileAddress])
+
+    useEffect(() => {
+        localStorage.setItem("artistName", artistName)
+    },[artistName])
 
     useEffect(() => {
         setArtistContract()
-
     }, [])
 
     useEffect(() => {

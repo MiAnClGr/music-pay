@@ -43,9 +43,9 @@ const AboutMe : FC<props> = ({artistProfileContract}) => {
 
   return (
     <div className='AboutMe'>
-        <text>
+        <h3>
             About: {aboutArtist}
-        </text>
+        </h3>
         <br></br>
         <br></br>
         <button 
