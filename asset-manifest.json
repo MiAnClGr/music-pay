@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/music-pay/static/css/main.1aaac720.css",
-    "main.js": "/music-pay/static/js/main.fef5c8a9.js",
-    "index.html": "/music-pay/index.html",
-    "main.1aaac720.css.map": "/music-pay/static/css/main.1aaac720.css.map",
-    "main.fef5c8a9.js.map": "/music-pay/static/js/main.fef5c8a9.js.map"
+    "main.css": "/static/css/main.1aaac720.css",
+    "main.js": "/static/js/main.fef5c8a9.js",
+    "index.html": "/index.html",
+    "main.1aaac720.css.map": "/static/css/main.1aaac720.css.map",
+    "main.fef5c8a9.js.map": "/static/js/main.fef5c8a9.js.map"
   },
   "entrypoints": [
     "static/css/main.1aaac720.css",
