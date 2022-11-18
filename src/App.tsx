@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Contract} from 'ethers'
 import CreateArtist from './components/Artist/CreateArtist'
 import TitlePage from './components/TitlePage'
 import ArtistProfile from './components/Artist/ArtistProfile'
@@ -9,9 +8,9 @@ import ArtistBooking from './components/Booking/ArtistBooking';
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
-import {ArtistFactoryContract, provider, signer} from "./Contracts/ContractObjects"
-import {HashRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
-//trying out HashRouter instead of BrowserRouter for GH pages
+import {ArtistFactoryContract, provider} from "./Contracts/ContractObjects"
+import {BrowserRouter, HashRouter, Route, Routes} from 'react-router-dom'
+
 function App() {
 
   const [notConnected, setNotConnected] = useState(true)
@@ -20,7 +19,7 @@ function App() {
  
 
   return (
-    <Router>
+    <HashRouter>
       <Routes>
 
         <>
@@ -85,7 +84,7 @@ function App() {
       </Routes>
 
 
-    </Router>
+    </HashRouter>
   );
 }
 
