@@ -64,8 +64,8 @@ const ArtistBooking : FC<props> = ({artistAddress}) => {
     <div className='Parent-div'>
       <div className='ArtistBooking'>
         <div className='ArtistBookingHeader'>
-          <h5 className='HeaderText'>{artistAddress}</h5>
           <h1 className='HeaderText'>{artistName}</h1>
+          <h5 className='HeaderText'>{artistAddress}</h5>
         </div>
         <form className='BookingForm'>
           <input 
@@ -94,16 +94,17 @@ const ArtistBooking : FC<props> = ({artistAddress}) => {
           name="venue"
           onChange={handleChange}
           >
-
           </input>
-        </form>
-        <div className="SubmitBooking">
+          <br></br>
+          <div className="SubmitBooking">
           <button 
           onClick= {handleSubmit}
           >
             Book Artist
           </button>
         </div>
+        </form>
+      
       </div>
       <BackToTitlePage/>
     </div>

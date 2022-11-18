@@ -52,15 +52,16 @@ const ArtistProfile :FC = () => {
         <div className='Parent-div'>
             <div
             className='ArtistProfile'>
-                
-                <div>
 
-                    <h5 className='Addresses'>Artist Address: {artistAddress}</h5>
-                    <h5 className='Addresses'>Artist Profile Address: {artistProfileAddress}</h5>
+                <h1 className='ArtistName'>{artistName}</h1>
+                
+                <div className='Addresses'>
+
+                    <h5>{artistProfileAddress}</h5>
 
                 </div>
 
-                <h1 className='ArtistName'>{artistName}</h1>
+                
             </div>
 
             <AboutMe

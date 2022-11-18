@@ -92,6 +92,7 @@ body {
   margin: auto;
   color:darkred;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: auto;
@@ -101,6 +102,20 @@ body {
 
 .ArtistName {
   text-align: center;
+  font-size: 60px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+/* 
+.Addresses {
+  position: absolute;
+  top: 50px;
+  right: 5px;
+} */
+
+.Addresses h5 {
+  margin-bottom: 2px;
+  margin-top: 5px;
 }
 
 .LoadingScreen {
@@ -158,9 +173,20 @@ body {
 
 .ArtistBookingHeader {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content:flex-start;
   padding: 20px;
+  
+}
+
+.ArtistBookingHeader h1 {
+  margin-bottom: 5px;
+  font-size: 60px;
+}
+
+.ArtistBookingHeader h5 {
+  margin-top: 5px;
 }
 
 .BookingForm {
@@ -169,9 +195,7 @@ body {
   width: 100px;
   height: 150px;
   align-items: center;
-  margin-top: 100px;
-  /* position: absolute;
-  left: 46%; */
+  margin-top: 80px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -186,7 +210,6 @@ body {
 
 .SubmitBooking {
   width: 200px;
-  position: absolute;
   left: 41%;
   top: 55%;
   text-align: center;
@@ -205,10 +228,14 @@ body {
   color: darkred;
   width: 200px;
   height: 200px;
-  text-align: center;
+  text-align: left;
   position: absolute;
-  right: 10px;
+  left: 5px;
   padding: 20px;
+}
+
+.AboutMe button {
+  margin-left: 5px;
 }
 
 .HomeButton {
