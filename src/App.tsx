@@ -10,8 +10,8 @@ import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
 import {ArtistFactoryContract, provider, signer} from "./Contracts/ContractObjects"
-import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
-
+import {HashRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
+//trying out HashRouter instead of BrowserRouter for GH pages
 function App() {
 
   const [notConnected, setNotConnected] = useState(true)
