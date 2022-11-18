@@ -1,9 +1,9 @@
 import React, {FC, useState, useEffect} from 'react'
 import {ethers, Contract} from 'ethers'
-import {ArtistFactoryContract, signer}from "../ContractObjects"
-import ArtistProfileABI from '../ABI/ArtistProfile'
-import AboutMe from "./Artist/AboutMe"
-import BackToTitlePage from "./shared/BackToTitlePage"
+import {ArtistFactoryContract, signer}from "../../Contracts/ContractObjects"
+import ArtistProfileABI from '../../ABI/ArtistProfile'
+import AboutMe from "./AboutMe"
+import BackToTitlePage from "../shared/BackToTitlePage"
 
 declare var window: any
 

@@ -1,6 +1,6 @@
 import React, {FC, useState}from 'react'
 import {useNavigate} from 'react-router-dom'
-import {ArtistFactoryContract}from "../ContractObjects"
+import {ArtistFactoryContract}from "../../Contracts/ContractObjects"
 
 type props = {
   setArtistAddress : React.Dispatch<React.SetStateAction<string>>
