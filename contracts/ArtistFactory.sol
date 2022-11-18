@@ -38,4 +38,9 @@ contract ArtistFactory {
         require(ownerToArtist[msg.sender] == _artist, "you are not the artist owner");
         emit Artist(_artist, "existing artist");
     }
+
+    function removeArtist(string memory _artistName) external {
+        require(artistProfileToArtist[artistByName[_artistName]] == msg.sender);
+        doesArtistExist[_artistName] = false;
+    }
 }
