@@ -1,25 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {ethers, Contract} from 'ethers'
-import CreateArtist from './components/CreateArtist'
+import {Contract} from 'ethers'
+import CreateArtist from './components/Artist/CreateArtist'
 import TitlePage from './components/TitlePage'
-import ArtistProfile from './components/ArtistProfile'
-import SearchArtist from './components/SearchArtist';
-import ArtistBooking from './components/ArtistBooking';
-import Loading from './LoadingAndError/Loading';
-import NotOwner from './LoadingAndError/NotOwner';
+import ArtistProfile from './components/Artist/ArtistProfile'
+import SearchArtist from './components/Booking/SearchArtist';
+import ArtistBooking from './components/Booking/ArtistBooking';
+import Loading from './components/LoadingAndError/Loading';
+import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
-import {ArtistFactoryContract, provider, signer} from "./ContractObjects"
+import {ArtistFactoryContract, provider, signer} from "./Contracts/ContractObjects"
 import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
-
-declare var window: any
-
-type Connected = {
-  ArtistFactoryContract : Contract
-  setArtistName : React.Dispatch<React.SetStateAction<string>>
-  setArtistAddress : React.Dispatch<React.SetStateAction<object>>
-  artistName : string
-}
 
 function App() {
 
