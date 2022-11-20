@@ -36,36 +36,36 @@ contract BookingEscrow {
         
     }
 
-    // function payDeposit() external {
-    //     require(msg.sender == bookingAgent);
+    function payDeposit() external {
+        require(msg.sender == bookingAgent);
 
-    //     bool confirmed = performanceContract.payBookingDeposit(gigNumber);
-    //     bool success = DAI.transferFrom(msg.sender, address(this), payment / 5);
-    //     require(confirmed);
-    //     require(success);
+        // bool confirmed = performanceContract.payBookingDeposit(gigNumber);
+        bool success = DAI.transferFrom(msg.sender, address(this), payment / 5);
+        // require(confirmed);
+        require(success);
 
-    //     currentState = PaymentState.DEPOSIT_PAID;
+        currentState = PaymentState.DEPOSIT_PAID;
 
-    // }
+    }
 
-    // function finalisePayment() external {
-    //     require(msg.sender == bookingAgent);
+    function finalisePayment() external {
+        require(msg.sender == bookingAgent);
 
-    //     bool confirmed = performanceContract.confirmPerformance(gigNumber);
-    //     bool success = DAI.transferFrom(msg.sender, address(this), payment * 4/5);
-    //     require(confirmed);
-    //     require(success);
+        // bool confirmed = performanceContract.confirmPerformance(gigNumber);
+        bool success = DAI.transferFrom(msg.sender, address(this), payment * 4/5);
+        // require(confirmed);
+        require(success);
 
-    //     currentState = PaymentState.PAYMENT_FINALISED;
+        currentState = PaymentState.PAYMENT_FINALISED;
 
-    //     transferPayment();
-    // }
+        transferPayment();
+    }
 
-    // function transferPayment() internal {
-    //     require(currentState == PaymentState.PAYMENT_FINALISED);
-    //     require(DAI.balanceOf(address(this)) == payment);
-    //     DAI.transfer(artist, DAI.balanceOf(address(this)));
+    function transferPayment() internal {
+        require(currentState == PaymentState.PAYMENT_FINALISED);
+        require(DAI.balanceOf(address(this)) == payment);
+        DAI.transfer(artist, DAI.balanceOf(address(this)));
 
-    // }
+    }
 
 }
