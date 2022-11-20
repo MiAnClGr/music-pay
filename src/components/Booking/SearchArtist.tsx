@@ -1,6 +1,7 @@
 import React, {FC, useState}from 'react'
 import {useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract}from "../../Contracts/ContractObjects"
+import BackToTitlePage from '../shared/BackToTitlePage'
 
 type props = {
   setArtistAddress : React.Dispatch<React.SetStateAction<string>>
@@ -29,7 +30,9 @@ const SearchArtist : FC<props> = ({setArtistAddress}) => {
   }
 
   return (
-    <div className='SearchArtist'>
+    <>
+      <BackToTitlePage/>
+      <div className='SearchArtist'>
         <input 
         className='Inputs'
         placeholder='Search Artist'
@@ -42,8 +45,8 @@ const SearchArtist : FC<props> = ({setArtistAddress}) => {
         >
         Search
         </button>
-
-    </div>
+      </div>
+    </>
   )
 }
 

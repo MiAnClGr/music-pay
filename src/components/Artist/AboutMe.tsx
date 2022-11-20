@@ -33,7 +33,7 @@ const AboutMe : FC<props> = ({artistProfileContract}) => {
         }
     }
 
-    const openTextArea = () => {
+    const openinput = () => {
         setClicked(!clicked)
     }
 
@@ -42,43 +42,48 @@ const AboutMe : FC<props> = ({artistProfileContract}) => {
     },[artistProfileContract])
 
   return (
-    <div className='AboutMe'>
-        <h3>
-            About: {aboutArtist}
-        </h3>
-        <br></br>
-        <br></br>
-        <button 
-        className= 'Submit' 
-        onClick= {openTextArea}
-        >
-        update
-        </button>
-        <br></br>
-        <br></br>
-        { clicked 
-        
-        ?
+    <div>
+        <div className='AboutMe'>
+            <div className='AboutMeBox' >
+                <h4>
+                    {aboutArtist}
+                </h4>
+                <br></br>
+                <br></br>
+                
+                <br></br>
+                <br></br>
+                { clicked 
+                
+                ?
 
-        <div>
-            <textarea
-            className='Inputs'
-            placeholder='About...'
-            onChange= {updateAboutMe}
-            >
-            </textarea> 
-            <button 
-            className= 'Submit' 
-            onClick= {handleSubmit}
-            >
-            submit
-            </button>
+                <div className='AboutMeUpdate'>
+                    <textarea
+                    className='AboutMeUpdateBox'
+                    placeholder='About...'
+                    onChange= {updateAboutMe}
+                    >
+                    </textarea> 
+                    <button 
+                    onClick= {handleSubmit}
+                    >
+                    submit
+                    </button>
+                </div>
+                
+                :
+
+                <div></div>}
+            
+            </div>
+           
         </div>
-        
-        :
-
-        <div></div>}
-     
+        <button  
+        className='UpdateAboutMe'
+        onClick= {openinput}
+        >
+        Update About me
+        </button>
     </div>
   )
 }

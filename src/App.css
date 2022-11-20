@@ -6,9 +6,11 @@ body {
 
 }
 
-/* .Parent-div {
-  height: 100vh; 
-} */
+.Parent-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 
 
@@ -24,7 +26,7 @@ body {
   text-align: center;
   align-items: center;
   border-style: solid;
-  border-color: darkred;
+  border-color: #eaeaea;
 
 }
 
@@ -39,8 +41,8 @@ body {
 
 .Inputs {
   transform: scale(1.25);
-  color: darkred;
-  border-color: darkred;
+  color: #eaeaea;
+  border-color: #eaeaea;
   background-color: black;
   
 }
@@ -48,14 +50,14 @@ body {
 .Submit {
   transform: scale(1.25);
   margin-left: 28px;
-  color: darkred;
-  border-color: darkred;
+  color: #eaeaea;
+  border-color: #eaeaea;
   background-color: transparent;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: darkred;
+  color: #eaeaea;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
   font-weight: bold;
  
@@ -63,8 +65,8 @@ body {
 
 .Connect {
   background-color: black;
-  border-color: darkred;
-  color: darkred;
+  border-color: #eaeaea;
+  color: #eaeaea;
   padding: 5px;
   font-size: 16px;
   height: 35px;
@@ -83,14 +85,14 @@ body {
 }
 
 .Music-Pay-Title {
-  color: darkred;
+  color: #eaeaea;
   font-size: 80px;
   font-weight: lighter;
 }
 
 .ArtistProfile {
   margin: auto;
-  color:darkred;
+  color:#eaeaea;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,11 +123,11 @@ body {
 .LoadingScreen {
   text-align: center;
   margin-top: 300px;
-  color:darkred
+  color:#eaeaea
 }
 
 .HeaderText {
-  color:darkred;
+  color:#eaeaea;
 }
 
 .BookArtist {
@@ -151,8 +153,8 @@ body {
 .Back {
   transform: scale(1.5);
   margin-left: 28px;
-  color: darkred;
-  border-color: darkred;
+  color: #eaeaea;
+  border-color: #eaeaea;
   background-color: transparent;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
@@ -203,8 +205,8 @@ body {
 .BookingForm input {
   margin: 10px;
   transform: scale(1.25);
-  color: darkred;
-  border-color: darkred;
+  color: #eaeaea;
+  border-color: #eaeaea;
   background-color: black;
 }
 
@@ -218,38 +220,93 @@ body {
 }
 
 .SubmitBooking button {
-  color: darkred;
-  border-color: darkred;
+  color: #eaeaea;
+  border-color: #eaeaea;
   background-color: transparent;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
 
 .AboutMe {
-  color: darkred;
-  width: 200px;
-  height: 200px;
+  color: #eaeaea;
+  width: 300px;
+  height: 600px;
   text-align: left;
-  position: absolute;
-  left: 5px;
-  padding: 20px;
+  align-items: center;
+  gap: 20px;
 }
 
-.AboutMe button {
-  margin-left: 5px;
+.AboutMeBox {
+  width: 300px;
+  height: 400px;
+  padding: 5px;
+}
+
+.UpdateAboutMe {
+  width: 60px;
+  transform: scale(1.25);
+  color: #eaeaea;
+  border-color: #eaeaea;
+  background-color: black;
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+}
+
+.AboutMeUpdate {
+  background-color: black;
+  color: #eaeaea;
+  width: 300px;
+  height: 600px;
+  text-align: left;
+  position: absolute;
+  top: 155px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  
+}
+
+.AboutMeUpDateBox ::-webkit-input-placeholder {
+  font-size: 16px;
+}
+
+.AboutMeUpdateBox {
+  background-color: black;
+  border-width: 2.4px;
+  width: 300px;
+  height: 400px;
+  border-style: solid;
+  border-color: #eaeaea;
+  color: #eaeaea;
+  padding: 5px;
+  resize: none;
+  font-size: 16px;
+}
+
+.AboutMeUpdate button {
+  width: 60px;
+  transform: scale(1.25);
+  color: #eaeaea;
+  border-color: #eaeaea;
+  background-color: black;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
 
 .HomeButton {
-  width: 60px;
   position: absolute;
-  top: 90%;
+  top: 5%;
   left: 2%;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
 
 .HomeButton button {
+  width: 60px;
   transform: scale(1.25);
-  color: darkred;
-  border-color: darkred;
+  color: #eaeaea;
+  border-color: #eaeaea;
   background-color: transparent;
 
 }

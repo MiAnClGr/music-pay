@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react'
+import BackToTitlePage from '../shared/BackToTitlePage'
 import {Contract} from 'ethers'
 import {useNavigate} from 'react-router-dom'
 
@@ -46,6 +47,7 @@ const CreateArtist : FC<props> = ({ArtistFactoryContract}) => {
     return (
        
         <>
+            <BackToTitlePage/>
             <div className= 'CreateArtist'>
 
                 <h3 className= "HeaderText">New Artist</h3>      
