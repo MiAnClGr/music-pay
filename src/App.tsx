@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import './App.css';
-import CreateArtist from './components/Artist/CreateArtist'
+import { Contract } from 'ethers';
+import Login from './components/Login';
+import CreateNew from './components/CreateNew';
+import Artist from './components/Artist/Artist';
 import TitlePage from './components/TitlePage'
 import ArtistProfile from './components/Artist/ArtistProfile'
 import SearchArtist from './components/Booking/SearchArtist';
@@ -15,8 +18,11 @@ function App() {
 
   const [notConnected, setNotConnected] = useState(true)
   const [artistAddress, setArtistAddress] = useState(localStorage.getItem("artistAddress") || "")
-  
- 
+  const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
+  const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
+  const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
+  const [artistLoggedIn, setArtistLoggedIn] = useState(false)
+
 
   return (
     <BrowserRouter>
@@ -39,13 +45,52 @@ function App() {
 
         <Route path= "/Profile" element = {
           
-          <ArtistProfile/>
+          <ArtistProfile
+          artistName= {artistName}
+          artistAddress= {artistAddress}
+          artistProfileAddress= {artistProfileAddress}
+          artistProfileContract= {artistProfileContract}
+          artistLoggedIn= {artistLoggedIn}
+          setArtistLoggedIn= {setArtistLoggedIn}
+          setArtistName= {setArtistName}
+          setArtistAddress= {setArtistAddress}
+          setArtistProfileAddress= {setArtistProfileAddress}
+          setArtistProfileContract= {setArtistProfileContract}
+
+          />
         }/>
 
-        <Route path= "/CreateArtist" element = {
+        <Route path= "/Artist" element = {
 
-          <CreateArtist
-          ArtistFactoryContract = {ArtistFactoryContract}/>
+        <Artist
+        artistName= {artistName}
+        artistProfileAddress= {artistProfileAddress}
+        ArtistFactoryContract = {ArtistFactoryContract}
+        artistLoggedIn= {artistLoggedIn}
+        setArtistLoggedIn= {setArtistLoggedIn}
+        />
+        }/>
+
+        <Route path= "/Login" element = {
+
+          <Login
+          artistName= {artistName}
+          artistProfileAddress= {artistProfileAddress}
+          ArtistFactoryContract = {ArtistFactoryContract}
+          artistLoggedIn= {artistLoggedIn}
+          setArtistLoggedIn= {setArtistLoggedIn}
+          />
+        }/>
+
+        <Route path= "/CreateNew" element = {
+
+        <CreateNew
+        artistName= {artistName}
+        artistProfileAddress= {artistProfileAddress}
+        ArtistFactoryContract = {ArtistFactoryContract}
+        artistLoggedIn= {artistLoggedIn}
+        setArtistLoggedIn= {setArtistLoggedIn}
+        />
         }/>
 
         <Route path = "/SearchArtist" element = {

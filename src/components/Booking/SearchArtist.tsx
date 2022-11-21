@@ -1,7 +1,7 @@
 import React, {FC, useState}from 'react'
 import {useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract}from "../../Contracts/ContractObjects"
-import BackToTitlePage from '../shared/BackToTitlePage'
+import BackToTitlePage from '../shared/Home'
 
 type props = {
   setArtistAddress : React.Dispatch<React.SetStateAction<string>>

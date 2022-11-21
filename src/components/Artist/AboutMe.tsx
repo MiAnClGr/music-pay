@@ -78,12 +78,12 @@ const AboutMe : FC<props> = ({artistProfileContract}) => {
             </div>
            
         </div>
-        <button  
+        <h4  
         className='UpdateAboutMe'
         onClick= {openinput}
         >
-        Update About me
-        </button>
+        Update Profile
+        </h4>
     </div>
   )
 }

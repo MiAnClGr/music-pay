@@ -1,35 +1,27 @@
 import React from 'react'
-import {useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const RoutingUser = () => {
-
-const navigate = useNavigate()
-
-  const toCreateArtist = () => {
-    navigate("/CreateArtist")
-  }
-
-  const toSearchArtist = () => {
-    navigate("/SearchArtist")
-  }
-
   return (
-    <div className='Route'>
-        <button 
-        className='Submit'
-        onClick={toCreateArtist}
-        >
-        Artists
-        </button>
-        <br></br>
-        <br></br>
-        <br></br>
-        <button 
-        className='Submit'
-        onClick={toSearchArtist}
-        >
-        Booking Agents
-        </button>
+    <div className='TitlePage'>
+        <h1 className='Music-Pay-Title'>Music-Pay</h1>
+        <div className='Route'>
+          <Link
+          className='Link'
+          to= "/Artist"
+          >
+          Artists
+          </Link>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Link 
+          className='Link'
+          to= "/SearchArtist"
+          >
+          Booking Agents
+          </Link>
+        </div>
     </div>
   )
 }

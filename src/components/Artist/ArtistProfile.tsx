@@ -3,16 +3,33 @@ import {ethers, Contract} from 'ethers'
 import {ArtistFactoryContract, signer}from "../../Contracts/ContractObjects"
 import ArtistProfileABI from '../../ABI/ArtistProfile'
 import AboutMe from "./AboutMe"
-import BackToTitlePage from "../shared/BackToTitlePage"
+import Home from "../shared/Home"
+import ArtistHeader from "../shared/ArtistHeader"
 
-declare var window: any
+type props = {
+    artistName : string
+    artistProfileAddress : string
+    artistAddress : string | undefined
+    artistProfileContract : Contract | undefined
+    artistLoggedIn : boolean
+    setArtistName : React.Dispatch<React.SetStateAction<string>>
+    setArtistAddress : React.Dispatch<React.SetStateAction<string>>
+    setArtistProfileAddress : React.Dispatch<React.SetStateAction<string>>
+    setArtistProfileContract : React.Dispatch<React.SetStateAction<Contract | undefined>>
+    setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const ArtistProfile :FC = () => {
-
-    const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
-    const [artistAddress, setArtistAddress] = useState("")
-    const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
-    const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
+const ArtistProfile :FC<props> = 
+    ({artistName,
+    artistProfileAddress, 
+    artistAddress, 
+    artistProfileContract,
+    artistLoggedIn, 
+    setArtistName, 
+    setArtistAddress, 
+    setArtistProfileAddress, 
+    setArtistProfileContract,
+    setArtistLoggedIn}) => {
 
     const setArtistContract = async () => {
         ArtistFactoryContract.on("Artist", (artist, status) => {
@@ -20,6 +37,7 @@ const ArtistProfile :FC = () => {
 
             createInstance(artist)
             setArtistProfileAddress(artist)
+            setArtistLoggedIn(true)
             console.log(artist)
             console.log(status)
         })
@@ -61,8 +79,14 @@ const ArtistProfile :FC = () => {
 
 
     return(
-        <div className='Parent-div'>
-            <div
+        <div className='Align-Profile'>
+            <ArtistHeader
+            artistName= {artistName}
+            artistProfileAddress = {artistProfileAddress}
+            artistLoggedIn= {artistLoggedIn}
+            setArtistLoggedIn= {setArtistLoggedIn}
+            />
+            {/* <div
             className='ArtistProfile'>
 
                 <h1 className='ArtistName'>{artistName}</h1>
@@ -74,12 +98,12 @@ const ArtistProfile :FC = () => {
                 </div>
 
                 
-            </div>
+            </div> */}
 
             <AboutMe
             artistProfileContract = {artistProfileContract}
             />
-            <BackToTitlePage/>
+          
 
         </div>
     )

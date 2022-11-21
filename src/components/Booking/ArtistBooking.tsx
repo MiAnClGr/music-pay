@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react'
 import {ethers} from 'ethers'
 import {ArtistFactoryContract, PerformanceContract, signer} from "../../Contracts/ContractObjects"
-import BackToTitlePage from '../shared/BackToTitlePage'
+import BackToTitlePage from '../shared/Home'
 
 
 type props = {
