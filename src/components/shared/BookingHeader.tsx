@@ -31,7 +31,7 @@ const ArtistHeader : FC<props> = ({search, submitSearch}) : ReactElement => {
         ? 
       <input 
       className='SearchBar'
-      placeholder='Artist Name'
+      placeholder='Artist'
       onChange={search}
       onKeyDown={submitSearch}
       >

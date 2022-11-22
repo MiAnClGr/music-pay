@@ -80,17 +80,22 @@ body {
   align-items: center;
   border-style: solid;
   border-color: #eaeaea;
+  border-radius: 10px;
 
 }
 
 .SearchBar {
-  transform: scale(1.25);
+  transform: scale(1.28);
   color: #eaeaea;
   border-color: #eaeaea;
   background-color: black;
   border-radius: 5px;
   position: absolute;
   left: 27%;
+}
+
+.SearchBar::-webkit-input-placeholder {
+  font-size: 15px;
 }
 
 .Inputs {

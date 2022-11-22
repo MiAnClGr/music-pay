@@ -43,32 +43,12 @@ function App() {
           <RoutingUser/>
         }/>
 
-
-        <Route path= "/Profile" element = {
-          
-          <ArtistProfile
-          artistName= {artistName}
-          artistAddress= {artistAddress}
-          artistProfileAddress= {artistProfileAddress}
-          artistProfileContract= {artistProfileContract}
-          artistLoggedIn= {artistLoggedIn}
-          setArtistLoggedIn= {setArtistLoggedIn}
-          setArtistName= {setArtistName}
-          setArtistAddress= {setArtistAddress}
-          setArtistProfileAddress= {setArtistProfileAddress}
-          setArtistProfileContract= {setArtistProfileContract}
-
-          />
-        }/>
-
         <Route path= "/ArtistMain" element = {
 
           <ArtistMain
           artistName= {artistName}
           artistProfileAddress= {artistProfileAddress}
-          ArtistFactoryContract = {ArtistFactoryContract}
           artistLoggedIn= {artistLoggedIn}
-          setArtistLoggedIn= {setArtistLoggedIn}
           />
         }/>
 
@@ -91,6 +71,23 @@ function App() {
           ArtistFactoryContract = {ArtistFactoryContract}
           artistLoggedIn= {artistLoggedIn}
           setArtistLoggedIn= {setArtistLoggedIn}
+          />
+        }/>
+
+        <Route path= "/Profile" element = {
+          
+          <ArtistProfile
+          artistName= {artistName}
+          artistAddress= {artistAddress}
+          artistProfileAddress= {artistProfileAddress}
+          artistProfileContract= {artistProfileContract}
+          artistLoggedIn= {artistLoggedIn}
+          setArtistLoggedIn= {setArtistLoggedIn}
+          setArtistName= {setArtistName}
+          setArtistAddress= {setArtistAddress}
+          setArtistProfileAddress= {setArtistProfileAddress}
+          setArtistProfileContract= {setArtistProfileContract}
+
           />
         }/>
 

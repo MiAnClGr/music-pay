@@ -84,7 +84,6 @@ const ArtistProfile :FC<props> =
             artistName= {artistName}
             artistProfileAddress = {artistProfileAddress}
             artistLoggedIn= {artistLoggedIn}
-            setArtistLoggedIn= {setArtistLoggedIn}
             />
     
             <AboutMe

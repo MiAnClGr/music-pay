@@ -6,9 +6,8 @@ type props = {
   artistName : string
   artistProfileAddress : string
   artistLoggedIn : boolean
-  setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
 }
-const ArtistHeader : FC<props> = ({artistName, artistProfileAddress, artistLoggedIn, setArtistLoggedIn}) : ReactElement => {
+const ArtistHeader : FC<props> = ({artistName, artistProfileAddress, artistLoggedIn}) : ReactElement => {
   
   return(
     
