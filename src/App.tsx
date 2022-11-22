@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import './App.css';
 import { Contract } from 'ethers';
-import Login from './components/Login';
-import CreateNew from './components/CreateNew';
-import Artist from './components/Artist/Artist';
+import Login from './components/Artist/Login';
+import CreateNew from './components/Artist/CreateNew';
+import ArtistMain from './components/Artist/ArtistMain';
 import TitlePage from './components/TitlePage'
 import ArtistProfile from './components/Artist/ArtistProfile'
-import SearchArtist from './components/Booking/SearchArtist';
+import BookingMain from './components/Booking/BookingMain';
 import ArtistBooking from './components/Booking/ArtistBooking';
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
@@ -23,11 +23,12 @@ function App() {
   const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
   const [artistLoggedIn, setArtistLoggedIn] = useState(false)
 
+  /// Search Logic /// 
+
 
   return (
     <BrowserRouter>
       <Routes>
-        
         <Route path= "/Music-Pay" element = {
 
           <TitlePage
@@ -60,15 +61,15 @@ function App() {
           />
         }/>
 
-        <Route path= "/Artist" element = {
+        <Route path= "/ArtistMain" element = {
 
-        <Artist
-        artistName= {artistName}
-        artistProfileAddress= {artistProfileAddress}
-        ArtistFactoryContract = {ArtistFactoryContract}
-        artistLoggedIn= {artistLoggedIn}
-        setArtistLoggedIn= {setArtistLoggedIn}
-        />
+          <ArtistMain
+          artistName= {artistName}
+          artistProfileAddress= {artistProfileAddress}
+          ArtistFactoryContract = {ArtistFactoryContract}
+          artistLoggedIn= {artistLoggedIn}
+          setArtistLoggedIn= {setArtistLoggedIn}
+          />
         }/>
 
         <Route path= "/Login" element = {
@@ -84,28 +85,27 @@ function App() {
 
         <Route path= "/CreateNew" element = {
 
-        <CreateNew
-        artistName= {artistName}
-        artistProfileAddress= {artistProfileAddress}
-        ArtistFactoryContract = {ArtistFactoryContract}
-        artistLoggedIn= {artistLoggedIn}
-        setArtistLoggedIn= {setArtistLoggedIn}
-        />
+          <CreateNew
+          artistName= {artistName}
+          artistProfileAddress= {artistProfileAddress}
+          ArtistFactoryContract = {ArtistFactoryContract}
+          artistLoggedIn= {artistLoggedIn}
+          setArtistLoggedIn= {setArtistLoggedIn}
+          />
         }/>
 
-        <Route path = "/SearchArtist" element = {
+        <Route path= "/BookingMain" element = {
 
-        <SearchArtist
-        setArtistAddress = {setArtistAddress}
+        <BookingMain
+          setArtistAddress={setArtistAddress}
         />
-
         }/>
 
         <Route path = "/ArtistBooking" element = {
 
-        <ArtistBooking 
-        artistAddress = {artistAddress} 
-        />
+          <ArtistBooking 
+          artistAddress = {artistAddress} 
+          />
 
         }/>
 
@@ -118,7 +118,7 @@ function App() {
 
         <Route path = "/NotOwner" element = {
 
-        <NotOwner/>
+          <NotOwner/>
 
         }/>
   

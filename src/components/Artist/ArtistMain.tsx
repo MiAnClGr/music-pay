@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react'
 import ArtistProfileHeader from '../shared/ArtistHeader'
 import {Contract} from 'ethers'
-import {useNavigate} from 'react-router-dom'
+
 
 
 type props = {
@@ -12,7 +12,7 @@ type props = {
     setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Artist : FC<props> = ({artistName, artistProfileAddress, ArtistFactoryContract, artistLoggedIn, setArtistLoggedIn}) => {
+const ArtistMain : FC<props> = ({artistName, artistProfileAddress, ArtistFactoryContract, artistLoggedIn, setArtistLoggedIn}) => {
 
    
 
@@ -36,7 +36,7 @@ const Artist : FC<props> = ({artistName, artistProfileAddress, ArtistFactoryCont
     )
 }
 
-export default Artist
+export default ArtistMain
 
 
 

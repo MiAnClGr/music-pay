@@ -12,7 +12,7 @@ const ArtistHeader : FC<props> = ({artistName, artistProfileAddress, artistLogge
   
   return(
     
-    <header className='ArtistHeader'>
+    <header className='Header'>
       <Home/>
       <Link
       className='About' 

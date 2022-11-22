@@ -86,20 +86,7 @@ const ArtistProfile :FC<props> =
             artistLoggedIn= {artistLoggedIn}
             setArtistLoggedIn= {setArtistLoggedIn}
             />
-            {/* <div
-            className='ArtistProfile'>
-
-                <h1 className='ArtistName'>{artistName}</h1>
-                
-                <div className='Addresses'>
-
-                    <h5>{artistProfileAddress}</h5>
-
-                </div>
-
-                
-            </div> */}
-
+    
             <AboutMe
             artistProfileContract = {artistProfileContract}
             />
