@@ -1,13 +1,16 @@
 import React, {FC, useState, ReactElement} from 'react'
 import { Link } from 'react-router-dom'
 import Home from "./Home"
+import SearchArtist from "../shared/SearchArtist"
 
 type props = {
-    search : (e: React.ChangeEvent<HTMLInputElement>) => void
-    submitSearch : (e: React.KeyboardEvent<HTMLInputElement>) => Promise<void>
+    // search : (e: React.ChangeEvent<HTMLInputElement>) => void
+    setArtistAddress : React.Dispatch<React.SetStateAction<string>>
+    // submitSearch : (e: React.KeyboardEvent<HTMLInputElement>) => Promise<void>
+    // searchArtist :  React.FC<props>
 }
 
-const ArtistHeader : FC<props> = ({search, submitSearch}) : ReactElement => {
+const ArtistHeader : FC<props> = ({setArtistAddress}) : ReactElement => {
 
     const [searchClicked, setSearchClicked] = useState(false)
   
@@ -29,15 +32,11 @@ const ArtistHeader : FC<props> = ({search, submitSearch}) : ReactElement => {
       </h3>
       {searchClicked 
         ? 
-      <input 
-      className='SearchBar'
-      placeholder='Artist'
-      onChange={search}
-      onKeyDown={submitSearch}
-      >
-      </input>
+      <SearchArtist
+      setArtistAddress={setArtistAddress}
+      />
         :
-        <></>
+      <></>
       }
     </header>
   )

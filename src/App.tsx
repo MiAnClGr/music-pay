@@ -23,8 +23,6 @@ function App() {
   const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
   const [artistLoggedIn, setArtistLoggedIn] = useState(false)
 
-  /// Search Logic /// 
-
 
   return (
     <BrowserRouter>
@@ -102,6 +100,7 @@ function App() {
 
           <ArtistBooking 
           artistAddress = {artistAddress} 
+          setArtistAddress= {setArtistAddress}
           />
 
         }/>

@@ -2,13 +2,16 @@ import React, {FC, useEffect, useState} from 'react'
 import {ethers} from 'ethers'
 import {ArtistFactoryContract, PerformanceContract, signer} from "../../Contracts/ContractObjects"
 import BackToTitlePage from '../shared/Home'
+import BookingHeader from "../shared/BookingHeader"
 
 
 type props = {
   artistAddress: string 
+  setArtistAddress : React.Dispatch<React.SetStateAction<string>>
+
 }
 
-const ArtistBooking : FC<props> = ({artistAddress}) => {
+const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) => {
 
   const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
   const [artistBooking, setArtistBooking] = useState({
@@ -62,11 +65,11 @@ const ArtistBooking : FC<props> = ({artistAddress}) => {
 
   return (
     <div className='Parent-div'>
+      <BookingHeader
+      setArtistAddress={setArtistAddress}
+      />
       <div className='ArtistBooking'>
-        <div className='ArtistBookingHeader'>
-          <h1 className='HeaderText'>{artistName}</h1>
-          <h5 className='HeaderText'>{artistAddress}</h5>
-        </div>
+       
         <form className='BookingForm'>
           <input 
           placeholder="Payment" 
