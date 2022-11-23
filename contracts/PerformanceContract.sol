@@ -5,6 +5,7 @@ import "./ProofOfBooking.sol";
 import "./ProofOfPayment.sol";
 import "./BookingEscrow.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 pragma solidity 0.8.17;
 
@@ -17,10 +18,9 @@ contract PerformanceContract {
     // ProofOfBooking public proofOfBooking;
     // ProofOfPayment public proofOfPayment;
 
-    
 // Events
 
-    event BookingMade (uint _payment, uint _time, string _venueName);
+    
     event BookingFeePaid (bool _depositPaid);
 
 // Constructor
@@ -51,21 +51,7 @@ contract PerformanceContract {
     }
 
 
-    // Booking agent pays 20% of the payment as a deposit 
-        
-    // function payBookingDeposit(uint _gigNumber) public returns(bool confirmed) {        
-    //     Booking storage booking = Bookings[_gigNumber];
-
-    //     require(block.timestamp < (booking.agreementTime + 1 days)); // 24 hours to pay 
-    //     require(booking.agreed);
-
-    //     booking.depositPaid = true;
-    //     booking.currentState = State.bookingComplete;
-
-    //     emit BookingFeePaid(true);   
-
-    //     return confirmed; 
-    // }
+ 
 
     // Booking agent confirms the performance was completed
 

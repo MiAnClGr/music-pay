@@ -23,7 +23,13 @@ contract BookingEscrow {
 
     mapping(uint => address) public gigNumberToBookingAgent;
     
-    constructor(address _artist, address _bookingAgent, uint _gigNumber, uint256 _payment, address _performanceContract, address _proofOfPayment) payable {
+    constructor(
+        address _artist,
+        address _bookingAgent, 
+        uint _gigNumber, 
+        uint256 _payment, 
+        address _proofOfPayment
+        ) payable {
         artist = _artist;
         bookingAgent = _bookingAgent;
         gigNumber = _gigNumber;
@@ -38,10 +44,7 @@ contract BookingEscrow {
 
     function payDeposit() external {
         require(msg.sender == bookingAgent);
-
-        // bool confirmed = performanceContract.payBookingDeposit(gigNumber);
         bool success = DAI.transferFrom(msg.sender, address(this), payment / 5);
-        // require(confirmed);
         require(success);
 
         currentState = PaymentState.DEPOSIT_PAID;

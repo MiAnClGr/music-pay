@@ -14,6 +14,12 @@ contract ArtistProfile {
     ProofOfBooking proofOfBooking;
     ERC20 DAI;
 
+// Events
+
+    event BookingMade (address _artist, address _bookingAgent);
+    event DepositPaid (uint _gigNumber);
+    event EscrowCreated (address _escrowAddress);
+
 // State Variables
 
     struct Booking {
@@ -33,6 +39,7 @@ contract ArtistProfile {
     
         State currentState;   
     }
+
 
     uint256 gigNumber;
 
@@ -88,23 +95,29 @@ contract ArtistProfile {
         booking.bookingAgent = _bookingAgent;
         }
 
-        // escrow =  new BookingEscrow(booking.artist, msg.sender, gigNumber, _payment, address(this), address(proofOfPayment));
-        // address escrowAddress = address(escrow);
-        // gigNumberToEscrowAddress[gigNumber] = escrowAddress;
-
-        // proofOfBooking.mintProofOfBooking(artist, gigNumber, _artistName, _payment.toString(), _date, _venueName);
-
+        emit BookingMade(_artist, _bookingAgent);
     }
 
+ 
     function updateAboutMe(string memory _update) external {
         aboutMe = _update;
     }
 
     function agreement(uint _gigNumber) external onlyArtist {
         Booking storage booking = bookings[_gigNumber];
-
         booking.agreed = true;
-        
+
+        escrow =  new BookingEscrow(
+            booking.artist,
+            booking.bookingAgent,
+            _gigNumber, booking.payment,
+            address(this),
+            address(proofOfPayment)
+        );
+
+        emit DepositPaid(_gigNumber);
+        emit EscrowCreated(address(escrow));
+    
     }
 
     function withdraw() external {
