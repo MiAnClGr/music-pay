@@ -110,9 +110,9 @@ contract ArtistProfile {
         escrow =  new BookingEscrow(
             booking.artist,
             booking.bookingAgent,
-            _gigNumber, booking.payment,
-            address(this),
-            address(proofOfPayment)
+            _gigNumber, 
+            booking.payment
+            // address(proofOfPayment)
         );
 
         emit DepositPaid(_gigNumber);
