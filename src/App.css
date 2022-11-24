@@ -84,19 +84,6 @@ body {
 
 }
 
-.SearchBar {
-  transform: scale(1.28);
-  color: #eaeaea;
-  border-color: #eaeaea;
-  background-color: black;
-  border-radius: 5px;
-  position: relative;
-  left: 27%;
-}
-
-.SearchBar::-webkit-input-placeholder {
-  font-size: 15px;
-}
 
 .Inputs {
   transform: scale(1.25);
@@ -366,12 +353,36 @@ body {
   text-decoration: none;
 }
 
+/*Search*/
+
 .Search {
-  color: #eaeaea;
-  font-size: 20px;
   position: absolute;
   left: 22%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.SearchText {
+  color: #eaeaea;
+  font-size: 20px;
+  font-weight: lighter;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
   text-decoration: none;
   cursor: pointer;
+}
+
+.SearchBar {
+  height: 22px;
+  color: #eaeaea;
+  border-color: #eaeaea;
+  background-color: black;
+  border-radius: 5px;
+ 
+}
+
+.SearchBar::-webkit-input-placeholder {
+  font-size: 20px;
+  font-weight: lighter;
 }

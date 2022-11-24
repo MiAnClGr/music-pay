@@ -24,20 +24,22 @@ const ArtistHeader : FC<props> = ({setArtistAddress}) : ReactElement => {
       >
       About
       </Link>
-      <h3
-      className='Search'
-      onClick= {() => setSearchClicked(!searchClicked)}
-      >
-      Search
-      </h3>
-      {searchClicked 
-        ? 
-      <SearchArtist
-      setArtistAddress={setArtistAddress}
-      />
-        :
-      <></>
-      }
+      <div className='Search'>
+        <h3
+        className='SearchText'
+        onClick= {() => setSearchClicked(!searchClicked)}
+        >
+        Search
+        </h3>
+        {searchClicked 
+          ? 
+        <SearchArtist
+        setArtistAddress={setArtistAddress}
+        />
+          :
+        <></>
+        }
+      </div>
     </header>
   )
 }
