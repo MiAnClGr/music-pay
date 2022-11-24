@@ -9,7 +9,6 @@ pragma solidity 0.8.17;
 contract BookingEscrow {
 
     ERC20 DAI;
-    PerformanceContract performanceContract;
     ProofOfPayment proofOfPayment;
 
     enum PaymentState {NO_PAYMENT_MADE, DEPOSIT_PAID, PAYMENT_FINALISED, COMPLETE}
@@ -27,15 +26,14 @@ contract BookingEscrow {
         address _artist,
         address _bookingAgent, 
         uint _gigNumber, 
-        uint256 _payment, 
-        address _proofOfPayment
+        uint256 _payment
+        // address _proofOfPayment
         ) payable {
         artist = _artist;
         bookingAgent = _bookingAgent;
         gigNumber = _gigNumber;
         payment = _payment;
-        performanceContract = PerformanceContract(_performanceContract);
-        proofOfPayment = ProofOfPayment(_proofOfPayment);
+        // proofOfPayment = ProofOfPayment(_proofOfPayment);
         DAI = ERC20(0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60);
 
         currentState = PaymentState.NO_PAYMENT_MADE;
