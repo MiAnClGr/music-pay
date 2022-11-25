@@ -3,13 +3,14 @@ import {Contract} from 'ethers'
 
 type props = {
     artistProfileContract : Contract | undefined
+    clicked: boolean
+    setClicked : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AboutMe : FC<props> = ({artistProfileContract}) => {
+const AboutMe : FC<props> = ({artistProfileContract, clicked, setClicked}) => {
 
     const [aboutArtist, setAboutArtist] = useState("")
     const [update, setUpdate] = useState("")
-    const [clicked, setClicked] = useState(false)
 
     const getAboutMe = async () => {
         const about = await artistProfileContract?.aboutMe()
@@ -21,20 +22,18 @@ const AboutMe : FC<props> = ({artistProfileContract}) => {
         setUpdate(e.target.value)
     }
 
-    const handleSubmit = async () => {
-        try{
-            const updated = await artistProfileContract?.updateAboutMe(update)
-            await updated.wait()
-        }catch(error){
+    const handleSubmit = async (e : React.KeyboardEvent<HTMLElement>) => {
+        if(e.key === 'Enter'){
+            try{
+                const updated = await artistProfileContract?.updateAboutMe(update)
+                await updated.wait()
+            }catch(error){
 
-        }finally{
-            getAboutMe()
-            setClicked(!clicked)
+            }finally{
+                getAboutMe()
+                setClicked(!clicked)
+            }
         }
-    }
-
-    const openinput = () => {
-        setClicked(!clicked)
     }
 
     useEffect(() => {
@@ -62,13 +61,14 @@ const AboutMe : FC<props> = ({artistProfileContract}) => {
                     className='AboutMeUpdateBox'
                     placeholder='About...'
                     onChange= {updateAboutMe}
+                    onKeyDown= {handleSubmit}
                     >
                     </textarea> 
-                    <button 
+                    {/* <button 
                     onClick= {handleSubmit}
                     >
                     submit
-                    </button>
+                    </button> */}
                 </div>
                 
                 :
@@ -76,14 +76,7 @@ const AboutMe : FC<props> = ({artistProfileContract}) => {
                 <div></div>}
             
             </div>
-           
         </div>
-        <h4  
-        className='UpdateAboutMe'
-        onClick= {openinput}
-        >
-        Update Profile
-        </h4>
     </div>
   )
 }

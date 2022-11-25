@@ -46,6 +46,7 @@ function App() {
           <ArtistMain
           artistName= {artistName}
           artistProfileAddress= {artistProfileAddress}
+          artistProfileContract= {artistProfileContract}
           artistLoggedIn= {artistLoggedIn}
           />
         }/>

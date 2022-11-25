@@ -1,14 +1,23 @@
-import React, {FC, ReactElement} from 'react'
+import React, {FC, ReactElement, useState} from 'react'
+import { Contract } from 'ethers'
 import { Link } from 'react-router-dom'
+import AboutMe from '../Artist/AboutMe'
 import Home from "./Home"
 
 type props = {
   artistName : string
   artistProfileAddress : string
   artistLoggedIn : boolean
+  artistProfileContract : Contract | undefined
 }
-const ArtistHeader : FC<props> = ({artistName, artistProfileAddress, artistLoggedIn}) : ReactElement => {
+const ArtistHeader : FC<props> = ({artistName, artistProfileContract, artistLoggedIn}) : ReactElement => {
   
+  const [clicked, setClicked] = useState(false)
+
+  const openinput = () => {
+    setClicked(!clicked)
+}
+
   return(
     
     <header className='Header'>
@@ -34,6 +43,19 @@ const ArtistHeader : FC<props> = ({artistName, artistProfileAddress, artistLogge
       Login
       </Link>
       }
+      <h4  
+      className='UpdateAboutMe'
+      onClick= {openinput}
+      >
+        Update
+      </h4>
+    
+      <AboutMe
+      artistProfileContract={artistProfileContract}
+      setClicked= {setClicked}
+      clicked= {clicked}
+      />
+      
      
     </header>
   )

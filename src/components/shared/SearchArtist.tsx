@@ -32,7 +32,7 @@ const SearchArtist : FC<props> = ({setArtistAddress}) => {
   return (
     <input 
     className='SearchBar'
-    placeholder='Artist'
+    placeholder='Artist..'
     onChange={search}
     onKeyDown={submitSearch}
     >

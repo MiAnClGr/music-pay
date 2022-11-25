@@ -17,7 +17,7 @@ const BookingMain : FC<props> = ({setArtistAddress}) => {
             <h3 
             className='Text'
             style= {{fontSize: '60px'}}
-            >Welcome to Music-Pay for Booking Agents</h3>
+            >Welcome to Music-Pay for Bookings</h3>
         </div>
     </>
   )

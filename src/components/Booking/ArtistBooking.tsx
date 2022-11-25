@@ -1,7 +1,6 @@
 import React, {FC, useEffect, useState} from 'react'
 import {ethers} from 'ethers'
 import {ArtistFactoryContract, PerformanceContract, signer} from "../../Contracts/ContractObjects"
-import BackToTitlePage from '../shared/Home'
 import BookingHeader from "../shared/BookingHeader"
 
 
@@ -68,48 +67,48 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) => {
       <BookingHeader
       setArtistAddress={setArtistAddress}
       />
-      <div className='ArtistBooking'>
-       
-        <form className='BookingForm'>
-          <input 
-          placeholder="Payment" 
-          name= "payment"
-          onChange={handleChange}
-          >
-
-          </input>
-          <input 
-          placeholder="Time" 
-          name="time"
-          onChange={handleChange}
-          >
-
-          </input>
-          <input 
-          placeholder="Date" 
-          name="date"
-          onChange={handleChange}
-          >
-
-          </input>
-          <input 
-          placeholder="Venue" 
-          name="venue"
-          onChange={handleChange}
-          >
-          </input>
-          <br></br>
-          <div className="SubmitBooking">
-          <button 
-          onClick= {handleSubmit}
-          >
-            Book Artist
-          </button>
-        </div>
-        </form>
       
+      <div className='ArtistBooking'>
+        <h3 className='ArtistNameBooking'>{artistName}</h3>
+          <div className='BookingForm'>
+            <input 
+            autoComplete='off'
+            placeholder="Payment" 
+            name= "payment"
+            onChange={handleChange}
+            >
+
+            </input>
+            <input 
+            autoComplete='off'
+            placeholder="Time" 
+            name="time"
+            onChange={handleChange}
+            >
+
+            </input>
+            <input 
+            autoComplete='off'
+            placeholder="Date" 
+            name="date"
+            onChange={handleChange}
+            >
+
+            </input>
+            <input 
+            autoComplete='off'
+            placeholder="Venue" 
+            name="venue"
+            onChange={handleChange}
+            >
+            </input>
+            <h4 className='SubmitBooking'
+            onClick= {handleSubmit}
+            >
+              Book Artist
+            </h4>
+        </div>
       </div>
-      <BackToTitlePage/>
     </div>
   )
 }

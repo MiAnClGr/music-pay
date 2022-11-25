@@ -19,7 +19,7 @@ const RoutingUser = () => {
         className='Link'
         to= "/BookingMain"
         >
-        Booking Agents
+        Bookings
         </Link>
       </div>
     </div>

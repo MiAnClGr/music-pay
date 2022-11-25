@@ -83,14 +83,9 @@ const ArtistProfile :FC<props> =
             <ArtistHeader
             artistName= {artistName}
             artistProfileAddress = {artistProfileAddress}
+            artistProfileContract= {artistProfileContract}
             artistLoggedIn= {artistLoggedIn}
             />
-    
-            <AboutMe
-            artistProfileContract = {artistProfileContract}
-            />
-          
-
         </div>
     )
 }

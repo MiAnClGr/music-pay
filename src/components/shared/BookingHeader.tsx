@@ -4,10 +4,7 @@ import Home from "./Home"
 import SearchArtist from "../shared/SearchArtist"
 
 type props = {
-    // search : (e: React.ChangeEvent<HTMLInputElement>) => void
-    setArtistAddress : React.Dispatch<React.SetStateAction<string>>
-    // submitSearch : (e: React.KeyboardEvent<HTMLInputElement>) => Promise<void>
-    // searchArtist :  React.FC<props>
+  setArtistAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
 const ArtistHeader : FC<props> = ({setArtistAddress}) : ReactElement => {
