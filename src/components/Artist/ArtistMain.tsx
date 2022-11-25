@@ -20,6 +20,10 @@ const ArtistMain : FC<props> = ({artistName, artistProfileAddress, artistProfile
             artistProfileContract= {artistProfileContract}
             artistLoggedIn= {artistLoggedIn}
             />
+            {!artistLoggedIn 
+            
+            ?
+            
             <div style= {{textAlign: 'center', marginTop: '250px'}}>
                 <h3 
                 className='Text'
@@ -27,6 +31,11 @@ const ArtistMain : FC<props> = ({artistName, artistProfileAddress, artistProfile
                 >Welcome to Music-Pay for Artists...
                 </h3>
             </div>
+
+            :
+
+            <></>
+            }
         </>
     )
 }
