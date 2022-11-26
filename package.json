@@ -1,6 +1,6 @@
 {
   "name": "music-pay",
-  "homepage": "/Music-Pay",
+  
   "version": "0.1.0",
   "private": true,
   "dependencies": {
