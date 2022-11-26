@@ -21,7 +21,9 @@ const ArtistHeader : FC<props> = ({artistName, artistProfileContract, artistLogg
   return(
     
     <header className='Header'>
-      <Home/>
+      <div className='HomeHeader'>
+        <Home/>
+      </div>
       <Link
       className='About' 
       to= "/Login"
@@ -34,7 +36,9 @@ const ArtistHeader : FC<props> = ({artistName, artistProfileContract, artistLogg
       >
       Create
       </Link>
-      {artistLoggedIn ? <h1 className='ArtistName'>{artistName}</h1>
+      {artistLoggedIn 
+      ? 
+      <h1 className='ArtistName'>{artistName}</h1>
       : 
       <Link
       className='Login' 
@@ -43,20 +47,24 @@ const ArtistHeader : FC<props> = ({artistName, artistProfileContract, artistLogg
       Login
       </Link>
       }
+      {artistLoggedIn
+      ?
       <h4  
       className='UpdateAboutMe'
-      onClick= {openinput}
+      onClick= {openinput} 
       >
         Update
       </h4>
-    
+
+      :
+
+      <></>
+      }
       <AboutMe
       artistProfileContract={artistProfileContract}
       setClicked= {setClicked}
       clicked= {clicked}
       />
-      
-     
     </header>
   )
 }

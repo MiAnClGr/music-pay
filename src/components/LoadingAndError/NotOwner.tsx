@@ -1,5 +1,6 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
+import Home from "../shared/Home"
 
 const NotOwner = () => {
 
@@ -15,7 +16,9 @@ const NotOwner = () => {
         You are not the owner of this profile :(    
         </h1>
         <br></br>
-        <button className='Back' onClick= {back}>Back</button>
+        <div className='HomeNotOwner'>
+          <Home/>
+        </div>
     </div>
   )
 }

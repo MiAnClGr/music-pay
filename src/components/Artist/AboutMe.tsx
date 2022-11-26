@@ -52,7 +52,7 @@ const AboutMe : FC<props> = ({artistProfileContract, clicked, setClicked}) => {
                 
                 <br></br>
                 <br></br>
-                { clicked 
+                { clicked
                 
                 ?
 
@@ -64,11 +64,6 @@ const AboutMe : FC<props> = ({artistProfileContract, clicked, setClicked}) => {
                     onKeyDown= {handleSubmit}
                     >
                     </textarea> 
-                    {/* <button 
-                    onClick= {handleSubmit}
-                    >
-                    submit
-                    </button> */}
                 </div>
                 
                 :

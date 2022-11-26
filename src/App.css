@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: #4B6331;
   background-size: cover;
   max-height: 100%;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
@@ -8,7 +8,13 @@ body {
 
 /*Shared*/
 
+/*Home*/
 
+.Home {
+  color: #eaeaea;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+  text-decoration: none;
+}
 
 /*Link*/
 
@@ -82,7 +88,7 @@ body {
   transform: scale(1.25);
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: black;
+  background-color: #4B6331;
   
 }
 
@@ -102,7 +108,7 @@ body {
 }
 
 .Connect {
-  background-color: black;
+  background-color: #4B6331;
   border-color: #eaeaea;
   color: #eaeaea;
   padding: 5px;
@@ -138,11 +144,23 @@ body {
   margin-top: 5px;
 }
 
+/*LoadingAndError*/
+
 .LoadingScreen {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   margin-top: 300px;
   color:#eaeaea
 }
+
+.HomeNotOwner {
+  color: #eaeaea;
+  font-size: 20px;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+  text-decoration: none;
+}
+
 
 .HeaderText {
   color:#eaeaea;
@@ -210,7 +228,7 @@ body {
   border-radius: 2px;
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: black;
+  background-color: #4B6331;
 }
 
 .BookingForm input::-webkit-input-placeholder {
@@ -258,7 +276,7 @@ body {
 
 
 .AboutMeUpdate {
-  background-color: black;
+  background-color: #4B6331;
   color: #eaeaea;
   width: 400px;
   height: 600px;
@@ -280,7 +298,7 @@ body {
 }
 
 .AboutMeUpdateBox {
-  background-color: black;
+  background-color: #4B6331;
   width: 400px;
   height: 400px;
   color: #eaeaea;
@@ -296,7 +314,7 @@ body {
   transform: scale(1.25);
   color: #eaeaea;
   /* border-color: #eaeaea; */
-  background-color: black;
+  background-color: #4B6331;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
 
@@ -314,7 +332,7 @@ body {
   top: 0;
 }
 
-.Home {
+.HomeHeader {
   color: #eaeaea;
   font-size: 18px;
   position: absolute;
@@ -350,6 +368,17 @@ body {
   text-decoration: none;
 }
 
+.UpdateAboutMe {
+  color: #eaeaea;
+  font-size: 18px;
+  font-weight: lighter;
+  position: absolute;
+  left: 33%;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /*Search*/
 
 .Search {
@@ -374,7 +403,7 @@ body {
   height: 22px;
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: black;
+  background-color: #4B6331;
   border-radius: 5px;
   padding: 2px;
   padding-bottom: 0;
@@ -390,13 +419,4 @@ body {
   bottom: 2px;
 }
 
-.UpdateAboutMe {
-  color: #eaeaea;
-  font-size: 18px;
-  font-weight: lighter;
-  position: absolute;
-  left: 32%;
-  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
-  text-decoration: none;
-  cursor: pointer;
-}
+
