@@ -27,7 +27,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path= "/Music-Pay" element = {
+        <Route path= "/" element = {
 
           <TitlePage
           provider = {provider}
