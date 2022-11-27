@@ -16,6 +16,51 @@ export default [
     "type": "constructor"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_artist",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_bookingAgent",
+        "type": "address"
+      }
+    ],
+    "name": "BookingMade",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_gigNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "DepositPaid",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_escrowAddress",
+        "type": "address"
+      }
+    ],
+    "name": "EscrowCreated",
+    "type": "event"
+  },
+  {
     "inputs": [],
     "name": "aboutMe",
     "outputs": [

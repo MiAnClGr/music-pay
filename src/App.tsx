@@ -11,17 +11,23 @@ import ArtistBooking from './components/Booking/ArtistBooking';
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
-import {ArtistFactoryContract, provider} from "./Contracts/ContractObjects"
+import {ArtistFactoryContract, signer} from "./Contracts/ContractObjects"
 import {BrowserRouter, HashRouter, Route, Routes} from 'react-router-dom'
 
 function App() {
 
-  const [notConnected, setNotConnected] = useState(true)
-  const [artistAddress, setArtistAddress] = useState(localStorage.getItem("artistAddress") || "")
+  const [artistConnected, setArtistConnected] = useState(false)
+  const [artistAddress, setArtistAddress] =  useState("")
   const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
   const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
   const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
   const [artistLoggedIn, setArtistLoggedIn] = useState(false)
+  const [clicked, setClicked] = useState(false)
+
+  const openInput = () => {
+      setClicked(!clicked)
+  }    
+
 
 
   return (
@@ -29,25 +35,31 @@ function App() {
       <Routes>
         <Route path= "/" element = {
 
-          <TitlePage
-          provider = {provider}
-          notConnected = {notConnected}
-          setNotConnected = {setNotConnected}
-          />
+          <TitlePage/>
         }/>
 
         <Route path= "/RoutingUser" element = {
           
-          <RoutingUser/>
+          <RoutingUser
+          artistLoggedIn= {artistLoggedIn}
+          artistConnected= {artistConnected}
+          />
         }/>
 
         <Route path= "/ArtistMain" element = {
 
           <ArtistMain
           artistName= {artistName}
+          artistAddress= {artistAddress}
+          setArtistAddress= {setArtistAddress}
           artistProfileAddress= {artistProfileAddress}
           artistProfileContract= {artistProfileContract}
+          setArtistProfileContract= {setArtistProfileContract}
           artistLoggedIn= {artistLoggedIn}
+          setArtistLoggedIn= {setArtistLoggedIn}
+          openInput= {openInput}
+          artistConnected= {artistConnected}
+          setArtistConnected= {setArtistConnected}
           />
         }/>
 
@@ -86,6 +98,11 @@ function App() {
           setArtistAddress= {setArtistAddress}
           setArtistProfileAddress= {setArtistProfileAddress}
           setArtistProfileContract= {setArtistProfileContract}
+          clicked= {clicked}
+          setClicked= {setClicked}
+          openInput= {openInput}
+          setArtistConnected= {setArtistConnected}
+          artistConnected= {artistConnected}
 
           />
         }/>
@@ -126,3 +143,4 @@ function App() {
 }
 
 export default App;
+

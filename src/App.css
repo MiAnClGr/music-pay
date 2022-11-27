@@ -1,5 +1,5 @@
 body {
-  background-color: #4B6331;
+  background-color: #333333;
   background-size: cover;
   max-height: 100%;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
@@ -88,7 +88,7 @@ body {
   transform: scale(1.25);
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: #4B6331;
+  background-color: #333333;
   
 }
 
@@ -108,7 +108,7 @@ body {
 }
 
 .Connect {
-  background-color: #4B6331;
+  background-color: #333333;
   border-color: #eaeaea;
   color: #eaeaea;
   padding: 5px;
@@ -228,7 +228,7 @@ body {
   border-radius: 2px;
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: #4B6331;
+  background-color: #333333;
 }
 
 .BookingForm input::-webkit-input-placeholder {
@@ -249,6 +249,15 @@ body {
   padding: 2px;
   border-radius: 2px;
 }
+
+.Bookings{
+  width: 200px;
+  height: 300px;
+  color:#eaeaea;
+
+}
+
+/*Profile*/
 
 .AboutMe {
   color: #eaeaea;
@@ -276,7 +285,7 @@ body {
 
 
 .AboutMeUpdate {
-  background-color: #4B6331;
+  background-color: #333333;
   color: #eaeaea;
   width: 400px;
   height: 600px;
@@ -298,7 +307,7 @@ body {
 }
 
 .AboutMeUpdateBox {
-  background-color: #4B6331;
+  background-color: #333333;
   width: 400px;
   height: 400px;
   color: #eaeaea;
@@ -314,7 +323,7 @@ body {
   transform: scale(1.25);
   color: #eaeaea;
   /* border-color: #eaeaea; */
-  background-color: #4B6331;
+  background-color: #333333;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
 
@@ -348,6 +357,7 @@ body {
   right: 2%;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .About {
@@ -403,7 +413,7 @@ body {
   height: 22px;
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: #4B6331;
+  background-color: #333333;
   border-radius: 5px;
   padding: 2px;
   padding-bottom: 0;

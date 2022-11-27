@@ -95,6 +95,8 @@ contract ArtistProfile {
         booking.bookingAgent = _bookingAgent;
         }
 
+        gigNumber ++;
+
         emit BookingMade(_artist, _bookingAgent);
     }
 

@@ -35,7 +35,7 @@ const Login : FC<props> = ({ArtistFactoryContract}) => {
   return (
     <div className= 'CreateArtist'>
 
-        <h3 className= "HeaderText">Existing Artist</h3>
+        <h3 className= "HeaderText">Create Artist</h3>
         <input
         className= 'Inputs'
         placeholder= 'Artist Name' 

@@ -1,16 +1,13 @@
 import React, {FC, useEffect} from 'react'
 import {ethers} from 'ethers'
 import {useNavigate} from 'react-router-dom'
+import {provider} from '../Contracts/ContractObjects'
 
 declare var window : any 
 
-type props = {
-  provider :  ethers.providers.Web3Provider
-  notConnected : boolean
-  setNotConnected : React.Dispatch<React.SetStateAction<boolean>>
-}
 
-const ConnectWallet : FC<props> = ({provider, notConnected, setNotConnected}) => {
+
+const ConnectWallet : FC = () => {
 
 
   const navigate = useNavigate() 

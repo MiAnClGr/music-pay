@@ -1,26 +1,17 @@
 import React, {FC} from 'react'
 import {ethers} from 'ethers'
 import ConnectWallet from './ConnectWallet'
+import {provider} from "../Contracts/ContractObjects"
 
 
-type props = {
-  provider :  ethers.providers.Web3Provider
-  notConnected : boolean
-  setNotConnected : React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const TitlePage : FC<props> = ({provider, notConnected, setNotConnected}) => {
+const TitlePage : FC = () => {
 
  
 
   return (
     <div className= 'TitlePage'>
       <h1 className='Music-Pay-Title'>Music-Pay</h1>
-      <ConnectWallet
-      provider= {provider}
-      notConnected= {notConnected}
-      setNotConnected= {setNotConnected}
-      />
+      <ConnectWallet/>
     </div>
   )
 }

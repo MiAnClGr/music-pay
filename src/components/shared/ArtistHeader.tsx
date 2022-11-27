@@ -1,22 +1,63 @@
-import React, {FC, ReactElement, useState} from 'react'
+import React, {FC, ReactElement, useEffect, useState} from 'react'
 import { Contract } from 'ethers'
-import { Link } from 'react-router-dom'
-import AboutMe from '../Artist/AboutMe'
+import { Link, useNavigate } from 'react-router-dom'
 import Home from "./Home"
+import {signer} from '../../Contracts/ContractObjects'
+
 
 type props = {
   artistName : string
+  artistAddress : string | undefined
+  setArtistAddress :  React.Dispatch<React.SetStateAction<string>>
   artistProfileAddress : string
   artistLoggedIn : boolean
+  setArtistLoggedIn :  React.Dispatch<React.SetStateAction<boolean>>
   artistProfileContract : Contract | undefined
+  setArtistProfileContract : React.Dispatch<React.SetStateAction<Contract | undefined>>
+  openInput : () => void
+  artistConnected : boolean
+  setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
 }
-const ArtistHeader : FC<props> = ({artistName, artistProfileContract, artistLoggedIn}) : ReactElement => {
+const ArtistHeader : FC<props> = (
+    {artistName,
+    artistAddress,
+    setArtistAddress,
+    artistLoggedIn,
+    openInput, 
+    artistProfileContract,
+    setArtistProfileContract, 
+    setArtistLoggedIn, 
+    artistConnected, 
+    setArtistConnected}) : ReactElement => {
   
-  const [clicked, setClicked] = useState(false)
+  const navigate = useNavigate()
 
-  const openinput = () => {
-    setClicked(!clicked)
-}
+  const getArtistConnected = async () => {
+    try{
+      if(artistAddress == await signer.getAddress()){
+        console.log(await signer.getAddress())
+        setArtistConnected(true)
+      }else{
+        setArtistConnected(false)
+        setArtistProfileContract(undefined)
+        setArtistAddress("")
+      }
+    }catch(e){
+      setArtistConnected(false)
+    }
+  
+  }
+
+
+  useEffect(() => {
+    getArtistConnected()
+  },[artistAddress, artistProfileContract])
+
+  console.log(artistLoggedIn)
+  console.log(artistConnected)
+  console.log(artistName)
+
+
 
   return(
     
@@ -36,7 +77,7 @@ const ArtistHeader : FC<props> = ({artistName, artistProfileContract, artistLogg
       >
       Create
       </Link>
-      {artistLoggedIn 
+      {artistLoggedIn && artistConnected
       ? 
       <h1 className='ArtistName'>{artistName}</h1>
       : 
@@ -47,11 +88,11 @@ const ArtistHeader : FC<props> = ({artistName, artistProfileContract, artistLogg
       Login
       </Link>
       }
-      {artistLoggedIn
+      {artistLoggedIn && artistConnected
       ?
       <h4  
       className='UpdateAboutMe'
-      onClick= {openinput} 
+      onClick= {openInput} 
       >
         Update
       </h4>
@@ -60,11 +101,6 @@ const ArtistHeader : FC<props> = ({artistName, artistProfileContract, artistLogg
 
       <></>
       }
-      <AboutMe
-      artistProfileContract={artistProfileContract}
-      setClicked= {setClicked}
-      clicked= {clicked}
-      />
     </header>
   )
 }
