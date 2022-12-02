@@ -21,6 +21,14 @@ const config: HardhatUserConfig = {
 			// gas: 2100000,
 			// gasPrice: 8000000000,
 			saveDeployments: true,
+		},
+
+		mumbai: {
+			url: process.env.MUMBAI_URL || "",
+			accounts: !!process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+			// gas: 2100000,
+			// gasPrice: 8000000000,
+			saveDeployments: true,
 		}
 	},
 
