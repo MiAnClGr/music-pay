@@ -18,7 +18,7 @@ export default [
   {
     "anonymous": false,
     "inputs": [
-      {
+      { 
         "indexed": false,
         "internalType": "address",
         "name": "_artist",
@@ -141,9 +141,9 @@ export default [
         "type": "address"
       },
       {
-        "internalType": "bytes32",
+        "internalType": "string",
         "name": "artistName",
-        "type": "bytes32"
+        "type": "string"
       },
       {
         "internalType": "address",
@@ -151,9 +151,9 @@ export default [
         "type": "address"
       },
       {
-        "internalType": "bytes32",
+        "internalType": "string",
         "name": "bookingAgentName",
-        "type": "bytes32"
+        "type": "string"
       },
       {
         "internalType": "uint256",
@@ -171,14 +171,14 @@ export default [
         "type": "uint256"
       },
       {
-        "internalType": "bytes32",
+        "internalType": "string",
         "name": "venueName",
-        "type": "bytes32"
+        "type": "string"
       },
       {
-        "internalType": "bytes32",
+        "internalType": "string",
         "name": "date",
-        "type": "bytes32"
+        "type": "string"
       },
       {
         "internalType": "bool",
@@ -189,6 +189,40 @@ export default [
         "internalType": "enum ArtistProfile.State",
         "name": "currentState",
         "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_gigNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "getBooking",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -220,9 +254,9 @@ export default [
         "type": "address"
       },
       {
-        "internalType": "bytes32",
+        "internalType": "string",
         "name": "_artistName",
-        "type": "bytes32"
+        "type": "string"
       },
       {
         "internalType": "uint256",
@@ -235,14 +269,14 @@ export default [
         "type": "uint256"
       },
       {
-        "internalType": "bytes32",
+        "internalType": "string",
         "name": "_date",
-        "type": "bytes32"
+        "type": "string"
       },
       {
-        "internalType": "bytes32",
+        "internalType": "string",
         "name": "_venueName",
-        "type": "bytes32"
+        "type": "string"
       }
     ],
     "name": "updateBooking",

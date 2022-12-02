@@ -1,10 +1,11 @@
 import React, {FC} from 'react'
+import {BigNumber} from 'ethers'
 
 type props = {
   payment : string,
   time : string,
   date : string,
-  venue : string
+  venue : string,
 }
 
 

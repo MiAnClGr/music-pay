@@ -24,17 +24,17 @@ contract ArtistProfile {
 
     struct Booking {
         address artist;
-        bytes32 artistName;
+        string artistName;
         address bookingAgent; 
-        bytes32 bookingAgentName;
+        string bookingAgentName;
         
 
         uint payment;
         uint time;
         uint gigNumber;
 
-        bytes32 venueName;
-        bytes32 date;
+        string venueName;
+        string date;
         bool agreed;
     
         State currentState;   
@@ -76,11 +76,11 @@ contract ArtistProfile {
     function updateBooking(
         address _artist,
         address _bookingAgent,
-        bytes32 _artistName,
+        string memory _artistName,
         uint _payment, 
         uint _time, 
-        bytes32 _date, 
-        bytes32 _venueName
+        string memory _date, 
+        string memory _venueName
         ) external {
 
         Booking storage booking = bookings[gigNumber];
@@ -128,6 +128,14 @@ contract ArtistProfile {
     }
 
 /// View
+
+    
+    function getBooking(uint _gigNumber) view external returns(uint256, uint256, string memory, string memory) {
+
+        Booking storage booking = bookings[_gigNumber];
+
+        return (booking.payment, booking.time, booking.date, booking.venueName);
+    }
 
     function balance() public view returns(uint) {
         return DAI.balanceOf(address(this));

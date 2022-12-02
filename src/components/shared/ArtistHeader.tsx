@@ -12,8 +12,6 @@ type props = {
   artistProfileAddress : string
   artistLoggedIn : boolean
   setArtistLoggedIn :  React.Dispatch<React.SetStateAction<boolean>>
-  artistProfileContract : Contract | undefined
-  setArtistProfileContract : React.Dispatch<React.SetStateAction<Contract | undefined>>
   openInput : () => void
   artistConnected : boolean
   setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
@@ -24,8 +22,6 @@ const ArtistHeader : FC<props> = (
     setArtistAddress,
     artistLoggedIn,
     openInput, 
-    artistProfileContract,
-    setArtistProfileContract, 
     setArtistLoggedIn, 
     artistConnected, 
     setArtistConnected}) : ReactElement => {
@@ -39,7 +35,6 @@ const ArtistHeader : FC<props> = (
         setArtistConnected(true)
       }else{
         setArtistConnected(false)
-        setArtistProfileContract(undefined)
         setArtistAddress("")
       }
     }catch(e){
@@ -51,7 +46,7 @@ const ArtistHeader : FC<props> = (
 
   useEffect(() => {
     getArtistConnected()
-  },[artistAddress, artistProfileContract])
+  },[artistAddress])
 
   console.log(artistLoggedIn)
   console.log(artistConnected)

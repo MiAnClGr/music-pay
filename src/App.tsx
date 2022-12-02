@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import './App.css';
-import { Contract } from 'ethers';
+import { ethers, Contract } from 'ethers';
 import Login from './components/Artist/Login';
 import CreateNew from './components/Artist/CreateNew';
 import ArtistMain from './components/Artist/ArtistMain';
 import TitlePage from './components/TitlePage'
 import ArtistProfile from './components/Artist/ArtistProfile'
+import ArtistProfileABI from './ABI/ArtistProfile'
 import BookingMain from './components/Booking/BookingMain';
 import ArtistBooking from './components/Booking/ArtistBooking';
 import Loading from './components/LoadingAndError/Loading';
@@ -20,13 +21,18 @@ function App() {
   const [artistAddress, setArtistAddress] =  useState("")
   const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
   const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
-  const [artistProfileContract, setArtistProfileContract] = useState<Contract>()
   const [artistLoggedIn, setArtistLoggedIn] = useState(false)
   const [clicked, setClicked] = useState(false)
 
   const openInput = () => {
       setClicked(!clicked)
-  }    
+  }
+  
+  const createInstance = (artist : string) => {
+    const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
+
+    return ArtistProfileContract
+  }
 
 
 
@@ -53,8 +59,6 @@ function App() {
           artistAddress= {artistAddress}
           setArtistAddress= {setArtistAddress}
           artistProfileAddress= {artistProfileAddress}
-          artistProfileContract= {artistProfileContract}
-          setArtistProfileContract= {setArtistProfileContract}
           artistLoggedIn= {artistLoggedIn}
           setArtistLoggedIn= {setArtistLoggedIn}
           openInput= {openInput}
@@ -91,18 +95,17 @@ function App() {
           artistName= {artistName}
           artistAddress= {artistAddress}
           artistProfileAddress= {artistProfileAddress}
-          artistProfileContract= {artistProfileContract}
           artistLoggedIn= {artistLoggedIn}
           setArtistLoggedIn= {setArtistLoggedIn}
           setArtistName= {setArtistName}
           setArtistAddress= {setArtistAddress}
           setArtistProfileAddress= {setArtistProfileAddress}
-          setArtistProfileContract= {setArtistProfileContract}
           clicked= {clicked}
           setClicked= {setClicked}
           openInput= {openInput}
           setArtistConnected= {setArtistConnected}
           artistConnected= {artistConnected}
+          createInstance= {createInstance}
 
           />
         }/>

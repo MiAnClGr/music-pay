@@ -14,7 +14,9 @@ const ArtistHeader : FC<props> = ({setArtistAddress}) : ReactElement => {
   return(
     
     <header className='Header'>
-      <Home/>
+      <div className='HomeHeader'>
+        <Home/>
+      </div>
       <Link
       className='About' 
       to= "/Login"

@@ -8,12 +8,9 @@ type props = {
     artistLoggedIn : boolean
     artistConnected : boolean
     artistProfileAddress : string
-    artistProfileContract : Contract | undefined
-    setArtistProfileContract : React.Dispatch<React.SetStateAction<Contract | undefined>>
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
     setArtistLoggedIn :  React.Dispatch<React.SetStateAction<boolean>>
     openInput : () => void
-    
     setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -23,8 +20,6 @@ const ArtistMain : FC<props> = ({
     artistLoggedIn,
     artistConnected,  
     artistProfileAddress, 
-    artistProfileContract,
-    setArtistProfileContract, 
     setArtistAddress,
     setArtistLoggedIn, 
     openInput, 
@@ -39,8 +34,6 @@ const ArtistMain : FC<props> = ({
             artistAddress= {artistAddress}
             setArtistAddress= {setArtistAddress}
             artistProfileAddress= {artistProfileAddress}
-            artistProfileContract= {artistProfileContract}
-            setArtistProfileContract= {setArtistProfileContract}
             artistLoggedIn= {artistLoggedIn}
             setArtistLoggedIn= {setArtistLoggedIn}
             openInput= {openInput}

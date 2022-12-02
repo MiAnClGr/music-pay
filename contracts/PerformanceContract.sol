@@ -38,11 +38,11 @@ contract PerformanceContract {
 
     function createBooking(
         address payable _artist,
-        bytes32 _artistName,
+        string memory _artistName,
         uint _payment, 
         uint _time,
-        bytes32 _date, 
-        bytes32 _venueName
+        string memory _date, 
+        string memory _venueName
         ) external {       
         //require(_artist exists) ADD
         ArtistProfile artist = ArtistProfile(_artist);

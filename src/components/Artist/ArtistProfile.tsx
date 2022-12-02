@@ -1,5 +1,5 @@
-import React, {FC, useState, useEffect, ReactElement} from 'react'
-import {ethers, utils, Contract} from 'ethers'
+import React, {FC, useState, useEffect, ReactElement, SetStateAction} from 'react'
+import {ethers, utils, Contract, BytesLike, BigNumber} from 'ethers'
 import {ArtistFactoryContract, signer}from "../../Contracts/ContractObjects"
 import ArtistProfileABI from '../../ABI/ArtistProfile'
 import AboutMe from "./AboutMe"
@@ -10,18 +10,17 @@ type props = {
     artistName : string
     artistProfileAddress : string
     artistAddress : string 
-    artistProfileContract : Contract | undefined
     artistLoggedIn : boolean
     setArtistName : React.Dispatch<React.SetStateAction<string>>
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
     setArtistProfileAddress : React.Dispatch<React.SetStateAction<string>>
-    setArtistProfileContract : React.Dispatch<React.SetStateAction<Contract | undefined>>
     setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
     clicked : boolean
     setClicked : React.Dispatch<React.SetStateAction<boolean>>
     openInput : () => void
     setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
     artistConnected : boolean
+    createInstance : (artist: string) => ethers.Contract
 
 }
 
@@ -29,82 +28,101 @@ const ArtistProfile :FC<props> =
     ({artistName,
     artistProfileAddress, 
     artistAddress,
-    artistProfileContract,
     artistLoggedIn, 
     setArtistName, 
     setArtistAddress, 
     setArtistProfileAddress, 
-    setArtistProfileContract,
     setArtistLoggedIn,
     clicked,
     setClicked,
     setArtistConnected,
     artistConnected,
-    openInput}) : ReactElement => {
+    openInput,
+    createInstance
+    }) : ReactElement => {
 
-    const [bookings, setBookings] = useState<any[]>([])
-  
+    const [bookings, setBookings] = useState<any[]>([]) ///JSON.parse(localStorage.getItem("bookings")!)
+    
     const setArtistContract = async () => {
         ArtistFactoryContract.on("Artist", (artist, status) => {
             console.log("set")
 
-            createInstance(artist)
+            // createInstance(artist)
             setArtistProfileAddress(artist)
             setArtistLoggedIn(true)
             console.log(artist)
+            console.log(artistProfileAddress)
             console.log(status)
         })
     }
 
 
-    const createInstance = (artist : string) => {
-        const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
+    // const createInstance = (artist : string) => {
+    //     const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
 
-            setArtistProfileContract(ArtistProfileContract)
-    }
+    //         setArtistProfileContract(ArtistProfileContract)
+    //         console.log("contract set")
+
+    //         return ArtistProfileContract
+    // }
 
     const setArtist = async () => {
-        const artist = await artistProfileContract?.artist()
+        const artistProfileContract = createInstance(artistProfileAddress)
+        const artist = await artistProfileContract.artist()
         if(artist == await signer.getAddress()){
             setArtistAddress(artist)
         }
 
-        const name = await artistProfileContract?.artistName()
+        const name = await artistProfileContract.artistName()
         console.log(name)
         console.log(artistProfileContract)
         setArtistName(name)
     } 
 
-    const getBookings = async () => {
-        let bookingsArray : React.SetStateAction<any[]> = []
-        for(let i = 0; i < 5; i++){
-            const booking = await artistProfileContract?.bookings(i)
-            bookingsArray.push(booking)
-        }
-        setBookings(bookingsArray[0])
+    // const getBookings = async () => {
+    //     let bookingsArray : any[] =  []
+    //     for(let i = 0; i < 5; i++){
+    //         const booking : any[] = await artistProfileContract?.getBooking(i)
+    //         console.log(booking)
+    //         bookingsArray.push(booking)
+    //     }
+    //     setBookings(bookingsArray)
         
-        console.log(bookingsArray[0])
-    }
+   
+    // }
 
-    useEffect(() => {
-        localStorage.setItem("artistProfileAddress", artistProfileAddress)
-    },[artistProfileAddress])
+   
 
-    useEffect(() => {
-        localStorage.setItem("artistName", artistName)
-    },[artistName])
+
+    // useEffect(() => {
+    //     localStorage.setItem("bookings", JSON.stringify(bookings))
+    // },[bookings])
 
     useEffect(() => {
         setArtistContract()
+        console.log("useEffect 1")
     }, [])
 
     useEffect(() => {
         setArtist()
-        getBookings()
-    }, [artistProfileContract])
+        // getBookings()
+        console.log("useEffect 2")
+    }, [artistProfileAddress])
+
+    useEffect(() => {
+        localStorage.setItem("artistProfileAddress", artistProfileAddress)
+        console.log("useEffect 3")
+    },[artistProfileAddress])
+
+    useEffect(() => {
+        localStorage.setItem("artistName", artistName)
+        console.log("useEffect 4")
+    },[artistName])
 
 
-    console.log(artistAddress)
+
+    // console.log(artistAddress)
+    // console.log(artistProfileContract)
 
 
     return(
@@ -114,8 +132,6 @@ const ArtistProfile :FC<props> =
             artistAddress= {artistAddress}
             setArtistAddress= {setArtistAddress}
             artistProfileAddress = {artistProfileAddress}
-            artistProfileContract= {artistProfileContract}
-            setArtistProfileContract= {setArtistProfileContract}
             artistLoggedIn= {artistLoggedIn}
             setArtistLoggedIn= {setArtistLoggedIn}
             openInput= {openInput}
@@ -125,7 +141,9 @@ const ArtistProfile :FC<props> =
             {artistLoggedIn && artistConnected
             ?
             <AboutMe
-            artistProfileContract={artistProfileContract}
+            // artistProfileContract={artistProfileContract}
+            createInstance= {createInstance}
+            artistProfileAddress= {artistProfileAddress}
             setClicked= {setClicked}
             clicked= {clicked}
             />
@@ -135,7 +153,7 @@ const ArtistProfile :FC<props> =
 
             <h1
             className='Text'
-            onClick={getBookings}
+            // onClick={getBookings}
             >bookings</h1>
             <div>
                 <BookingsList
