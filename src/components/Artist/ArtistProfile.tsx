@@ -1,7 +1,6 @@
 import React, {FC, useState, useEffect, ReactElement, SetStateAction} from 'react'
 import {ethers, utils, Contract, BytesLike, BigNumber} from 'ethers'
 import {ArtistFactoryContract, signer}from "../../Contracts/ContractObjects"
-import ArtistProfileABI from '../../ABI/ArtistProfile'
 import AboutMe from "./AboutMe"
 import ArtistHeader from "../shared/ArtistHeader"
 import BookingsList from "./BookingsList"
@@ -47,7 +46,7 @@ const ArtistProfile :FC<props> =
         ArtistFactoryContract.on("Artist", (artist, status) => {
             console.log("set")
 
-            // createInstance(artist)
+          
             setArtistProfileAddress(artist)
             setArtistLoggedIn(true)
             console.log(artist)
@@ -55,16 +54,6 @@ const ArtistProfile :FC<props> =
             console.log(status)
         })
     }
-
-
-    // const createInstance = (artist : string) => {
-    //     const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
-
-    //         setArtistProfileContract(ArtistProfileContract)
-    //         console.log("contract set")
-
-    //         return ArtistProfileContract
-    // }
 
     const setArtist = async () => {
         const artistProfileContract = createInstance(artistProfileAddress)
@@ -75,28 +64,30 @@ const ArtistProfile :FC<props> =
 
         const name = await artistProfileContract.artistName()
         console.log(name)
-        console.log(artistProfileContract)
         setArtistName(name)
     } 
 
-    // const getBookings = async () => {
-    //     let bookingsArray : any[] =  []
-    //     for(let i = 0; i < 5; i++){
-    //         const booking : any[] = await artistProfileContract?.getBooking(i)
-    //         console.log(booking)
-    //         bookingsArray.push(booking)
-    //     }
-    //     setBookings(bookingsArray)
+    const getBookings = async () => {
+        console.log("clicked")
+        const artistProfileContract = createInstance(artistProfileAddress)
+        let bookingsArray : any[] =  []
+        for(let i = 0; i < 5; i++){
+            const booking : any[] = await artistProfileContract.getBooking(i)
+            if(booking[5] != "0x0000000000000000000000000000000000000000"){
+                bookingsArray.push(booking)
+            }
+        }
+        setBookings(bookingsArray)
         
    
-    // }
+    }
 
    
 
 
-    // useEffect(() => {
-    //     localStorage.setItem("bookings", JSON.stringify(bookings))
-    // },[bookings])
+    useEffect(() => {
+        localStorage.setItem("bookings", JSON.stringify(bookings))
+    },[bookings])
 
     useEffect(() => {
         setArtistContract()
@@ -105,7 +96,7 @@ const ArtistProfile :FC<props> =
 
     useEffect(() => {
         setArtist()
-        // getBookings()
+        getBookings()
         console.log("useEffect 2")
     }, [artistProfileAddress])
 
@@ -126,7 +117,7 @@ const ArtistProfile :FC<props> =
 
 
     return(
-        <div className='Align-Profile'>
+        <div>
             <ArtistHeader
             artistName= {artistName}
             artistAddress= {artistAddress}
@@ -138,27 +129,27 @@ const ArtistProfile :FC<props> =
             artistConnected= {artistConnected}
             setArtistConnected= {setArtistConnected}
             />
-            {artistLoggedIn && artistConnected
-            ?
-            <AboutMe
-            // artistProfileContract={artistProfileContract}
-            createInstance= {createInstance}
-            artistProfileAddress= {artistProfileAddress}
-            setClicked= {setClicked}
-            clicked= {clicked}
-            />
-            :
-            <></>       
-            }
+            
+            <div className='ProfilePage'>
+                {artistLoggedIn && artistConnected
+                ?
+                <AboutMe
+                createInstance= {createInstance}
+                artistProfileAddress= {artistProfileAddress}
+                setClicked= {setClicked}
+                clicked= {clicked}
+                />
+                :
+                <></>       
+                }
 
-            <h1
-            className='Text'
-            // onClick={getBookings}
-            >bookings</h1>
-            <div>
+                
+                
                 <BookingsList
                 bookings= {bookings}
                 />
+            
+
             </div>
            
         </div>

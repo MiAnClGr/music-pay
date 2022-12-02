@@ -93,6 +93,7 @@ contract ArtistProfile {
         booking.date = _date;
         booking.venueName = _venueName;
         booking.bookingAgent = _bookingAgent;
+        booking.gigNumber = gigNumber;
         }
 
         gigNumber ++;
@@ -130,11 +131,26 @@ contract ArtistProfile {
 /// View
 
     
-    function getBooking(uint _gigNumber) view external returns(uint256, uint256, string memory, string memory) {
+    function getBooking(uint _gigNumber) view external 
+        returns(
+            uint256,
+            uint256,
+            uint256,
+            string memory,
+            string memory,
+            address
+                ) {
 
         Booking storage booking = bookings[_gigNumber];
 
-        return (booking.payment, booking.time, booking.date, booking.venueName);
+        return (
+            booking.gigNumber,
+            booking.payment,
+            booking.time,
+            booking.date, 
+            booking.venueName,
+            booking.bookingAgent
+            );
     }
 
     function balance() public view returns(uint) {

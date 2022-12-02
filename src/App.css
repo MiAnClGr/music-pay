@@ -36,6 +36,26 @@ body {
   font-weight: lighter;
 }
 
+/*Input Fields*/
+
+.Inputs {
+  transform: scale(1.25);
+  color: #eaeaea;
+  border-color: #eaeaea;
+  background-color: #333333;
+  
+}
+
+/*Buttons*/
+
+.Submit {
+  transform: scale(1.25);
+  color: #eaeaea;
+  border-color: #eaeaea;
+  background-color: transparent;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+}
+
 
 
 /*Title Page*/
@@ -84,21 +104,7 @@ body {
 }
 
 
-.Inputs {
-  transform: scale(1.25);
-  color: #eaeaea;
-  border-color: #eaeaea;
-  background-color: #333333;
-  
-}
 
-.Submit {
-  transform: scale(1.25);
-  color: #eaeaea;
-  border-color: #eaeaea;
-  background-color: transparent;
-  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
-}
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #eaeaea;
@@ -116,32 +122,6 @@ body {
   height: 35px;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
   border-radius: 2px;
-}
-
-
-
-
-.ArtistProfile {
-  margin: auto;
-
-  width: auto;
-  padding: 20px;
-
-}
-
-.ArtistName {
-  color: #eaeaea;
-  text-align: center;
-  font-size: 40px;
-  position: absolute;
-  right: 20px;
-}
-
-
-
-.Addresses {
-  margin-bottom: 2px;
-  margin-top: 5px;
 }
 
 /*LoadingAndError*/
@@ -250,14 +230,33 @@ body {
   border-radius: 2px;
 }
 
+.BookingsList {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .Bookings{
   width: 200px;
   height: 300px;
   color:#eaeaea;
+  text-align: center;
+  border-style: solid;
+  border-color: #eaeaea;
+  border-radius: 2px;
 
 }
 
 /*Profile*/
+
+.ProfilePage {
+  display: flex;
+  justify-content: end;
+  gap: 100px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
 
 .AboutMe {
   color: #eaeaea;
@@ -265,7 +264,7 @@ body {
   height: 600px;
   text-align: left;
   align-items: center;
-  gap: 20px;
+  box-sizing: border-box;
 }
 
 .AboutMeBox {
@@ -275,6 +274,7 @@ body {
   width: 400px;
   height: 400px;
   padding: 5px;
+  
 }
 
 .AboutMeBox h4 {
@@ -388,6 +388,14 @@ body {
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
   text-decoration: none;
   cursor: pointer;
+}
+
+.ArtistName {
+  color: #eaeaea;
+  text-align: center;
+  font-size: 40px;
+  position: absolute;
+  right: 20px;
 }
 
 /*Search*/

@@ -2,6 +2,7 @@ import React, {FC} from 'react'
 import {BigNumber} from 'ethers'
 
 type props = {
+  gigNumber : string,
   payment : string,
   time : string,
   date : string,
@@ -10,15 +11,20 @@ type props = {
 
 
 
-const Booking : FC<props>= ({payment, time, date, venue}) => {
+const Booking : FC<props>= ({gigNumber, payment, time, date, venue}) => {
   return (
     <div className='Bookings'>
-      <h4 className='Text'>{payment}</h4>
-      <h4 className='Text'>{time}</h4>
-      <h4 className='Text'>{date}</h4>
-      <h4 className='Text'>{venue}</h4>
+      <h4 className='Text'>No. {gigNumber}</h4>
+      <h4 className='Text'>Payment: {payment}</h4>
+      <h4 className='Text'>Time: {time}</h4>
+      <h4 className='Text'>Date: {date}</h4>
+      <h4 className='Text'>Venue: {venue}</h4>
+      <br></br>
+      <button className='Submit'>Accept</button>
     </div>
-  )
+    )
+
+      
 }
 
 export default Booking

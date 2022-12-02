@@ -46,38 +46,38 @@ const AboutMe : FC<props> = ({createInstance, artistProfileAddress, clicked, set
     },[])
 
   return (
-    <div>
-        <div className='AboutMe'>
-            <div className='AboutMeBox' >
-                <h4>
-                    {aboutArtist}
-                </h4>
-                <br></br>
-                <br></br>
-                
-                <br></br>
-                <br></br>
-                { clicked
-                
-                ?
-
-                <div className='AboutMeUpdate'>
-                    <textarea
-                    className='AboutMeUpdateBox'
-                    placeholder='About...'
-                    onChange= {updateAboutMe}
-                    onKeyDown= {handleSubmit}
-                    >
-                    </textarea> 
-                </div>
-                
-                :
-
-                <div></div>}
+  
+    <div className='AboutMe'>
+        <div className='AboutMeBox' >
+            <h4>
+                {aboutArtist}
+            </h4>
+            <br></br>
+            <br></br>
             
+            <br></br>
+            <br></br>
+            { clicked
+            
+            ?
+
+            <div className='AboutMeUpdate'>
+                <textarea
+                className='AboutMeUpdateBox'
+                placeholder='About...'
+                onChange= {updateAboutMe}
+                onKeyDown= {handleSubmit}
+                >
+                </textarea> 
             </div>
+            
+            :
+
+            <div></div>}
+        
         </div>
     </div>
+
   )
 }
 

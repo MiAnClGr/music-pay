@@ -1,4 +1,4 @@
-export default [
+export default[
   {
     "inputs": [
       {
@@ -18,7 +18,7 @@ export default [
   {
     "anonymous": false,
     "inputs": [
-      { 
+      {
         "indexed": false,
         "internalType": "address",
         "name": "_artist",
@@ -215,6 +215,11 @@ export default [
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
         "internalType": "string",
         "name": "",
         "type": "string"
@@ -223,6 +228,11 @@ export default [
         "internalType": "string",
         "name": "",
         "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
