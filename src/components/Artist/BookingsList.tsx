@@ -1,5 +1,5 @@
-import React, {FC, useEffect, useState} from 'react'
-import { BigNumber, BytesLike, ethers, utils } from 'ethers'
+import React, {FC, ReactElement} from 'react'
+import { BigNumber} from 'ethers'
 import Booking from './Booking'
 
 type props = {
@@ -7,10 +7,9 @@ type props = {
     updateDisplayBookings : boolean
 }
 
-const BookingsList :FC<props> = ({bookings, updateDisplayBookings}) => {
-    console.log(bookings)
+const BookingsList :FC<props> = ({bookings, updateDisplayBookings}) : ReactElement => {
 
-    function hexify(s : string) {
+    const hexify = (s : string) => {
         let r = [];
         for (let i = 2; i < s.length - 1; i += 2) {
             r.push(String.fromCharCode(parseInt(s.charAt(i) + s.charAt(i + 1), 16)));
@@ -20,7 +19,6 @@ const BookingsList :FC<props> = ({bookings, updateDisplayBookings}) => {
     }
    
     const displayBooking = bookings.map((booking : any[]) =>  
-
         <Booking
         gigNumber= {(BigNumber.from(booking[0])).toString()}
         payment={(BigNumber.from(booking[1])).toString()}
@@ -30,12 +28,10 @@ const BookingsList :FC<props> = ({bookings, updateDisplayBookings}) => {
         />
     )
     
-    
-
     return(
         <div>
             {updateDisplayBookings
-                ?
+            ?
             <div className='BookingsList'>
                 <h1
                 className='Text'
@@ -48,7 +44,6 @@ const BookingsList :FC<props> = ({bookings, updateDisplayBookings}) => {
             }
         </div>
     )
-  
 }
 
 export default BookingsList

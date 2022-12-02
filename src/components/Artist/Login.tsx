@@ -1,16 +1,12 @@
-import React, {useState, FC} from 'react'
+import React, {useState, FC, ReactElement} from 'react'
 import { Contract } from 'ethers'
 import {useNavigate} from 'react-router-dom'
 
 type props = {
-    artistName : string
-    artistProfileAddress : string
     ArtistFactoryContract : Contract
-    artistLoggedIn : boolean
-    setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Login : FC<props> = ({ArtistFactoryContract}) => {
+const Login : FC<props> = ({ArtistFactoryContract}) : ReactElement => {
 
     const [inputArtistName, setInputArtistName] = useState("")
 

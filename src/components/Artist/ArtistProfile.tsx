@@ -1,5 +1,5 @@
-import React, {FC, useState, useEffect, ReactElement, SetStateAction} from 'react'
-import {ethers, utils, Contract, BytesLike, BigNumber} from 'ethers'
+import React, {FC, useState, useEffect, ReactElement} from 'react'
+import {ethers} from 'ethers'
 import {ArtistFactoryContract, signer}from "../../Contracts/ContractObjects"
 import AboutMe from "./AboutMe"
 import ArtistHeader from "../shared/ArtistHeader"
@@ -16,17 +16,16 @@ type props = {
     setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
     updateClicked : boolean
     setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
-    displayUpdateAboutMe : () => void
-    updateDisplayBookings : boolean
-    displayBookings :  () => void
     setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
     artistConnected : boolean
+    displayUpdateAboutMe : () => void
+    displayBookings :  () => void
+    updateDisplayBookings : boolean
     createInstance : (artist: string) => ethers.Contract
-
 }
 
-const ArtistProfile :FC<props> = 
-    ({artistName,
+const ArtistProfile :FC<props> = ({
+    artistName,
     artistProfileAddress, 
     artistAddress,
     artistLoggedIn, 
@@ -47,15 +46,10 @@ const ArtistProfile :FC<props> =
     const [bookings, setBookings] = useState<any[]>([]) ///JSON.parse(localStorage.getItem("bookings")!)
     
     const setArtistContract = async () => {
-        ArtistFactoryContract.on("Artist", (artist, status) => {
-            console.log("set")
-
-          
+        ArtistFactoryContract.on("Artist", (artist) => {
+            
             setArtistProfileAddress(artist)
             setArtistLoggedIn(true)
-            console.log(artist)
-            console.log(artistProfileAddress)
-            console.log(status)
         })
     }
 
@@ -82,12 +76,7 @@ const ArtistProfile :FC<props> =
             }
         }
         setBookings(bookingsArray)
-        
-   
     }
-
-   
-
 
     useEffect(() => {
         localStorage.setItem("bookings", JSON.stringify(bookings))
@@ -114,27 +103,18 @@ const ArtistProfile :FC<props> =
         console.log("useEffect 4")
     },[artistName])
 
-
-
-    // console.log(artistAddress)
-    // console.log(artistProfileContract)
-
-
     return(
         <div>
             <ArtistHeader
             artistName= {artistName}
             artistAddress= {artistAddress}
             setArtistAddress= {setArtistAddress}
-            artistProfileAddress = {artistProfileAddress}
             artistLoggedIn= {artistLoggedIn}
-            setArtistLoggedIn= {setArtistLoggedIn}
             displayUpdateAboutMe= {displayUpdateAboutMe}
             displayBookings= {displayBookings}
             artistConnected= {artistConnected}
             setArtistConnected= {setArtistConnected}
-            />
-            
+            />      
             <div className='ProfilePage'>
                 {artistLoggedIn && artistConnected
                 ?
@@ -151,10 +131,7 @@ const ArtistProfile :FC<props> =
                 bookings= {bookings}
                 updateDisplayBookings= {updateDisplayBookings}
                 />
-            
-
-            </div>
-           
+            </div>     
         </div>
     )
 }

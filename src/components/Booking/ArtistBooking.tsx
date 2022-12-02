@@ -1,16 +1,14 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, ReactElement, useEffect, useState} from 'react'
 import {ethers} from 'ethers'
-import {ArtistFactoryContract, PerformanceContract, signer} from "../../Contracts/ContractObjects"
+import {ArtistFactoryContract, PerformanceContract} from "../../Contracts/ContractObjects"
 import BookingHeader from "../shared/BookingHeader"
-
 
 type props = {
   artistAddress: string 
   setArtistAddress : React.Dispatch<React.SetStateAction<string>>
-
 }
 
-const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) => {
+const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactElement => {
 
   const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
   const [artistBooking, setArtistBooking] = useState({
@@ -61,7 +59,6 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) => {
     getArtistName()
   }, [artistName, artistAddress])
 
-
   return (
     <div className='Parent-div'>
       <BookingHeader
@@ -77,7 +74,6 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) => {
             name= "payment"
             onChange={handleChange}
             >
-
             </input>
             <input 
             autoComplete='off'
@@ -85,7 +81,6 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) => {
             name="time"
             onChange={handleChange}
             >
-
             </input>
             <input 
             autoComplete='off'
@@ -93,7 +88,6 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) => {
             name="date"
             onChange={handleChange}
             >
-
             </input>
             <input 
             autoComplete='off'

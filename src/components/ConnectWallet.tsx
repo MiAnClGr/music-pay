@@ -1,14 +1,10 @@
-import React, {FC, useEffect} from 'react'
-import {ethers} from 'ethers'
+import React, {FC, ReactElement, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {provider} from '../Contracts/ContractObjects'
 
 declare var window : any 
 
-
-
-const ConnectWallet : FC = () => {
-
+const ConnectWallet : FC = () : ReactElement => {
 
   const navigate = useNavigate() 
 
@@ -22,12 +18,8 @@ const ConnectWallet : FC = () => {
   }
 
   useEffect(() =>{
-    
   }, [window.ethereum.isConnected()])
   
-
-
-
   return (
     <div>
       <button

@@ -31,11 +31,11 @@ const ArtistHeader : FC<props> = ({setArtistAddress}) : ReactElement => {
         Search
         </h3>
         {searchClicked 
-          ? 
+        ? 
         <SearchArtist
         setArtistAddress={setArtistAddress}
         />
-          :
+        :
         <></>
         }
       </div>

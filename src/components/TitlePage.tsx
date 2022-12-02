@@ -1,12 +1,8 @@
-import React, {FC} from 'react'
-import {ethers} from 'ethers'
+import React, {FC, ReactElement} from 'react'
 import ConnectWallet from './ConnectWallet'
-import {provider} from "../Contracts/ContractObjects"
 
 
-const TitlePage : FC = () => {
-
- 
+const TitlePage : FC = () : ReactElement => {
 
   return (
     <div className= 'TitlePage'>

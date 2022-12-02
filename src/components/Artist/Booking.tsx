@@ -1,5 +1,4 @@
-import React, {FC} from 'react'
-import {BigNumber} from 'ethers'
+import React, {FC, ReactElement} from 'react'
 
 type props = {
   gigNumber : string,
@@ -9,11 +8,8 @@ type props = {
   venue : string
 }
 
+const Booking : FC<props>= ({gigNumber, payment, time, date, venue}) : ReactElement => {
 
-
-const Booking : FC<props>= ({gigNumber, payment, time, date, venue}) => {
-
-  
   return (
     <div className='Bookings'>
       <h4 className='Text'>No. {gigNumber}</h4>
@@ -25,8 +21,6 @@ const Booking : FC<props>= ({gigNumber, payment, time, date, venue}) => {
       <button className='Submit'>Accept</button>
     </div>
     )
-
-      
 }
 
 export default Booking

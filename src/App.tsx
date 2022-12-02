@@ -13,7 +13,7 @@ import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
 import {ArtistFactoryContract, signer} from "./Contracts/ContractObjects"
-import {BrowserRouter, HashRouter, Route, Routes} from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 function App() {
 
@@ -64,9 +64,7 @@ function App() {
           artistName= {artistName}
           artistAddress= {artistAddress}
           setArtistAddress= {setArtistAddress}
-          artistProfileAddress= {artistProfileAddress}
           artistLoggedIn= {artistLoggedIn}
-          setArtistLoggedIn= {setArtistLoggedIn}
           displayUpdateAboutMe= {displayUpdateAboutMe}
           displayBookings= {displayBookings}
           artistConnected= {artistConnected}
@@ -77,22 +75,14 @@ function App() {
         <Route path= "/Login" element = {
 
           <Login
-          artistName= {artistName}
-          artistProfileAddress= {artistProfileAddress}
           ArtistFactoryContract = {ArtistFactoryContract}
-          artistLoggedIn= {artistLoggedIn}
-          setArtistLoggedIn= {setArtistLoggedIn}
           />
         }/>
 
         <Route path= "/CreateNew" element = {
 
           <CreateNew
-          artistName= {artistName}
-          artistProfileAddress= {artistProfileAddress}
           ArtistFactoryContract = {ArtistFactoryContract}
-          artistLoggedIn= {artistLoggedIn}
-          setArtistLoggedIn= {setArtistLoggedIn}
           />
         }/>
 

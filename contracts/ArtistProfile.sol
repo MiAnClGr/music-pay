@@ -139,7 +139,7 @@ contract ArtistProfile {
             string memory,
             string memory,
             address
-                ) {
+            ) {
 
         Booking storage booking = bookings[_gigNumber];
 

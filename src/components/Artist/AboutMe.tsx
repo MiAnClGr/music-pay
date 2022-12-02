@@ -1,15 +1,14 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, ReactElement, useEffect, useState} from 'react'
 import {ethers, Contract} from 'ethers'
 
 type props = {
-    // artistProfileContract : Contract | undefined
-    updateClicked: boolean
-    setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
     createInstance : (artist: string) => ethers.Contract
     artistProfileAddress : string
+    updateClicked: boolean
+    setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AboutMe : FC<props> = ({createInstance, artistProfileAddress, updateClicked, setUpdateClicked}) => {
+const AboutMe : FC<props> = ({createInstance, artistProfileAddress, updateClicked, setUpdateClicked}) : ReactElement => {
 
     const [aboutArtist, setAboutArtist] = useState("")
     const [update, setUpdate] = useState("")
@@ -57,10 +56,8 @@ const AboutMe : FC<props> = ({createInstance, artistProfileAddress, updateClicke
             
             <br></br>
             <br></br>
-            { updateClicked
-            
+            {updateClicked
             ?
-
             <div className='AboutMeUpdate'>
                 <textarea
                 className='AboutMeUpdateBox'
@@ -69,12 +66,9 @@ const AboutMe : FC<props> = ({createInstance, artistProfileAddress, updateClicke
                 onKeyDown= {handleSubmit}
                 >
                 </textarea> 
-            </div>
-            
+            </div>          
             :
-
-            <div></div>}
-        
+            <></>}       
         </div>
     </div>
 

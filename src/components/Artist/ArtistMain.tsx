@@ -1,5 +1,4 @@
-import React, {FC, useEffect} from 'react'
-import { Contract } from 'ethers'
+import React, {FC, ReactElement} from 'react'
 import ArtistHeader from '../shared/ArtistHeader'
 
 type props = {
@@ -7,9 +6,7 @@ type props = {
     artistAddress : string
     artistLoggedIn : boolean
     artistConnected : boolean
-    artistProfileAddress : string
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
-    setArtistLoggedIn :  React.Dispatch<React.SetStateAction<boolean>>
     displayUpdateAboutMe : () => void
     displayBookings : () => void
     setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
@@ -20,32 +17,26 @@ const ArtistMain : FC<props> = ({
     artistAddress,
     artistLoggedIn,
     artistConnected,  
-    artistProfileAddress, 
     setArtistAddress,
-    setArtistLoggedIn, 
     displayUpdateAboutMe, 
     displayBookings,
-    setArtistConnected}) => {
+    setArtistConnected
+    }) : ReactElement => {
 
-    return (
-       
+    return (      
         <>
             <ArtistHeader
             artistName= {artistName}
             artistAddress= {artistAddress}
             setArtistAddress= {setArtistAddress}
-            artistProfileAddress= {artistProfileAddress}
             artistLoggedIn= {artistLoggedIn}
-            setArtistLoggedIn= {setArtistLoggedIn}
             displayUpdateAboutMe= {displayUpdateAboutMe}
             displayBookings= {displayBookings}
             artistConnected= {artistConnected}
             setArtistConnected= {setArtistConnected}
             />
-            {artistLoggedIn === false && artistConnected === false
-            
-            ?
-            
+            {artistLoggedIn === false && artistConnected === false         
+            ?           
             <div style= {{textAlign: 'center', marginTop: '250px'}}>
                 <h3 
                 className='Text'
@@ -53,9 +44,7 @@ const ArtistMain : FC<props> = ({
                 >Welcome to Music-Pay for Artists...
                 </h3>
             </div>
-
             :
-
             <></>
             }
         </>

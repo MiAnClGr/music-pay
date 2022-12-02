@@ -1,14 +1,8 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import {useNavigate} from 'react-router-dom'
 import Home from "../shared/Home"
 
-const NotOwner = () => {
-
-  const navigate = useNavigate()
-
-  const back = () => {
-    navigate("/CreateArtist")
-  }
+const NotOwner = () : ReactElement => {
 
   return (
     <div className='LoadingScreen'>

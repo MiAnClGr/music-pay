@@ -1,4 +1,4 @@
-import React, {useState, FC} from 'react'
+import React, {useState, FC, ReactElement} from 'react'
 import { useNavigate } from 'react-router'
 import { ArtistFactoryContract } from '../../Contracts/ContractObjects'
 
@@ -6,13 +6,12 @@ type props = {
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
-const SearchArtist : FC<props> = ({setArtistAddress}) => {
+const SearchArtist : FC<props> = ({setArtistAddress}) : ReactElement => {
 
     const navigate = useNavigate()
 
     const [searchInput, setSearchInput] = useState("")
     
-  
     const search = (e : React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value)
     }

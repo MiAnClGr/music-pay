@@ -1,6 +1,5 @@
 import React, {FC, ReactElement, useEffect, useState} from 'react'
-import { Contract } from 'ethers'
-import { Link, useNavigate } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Home from "./Home"
 import {signer} from '../../Contracts/ContractObjects'
 
@@ -9,26 +8,22 @@ type props = {
   artistName : string
   artistAddress : string | undefined
   setArtistAddress :  React.Dispatch<React.SetStateAction<string>>
-  artistProfileAddress : string
   artistLoggedIn : boolean
-  setArtistLoggedIn :  React.Dispatch<React.SetStateAction<boolean>>
   displayUpdateAboutMe : () => void
   displayBookings : () => void
   artistConnected : boolean
   setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
 }
-const ArtistHeader : FC<props> = (
-    {artistName,
+const ArtistHeader : FC<props> = ({
+    artistName,
     artistAddress,
     setArtistAddress,
     artistLoggedIn,
     displayUpdateAboutMe,
-    displayBookings, 
-    setArtistLoggedIn, 
+    displayBookings,  
     artistConnected, 
-    setArtistConnected}) : ReactElement => {
-  
-  const navigate = useNavigate()
+    setArtistConnected
+  }) : ReactElement => {
 
   const getArtistConnected = async () => {
     try{
@@ -45,16 +40,9 @@ const ArtistHeader : FC<props> = (
   
   }
 
-
   useEffect(() => {
     getArtistConnected()
   },[artistAddress])
-
-  console.log(artistLoggedIn)
-  console.log(artistConnected)
-  console.log(artistName)
-
-
 
   return(
     
@@ -93,9 +81,7 @@ const ArtistHeader : FC<props> = (
       >
         Update
       </h4>
-
       :
-
       <></>
       }
       {artistLoggedIn && artistConnected
@@ -107,7 +93,6 @@ const ArtistHeader : FC<props> = (
         Bookings
       </h4>
       :
-
       <></>
       }
     </header>

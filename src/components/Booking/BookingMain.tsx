@@ -1,12 +1,11 @@
-import React, {FC} from 'react'
+import React, {FC, ReactElement} from 'react'
 import BookingHeader from "../shared/BookingHeader"
-
 
 type props = {
   setArtistAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
-const BookingMain : FC<props> = ({setArtistAddress}) => {
+const BookingMain : FC<props> = ({setArtistAddress}) : ReactElement => {
 
   return (
     <>

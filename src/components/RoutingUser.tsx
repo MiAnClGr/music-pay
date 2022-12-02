@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, ReactElement} from 'react'
 import {Link} from 'react-router-dom'
 
 type props = {
@@ -6,28 +6,27 @@ type props = {
   artistConnected : boolean
 }
 
-const RoutingUser : FC<props> = ({artistLoggedIn, artistConnected}) => {
+const RoutingUser : FC<props> = ({artistLoggedIn, artistConnected}) : ReactElement => {
   return (
     <div className='TitlePage'>
       <h1 className='Music-Pay-Title'>Music-Pay</h1>
       <div className='Route'>
         {artistLoggedIn && artistConnected
         ?
-          <Link
-          className='Link'
-          to= "/Profile"
-          >
-          Artists
-          </Link>
+        <Link
+        className='Link'
+        to= "/Profile"
+        >
+        Artists
+        </Link>
         :
-          <Link
-          className='Link'
-          to= "/ArtistMain"
-          >
-          Artists
-          </Link>
+        <Link
+        className='Link'
+        to= "/ArtistMain"
+        >
+        Artists
+        </Link>
         }
-          
         <br></br>
         <br></br>
         <br></br>
