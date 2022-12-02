@@ -3,13 +3,13 @@ import {ethers, Contract} from 'ethers'
 
 type props = {
     // artistProfileContract : Contract | undefined
-    clicked: boolean
-    setClicked : React.Dispatch<React.SetStateAction<boolean>>
+    updateClicked: boolean
+    setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
     createInstance : (artist: string) => ethers.Contract
     artistProfileAddress : string
 }
 
-const AboutMe : FC<props> = ({createInstance, artistProfileAddress, clicked, setClicked}) => {
+const AboutMe : FC<props> = ({createInstance, artistProfileAddress, updateClicked, setUpdateClicked}) => {
 
     const [aboutArtist, setAboutArtist] = useState("")
     const [update, setUpdate] = useState("")
@@ -35,7 +35,7 @@ const AboutMe : FC<props> = ({createInstance, artistProfileAddress, clicked, set
 
             }finally{
                 getAboutMe()
-                setClicked(!clicked)
+                setUpdateClicked(!updateClicked)
                 console.log("submitted")
             }
         }
@@ -57,7 +57,7 @@ const AboutMe : FC<props> = ({createInstance, artistProfileAddress, clicked, set
             
             <br></br>
             <br></br>
-            { clicked
+            { updateClicked
             
             ?
 

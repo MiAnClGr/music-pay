@@ -6,12 +6,14 @@ type props = {
   payment : string,
   time : string,
   date : string,
-  venue : string,
+  venue : string
 }
 
 
 
 const Booking : FC<props>= ({gigNumber, payment, time, date, venue}) => {
+
+  
   return (
     <div className='Bookings'>
       <h4 className='Text'>No. {gigNumber}</h4>

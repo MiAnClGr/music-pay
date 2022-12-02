@@ -10,7 +10,8 @@ type props = {
     artistProfileAddress : string
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
     setArtistLoggedIn :  React.Dispatch<React.SetStateAction<boolean>>
-    openInput : () => void
+    displayUpdateAboutMe : () => void
+    displayBookings : () => void
     setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -22,8 +23,8 @@ const ArtistMain : FC<props> = ({
     artistProfileAddress, 
     setArtistAddress,
     setArtistLoggedIn, 
-    openInput, 
-     
+    displayUpdateAboutMe, 
+    displayBookings,
     setArtistConnected}) => {
 
     return (
@@ -36,7 +37,8 @@ const ArtistMain : FC<props> = ({
             artistProfileAddress= {artistProfileAddress}
             artistLoggedIn= {artistLoggedIn}
             setArtistLoggedIn= {setArtistLoggedIn}
-            openInput= {openInput}
+            displayUpdateAboutMe= {displayUpdateAboutMe}
+            displayBookings= {displayBookings}
             artistConnected= {artistConnected}
             setArtistConnected= {setArtistConnected}
             />

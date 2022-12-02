@@ -390,6 +390,17 @@ body {
   cursor: pointer;
 }
 
+.DisplayBookings {
+  color: #eaeaea;
+  font-size: 18px;
+  font-weight: lighter;
+  position: absolute;
+  left: 43%;
+  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .ArtistName {
   color: #eaeaea;
   text-align: center;

@@ -12,7 +12,8 @@ type props = {
   artistProfileAddress : string
   artistLoggedIn : boolean
   setArtistLoggedIn :  React.Dispatch<React.SetStateAction<boolean>>
-  openInput : () => void
+  displayUpdateAboutMe : () => void
+  displayBookings : () => void
   artistConnected : boolean
   setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -21,7 +22,8 @@ const ArtistHeader : FC<props> = (
     artistAddress,
     setArtistAddress,
     artistLoggedIn,
-    openInput, 
+    displayUpdateAboutMe,
+    displayBookings, 
     setArtistLoggedIn, 
     artistConnected, 
     setArtistConnected}) : ReactElement => {
@@ -87,11 +89,23 @@ const ArtistHeader : FC<props> = (
       ?
       <h4  
       className='UpdateAboutMe'
-      onClick= {openInput} 
+      onClick= {displayUpdateAboutMe} 
       >
         Update
       </h4>
 
+      :
+
+      <></>
+      }
+      {artistLoggedIn && artistConnected
+      ?
+      <h4
+      className='DisplayBookings'
+      onClick={displayBookings}
+      >
+        Bookings
+      </h4>
       :
 
       <></>

@@ -14,9 +14,11 @@ type props = {
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
     setArtistProfileAddress : React.Dispatch<React.SetStateAction<string>>
     setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
-    clicked : boolean
-    setClicked : React.Dispatch<React.SetStateAction<boolean>>
-    openInput : () => void
+    updateClicked : boolean
+    setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
+    displayUpdateAboutMe : () => void
+    updateDisplayBookings : boolean
+    displayBookings :  () => void
     setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
     artistConnected : boolean
     createInstance : (artist: string) => ethers.Contract
@@ -32,11 +34,13 @@ const ArtistProfile :FC<props> =
     setArtistAddress, 
     setArtistProfileAddress, 
     setArtistLoggedIn,
-    clicked,
-    setClicked,
+    updateClicked,
+    setUpdateClicked,
     setArtistConnected,
     artistConnected,
-    openInput,
+    displayUpdateAboutMe,
+    displayBookings,
+    updateDisplayBookings,
     createInstance
     }) : ReactElement => {
 
@@ -125,7 +129,8 @@ const ArtistProfile :FC<props> =
             artistProfileAddress = {artistProfileAddress}
             artistLoggedIn= {artistLoggedIn}
             setArtistLoggedIn= {setArtistLoggedIn}
-            openInput= {openInput}
+            displayUpdateAboutMe= {displayUpdateAboutMe}
+            displayBookings= {displayBookings}
             artistConnected= {artistConnected}
             setArtistConnected= {setArtistConnected}
             />
@@ -136,17 +141,15 @@ const ArtistProfile :FC<props> =
                 <AboutMe
                 createInstance= {createInstance}
                 artistProfileAddress= {artistProfileAddress}
-                setClicked= {setClicked}
-                clicked= {clicked}
+                setUpdateClicked= {setUpdateClicked}
+                updateClicked= {updateClicked}
                 />
                 :
                 <></>       
                 }
-
-                
-                
                 <BookingsList
                 bookings= {bookings}
+                updateDisplayBookings= {updateDisplayBookings}
                 />
             
 

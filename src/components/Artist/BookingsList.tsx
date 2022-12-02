@@ -4,9 +4,10 @@ import Booking from './Booking'
 
 type props = {
     bookings : any[]
+    updateDisplayBookings : boolean
 }
 
-const BookingsList :FC<props> = ({bookings}) => {
+const BookingsList :FC<props> = ({bookings, updateDisplayBookings}) => {
     console.log(bookings)
 
     function hexify(s : string) {
@@ -17,9 +18,6 @@ const BookingsList :FC<props> = ({bookings}) => {
         let stringJoined =  r.join("");
         return stringJoined.replace(/[^\x20-\x7E]/g, '')
     }
-
-
-
    
     const displayBooking = bookings.map((booking : any[]) =>  
 
@@ -35,22 +33,22 @@ const BookingsList :FC<props> = ({bookings}) => {
     
 
     return(
-        <div className='BookingsList'>
-            <h1
-            className='Text'
-            >Bookings
-            </h1>
-            {displayBooking}
+        <div>
+            {updateDisplayBookings
+                ?
+            <div className='BookingsList'>
+                <h1
+                className='Text'
+                >Bookings
+                </h1>
+                {displayBooking}
+            </div>
+            :
+            <></>
+            }
         </div>
     )
   
 }
 
 export default BookingsList
-
-// <Booking
-// payment= {booking[0].toNumber()}
-// time= {booking[1].toString()}
-// date= {booking[2]}
-// venue= {booking[3]}
-// />

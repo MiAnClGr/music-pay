@@ -22,10 +22,16 @@ function App() {
   const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
   const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
   const [artistLoggedIn, setArtistLoggedIn] = useState(false)
-  const [clicked, setClicked] = useState(false)
+  const [updateClicked, setUpdateClicked] = useState(false)
+  const [updateDisplayBookings, setUpdateDisplayBookings] = useState(false)
 
-  const openInput = () => {
-      setClicked(!clicked)
+  const displayUpdateAboutMe = () => {
+      setUpdateClicked(!updateClicked)
+  }
+
+  const displayBookings = () => {
+    setUpdateDisplayBookings(!updateDisplayBookings)
+
   }
   
   const createInstance = (artist : string) => {
@@ -61,7 +67,8 @@ function App() {
           artistProfileAddress= {artistProfileAddress}
           artistLoggedIn= {artistLoggedIn}
           setArtistLoggedIn= {setArtistLoggedIn}
-          openInput= {openInput}
+          displayUpdateAboutMe= {displayUpdateAboutMe}
+          displayBookings= {displayBookings}
           artistConnected= {artistConnected}
           setArtistConnected= {setArtistConnected}
           />
@@ -100,9 +107,11 @@ function App() {
           setArtistName= {setArtistName}
           setArtistAddress= {setArtistAddress}
           setArtistProfileAddress= {setArtistProfileAddress}
-          clicked= {clicked}
-          setClicked= {setClicked}
-          openInput= {openInput}
+          updateClicked= {updateClicked}
+          setUpdateClicked= {setUpdateClicked}
+          displayUpdateAboutMe= {displayUpdateAboutMe}
+          displayBookings= {displayBookings}
+          updateDisplayBookings= {updateDisplayBookings}
           setArtistConnected= {setArtistConnected}
           artistConnected= {artistConnected}
           createInstance= {createInstance}
