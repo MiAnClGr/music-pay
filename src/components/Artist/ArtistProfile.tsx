@@ -1,5 +1,5 @@
 import React, {FC, useState, useEffect, ReactElement} from 'react'
-import {ethers} from 'ethers'
+import {ethers, BigNumber} from 'ethers'
 import {ArtistFactoryContract, signer}from "../../Contracts/ContractObjects"
 import AboutMe from "./AboutMe"
 import ArtistHeader from "../shared/ArtistHeader"
@@ -22,6 +22,7 @@ type props = {
     displayBookings :  () => void
     updateDisplayBookings : boolean
     createInstance : (artist: string) => ethers.Contract
+    setBookingNumber : React.Dispatch<React.SetStateAction<string>>
 }
 
 const ArtistProfile :FC<props> = ({
@@ -40,11 +41,12 @@ const ArtistProfile :FC<props> = ({
     displayUpdateAboutMe,
     displayBookings,
     updateDisplayBookings,
-    createInstance
+    createInstance,
+    setBookingNumber
     }) : ReactElement => {
 
     const [bookings, setBookings] = useState<any[]>([]) ///JSON.parse(localStorage.getItem("bookings")!)
-    
+   
     const setArtistContract = async () => {
         ArtistFactoryContract.on("Artist", (artist) => {
             
@@ -110,7 +112,7 @@ const ArtistProfile :FC<props> = ({
             artistAddress= {artistAddress}
             setArtistAddress= {setArtistAddress}
             artistLoggedIn= {artistLoggedIn}
-            displayUpdateAboutMe= {displayUpdateAboutMe}
+            displayUpdateAboutMe= {displayUpdateAboutMe}    
             displayBookings= {displayBookings}
             artistConnected= {artistConnected}
             setArtistConnected= {setArtistConnected}
@@ -130,6 +132,9 @@ const ArtistProfile :FC<props> = ({
                 <BookingsList
                 bookings= {bookings}
                 updateDisplayBookings= {updateDisplayBookings}
+                setBookingNumber= {setBookingNumber}
+                createInstance= {createInstance}
+                artistProfileAddress= {artistProfileAddress}
                 />
             </div>     
         </div>

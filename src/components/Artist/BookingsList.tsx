@@ -1,13 +1,16 @@
 import React, {FC, ReactElement} from 'react'
-import { BigNumber} from 'ethers'
+import {ethers, BigNumber} from 'ethers'
 import Booking from './Booking'
 
 type props = {
     bookings : any[]
     updateDisplayBookings : boolean
+    setBookingNumber : React.Dispatch<React.SetStateAction<string>>
+    createInstance : (artist: string) => ethers.Contract
+    artistProfileAddress : string
 }
 
-const BookingsList :FC<props> = ({bookings, updateDisplayBookings}) : ReactElement => {
+const BookingsList :FC<props> = ({bookings, updateDisplayBookings, setBookingNumber, createInstance, artistProfileAddress}) : ReactElement => {
 
     const hexify = (s : string) => {
         let r = [];
@@ -23,8 +26,11 @@ const BookingsList :FC<props> = ({bookings, updateDisplayBookings}) : ReactEleme
         gigNumber= {(BigNumber.from(booking[0])).toString()}
         payment={(BigNumber.from(booking[1])).toString()}
         time= {(BigNumber.from(booking[2])).toString()}
-        date = {hexify(booking[2])}
-        venue = {hexify(booking[3])}
+        date = {hexify(booking[3])}
+        venue = {hexify(booking[4])}
+        setBookingNumber= {setBookingNumber}
+        createInstance= {createInstance}
+        artistProfileAddress= {artistProfileAddress}
         />
     )
     

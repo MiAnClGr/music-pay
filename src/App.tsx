@@ -9,6 +9,7 @@ import ArtistProfile from './components/Artist/ArtistProfile'
 import ArtistProfileABI from './ABI/ArtistProfile'
 import BookingMain from './components/Booking/BookingMain';
 import ArtistBooking from './components/Booking/ArtistBooking';
+import Escrow from './components/shared/Escrow'
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
@@ -24,6 +25,7 @@ function App() {
   const [artistLoggedIn, setArtistLoggedIn] = useState(false)
   const [updateClicked, setUpdateClicked] = useState(false)
   const [updateDisplayBookings, setUpdateDisplayBookings] = useState(false)
+  const [bookingNumber, setBookingNumber] = useState<string>("")
 
   const displayUpdateAboutMe = () => {
       setUpdateClicked(!updateClicked)
@@ -105,7 +107,7 @@ function App() {
           setArtistConnected= {setArtistConnected}
           artistConnected= {artistConnected}
           createInstance= {createInstance}
-
+          setBookingNumber= {setBookingNumber}
           />
         }/>
 
@@ -123,6 +125,12 @@ function App() {
           setArtistAddress= {setArtistAddress}
           />
 
+        }/>
+
+        <Route path = "/Escrow" element = {
+          <Escrow
+          bookingNumber= {bookingNumber}
+          />
         }/>
 
 
