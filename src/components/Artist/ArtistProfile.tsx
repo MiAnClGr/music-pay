@@ -21,8 +21,9 @@ type props = {
     displayUpdateAboutMe : () => void
     displayBookings :  () => void
     updateDisplayBookings : boolean
-    createInstance : (artist: string) => ethers.Contract
+    createArtistProfileInstance : (artist: string) => ethers.Contract
     setBookingNumber : React.Dispatch<React.SetStateAction<string>>
+    setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
 const ArtistProfile :FC<props> = ({
@@ -41,8 +42,9 @@ const ArtistProfile :FC<props> = ({
     displayUpdateAboutMe,
     displayBookings,
     updateDisplayBookings,
-    createInstance,
-    setBookingNumber
+    createArtistProfileInstance,
+    setBookingNumber,
+    setEscrowAddress
     }) : ReactElement => {
 
     const [bookings, setBookings] = useState<any[]>([]) ///JSON.parse(localStorage.getItem("bookings")!)
@@ -56,7 +58,7 @@ const ArtistProfile :FC<props> = ({
     }
 
     const setArtist = async () => {
-        const artistProfileContract = createInstance(artistProfileAddress)
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         const artist = await artistProfileContract.artist()
         if(artist == await signer.getAddress()){
             setArtistAddress(artist)
@@ -69,7 +71,7 @@ const ArtistProfile :FC<props> = ({
 
     const getBookings = async () => {
         console.log("clicked")
-        const artistProfileContract = createInstance(artistProfileAddress)
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         let bookingsArray : any[] =  []
         for(let i = 0; i < 5; i++){
             const booking : any[] = await artistProfileContract.getBooking(i)
@@ -121,7 +123,7 @@ const ArtistProfile :FC<props> = ({
                 {artistLoggedIn && artistConnected
                 ?
                 <AboutMe
-                createInstance= {createInstance}
+                createArtistProfileInstance= {createArtistProfileInstance}
                 artistProfileAddress= {artistProfileAddress}
                 setUpdateClicked= {setUpdateClicked}
                 updateClicked= {updateClicked}
@@ -133,8 +135,9 @@ const ArtistProfile :FC<props> = ({
                 bookings= {bookings}
                 updateDisplayBookings= {updateDisplayBookings}
                 setBookingNumber= {setBookingNumber}
-                createInstance= {createInstance}
+                createArtistProfileInstance= {createArtistProfileInstance}
                 artistProfileAddress= {artistProfileAddress}
+                setEscrowAddress= {setEscrowAddress}
                 />
             </div>     
         </div>

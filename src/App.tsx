@@ -26,6 +26,7 @@ function App() {
   const [updateClicked, setUpdateClicked] = useState(false)
   const [updateDisplayBookings, setUpdateDisplayBookings] = useState(false)
   const [bookingNumber, setBookingNumber] = useState<string>("")
+  const [escrowAddress, setEscrowAddress] = useState<string>("")
 
   const displayUpdateAboutMe = () => {
       setUpdateClicked(!updateClicked)
@@ -36,7 +37,7 @@ function App() {
 
   }
   
-  const createInstance = (artist : string) => {
+  const createArtistProfileInstance = (artist : string) => {
     const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
 
     return ArtistProfileContract
@@ -106,8 +107,9 @@ function App() {
           updateDisplayBookings= {updateDisplayBookings}
           setArtistConnected= {setArtistConnected}
           artistConnected= {artistConnected}
-          createInstance= {createInstance}
+          createArtistProfileInstance= {createArtistProfileInstance}
           setBookingNumber= {setBookingNumber}
+          setEscrowAddress= {setEscrowAddress}
           />
         }/>
 
@@ -130,6 +132,7 @@ function App() {
         <Route path = "/Escrow" element = {
           <Escrow
           bookingNumber= {bookingNumber}
+          escrowAddress= {escrowAddress}
           />
         }/>
 

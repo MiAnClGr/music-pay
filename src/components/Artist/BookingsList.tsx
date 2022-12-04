@@ -6,11 +6,19 @@ type props = {
     bookings : any[]
     updateDisplayBookings : boolean
     setBookingNumber : React.Dispatch<React.SetStateAction<string>>
-    createInstance : (artist: string) => ethers.Contract
+    createArtistProfileInstance : (artist: string) => ethers.Contract
     artistProfileAddress : string
+    setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
-const BookingsList :FC<props> = ({bookings, updateDisplayBookings, setBookingNumber, createInstance, artistProfileAddress}) : ReactElement => {
+const BookingsList :FC<props> = ({
+    bookings, 
+    updateDisplayBookings, 
+    setBookingNumber, 
+    createArtistProfileInstance, 
+    artistProfileAddress,
+    setEscrowAddress
+    }) : ReactElement => {
 
     const hexify = (s : string) => {
         let r = [];
@@ -29,8 +37,9 @@ const BookingsList :FC<props> = ({bookings, updateDisplayBookings, setBookingNum
         date = {hexify(booking[3])}
         venue = {hexify(booking[4])}
         setBookingNumber= {setBookingNumber}
-        createInstance= {createInstance}
+        createArtistProfileInstance= {createArtistProfileInstance}
         artistProfileAddress= {artistProfileAddress}
+        setEscrowAddress= {setEscrowAddress}
         />
     )
     

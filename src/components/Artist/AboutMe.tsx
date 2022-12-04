@@ -2,19 +2,19 @@ import React, {FC, ReactElement, useEffect, useState} from 'react'
 import {ethers, Contract} from 'ethers'
 
 type props = {
-    createInstance : (artist: string) => ethers.Contract
+    createArtistProfileInstance : (artist: string) => ethers.Contract
     artistProfileAddress : string
     updateClicked: boolean
     setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AboutMe : FC<props> = ({createInstance, artistProfileAddress, updateClicked, setUpdateClicked}) : ReactElement => {
+const AboutMe : FC<props> = ({createArtistProfileInstance, artistProfileAddress, updateClicked, setUpdateClicked}) : ReactElement => {
 
     const [aboutArtist, setAboutArtist] = useState("")
     const [update, setUpdate] = useState("")
 
     const getAboutMe = async () => {
-        const artistProfileContract = createInstance(artistProfileAddress)
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         const about = await artistProfileContract.aboutMe()
         console.log(about)
         setAboutArtist(about)
@@ -25,7 +25,7 @@ const AboutMe : FC<props> = ({createInstance, artistProfileAddress, updateClicke
     }
 
     const handleSubmit = async (e : React.KeyboardEvent<HTMLElement>) => {
-        const artistProfileContract = createInstance(artistProfileAddress)
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         if(e.key === 'Enter'){
             try{
                 const updated = await artistProfileContract.updateAboutMe(update)

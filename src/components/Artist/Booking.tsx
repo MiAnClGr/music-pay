@@ -1,4 +1,4 @@
-import React, {FC, ReactElement} from 'react'
+import React, {FC, useState, ReactElement} from 'react'
 import {ethers} from 'ethers'
 import {useNavigate} from 'react-router-dom'
 
@@ -9,26 +9,47 @@ type props = {
   date : string,
   venue : string,
   setBookingNumber : React.Dispatch<React.SetStateAction<string>>
-  createInstance : (artist: string) => ethers.Contract
+  createArtistProfileInstance : (artist: string) => ethers.Contract
   artistProfileAddress : string
+  setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
-const Booking : FC<props>= ({gigNumber, payment, time, date, venue, setBookingNumber, createInstance, artistProfileAddress}) : ReactElement => {
+const Booking : FC<props>= ({
+  gigNumber, 
+  payment, 
+  time,
+  date, 
+  venue, 
+  setBookingNumber, 
+  createArtistProfileInstance, 
+  artistProfileAddress,
+  setEscrowAddress
+}) : ReactElement => {
 
+
+  
   const navigate = useNavigate()
+
+
 
   const handleSubmitAccept = async () => {
     setBookingNumber(gigNumber)
-    const artistProfileContract = createInstance(artistProfileAddress)
+    console.log(gigNumber)
+    const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
     console.log(artistProfileAddress)
-    artistProfileContract.agreement(gigNumber)
-    artistProfileContract.on("EscrowCreated", (escrowAddress => {
-      console.log(escrowAddress)
-    }))
+    
+    navigate("/Loading")
     try{
+      const transaction = await artistProfileContract.agreement(gigNumber)
+      await transaction.wait()
+      artistProfileContract.on("EscrowCreated", (escrowAddress => {
+        setEscrowAddress(escrowAddress)
+      }))
         navigate("/Escrow")
     }catch(e){
         console.log("error")
+    }finally{
+     
     }   
 }
 
