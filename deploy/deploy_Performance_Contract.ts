@@ -11,8 +11,11 @@ const func : DeployFunction = async (hre : HardhatRuntimeEnvironment) => {
 
     const {deployer} = await getNamedAccounts()
 
+    const artistFactory : Contract = await ethers.getContract("ArtistFactory")
+
     await deploy("PerformanceContract", {
         from: deployer,
+        args: [artistFactory.address],
         log: true,
     })
 }
