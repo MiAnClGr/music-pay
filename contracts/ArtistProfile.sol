@@ -50,6 +50,8 @@ contract ArtistProfile {
 
     mapping(uint => Booking) public bookings;
 
+    mapping(address => address) public bookingAgentToEscrow;
+
     enum State {notCompleted, bookingComplete, performanceCompleted, paymentComplete}
 
 /// Modifiers 
@@ -75,12 +77,14 @@ contract ArtistProfile {
 
     function updateBooking(
         address _artist,
-        address _bookingAgent,
         string memory _artistName,
+        address _bookingAgent,
+        string memory _bookingAgentName,
         uint _payment, 
-        uint _time, 
-        string memory _date, 
-        string memory _venueName
+        uint _time,
+        string memory _venueName, 
+        string memory _date
+        
         ) external {
 
         Booking storage booking = bookings[gigNumber];
@@ -88,11 +92,14 @@ contract ArtistProfile {
         {
         booking.artist = _artist;
         booking.artistName = _artistName;
+        booking.bookingAgent = _bookingAgent;
+        booking.bookingAgentName  = _bookingAgentName;
         booking.payment = _payment;
         booking.time = _time;
-        booking.date = _date;
         booking.venueName = _venueName;
-        booking.bookingAgent = _bookingAgent;
+        booking.date = _date;
+        
+        
         booking.gigNumber = gigNumber;
         }
 
@@ -113,10 +120,12 @@ contract ArtistProfile {
         escrow =  new BookingEscrow(
             booking.artist,
             booking.bookingAgent,
-            _gigNumber, 
+            booking.bookingAgentName,
+            booking.gigNumber, 
             booking.payment
-            // address(proofOfPayment)
         );
+
+        bookingAgentToEscrow[booking.bookingAgent] = address(escrow);
 
         emit DepositPaid(_gigNumber);
         emit EscrowCreated(address(escrow));

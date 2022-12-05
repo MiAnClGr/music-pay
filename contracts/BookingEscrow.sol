@@ -17,6 +17,7 @@ contract BookingEscrow {
 
     address public artist;
     address public bookingAgent;
+    string public bookingAgentName;
     uint256 public gigNumber;
     uint256 public payment;
 
@@ -25,15 +26,15 @@ contract BookingEscrow {
     constructor(
         address _artist,
         address _bookingAgent, 
+        string memory _bookingAgentName,
         uint _gigNumber, 
         uint256 _payment
-        // address _proofOfPayment
         ) payable {
         artist = _artist;
         bookingAgent = _bookingAgent;
+        bookingAgentName = _bookingAgentName;
         gigNumber = _gigNumber;
         payment = _payment;
-        // proofOfPayment = ProofOfPayment(_proofOfPayment);
         DAI = ERC20(0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60);
 
         currentState = PaymentState.NO_PAYMENT_MADE;

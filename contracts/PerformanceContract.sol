@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
+import "./ArtistFactory.sol";
 import "./ArtistProfile.sol";
 import "./ProofOfBooking.sol";
 import "./ProofOfPayment.sol";
@@ -15,8 +16,7 @@ contract PerformanceContract {
 
 /// Types
 
-    // ProofOfBooking public proofOfBooking;
-    // ProofOfPayment public proofOfPayment;
+    ArtistFactory artistFactory;
 
 // Events
 
@@ -25,11 +25,8 @@ contract PerformanceContract {
 
 // Constructor
 
-    constructor() {
-
-        // proofOfBooking = new ProofOfBooking("Booking Token", "BOOKING" );
-        // proofOfPayment = new ProofOfPayment("Payment Token", "PAYMENT");
-
+    constructor(address _artistFactory) {
+        artistFactory = ArtistFactory(_artistFactory);
     }
 
 // Public
@@ -39,15 +36,27 @@ contract PerformanceContract {
     function createBooking(
         address payable _artist,
         string memory _artistName,
+        string memory _bookingAgentName,
         uint _payment, 
         uint _time,
-        string memory _date, 
-        string memory _venueName
+        string memory _venueName,
+        string memory _date 
+        
         ) external {       
-        //require(_artist exists) ADD
+        require(artistFactory.doesArtistExist(_artistName));
+        
         ArtistProfile artist = ArtistProfile(_artist);
         
-        artist.updateBooking(_artist, msg.sender, _artistName, _payment, _time, _date, _venueName);
+        artist.updateBooking(
+            _artist,
+            _artistName,  
+            msg.sender, 
+            _bookingAgentName,
+            _payment, 
+            _time,
+            _venueName, 
+            _date 
+            );
     }
 
 
