@@ -1,6 +1,12 @@
 export default [
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_artistFactory",
+        "type": "address"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
@@ -30,6 +36,11 @@ export default [
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "_bookingAgentName",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "_payment",
         "type": "uint256"
@@ -41,12 +52,12 @@ export default [
       },
       {
         "internalType": "string",
-        "name": "_date",
+        "name": "_venueName",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "_venueName",
+        "name": "_date",
         "type": "string"
       }
     ],

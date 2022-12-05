@@ -1,4 +1,4 @@
-import React, {FC, useState, ReactElement} from 'react'
+import React, {FC, ReactElement} from 'react'
 import {ethers} from 'ethers'
 import {useNavigate} from 'react-router-dom'
 
@@ -11,7 +11,6 @@ type props = {
   setBookingNumber : React.Dispatch<React.SetStateAction<string>>
   createArtistProfileInstance : (artist: string) => ethers.Contract
   artistProfileAddress : string
-  setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
 const Booking : FC<props>= ({
@@ -22,9 +21,8 @@ const Booking : FC<props>= ({
   venue, 
   setBookingNumber, 
   createArtistProfileInstance, 
-  artistProfileAddress,
-  setEscrowAddress
-}) : ReactElement => {
+  artistProfileAddress
+  }) : ReactElement => {
 
 
   
@@ -34,24 +32,18 @@ const Booking : FC<props>= ({
 
   const handleSubmitAccept = async () => {
     setBookingNumber(gigNumber)
-    console.log(gigNumber)
     const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-    console.log(artistProfileAddress)
-    
     navigate("/Loading")
     try{
       const transaction = await artistProfileContract.agreement(gigNumber)
       await transaction.wait()
-      artistProfileContract.on("EscrowCreated", (escrowAddress => {
-        setEscrowAddress(escrowAddress)
-      }))
-        navigate("/Escrow")
+      navigate("/Escrow")
     }catch(e){
-        console.log("error")
+      console.log("error")
     }finally{
      
     }   
-}
+  }
 
   return (
     <div className='Bookings'>

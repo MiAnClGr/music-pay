@@ -6,9 +6,12 @@ import {signer} from "../../Contracts/ContractObjects"
 type props = {
     bookingNumber : string
     escrowAddress : string
+    artistProfileAddress : string
+    setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
+    createArtistProfileInstance : (artist: string) => ethers.Contract
 }
 
-const Escrow : FC<props> = ({bookingNumber, escrowAddress}) => {
+const Escrow : FC<props> = ({bookingNumber, escrowAddress, artistProfileAddress, setEscrowAddress, createArtistProfileInstance}) => {
 
     const createEscrowInstance = () => {
         const EscrowContract : Contract = new ethers.Contract(escrowAddress, EscrowABI, signer)
@@ -16,19 +19,33 @@ const Escrow : FC<props> = ({bookingNumber, escrowAddress}) => {
         return EscrowContract
     }
 
+    const getEscrowAddress = () => {
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
+        artistProfileContract.on("EscrowCreated", (escrowAddress => {
+            setEscrowAddress(escrowAddress)
+          }))
+    }
+
+
+
     console.log(escrowAddress)
     console.log(bookingNumber)
 
-    // const getAddressess = async () => {
-    //     const EscrowContract = createEscrowInstance()
-    //     console.log(await EscrowContract.artist())
-    //     console.log(await EscrowContract.bookingAgent())
-    //     console.log(await EscrowContract.gigNumber())
-    // }
+    const getAddressess = async () => {
+        const EscrowContract = createEscrowInstance()
+        console.log(await EscrowContract.artist())
+        console.log(await EscrowContract.bookingAgent())
+        console.log(await EscrowContract.gigNumber())
+    }
 
     useEffect(() => {
-        createEscrowInstance()
-    }, [])
+        getEscrowAddress()
+    },[])
+
+    useEffect(() => {
+        getAddressess()
+    }, [escrowAddress])
+
 
   return (
     <div>

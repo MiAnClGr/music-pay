@@ -4,6 +4,7 @@ import ArtistHeader from '../shared/ArtistHeader'
 type props = {
     artistName : string
     artistAddress : string
+    artistProfileAddress : string
     artistLoggedIn : boolean
     artistConnected : boolean
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
@@ -15,6 +16,7 @@ type props = {
 const ArtistMain : FC<props> = ({
     artistName,
     artistAddress,
+    artistProfileAddress,
     artistLoggedIn,
     artistConnected,  
     setArtistAddress,
@@ -28,6 +30,7 @@ const ArtistMain : FC<props> = ({
             <ArtistHeader
             artistName= {artistName}
             artistAddress= {artistAddress}
+            artistProfileAddress= {artistProfileAddress}
             setArtistAddress= {setArtistAddress}
             artistLoggedIn= {artistLoggedIn}
             displayUpdateAboutMe= {displayUpdateAboutMe}

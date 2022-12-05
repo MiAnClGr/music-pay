@@ -1,12 +1,9 @@
 import React, {useState, FC, ReactElement} from 'react'
-import { Contract } from 'ethers'
 import {useNavigate} from 'react-router-dom'
+import {ArtistFactoryContract} from "../../Contracts/ContractObjects"
 
-type props = {
-    ArtistFactoryContract : Contract
-}
 
-const CreateNew : FC<props> = ({ArtistFactoryContract}) : ReactElement => {
+const CreateNew : FC = ({}) : ReactElement => {
 
     const [inputArtistName, setInputArtistName] = useState("")
 
@@ -24,8 +21,7 @@ const CreateNew : FC<props> = ({ArtistFactoryContract}) : ReactElement => {
             
         }catch(error){
             console.log(error)
-        }finally{
-            
+        }finally{ 
             navigate("/Profile")
         }    
     }

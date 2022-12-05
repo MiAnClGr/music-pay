@@ -8,16 +8,14 @@ type props = {
     setBookingNumber : React.Dispatch<React.SetStateAction<string>>
     createArtistProfileInstance : (artist: string) => ethers.Contract
     artistProfileAddress : string
-    setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
 }
-
+///////CLEAN UP ESCROW ADDDRESS STATE!!!
 const BookingsList :FC<props> = ({
     bookings, 
     updateDisplayBookings, 
     setBookingNumber, 
     createArtistProfileInstance, 
     artistProfileAddress,
-    setEscrowAddress
     }) : ReactElement => {
 
     const hexify = (s : string) => {
@@ -39,7 +37,6 @@ const BookingsList :FC<props> = ({
         setBookingNumber= {setBookingNumber}
         createArtistProfileInstance= {createArtistProfileInstance}
         artistProfileAddress= {artistProfileAddress}
-        setEscrowAddress= {setEscrowAddress}
         />
     )
     

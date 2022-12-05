@@ -12,6 +12,7 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
 
   const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
   const [artistBooking, setArtistBooking] = useState({
+    bookingAgent: "",
     payment: "",
     time: "",
     date: "",
@@ -35,17 +36,21 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
   const submitBooking = async () => {
     await PerformanceContract.createBooking(
       artistAddress,
-      ethers.utils.formatBytes32String(artistName),
+      artistName,
+      artistBooking.bookingAgent,
       artistBooking.payment,
       artistBooking.time,
-      ethers.utils.formatBytes32String(artistBooking.date),
-      ethers.utils.formatBytes32String(artistBooking.venue)
+      artistBooking.venue,
+      artistBooking.date
+     
     )
   }
 
   const handleSubmit = () => {
     submitBooking()
   }
+
+  console.log(artistAddress)
 
   useEffect(() => {
     localStorage.setItem("artistName", artistName)
@@ -68,6 +73,13 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
       <div className='ArtistBooking'>
         <h3 className='ArtistNameBooking'>{artistName}</h3>
           <div className='BookingForm'>
+          <input 
+            autoComplete='off'
+            placeholder="Booking Agent" 
+            name= "bookingAgent"
+            onChange={handleChange}
+            >
+            </input>
             <input 
             autoComplete='off'
             placeholder="Payment" 
@@ -84,15 +96,15 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
             </input>
             <input 
             autoComplete='off'
-            placeholder="Date" 
-            name="date"
+            placeholder="Venue" 
+            name="venue"
             onChange={handleChange}
             >
             </input>
             <input 
             autoComplete='off'
-            placeholder="Venue" 
-            name="venue"
+            placeholder="Date" 
+            name="date"
             onChange={handleChange}
             >
             </input>

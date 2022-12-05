@@ -128,6 +128,25 @@ export default [
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "bookingAgentToEscrow",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
@@ -259,13 +278,18 @@ export default [
         "type": "address"
       },
       {
+        "internalType": "string",
+        "name": "_artistName",
+        "type": "string"
+      },
+      {
         "internalType": "address",
         "name": "_bookingAgent",
         "type": "address"
       },
       {
         "internalType": "string",
-        "name": "_artistName",
+        "name": "_bookingAgentName",
         "type": "string"
       },
       {
@@ -280,12 +304,12 @@ export default [
       },
       {
         "internalType": "string",
-        "name": "_date",
+        "name": "_venueName",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "_venueName",
+        "name": "_date",
         "type": "string"
       }
     ],

@@ -1,5 +1,5 @@
 import React, {FC, useState, useEffect, ReactElement} from 'react'
-import {ethers, BigNumber} from 'ethers'
+import {ethers} from 'ethers'
 import {ArtistFactoryContract, signer}from "../../Contracts/ContractObjects"
 import AboutMe from "./AboutMe"
 import ArtistHeader from "../shared/ArtistHeader"
@@ -23,7 +23,6 @@ type props = {
     updateDisplayBookings : boolean
     createArtistProfileInstance : (artist: string) => ethers.Contract
     setBookingNumber : React.Dispatch<React.SetStateAction<string>>
-    setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
 }
 
 const ArtistProfile :FC<props> = ({
@@ -44,23 +43,23 @@ const ArtistProfile :FC<props> = ({
     updateDisplayBookings,
     createArtistProfileInstance,
     setBookingNumber,
-    setEscrowAddress
     }) : ReactElement => {
 
     const [bookings, setBookings] = useState<any[]>([]) ///JSON.parse(localStorage.getItem("bookings")!)
    
     const setArtistContract = async () => {
-        ArtistFactoryContract.on("Artist", (artist) => {
-            
-            setArtistProfileAddress(artist)
-            setArtistLoggedIn(true)
-        })
+        const owner = await signer.getAddress()
+        const artist = await ArtistFactoryContract.ownerToArtist(owner)
+        setArtistProfileAddress(artist)
+        setArtistLoggedIn(true)
     }
 
     const setArtist = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         const artist = await artistProfileContract.artist()
+        console.log(artist)
         if(artist == await signer.getAddress()){
+            console.log(await signer.getAddress())
             setArtistAddress(artist)
         }
 
@@ -112,6 +111,7 @@ const ArtistProfile :FC<props> = ({
             <ArtistHeader
             artistName= {artistName}
             artistAddress= {artistAddress}
+            artistProfileAddress= {artistProfileAddress}
             setArtistAddress= {setArtistAddress}
             artistLoggedIn= {artistLoggedIn}
             displayUpdateAboutMe= {displayUpdateAboutMe}    
@@ -137,7 +137,7 @@ const ArtistProfile :FC<props> = ({
                 setBookingNumber= {setBookingNumber}
                 createArtistProfileInstance= {createArtistProfileInstance}
                 artistProfileAddress= {artistProfileAddress}
-                setEscrowAddress= {setEscrowAddress}
+            
                 />
             </div>     
         </div>

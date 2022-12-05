@@ -7,6 +7,7 @@ import {signer} from '../../Contracts/ContractObjects'
 type props = {
   artistName : string
   artistAddress : string | undefined
+  artistProfileAddress : string
   setArtistAddress :  React.Dispatch<React.SetStateAction<string>>
   artistLoggedIn : boolean
   displayUpdateAboutMe : () => void
@@ -17,6 +18,7 @@ type props = {
 const ArtistHeader : FC<props> = ({
     artistName,
     artistAddress,
+    artistProfileAddress,
     setArtistAddress,
     artistLoggedIn,
     displayUpdateAboutMe,
@@ -29,7 +31,9 @@ const ArtistHeader : FC<props> = ({
     try{
       if(artistAddress == await signer.getAddress()){
         console.log(await signer.getAddress())
+        console.log(artistAddress)
         setArtistConnected(true)
+        console.log(artistConnected)
       }else{
         setArtistConnected(false)
         setArtistAddress("")
@@ -42,7 +46,7 @@ const ArtistHeader : FC<props> = ({
 
   useEffect(() => {
     getArtistConnected()
-  },[artistAddress])
+  },[artistLoggedIn])
 
   return(
     

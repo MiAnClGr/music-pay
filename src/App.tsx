@@ -13,14 +13,14 @@ import Escrow from './components/shared/Escrow'
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
-import {ArtistFactoryContract, signer} from "./Contracts/ContractObjects"
+import {signer} from "./Contracts/ContractObjects"
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 function App() {
 
   const [artistConnected, setArtistConnected] = useState(false)
   const [artistAddress, setArtistAddress] =  useState("")
-  const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
+  const [artistName, setArtistName] = useState("") ///localStorage.getItem("artistName") || ""
   const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
   const [artistLoggedIn, setArtistLoggedIn] = useState(false)
   const [updateClicked, setUpdateClicked] = useState(false)
@@ -66,6 +66,7 @@ function App() {
           <ArtistMain
           artistName= {artistName}
           artistAddress= {artistAddress}
+          artistProfileAddress= {artistProfileAddress}
           setArtistAddress= {setArtistAddress}
           artistLoggedIn= {artistLoggedIn}
           displayUpdateAboutMe= {displayUpdateAboutMe}
@@ -77,16 +78,12 @@ function App() {
 
         <Route path= "/Login" element = {
 
-          <Login
-          ArtistFactoryContract = {ArtistFactoryContract}
-          />
+          <Login/>
         }/>
 
         <Route path= "/CreateNew" element = {
 
-          <CreateNew
-          ArtistFactoryContract = {ArtistFactoryContract}
-          />
+          <CreateNew/>
         }/>
 
         <Route path= "/Profile" element = {
@@ -109,7 +106,6 @@ function App() {
           artistConnected= {artistConnected}
           createArtistProfileInstance= {createArtistProfileInstance}
           setBookingNumber= {setBookingNumber}
-          setEscrowAddress= {setEscrowAddress}
           />
         }/>
 
@@ -133,6 +129,9 @@ function App() {
           <Escrow
           bookingNumber= {bookingNumber}
           escrowAddress= {escrowAddress}
+          setEscrowAddress= {setEscrowAddress}
+          createArtistProfileInstance= {createArtistProfileInstance}
+          artistProfileAddress= {artistProfileAddress}
           />
         }/>
 
