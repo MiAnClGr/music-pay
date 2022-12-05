@@ -42,12 +42,18 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
       artistBooking.time,
       artistBooking.venue,
       artistBooking.date
-     
     )
+    
   }
 
   const handleSubmit = () => {
     submitBooking()
+    setArtistBooking({
+      bookingAgent: "",
+      payment: "",
+      time: "",
+      date: "",
+      venue: "" })
   }
 
   console.log(artistAddress)
@@ -72,7 +78,7 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
       
       <div className='ArtistBooking'>
         <h3 className='ArtistNameBooking'>{artistName}</h3>
-          <div className='BookingForm'>
+          <form className='BookingForm'>
           <input 
             autoComplete='off'
             placeholder="Booking Agent" 
@@ -108,12 +114,14 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
             onChange={handleChange}
             >
             </input>
-            <h4 className='SubmitBooking'
+            <button 
+            className='SubmitBooking'
+            type= 'submit'
             onClick= {handleSubmit}
             >
               Book Artist
-            </h4>
-        </div>
+            </button>
+        </form>
       </div>
     </div>
   )

@@ -48,9 +48,10 @@ const Escrow : FC<props> = ({bookingNumber, escrowAddress, artistProfileAddress,
 
 
   return (
-    <div>
-      <h1 className='Text'>ESCROW : {bookingNumber}</h1>
-      <h1 className='Text'>ESCROW ADDRESS : {escrowAddress}</h1>
+    <div className='Escrow'>
+      <h1 className='HeaderText'>ESCROW</h1>
+      <h3 className='Text'>Booking Number: {bookingNumber}</h3>
+      
     </div>
   )
 }

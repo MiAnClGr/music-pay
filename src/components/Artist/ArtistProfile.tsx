@@ -6,11 +6,9 @@ import ArtistHeader from "../shared/ArtistHeader"
 import BookingsList from "./BookingsList"
 
 type props = {
-    artistName : string
     artistProfileAddress : string
     artistAddress : string 
     artistLoggedIn : boolean
-    setArtistName : React.Dispatch<React.SetStateAction<string>>
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
     setArtistProfileAddress : React.Dispatch<React.SetStateAction<string>>
     setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
@@ -26,11 +24,9 @@ type props = {
 }
 
 const ArtistProfile :FC<props> = ({
-    artistName,
     artistProfileAddress, 
     artistAddress,
     artistLoggedIn, 
-    setArtistName, 
     setArtistAddress, 
     setArtistProfileAddress, 
     setArtistLoggedIn,
@@ -61,11 +57,7 @@ const ArtistProfile :FC<props> = ({
         if(artist == await signer.getAddress()){
             console.log(await signer.getAddress())
             setArtistAddress(artist)
-        }
-
-        const name = await artistProfileContract.artistName()
-        console.log(name)
-        setArtistName(name)
+        } 
     } 
 
     const getBookings = async () => {
@@ -101,15 +93,14 @@ const ArtistProfile :FC<props> = ({
         console.log("useEffect 3")
     },[artistProfileAddress])
 
-    useEffect(() => {
-        localStorage.setItem("artistName", artistName)
-        console.log("useEffect 4")
-    },[artistName])
+    // useEffect(() => {
+    //     localStorage.setItem("artistName", artistName)
+    //     console.log("useEffect 4")
+    // },[artistName])
 
     return(
         <div>
             <ArtistHeader
-            artistName= {artistName}
             artistAddress= {artistAddress}
             artistProfileAddress= {artistProfileAddress}
             setArtistAddress= {setArtistAddress}
@@ -118,9 +109,10 @@ const ArtistProfile :FC<props> = ({
             displayBookings= {displayBookings}
             artistConnected= {artistConnected}
             setArtistConnected= {setArtistConnected}
+            createArtistProfileInstance= {createArtistProfileInstance}
             />      
             <div className='ProfilePage'>
-                {artistLoggedIn && artistConnected
+                {artistLoggedIn 
                 ?
                 <AboutMe
                 createArtistProfileInstance= {createArtistProfileInstance}

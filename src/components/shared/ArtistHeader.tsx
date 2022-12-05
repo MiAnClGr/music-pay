@@ -1,11 +1,11 @@
 import React, {FC, ReactElement, useEffect, useState} from 'react'
+import {ethers} from 'ethers'
 import {Link} from 'react-router-dom'
 import Home from "./Home"
 import {signer} from '../../Contracts/ContractObjects'
 
 
 type props = {
-  artistName : string
   artistAddress : string | undefined
   artistProfileAddress : string
   setArtistAddress :  React.Dispatch<React.SetStateAction<string>>
@@ -14,9 +14,9 @@ type props = {
   displayBookings : () => void
   artistConnected : boolean
   setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
+  createArtistProfileInstance : (artist: string) => ethers.Contract
 }
 const ArtistHeader : FC<props> = ({
-    artistName,
     artistAddress,
     artistProfileAddress,
     setArtistAddress,
@@ -24,8 +24,11 @@ const ArtistHeader : FC<props> = ({
     displayUpdateAboutMe,
     displayBookings,  
     artistConnected, 
-    setArtistConnected
+    setArtistConnected,
+    createArtistProfileInstance
   }) : ReactElement => {
+
+    const [name, setName] = useState("")
 
   const getArtistConnected = async () => {
     try{
@@ -34,6 +37,7 @@ const ArtistHeader : FC<props> = ({
         console.log(artistAddress)
         setArtistConnected(true)
         console.log(artistConnected)
+        console.log(artistLoggedIn)
       }else{
         setArtistConnected(false)
         setArtistAddress("")
@@ -44,9 +48,20 @@ const ArtistHeader : FC<props> = ({
   
   }
 
+  const getArtistName = async () => {
+    const artistProfile = createArtistProfileInstance(artistProfileAddress)
+    const name = await artistProfile.artistName()
+    console.log(name)
+    setName(name)
+  }
+
   useEffect(() => {
     getArtistConnected()
   },[artistLoggedIn])
+
+  useEffect(() => {
+    getArtistName()
+  },[artistProfileAddress])
 
   return(
     
@@ -66,9 +81,9 @@ const ArtistHeader : FC<props> = ({
       >
       Create
       </Link>
-      {artistLoggedIn && artistConnected
+      {artistLoggedIn 
       ? 
-      <h1 className='ArtistName'>{artistName}</h1>
+      <h1 className='ArtistName'>{name}</h1>
       : 
       <Link
       className='Login' 
@@ -77,7 +92,7 @@ const ArtistHeader : FC<props> = ({
       Login
       </Link>
       }
-      {artistLoggedIn && artistConnected
+      {artistLoggedIn 
       ?
       <h4  
       className='UpdateAboutMe'
@@ -88,7 +103,7 @@ const ArtistHeader : FC<props> = ({
       :
       <></>
       }
-      {artistLoggedIn && artistConnected
+      {artistLoggedIn 
       ?
       <h4
       className='DisplayBookings'
@@ -104,3 +119,7 @@ const ArtistHeader : FC<props> = ({
 }
 
 export default ArtistHeader
+
+
+
+/////figure out logged in conditions!

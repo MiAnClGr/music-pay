@@ -218,6 +218,7 @@ body {
 
 .SubmitBooking {
   color:#eaeaea;
+  background-color: #333333;
   font-size: 16px;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
   text-decoration: none;
@@ -447,6 +448,10 @@ body {
   font-weight: lighter;
   position: absolute;
   bottom: 2px;
+}
+
+.Escrow {
+  text-align: center;
 }
 
 

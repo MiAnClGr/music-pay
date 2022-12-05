@@ -1,8 +1,8 @@
 import React, {FC, ReactElement} from 'react'
+import {ethers} from 'ethers'
 import ArtistHeader from '../shared/ArtistHeader'
 
 type props = {
-    artistName : string
     artistAddress : string
     artistProfileAddress : string
     artistLoggedIn : boolean
@@ -11,10 +11,10 @@ type props = {
     displayUpdateAboutMe : () => void
     displayBookings : () => void
     setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
+    createArtistProfileInstance : (artist: string) => ethers.Contract 
 }
 
 const ArtistMain : FC<props> = ({
-    artistName,
     artistAddress,
     artistProfileAddress,
     artistLoggedIn,
@@ -22,13 +22,13 @@ const ArtistMain : FC<props> = ({
     setArtistAddress,
     displayUpdateAboutMe, 
     displayBookings,
-    setArtistConnected
+    setArtistConnected,
+    createArtistProfileInstance
     }) : ReactElement => {
 
     return (      
         <>
             <ArtistHeader
-            artistName= {artistName}
             artistAddress= {artistAddress}
             artistProfileAddress= {artistProfileAddress}
             setArtistAddress= {setArtistAddress}
@@ -37,6 +37,7 @@ const ArtistMain : FC<props> = ({
             displayBookings= {displayBookings}
             artistConnected= {artistConnected}
             setArtistConnected= {setArtistConnected}
+            createArtistProfileInstance= {createArtistProfileInstance}
             />
             {artistLoggedIn === false && artistConnected === false         
             ?           

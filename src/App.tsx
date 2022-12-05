@@ -20,7 +20,6 @@ function App() {
 
   const [artistConnected, setArtistConnected] = useState(false)
   const [artistAddress, setArtistAddress] =  useState("")
-  const [artistName, setArtistName] = useState("") ///localStorage.getItem("artistName") || ""
   const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
   const [artistLoggedIn, setArtistLoggedIn] = useState(false)
   const [updateClicked, setUpdateClicked] = useState(false)
@@ -64,7 +63,6 @@ function App() {
         <Route path= "/ArtistMain" element = {
 
           <ArtistMain
-          artistName= {artistName}
           artistAddress= {artistAddress}
           artistProfileAddress= {artistProfileAddress}
           setArtistAddress= {setArtistAddress}
@@ -73,6 +71,7 @@ function App() {
           displayBookings= {displayBookings}
           artistConnected= {artistConnected}
           setArtistConnected= {setArtistConnected}
+          createArtistProfileInstance = {createArtistProfileInstance}
           />
         }/>
 
@@ -89,12 +88,10 @@ function App() {
         <Route path= "/Profile" element = {
           
           <ArtistProfile
-          artistName= {artistName}
           artistAddress= {artistAddress}
           artistProfileAddress= {artistProfileAddress}
           artistLoggedIn= {artistLoggedIn}
           setArtistLoggedIn= {setArtistLoggedIn}
-          setArtistName= {setArtistName}
           setArtistAddress= {setArtistAddress}
           setArtistProfileAddress= {setArtistProfileAddress}
           updateClicked= {updateClicked}
