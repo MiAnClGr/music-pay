@@ -63,6 +63,8 @@ const ArtistHeader : FC<props> = ({
     getArtistName()
   },[artistProfileAddress])
 
+  console.log(artistProfileAddress)
+
   return(
     
     <header className='Header'>

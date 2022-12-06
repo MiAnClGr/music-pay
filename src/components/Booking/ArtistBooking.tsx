@@ -34,7 +34,7 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
   }
 
   const submitBooking = async () => {
-    await PerformanceContract.createBooking(
+    const booking = await PerformanceContract.createBooking(
       artistAddress,
       artistName,
       artistBooking.bookingAgent,
@@ -43,6 +43,8 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
       artistBooking.venue,
       artistBooking.date
     )
+
+    await booking.wait()
     
   }
 

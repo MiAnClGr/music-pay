@@ -18,27 +18,21 @@ const BookingsList :FC<props> = ({
     artistProfileAddress,
     }) : ReactElement => {
 
-    const hexify = (s : string) => {
-        let r = [];
-        for (let i = 2; i < s.length - 1; i += 2) {
-            r.push(String.fromCharCode(parseInt(s.charAt(i) + s.charAt(i + 1), 16)));
-        }
-        let stringJoined =  r.join("");
-        return stringJoined.replace(/[^\x20-\x7E]/g, '')
-    }
    
     const displayBooking = bookings.map((booking : any[]) =>  
         <Booking
         gigNumber= {(BigNumber.from(booking[0])).toString()}
         payment={(BigNumber.from(booking[1])).toString()}
         time= {(BigNumber.from(booking[2])).toString()}
-        date = {hexify(booking[3])}
-        venue = {hexify(booking[4])}
+        date = {booking[3]}
+        venue = {booking[4]}
         setBookingNumber= {setBookingNumber}
         createArtistProfileInstance= {createArtistProfileInstance}
         artistProfileAddress= {artistProfileAddress}
         />
     )
+
+    console.log(bookings)
     
     return(
         <div>
