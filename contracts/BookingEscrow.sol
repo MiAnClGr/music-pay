@@ -11,7 +11,13 @@ contract BookingEscrow {
     ERC20 DAI;
     ProofOfPayment proofOfPayment;
 
-    enum PaymentState {NO_PAYMENT_MADE, DEPOSIT_PAID, PAYMENT_FINALISED, COMPLETE}
+    enum PaymentState {
+        NO_PAYMENT_MADE, 
+        DEPOSIT_PAID, 
+        PERFORMANCE_FINALISED, 
+        PAYMENT_FINALISED, 
+        COMPLETE
+        }
 
     PaymentState currentState;
 
@@ -20,6 +26,9 @@ contract BookingEscrow {
     string public bookingAgentName;
     uint256 public gigNumber;
     uint256 public payment;
+
+    bool public performanceConfirmedArtist;
+    bool public performanceConfirmedAgent;
 
     mapping(uint => address) public gigNumberToBookingAgent;
     
@@ -48,6 +57,16 @@ contract BookingEscrow {
 
         currentState = PaymentState.DEPOSIT_PAID;
 
+    }
+
+    function confirmPerformance() external {
+        if(msg.sender == artist) {
+            performanceConfirmedArtist = true;}
+        else if(msg.sender == bookingAgent) {
+            performanceConfirmedAgent = true;
+        }if(performanceConfirmedArtist && performanceConfirmedAgent){
+            currentState = PaymentState.PERFORMANCE_FINALISED;
+        }
     }
 
     function finalisePayment() external {
