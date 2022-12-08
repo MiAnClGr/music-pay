@@ -1,12 +1,15 @@
-import React, {FC, ReactElement} from 'react'
+import React, {FC, useContext, ReactElement} from 'react'
 import {Link} from 'react-router-dom'
+import ArtistContext from '../Context/ArtistContext'
 
 type props = {
-  artistLoggedIn : boolean
   artistConnected : boolean
 }
 
-const RoutingUser : FC<props> = ({artistLoggedIn, artistConnected}) : ReactElement => {
+const RoutingUser : FC<props> = ({artistConnected}) : ReactElement => {
+
+  const {artistLoggedIn} = useContext(ArtistContext)
+
   return (
     <div className='TitlePage'>
       <h1 className='Music-Pay-Title'>Music-Pay</h1>

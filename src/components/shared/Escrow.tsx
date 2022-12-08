@@ -1,23 +1,25 @@
-import React, {FC, useState, useEffect} from 'react'
+import React, {FC, useState, useEffect, useContext} from 'react'
 import {ethers, Contract} from 'ethers'
 import EscrowABI from '../../ABI/BookingEscrow'
 import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
+import ArtistContext from '../../Context/ArtistContext'
+
 
 type props = {
     bookingNumber : string
     escrowAddress : string
-    artistProfileAddress : string
     setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
     createArtistProfileInstance : (artist: string) => ethers.Contract
 }
 
-const Escrow : FC<props> = ({bookingNumber, escrowAddress, artistProfileAddress, setEscrowAddress, createArtistProfileInstance}) => {
+const Escrow : FC<props> = ({bookingNumber, escrowAddress, setEscrowAddress, createArtistProfileInstance}) => {
 
     const [artistName, setArtistName] = useState("")
     const [artist, setArtist] = useState("")
     const [bookingAgent, setBookingAgent] = useState("")
     const [bookingAgentName, setBookingAgentName] = useState("")
 
+    const {artistProfileAddress} = useContext(ArtistContext)
 
     const createEscrowInstance = () => {
         const EscrowContract : Contract = new ethers.Contract(escrowAddress, EscrowABI, signer)

@@ -1,11 +1,10 @@
-import React, {FC, ReactElement} from 'react'
+import React, {FC, useContext, ReactElement} from 'react'
 import {ethers} from 'ethers'
 import ArtistHeader from '../shared/ArtistHeader'
+import ArtistContext from '../../Context/ArtistContext'
 
 type props = {
     artistAddress : string
-    artistProfileAddress : string
-    artistLoggedIn : boolean
     artistConnected : boolean
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
     displayUpdateAboutMe : () => void
@@ -16,8 +15,6 @@ type props = {
 
 const ArtistMain : FC<props> = ({
     artistAddress,
-    artistProfileAddress,
-    artistLoggedIn,
     artistConnected,  
     setArtistAddress,
     displayUpdateAboutMe, 
@@ -25,6 +22,8 @@ const ArtistMain : FC<props> = ({
     setArtistConnected,
     createArtistProfileInstance
     }) : ReactElement => {
+
+    const {artistProfileAddress, artistLoggedIn} = useContext(ArtistContext)
 
     return (      
         <>

@@ -1,17 +1,14 @@
-import React, {FC, useState, useEffect, ReactElement} from 'react'
+import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
 import {ethers} from 'ethers'
-import {ArtistFactoryContract, signer}from "../../Contracts/ContractObjects"
+import {signer}from "../../Contracts/ContractObjects"
 import AboutMe from "./AboutMe"
 import ArtistHeader from "../shared/ArtistHeader"
 import BookingsList from "./BookingsList"
+import ArtistContext from '../../Context/ArtistContext'
 
 type props = {
-    artistProfileAddress : string
     artistAddress : string 
-    artistLoggedIn : boolean
     setArtistAddress : React.Dispatch<React.SetStateAction<string>>
-    setArtistProfileAddress : React.Dispatch<React.SetStateAction<string>>
-    setArtistLoggedIn : React.Dispatch<React.SetStateAction<boolean>>
     updateClicked : boolean
     setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
     setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
@@ -24,12 +21,8 @@ type props = {
 }
 
 const ArtistProfile :FC<props> = ({
-    artistProfileAddress, 
     artistAddress,
-    artistLoggedIn, 
     setArtistAddress, 
-    setArtistProfileAddress, 
-    setArtistLoggedIn,
     updateClicked,
     setUpdateClicked,
     setArtistConnected,
@@ -43,12 +36,7 @@ const ArtistProfile :FC<props> = ({
 
     const [bookings, setBookings] = useState<any[]>([]) ///JSON.parse(localStorage.getItem("bookings")!)
    
-    const setArtistContract = async () => {
-        const owner = await signer.getAddress()
-        const artist = await ArtistFactoryContract.ownerToArtist(owner)
-        setArtistProfileAddress(artist)
-        setArtistLoggedIn(true)
-    }
+    const {artistProfileAddress, artistLoggedIn, setArtistContract} = useContext(ArtistContext)
 
     const setArtist = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
@@ -92,11 +80,6 @@ const ArtistProfile :FC<props> = ({
         localStorage.setItem("artistProfileAddress", artistProfileAddress)
         console.log("useEffect 3")
     },[artistProfileAddress])
-
-    // useEffect(() => {
-    //     localStorage.setItem("artistName", artistName)
-    //     console.log("useEffect 4")
-    // },[artistName])
 
     return(
         <div>

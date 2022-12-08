@@ -15,15 +15,14 @@ import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
 import {signer} from "./Contracts/ContractObjects"
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import {ArtistProvider} from './Context/ArtistContext'
 
 function App() {
 
-  const [artistConnected, setArtistConnected] = useState(false)
-  const [artistAddress, setArtistAddress] =  useState("")
-  const [artistProfileAddress, setArtistProfileAddress] = useState(localStorage.getItem("artistProfileAddress") || "")
-  const [artistLoggedIn, setArtistLoggedIn] = useState(false)
-  const [updateClicked, setUpdateClicked] = useState(false)
-  const [updateDisplayBookings, setUpdateDisplayBookings] = useState(false)
+  const [artistConnected, setArtistConnected] = useState<boolean>(false)
+  const [artistAddress, setArtistAddress] =  useState<string>("")
+  const [updateClicked, setUpdateClicked] = useState<boolean>(false)
+  const [updateDisplayBookings, setUpdateDisplayBookings] = useState<boolean>(false)
   const [bookingNumber, setBookingNumber] = useState<string>("")
   const [escrowAddress, setEscrowAddress] = useState<string>("")
 
@@ -45,109 +44,103 @@ function App() {
 
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path= "/" element = {
+    <ArtistProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path= "/" element = {
 
-          <TitlePage/>
-        }/>
+            <TitlePage/>
+          }/>
 
-        <Route path= "/RoutingUser" element = {
-          
-          <RoutingUser
-          artistLoggedIn= {artistLoggedIn}
-          artistConnected= {artistConnected}
+          <Route path= "/RoutingUser" element = {
+            
+            <RoutingUser
+            artistConnected= {artistConnected}
+            />
+          }/>
+
+          <Route path= "/ArtistMain" element = {
+
+            <ArtistMain
+            artistAddress= {artistAddress}
+            setArtistAddress= {setArtistAddress}
+            displayUpdateAboutMe= {displayUpdateAboutMe}
+            displayBookings= {displayBookings}
+            artistConnected= {artistConnected}
+            setArtistConnected= {setArtistConnected}
+            createArtistProfileInstance = {createArtistProfileInstance}
+            />
+          }/>
+
+          <Route path= "/Login" element = {
+
+            <Login/>
+          }/>
+
+          <Route path= "/CreateNew" element = {
+
+            <CreateNew/>
+          }/>
+
+          <Route path= "/Profile" element = {
+            
+            <ArtistProfile
+            artistAddress= {artistAddress}
+            setArtistAddress= {setArtistAddress}
+            updateClicked= {updateClicked}
+            setUpdateClicked= {setUpdateClicked}
+            displayUpdateAboutMe= {displayUpdateAboutMe}
+            displayBookings= {displayBookings}
+            updateDisplayBookings= {updateDisplayBookings}
+            setArtistConnected= {setArtistConnected}
+            artistConnected= {artistConnected}
+            createArtistProfileInstance= {createArtistProfileInstance}
+            setBookingNumber= {setBookingNumber}
+            />
+          }/>
+
+          <Route path= "/BookingMain" element = {
+
+          <BookingMain
+            setArtistAddress={setArtistAddress}
           />
-        }/>
+          }/>
 
-        <Route path= "/ArtistMain" element = {
+          <Route path = "/ArtistBooking" element = {
 
-          <ArtistMain
-          artistAddress= {artistAddress}
-          artistProfileAddress= {artistProfileAddress}
-          setArtistAddress= {setArtistAddress}
-          artistLoggedIn= {artistLoggedIn}
-          displayUpdateAboutMe= {displayUpdateAboutMe}
-          displayBookings= {displayBookings}
-          artistConnected= {artistConnected}
-          setArtistConnected= {setArtistConnected}
-          createArtistProfileInstance = {createArtistProfileInstance}
-          />
-        }/>
+            <ArtistBooking 
+            artistAddress = {artistAddress} 
+            setArtistAddress= {setArtistAddress}
+            />
 
-        <Route path= "/Login" element = {
+          }/>
 
-          <Login/>
-        }/>
-
-        <Route path= "/CreateNew" element = {
-
-          <CreateNew/>
-        }/>
-
-        <Route path= "/Profile" element = {
-          
-          <ArtistProfile
-          artistAddress= {artistAddress}
-          artistProfileAddress= {artistProfileAddress}
-          artistLoggedIn= {artistLoggedIn}
-          setArtistLoggedIn= {setArtistLoggedIn}
-          setArtistAddress= {setArtistAddress}
-          setArtistProfileAddress= {setArtistProfileAddress}
-          updateClicked= {updateClicked}
-          setUpdateClicked= {setUpdateClicked}
-          displayUpdateAboutMe= {displayUpdateAboutMe}
-          displayBookings= {displayBookings}
-          updateDisplayBookings= {updateDisplayBookings}
-          setArtistConnected= {setArtistConnected}
-          artistConnected= {artistConnected}
-          createArtistProfileInstance= {createArtistProfileInstance}
-          setBookingNumber= {setBookingNumber}
-          />
-        }/>
-
-        <Route path= "/BookingMain" element = {
-
-        <BookingMain
-          setArtistAddress={setArtistAddress}
-        />
-        }/>
-
-        <Route path = "/ArtistBooking" element = {
-
-          <ArtistBooking 
-          artistAddress = {artistAddress} 
-          setArtistAddress= {setArtistAddress}
-          />
-
-        }/>
-
-        <Route path = "/Escrow" element = {
-          <Escrow
-          bookingNumber= {bookingNumber}
-          escrowAddress= {escrowAddress}
-          setEscrowAddress= {setEscrowAddress}
-          createArtistProfileInstance= {createArtistProfileInstance}
-          artistProfileAddress= {artistProfileAddress}
-          />
-        }/>
+          <Route path = "/Escrow" element = {
+            <Escrow
+            bookingNumber= {bookingNumber}
+            escrowAddress= {escrowAddress}
+            setEscrowAddress= {setEscrowAddress}
+            createArtistProfileInstance= {createArtistProfileInstance}
+            />
+          }/>
 
 
-        <Route path = "/Loading" element = {
+          <Route path = "/Loading" element = {
 
-          <Loading/>
+            <Loading/>
 
-        }/>
+          }/>
 
-        <Route path = "/NotOwner" element = {
+          <Route path = "/NotOwner" element = {
 
-          <NotOwner/>
+            <NotOwner/>
 
-        }/>
-  
+          }/>
+    
 
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </ArtistProvider>
   );
 }
 
