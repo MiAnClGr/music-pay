@@ -1,22 +1,11 @@
-import React, {FC, ReactElement} from 'react'
+import React, {FC, ReactElement, useContext} from 'react'
 import {ethers, BigNumber} from 'ethers'
 import Booking from './Booking'
+import ArtistContext from '../../context/ArtistContext'
 
-type props = {
-    bookings : any[]
-    updateDisplayBookings : boolean
-    setBookingNumber : React.Dispatch<React.SetStateAction<string>>
-    createArtistProfileInstance : (artist: string) => ethers.Contract
-    artistProfileAddress : string
-}
-///////CLEAN UP ESCROW ADDDRESS STATE!!!
-const BookingsList :FC<props> = ({
-    bookings, 
-    updateDisplayBookings, 
-    setBookingNumber, 
-    createArtistProfileInstance, 
-    artistProfileAddress,
-    }) : ReactElement => {
+const BookingsList :FC = () : ReactElement => {
+
+    const {updateDisplayBookings, bookings} = useContext(ArtistContext)
 
    
     const displayBooking = bookings.map((booking : any[]) =>  
@@ -26,9 +15,6 @@ const BookingsList :FC<props> = ({
         time= {(BigNumber.from(booking[2])).toString()}
         date = {booking[3]}
         venue = {booking[4]}
-        setBookingNumber= {setBookingNumber}
-        createArtistProfileInstance= {createArtistProfileInstance}
-        artistProfileAddress= {artistProfileAddress}
         />
     )
 

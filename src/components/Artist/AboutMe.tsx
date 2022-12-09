@@ -1,45 +1,17 @@
-import React, {FC, ReactElement, useEffect, useState} from 'react'
+import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
 import {ethers, Contract} from 'ethers'
+import ArtistContext from '../../context/ArtistContext'
 
-type props = {
-    createArtistProfileInstance : (artist: string) => ethers.Contract
-    artistProfileAddress : string
-    updateClicked: boolean
-    setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
-}
+const AboutMe : FC = () : ReactElement => {
 
-const AboutMe : FC<props> = ({createArtistProfileInstance, artistProfileAddress, updateClicked, setUpdateClicked}) : ReactElement => {
-
-    const [aboutArtist, setAboutArtist] = useState("")
-    const [update, setUpdate] = useState("")
-
-    const getAboutMe = async () => {
-        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        const about = await artistProfileContract.aboutMe()
-        console.log(about)
-        setAboutArtist(about)
-    }
-
-    const updateAboutMe = (e : React.ChangeEvent<HTMLTextAreaElement>) => {
-        setUpdate(e.target.value)
-    }
-
-    const handleSubmit = async (e : React.KeyboardEvent<HTMLElement>) => {
-        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        if(e.key === 'Enter'){
-            try{
-                const updated = await artistProfileContract.updateAboutMe(update)
-                await updated.wait()
-            }catch(error){
-
-            }finally{
-                getAboutMe()
-                setUpdateClicked(!updateClicked)
-                console.log("submitted")
-            }
-        }
-    }
-
+    const {
+        updateAboutMe,
+        handleSubmitAboutMe,
+        updateClicked, 
+        getAboutMe, 
+        aboutArtist
+    } = useContext(ArtistContext)
+ 
     useEffect(() => {
         getAboutMe()
     },[])
@@ -63,7 +35,7 @@ const AboutMe : FC<props> = ({createArtistProfileInstance, artistProfileAddress,
                 className='AboutMeUpdateBox'
                 placeholder='About...'
                 onChange= {updateAboutMe}
-                onKeyDown= {handleSubmit}
+                onKeyDown= {handleSubmitAboutMe}
                 >
                 </textarea> 
             </div>          

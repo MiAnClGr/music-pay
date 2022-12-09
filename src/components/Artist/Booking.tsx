@@ -1,6 +1,7 @@
-import React, {FC, ReactElement} from 'react'
+import React, {FC, ReactElement, useContext} from 'react'
 import {ethers} from 'ethers'
 import {useNavigate} from 'react-router-dom'
+import ArtistContext from '../../context/ArtistContext'
 
 type props = {
   gigNumber : string,
@@ -8,9 +9,6 @@ type props = {
   time : string,
   date : string,
   venue : string,
-  setBookingNumber : React.Dispatch<React.SetStateAction<string>>
-  createArtistProfileInstance : (artist: string) => ethers.Contract
-  artistProfileAddress : string
 }
 
 const Booking : FC<props>= ({
@@ -19,18 +17,13 @@ const Booking : FC<props>= ({
   time,
   date, 
   venue, 
-  setBookingNumber, 
-  createArtistProfileInstance, 
-  artistProfileAddress
   }) : ReactElement => {
 
-
-  
   const navigate = useNavigate()
 
+  const {artistProfileAddress, createArtistProfileInstance, setBookingNumber} = useContext(ArtistContext)
 
-
-  const handleSubmitAccept = async () => {
+  const handleSubmitAcceptBooking = async () => {
     setBookingNumber(gigNumber)
     const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
     navigate("/Loading")
@@ -41,10 +34,10 @@ const Booking : FC<props>= ({
     }catch(e){
       console.log("error")
     }finally{
-     
+      
     }   
   }
-
+  
   return (
     <div className='Bookings'>
       <h4 className='Text'>No. {gigNumber}</h4>
@@ -55,7 +48,7 @@ const Booking : FC<props>= ({
       <br></br>
       <button 
       className='Submit'
-      onClick={handleSubmitAccept}
+      onClick={handleSubmitAcceptBooking}
       >Accept</button>
     </div>
     )

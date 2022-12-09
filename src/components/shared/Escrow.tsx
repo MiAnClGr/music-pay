@@ -4,38 +4,19 @@ import EscrowABI from '../../ABI/BookingEscrow'
 import {ArtistFactoryContract, signer} from "../../contracts/ContractObjects"
 import ArtistContext from '../../context/ArtistContext'
 
-
-type props = {
-    bookingNumber : string
-    escrowAddress : string
-    setEscrowAddress : React.Dispatch<React.SetStateAction<string>>
-   
-}
-
-const Escrow : FC<props> = ({
-    bookingNumber, 
-    escrowAddress, 
-    setEscrowAddress,
-    }) : ReactElement => {
+const Escrow : FC = () : ReactElement => {
 
     const [artistName, setArtistName] = useState("")
     const [artist, setArtist] = useState("")
     const [bookingAgent, setBookingAgent] = useState("")
     const [bookingAgentName, setBookingAgentName] = useState("")
 
-    const {artistProfileAddress, createArtistProfileInstance} = useContext(ArtistContext)
+    const {bookingNumber, escrowAddress, getEscrowAddress} = useContext(ArtistContext)
 
     const createEscrowInstance = () => {
         const EscrowContract : Contract = new ethers.Contract(escrowAddress, EscrowABI, signer)
         console.log(EscrowContract)
         return EscrowContract
-    }
-
-    const getEscrowAddress = () => {
-        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        artistProfileContract.on("EscrowCreated", (escrowAddress => {
-            setEscrowAddress(escrowAddress)
-          }))
     }
 
     const getArtistName = async () => {

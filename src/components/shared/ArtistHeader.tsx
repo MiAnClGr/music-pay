@@ -3,22 +3,15 @@ import {Link} from 'react-router-dom'
 import Home from "./Home"
 import ArtistContext from '../../context/ArtistContext'
 
-
-type props = {
-		displayUpdateAboutMe : () => void
-		displayBookings : () => void
-}
-const ArtistHeader : FC<props> = ({
-		displayUpdateAboutMe,
-		displayBookings,  
-	}) : ReactElement => {
+const ArtistHeader : FC = () : ReactElement => {
 
 		const {
-			artistAddress, 
 			artistProfileAddress, 
 			artistLoggedIn, 
 			createArtistProfileInstance,
-			getArtistConnected
+			getArtistConnected,
+			displayUpdateAboutMe,
+			displayBookings
 		} = useContext(ArtistContext)
 
 

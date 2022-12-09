@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import Login from './components/Artist/Login';
 import CreateNew from './components/Artist/CreateNew';
@@ -17,95 +17,53 @@ import {BookingProvider}from './context/BookingContext'
 
 function App() {
 
-  const [updateClicked, setUpdateClicked] = useState<boolean>(false)
-  const [updateDisplayBookings, setUpdateDisplayBookings] = useState<boolean>(false)
-  const [bookingNumber, setBookingNumber] = useState<string>("")
-  const [escrowAddress, setEscrowAddress] = useState<string>("")
-
-  const displayUpdateAboutMe = () => {
-      setUpdateClicked(!updateClicked)
-  }
-
-  const displayBookings = () => {
-    setUpdateDisplayBookings(!updateDisplayBookings)
-
-  }
-
   return (
     <BrowserRouter>
       <ArtistProvider>
         <BookingProvider>        
           <Routes>
             <Route path= "/" element = {
-
               <TitlePage/>
             }/>
 
-            <Route path= "/RoutingUser" element = {
-              
+            <Route path= "/RoutingUser" element = {           
               <RoutingUser/>
             }/>
 
             <Route path= "/ArtistMain" element = {
-
-              <ArtistMain
-              displayUpdateAboutMe= {displayUpdateAboutMe}
-              displayBookings= {displayBookings}
-              />
+              <ArtistMain/>
             }/>
 
             <Route path= "/Login" element = {
-
               <Login/>
             }/>
 
             <Route path= "/CreateNew" element = {
-
               <CreateNew/>
             }/>
 
-            <Route path= "/Profile" element = {
-              
-              <ArtistProfile
-              updateClicked= {updateClicked}
-              setUpdateClicked= {setUpdateClicked}
-              displayUpdateAboutMe= {displayUpdateAboutMe}
-              displayBookings= {displayBookings}
-              updateDisplayBookings= {updateDisplayBookings}
-              setBookingNumber= {setBookingNumber}
-              />
+            <Route path= "/Profile" element = {             
+              <ArtistProfile/>
             }/>
 
             <Route path= "/BookingMain" element = {
-
               <BookingMain/>
             }/>
 
             <Route path = "/ArtistBooking" element = {
-
               <ArtistBooking/>
-
             }/>
 
             <Route path = "/Escrow" element = {
-              <Escrow
-              bookingNumber= {bookingNumber}
-              escrowAddress= {escrowAddress}
-              setEscrowAddress= {setEscrowAddress}
-              />
+              <Escrow/>
             }/>
 
-
             <Route path = "/Loading" element = {
-
               <Loading/>
-
             }/>
 
             <Route path = "/NotOwner" element = {
-
               <NotOwner/>
-
             }/>
           </Routes>      
         </BookingProvider>

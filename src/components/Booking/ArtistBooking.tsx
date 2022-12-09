@@ -18,6 +18,7 @@ const ArtistBooking : FC = () : ReactElement => {
 
   const getArtistName = async () => {
     const name = await ArtistFactoryContract.artistByAddress(searchedAddress)
+    console.log(name)
     setArtistName(name)
   }
 
@@ -67,7 +68,7 @@ const ArtistBooking : FC = () : ReactElement => {
 
   useEffect(() => {
     getArtistName()
-  }, [artistName, searchedAddress])
+  }, [searchedAddress])
 
   return (
     <div className='Parent-div'>
