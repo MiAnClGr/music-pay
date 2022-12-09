@@ -1,7 +1,7 @@
 import React, {useState, FC, ReactElement} from 'react'
 import { Contract } from 'ethers'
 import {useNavigate} from 'react-router-dom'
-import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
+import {ArtistFactoryContract, signer} from "../../contracts/ContractObjects"
 
 
 

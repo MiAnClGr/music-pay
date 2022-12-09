@@ -1,6 +1,6 @@
 import React, {FC, ReactElement, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {provider} from '../Contracts/ContractObjects'
+import {provider} from '../contracts/ContractObjects'
 
 declare var window : any 
 

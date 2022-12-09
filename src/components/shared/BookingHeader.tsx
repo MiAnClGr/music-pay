@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom'
 import Home from "./Home"
 import SearchArtist from "../shared/SearchArtist"
 
-type props = {
-  setArtistAddress : React.Dispatch<React.SetStateAction<string>>
-}
+const BookingHeader : FC= () : ReactElement => {
 
-const ArtistHeader : FC<props> = ({setArtistAddress}) : ReactElement => {
-
-    const [searchClicked, setSearchClicked] = useState(false)
+  const [searchClicked, setSearchClicked] = useState(false)
   
   return(
     
@@ -32,9 +28,7 @@ const ArtistHeader : FC<props> = ({setArtistAddress}) : ReactElement => {
         </h3>
         {searchClicked 
         ? 
-        <SearchArtist
-        setArtistAddress={setArtistAddress}
-        />
+        <SearchArtist/>
         :
         <></>
         }
@@ -43,4 +37,4 @@ const ArtistHeader : FC<props> = ({setArtistAddress}) : ReactElement => {
   )
 }
 
-export default ArtistHeader
+export default BookingHeader

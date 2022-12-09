@@ -1,14 +1,10 @@
 import React, {FC, useContext, ReactElement} from 'react'
 import {Link} from 'react-router-dom'
-import ArtistContext from '../Context/ArtistContext'
+import ArtistContext from '../context/ArtistContext'
 
-type props = {
-  artistConnected : boolean
-}
+const RoutingUser : FC = () : ReactElement => {
 
-const RoutingUser : FC<props> = ({artistConnected}) : ReactElement => {
-
-  const {artistLoggedIn} = useContext(ArtistContext)
+  const {artistLoggedIn, artistConnected} = useContext(ArtistContext)
 
   return (
     <div className='TitlePage'>

@@ -1,17 +1,11 @@
 import React, {FC, ReactElement} from 'react'
 import BookingHeader from "../shared/BookingHeader"
 
-type props = {
-  setArtistAddress : React.Dispatch<React.SetStateAction<string>>
-}
-
-const BookingMain : FC<props> = ({setArtistAddress}) : ReactElement => {
+const BookingMain : FC = () : ReactElement => {
 
   return (
     <>
-      <BookingHeader
-      setArtistAddress={setArtistAddress}
-      />
+      <BookingHeader/>
       <div style= {{textAlign: 'center', marginTop: '250px'}}>
             <h3 
             className='Text'

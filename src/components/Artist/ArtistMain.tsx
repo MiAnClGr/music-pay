@@ -1,42 +1,24 @@
 import React, {FC, useContext, ReactElement} from 'react'
-import {ethers} from 'ethers'
 import ArtistHeader from '../shared/ArtistHeader'
-import ArtistContext from '../../Context/ArtistContext'
+import ArtistContext from '../../context/ArtistContext'
 
 type props = {
-    artistAddress : string
-    artistConnected : boolean
-    setArtistAddress : React.Dispatch<React.SetStateAction<string>>
     displayUpdateAboutMe : () => void
     displayBookings : () => void
-    setArtistConnected : React.Dispatch<React.SetStateAction<boolean>>
-    createArtistProfileInstance : (artist: string) => ethers.Contract 
 }
 
 const ArtistMain : FC<props> = ({
-    artistAddress,
-    artistConnected,  
-    setArtistAddress,
     displayUpdateAboutMe, 
     displayBookings,
-    setArtistConnected,
-    createArtistProfileInstance
     }) : ReactElement => {
 
-    const {artistProfileAddress, artistLoggedIn} = useContext(ArtistContext)
+    const {artistLoggedIn, artistConnected} = useContext(ArtistContext)
 
     return (      
         <>
             <ArtistHeader
-            artistAddress= {artistAddress}
-            artistProfileAddress= {artistProfileAddress}
-            setArtistAddress= {setArtistAddress}
-            artistLoggedIn= {artistLoggedIn}
             displayUpdateAboutMe= {displayUpdateAboutMe}
             displayBookings= {displayBookings}
-            artistConnected= {artistConnected}
-            setArtistConnected= {setArtistConnected}
-            createArtistProfileInstance= {createArtistProfileInstance}
             />
             {artistLoggedIn === false && artistConnected === false         
             ?           

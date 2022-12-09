@@ -1,14 +1,9 @@
-import React, {FC, ReactElement, useEffect, useState} from 'react'
-import {ethers} from 'ethers'
-import {ArtistFactoryContract, PerformanceContract} from "../../Contracts/ContractObjects"
+import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
+import {ArtistFactoryContract, PerformanceContract} from "../../contracts/ContractObjects"
 import BookingHeader from "../shared/BookingHeader"
+import BookingContext from '../../context/BookingContext'
 
-type props = {
-  artistAddress: string 
-  setArtistAddress : React.Dispatch<React.SetStateAction<string>>
-}
-
-const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactElement => {
+const ArtistBooking : FC = () : ReactElement => {
 
   const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
   const [artistBooking, setArtistBooking] = useState({
@@ -19,8 +14,10 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
     venue: ""
   })
 
+  const {searchedAddress} = useContext(BookingContext)
+
   const getArtistName = async () => {
-    const name = await ArtistFactoryContract.artistByAddress(artistAddress)
+    const name = await ArtistFactoryContract.artistByAddress(searchedAddress)
     setArtistName(name)
   }
 
@@ -35,7 +32,7 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
 
   const submitBooking = async () => {
     const booking = await PerformanceContract.createBooking(
-      artistAddress,
+      searchedAddress,
       artistName,
       artistBooking.bookingAgent,
       artistBooking.payment,
@@ -58,25 +55,23 @@ const ArtistBooking : FC<props> = ({artistAddress, setArtistAddress}) : ReactEle
       venue: "" })
   }
 
-  console.log(artistAddress)
+  console.log(searchedAddress)
 
   useEffect(() => {
     localStorage.setItem("artistName", artistName)
   },[artistName])
 
   useEffect(() => {
-    localStorage.setItem("artistAddress", artistAddress)
-  },[artistAddress])
+    localStorage.setItem("searchedAddress", searchedAddress)
+  },[searchedAddress])
 
   useEffect(() => {
     getArtistName()
-  }, [artistName, artistAddress])
+  }, [artistName, searchedAddress])
 
   return (
     <div className='Parent-div'>
-      <BookingHeader
-      setArtistAddress={setArtistAddress}
-      />
+      <BookingHeader/>
       
       <div className='ArtistBooking'>
         <h3 className='ArtistNameBooking'>{artistName}</h3>
