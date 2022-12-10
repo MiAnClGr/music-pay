@@ -1,7 +1,7 @@
 import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
 import {ethers, Contract} from 'ethers'
 import EscrowABI from '../../ABI/BookingEscrow'
-import {ArtistFactoryContract, signer} from "../../contracts/ContractObjects"
+import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
 import ArtistContext from '../../Context/ArtistContext'
 
 const Escrow : FC = () : ReactElement => {

@@ -1,6 +1,6 @@
 import React, {useState, FC, ReactElement} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {ArtistFactoryContract, signer} from "../../contracts/ContractObjects"
+import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
 
 
 

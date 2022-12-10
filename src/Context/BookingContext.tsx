@@ -1,6 +1,6 @@
 import React, {createContext, useState, ReactNode} from 'react'
 import { useNavigate } from 'react-router'
-import {ArtistFactoryContract, signer} from '../contracts/ContractObjects'
+import {ArtistFactoryContract, signer} from '../Contracts/ContractObjects'
 
 
 interface BookingContextInterface {

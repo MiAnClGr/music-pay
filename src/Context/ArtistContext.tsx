@@ -1,6 +1,6 @@
 import React, {createContext, useState, ReactNode} from 'react'
 import {ethers, Contract} from 'ethers'
-import {ArtistFactoryContract, signer} from '../contracts/ContractObjects'
+import {ArtistFactoryContract, signer} from '../Contracts/ContractObjects'
 import ArtistProfileABI from '../ABI/ArtistProfile'
 
 interface ArtistContextInterface {

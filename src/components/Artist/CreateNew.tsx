@@ -1,6 +1,6 @@
 import React, {useState, FC, ReactElement} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {ArtistFactoryContract} from "../../contracts/ContractObjects"
+import {ArtistFactoryContract} from "../../Contracts/ContractObjects"
 
 
 const CreateNew : FC = ({}) : ReactElement => {
