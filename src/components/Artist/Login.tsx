@@ -22,7 +22,7 @@ const Login : FC = () : ReactElement => {
         }catch(e){
             navigate("/NotOwner")
         }finally{
-            navigate("/Profile")
+            navigate("/ArtistProfile")
         }   
     }
 
