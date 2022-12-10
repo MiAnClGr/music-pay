@@ -20,7 +20,7 @@ const Escrow : FC = () : ReactElement => {
     }
 
     const getArtistName = async () => {
-      const name = await ArtistFactoryContract.artistByAddress(artist)
+      const name = await ArtistFactoryContract.artistAddressToName(artist)
       setArtistName(name)
     }
 
@@ -40,31 +40,31 @@ const Escrow : FC = () : ReactElement => {
       const EscrowContract = createEscrowInstance()
       const bookingAgentName = await EscrowContract.bookingAgentName()
       setBookingAgentName(bookingAgentName)
-    } 
+    }
 
+    const payDeposit = async () => {
+      const EscrowContract = createEscrowInstance()
+      await EscrowContract.payDeposit()
+    }
 
-    
+    const confirmPerformance = async () => {
+      const EscrowContract = createEscrowInstance()
+      await EscrowContract.confirmPerformance()
+    }
 
-    getArtist()
-    getBookingAgent()
-    getArtistName()
-    getBookingAgentName()
+    const finalisePayment = async () => {
+      const EscrowContract = createEscrowInstance()
+      await EscrowContract.finalisePayment()
+    }
 
-    console.log(artist)
-    console.log(bookingAgent)
-    console.log(artistName)
-    console.log(bookingAgentName)
+    const confirmPayment = async () => {
+      const EscrowContract = createEscrowInstance()
+      await EscrowContract.confirmPayment()
+    }
 
-
-
-    console.log(escrowAddress)
-    console.log(bookingNumber)
-
-    const getAddressess = async () => {
-        const EscrowContract = createEscrowInstance()
-        console.log(await EscrowContract.artist())
-        console.log(await EscrowContract.bookingAgent())
-        console.log(await EscrowContract.gigNumber())
+    const completeBooking = async () => {
+      const EscrowContract = createEscrowInstance()
+      await EscrowContract.completeBooking()
     }
 
     useEffect(() => {
@@ -72,7 +72,10 @@ const Escrow : FC = () : ReactElement => {
     },[])
 
     useEffect(() => {
-        getAddressess()
+      getArtist()
+      getBookingAgent()
+      getArtistName()
+      getBookingAgentName()
     }, [escrowAddress])
 
 
@@ -82,23 +85,44 @@ const Escrow : FC = () : ReactElement => {
       <h3 className='Text'>Booking Number: {bookingNumber}</h3>
       <h3 className='Text'>Artist : {artistName}</h3>
       <h3 className='Text'>Booking Agent: {bookingAgentName}</h3>
+      <h3 className='Text'> Step 1: Booking agent to pay deposit</h3>
+      <button 
+      className='Submit'
+      onClick={payDeposit}
+      >Pay
+      </button>
+      <h3 className='Text'> Step 2: Artist to confirm performance </h3>
+      <button 
+      className='Submit'
+      onClick={confirmPerformance}
+      >Confirm
+      </button>
+      <h3 className='Text'> Step 3: Booking Agent to confirm performance </h3>
+      <button 
+      className='Submit'
+      onClick={confirmPerformance}
+      >Confirm
+      </button>
+      <h3 className='Text'> Step 4: Booking Agent to finalise payment </h3>
+      <button 
+      className='Submit'
+      onClick={finalisePayment}
+      >Confirm
+      </button>
+      <h3 className='Text'> Step 5: Artist to confirm payment </h3>
+      <button 
+      className='Submit'
+      onClick={confirmPayment}
+      >Confirm
+      </button>
       <br></br>
-      <h3 className='Text'> Step 1: Artist to accept Booking</h3>
-      <button className='Submit'>Accept</button>
-      <h3 className='Text'> Step 2: Booking agent to pay deposit</h3>
-      <button className='Submit'>Pay</button>
-      <h3 className='Text'> Step 3: Artist to confirm performance </h3>
-      <button className='Submit'>Confirm</button>
-      <h3 className='Text'> Step 4: Booking Agent to confirm performance </h3>
-      <button className='Submit'>Confirm</button>
-      <h3 className='Text'> Step 5: Booking Agent to finalise payment </h3>
-      <button className='Submit'>Confirm</button>
-      <h3 className='Text'> Step 6: Artist to confirm payment </h3>
-      <button className='Submit'>Confirm</button>
       <br></br>
       <br></br>
-      <br></br>
-      <button className='Submit'>Complete Booking</button>
+      <button 
+      className='Submit'
+      onClick={completeBooking}
+      >Complete Booking
+      </button>
     </div>
   )
 }
