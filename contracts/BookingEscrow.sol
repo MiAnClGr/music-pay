@@ -15,7 +15,8 @@ contract BookingEscrow {
         NO_PAYMENT_MADE, 
         DEPOSIT_PAID, 
         PERFORMANCE_FINALISED, 
-        PAYMENT_FINALISED, 
+        PAYMENT_FINALISED,
+        PAYMENT_CONFIRMED, 
         COMPLETE
         }
 
@@ -31,6 +32,17 @@ contract BookingEscrow {
     bool public performanceConfirmedAgent;
 
     mapping(uint => address) public gigNumberToBookingAgent;
+
+    modifier onlyArtist(){
+        require(msg.sender == artist);
+        _;
+    }
+
+    modifier onlyBookingAgent(){
+        require(msg.sender == bookingAgent);
+        _;
+    }
+    
     
     constructor(
         address _artist,
@@ -50,8 +62,7 @@ contract BookingEscrow {
         
     }
 
-    function payDeposit() external {
-        require(msg.sender == bookingAgent);
+    function payDeposit() external onlyBookingAgent {
         bool success = DAI.transferFrom(msg.sender, address(this), payment / 5);
         require(success);
 
@@ -69,9 +80,7 @@ contract BookingEscrow {
         }
     }
 
-    function finalisePayment() external {
-        require(msg.sender == bookingAgent);
-
+    function finalisePayment() external onlyBookingAgent {
         // bool confirmed = performanceContract.confirmPerformance(gigNumber);
         bool success = DAI.transferFrom(msg.sender, address(this), payment * 4/5);
         // require(confirmed);
@@ -80,6 +89,16 @@ contract BookingEscrow {
         currentState = PaymentState.PAYMENT_FINALISED;
 
         transferPayment();
+    }
+
+    function confirmPayment() external onlyArtist {
+        currentState = PaymentState.PAYMENT_CONFIRMED;
+    }
+
+    function completeBooking() external {
+        if(currentState == PaymentState.PAYMENT_CONFIRMED){
+            selfdestruct(payable(artist));
+        }
     }
 
     function transferPayment() internal {
