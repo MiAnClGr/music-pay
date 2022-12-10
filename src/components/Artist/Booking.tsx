@@ -1,5 +1,4 @@
 import React, {FC, ReactElement, useContext} from 'react'
-import {ethers} from 'ethers'
 import {useNavigate} from 'react-router-dom'
 import ArtistContext from '../../context/ArtistContext'
 
