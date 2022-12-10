@@ -2,7 +2,7 @@ import React, {FC, useEffect, useContext, ReactElement} from 'react'
 import AboutMe from "./AboutMe"
 import ArtistHeader from "../shared/ArtistHeader"
 import BookingsList from "./BookingsList"
-import ArtistContext from '../../context/ArtistContext'
+import ArtistContext from '../../Context/ArtistContext'
 
 const ArtistProfile :FC = () : ReactElement => {
 

@@ -1,7 +1,7 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
 import {ArtistFactoryContract, PerformanceContract} from "../../contracts/ContractObjects"
 import BookingHeader from "../shared/BookingHeader"
-import BookingContext from '../../context/BookingContext'
+import BookingContext from '../../Context/BookingContext'
 import { useNavigate } from 'react-router'
 
 const ArtistBooking : FC = () : ReactElement => {

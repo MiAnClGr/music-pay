@@ -13,8 +13,8 @@ import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import RoutingUser from './components/RoutingUser';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import {ArtistProvider} from './context/ArtistContext'
-import {BookingProvider}from './context/BookingContext'
+import {ArtistProvider} from './Context/ArtistContext'
+import {BookingProvider}from './Context/BookingContext'
 
 function App() {
 

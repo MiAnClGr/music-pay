@@ -1,5 +1,5 @@
 import React, {useContext, FC, ReactElement} from 'react'
-import BookingContext from '../../context/BookingContext'
+import BookingContext from '../../Context/BookingContext'
 
 const SearchArtist : FC = () : ReactElement => {
 

@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
-import BookingContext from '../../context/BookingContext'
+import BookingContext from '../../Context/BookingContext'
 
 const BookingComplete = () => {
 

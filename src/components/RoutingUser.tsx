@@ -1,6 +1,6 @@
 import React, {FC, useContext, ReactElement} from 'react'
 import {Link} from 'react-router-dom'
-import ArtistContext from '../context/ArtistContext'
+import ArtistContext from '../Context/ArtistContext'
 
 const RoutingUser : FC = () : ReactElement => {
 

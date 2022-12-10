@@ -1,7 +1,7 @@
 import React, {FC, ReactElement, useContext} from 'react'
 import {BigNumber} from 'ethers'
 import Booking from './Booking'
-import ArtistContext from '../../context/ArtistContext'
+import ArtistContext from '../../Context/ArtistContext'
 
 const BookingsList :FC = () : ReactElement => {
 

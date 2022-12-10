@@ -1,6 +1,6 @@
 import React, {FC, ReactElement, useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
-import ArtistContext from '../../context/ArtistContext'
+import ArtistContext from '../../Context/ArtistContext'
 
 type props = {
   gigNumber : string,

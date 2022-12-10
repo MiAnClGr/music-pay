@@ -1,7 +1,7 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import Home from "./Home"
-import ArtistContext from '../../context/ArtistContext'
+import ArtistContext from '../../Context/ArtistContext'
 
 const ArtistHeader : FC = () : ReactElement => {
 

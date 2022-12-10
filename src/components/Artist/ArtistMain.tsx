@@ -1,6 +1,6 @@
 import React, {FC, useContext, ReactElement} from 'react'
 import ArtistHeader from '../shared/ArtistHeader'
-import ArtistContext from '../../context/ArtistContext'
+import ArtistContext from '../../Context/ArtistContext'
 
 const ArtistMain : FC = () : ReactElement => {
 

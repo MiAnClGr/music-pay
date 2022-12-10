@@ -1,5 +1,5 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
-import ArtistContext from '../../context/ArtistContext'
+import ArtistContext from '../../Context/ArtistContext'
 
 const AboutMe : FC = () : ReactElement => {
 
