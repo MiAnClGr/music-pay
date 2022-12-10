@@ -21,7 +21,11 @@ const Booking : FC<props>= ({
 
   const navigate = useNavigate()
 
-  const {artistProfileAddress, createArtistProfileInstance, setBookingNumber} = useContext(ArtistContext)
+  const {
+    artistProfileAddress, 
+    createArtistProfileInstance, 
+    setBookingNumber
+  } = useContext(ArtistContext)
 
   const handleSubmitAcceptBooking = async () => {
     setBookingNumber(gigNumber)

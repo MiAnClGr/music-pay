@@ -1,13 +1,12 @@
 import React, {createContext, useState, ReactNode} from 'react'
 import {ethers, Contract} from 'ethers'
-import { useNavigate } from 'react-router'
 import {ArtistFactoryContract, signer} from '../contracts/ContractObjects'
 import ArtistProfileABI from '../ABI/ArtistProfile'
 
 interface ArtistContextInterface {
     artistAddress : string
     artistProfileAddress : string
-    setArtistContract : () => Promise<void>
+    loginArtist : () => Promise<void>
     setArtist : () => Promise<void>
     artistLoggedIn : boolean
     artistConnected : boolean
@@ -16,11 +15,6 @@ interface ArtistContextInterface {
     updateClicked : boolean
     setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
     displayUpdateAboutMe :  () => void
-    handleSubmitAboutMe : (e: React.KeyboardEvent<HTMLElement>) => Promise<void>
-    update : string
-    updateAboutMe :  (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-    aboutArtist : string
-    getAboutMe : () => Promise<void>
     displayBookings : () => void
     updateDisplayBookings : Boolean
     bookings : any[]
@@ -38,26 +32,29 @@ const ArtistContext = createContext<ArtistContextInterface>({} as ArtistContextI
 
 export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
-    const navigate = useNavigate()
+/// Creates an instance of the Artist Profile Contract
 
-    const [artistAddress, setArtistAddress] =  useState<string>("")
+    const createArtistProfileInstance = (artist : string) => {
+        const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
+    
+        return ArtistProfileContract
+    }
+
+///  Logging in the Artist    
+
     const [artistProfileAddress, setArtistProfileAddress] = useState<string>("")
     const [artistLoggedIn, setArtistLoggedIn] = useState<boolean>(false)
-    const [artistConnected, setArtistConnected] = useState<boolean>(false)
-    const [updateClicked, setUpdateClicked] = useState<boolean>(false)
-    const [update, setUpdate] = useState("")
-    const [aboutArtist, setAboutArtist] = useState("")
-    const [updateDisplayBookings, setUpdateDisplayBookings] = useState<boolean>(false)
-    const [bookings, setBookings] = useState<any[]>([])
-    const [bookingNumber, setBookingNumber] = useState<string>("")
-    const [escrowAddress, setEscrowAddress] = useState<string>("")
 
-    const setArtistContract = async () => {
+    const loginArtist = async () => {
         const owner = await signer.getAddress()
         const artist = await ArtistFactoryContract.ownerToArtist(owner)
         setArtistProfileAddress(artist)
         setArtistLoggedIn(true)
     } 
+
+/// Checks the connected address is the same as the artist address in the Artist Profile Contract and saves to state    
+
+    const [artistAddress, setArtistAddress] =  useState<string>("") 
 
     const setArtist = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
@@ -69,12 +66,10 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
         } 
     } 
 
-    const createArtistProfileInstance = (artist : string) => {
-        const ArtistProfileContract : Contract = new ethers.Contract(artist, ArtistProfileABI, signer) 
-    
-        return ArtistProfileContract
-    }
+/// Checks if the connected address is the logged in account, resets state variables if it is not   
 
+    const [artistConnected, setArtistConnected] = useState<boolean>(false)
+    
     const getArtistConnected = async () => {
         try{
             if(artistAddress == await signer.getAddress()){
@@ -92,42 +87,26 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
         }
     }
 
+/// Displays about me update box if update is clicked    
+
+    const [updateClicked, setUpdateClicked] = useState<boolean>(false)                       
+
     const displayUpdateAboutMe = () => {
         setUpdateClicked(!updateClicked)
     }
+    
+/// Displays current bookings on the profile page    
 
-    const handleSubmitAboutMe = async (e : React.KeyboardEvent<HTMLElement>) => {
-        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        if(e.key === 'Enter'){
-            try{
-                const updated = await artistProfileContract.updateAboutMe(update)
-                await updated.wait()
-            }catch(error){
-
-            }finally{
-                getAboutMe()
-                setUpdateClicked(!updateClicked)
-                console.log("submitted")
-            }
-        }
-    }
-
-    const updateAboutMe = (e : React.ChangeEvent<HTMLTextAreaElement>) => {
-        setUpdate(e.target.value)
-    }
-
-    const getAboutMe = async () => {
-        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        const about = await artistProfileContract.aboutMe()
-        console.log(about)
-        setAboutArtist(about)
-    }
+    const [updateDisplayBookings, setUpdateDisplayBookings] = useState<boolean>(false)
 
     const displayBookings = () => {
-        setUpdateDisplayBookings(!updateDisplayBookings)
-    
+        setUpdateDisplayBookings(!updateDisplayBookings)   
     }
 
+/// Fetches the Bookings from the Artist Profile contract and saves them to state    
+
+    const [bookings, setBookings] = useState<any[]>([])
+    
     const getBookings = async () => {
         console.log("clicked")
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
@@ -141,6 +120,10 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
         setBookings(bookingsArray)
     }
 
+/// Fetches the address of a newly created Escrow contract  
+
+    const [escrowAddress, setEscrowAddress] = useState<string>("")
+
     const getEscrowAddress = () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         artistProfileContract.on("EscrowCreated", (escrowAddress => {
@@ -148,14 +131,16 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
           }))
     }
 
-    
+/// Booking number is set during the booking and displayed in the Escrow Component    
+
+    const [bookingNumber, setBookingNumber] = useState<string>("")
 
     return(
         <ArtistContext.Provider
         value= {{
             artistAddress,
             artistProfileAddress,
-            setArtistContract,
+            loginArtist,
             setArtist,
             artistLoggedIn,
             artistConnected,
@@ -164,11 +149,6 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             updateClicked,
             setUpdateClicked,
             displayUpdateAboutMe,
-            handleSubmitAboutMe,
-            update,
-            updateAboutMe,
-            aboutArtist,
-            getAboutMe,
             displayBookings,
             updateDisplayBookings,
             bookings,
@@ -176,8 +156,7 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             bookingNumber,
             setBookingNumber,
             escrowAddress,
-            getEscrowAddress
-            
+            getEscrowAddress           
         }}
         >
             {children}

@@ -1,4 +1,4 @@
-import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
+import React, {FC, useEffect, useContext, ReactElement} from 'react'
 import AboutMe from "./AboutMe"
 import ArtistHeader from "../shared/ArtistHeader"
 import BookingsList from "./BookingsList"
@@ -9,24 +9,18 @@ const ArtistProfile :FC = () : ReactElement => {
     const {
         artistProfileAddress, 
         artistLoggedIn, 
-        setArtistContract,
+        loginArtist,
         setArtist, 
-        createArtistProfileInstance,
         bookings,
         getBookings,
-
     } = useContext(ArtistContext)
-
-  
-
-    
 
     useEffect(() => {
         localStorage.setItem("bookings", JSON.stringify(bookings))
     },[bookings])
 
     useEffect(() => {
-        setArtistContract()
+        loginArtist()
         console.log("useEffect 1")
     }, [])
 

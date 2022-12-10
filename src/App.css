@@ -249,6 +249,20 @@ body {
 
 }
 
+.BookingComplete {
+  text-align: center;
+  width: 40%;
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  margin-bottom: 20%;
+  border-style: solid;
+  border-color: #eaeaea;
+}
+
 /*Profile*/
 
 .ProfilePage {

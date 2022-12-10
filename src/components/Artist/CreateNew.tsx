@@ -22,7 +22,7 @@ const CreateNew : FC = ({}) : ReactElement => {
         }catch(error){
             console.log(error)
         }finally{ 
-            navigate("/Profile")
+            navigate("/ArtistProfile")
         }    
     }
 

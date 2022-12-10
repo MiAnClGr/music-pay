@@ -1,16 +1,45 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
-import {ethers, Contract} from 'ethers'
 import ArtistContext from '../../context/ArtistContext'
 
 const AboutMe : FC = () : ReactElement => {
 
     const {
-        updateAboutMe,
-        handleSubmitAboutMe,
-        updateClicked, 
-        getAboutMe, 
-        aboutArtist
+        createArtistProfileInstance,
+        artistProfileAddress,
+        updateClicked,
+        setUpdateClicked
     } = useContext(ArtistContext)
+
+    
+    const [update, setUpdate] = useState<string>("")
+    const [aboutArtist, setAboutArtist] = useState<string>("")
+
+    const getAboutMe = async () => {
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
+        const about = await artistProfileContract.aboutMe()
+        console.log(about)
+        setAboutArtist(about)
+    }
+
+    const updateAboutMe = (e : React.ChangeEvent<HTMLTextAreaElement>) => {
+        setUpdate(e.target.value)
+    }
+
+    const handleSubmitAboutMe = async (e : React.KeyboardEvent<HTMLElement>) => {
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
+        if(e.key === 'Enter'){
+            try{
+                const updated = await artistProfileContract.updateAboutMe(update)
+                await updated.wait()
+            }catch(error){
+
+            }finally{
+                getAboutMe()
+                setUpdateClicked(!updateClicked)
+                console.log("submitted")
+            }
+        }
+    }
  
     useEffect(() => {
         getAboutMe()

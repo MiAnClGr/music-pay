@@ -1,7 +1,6 @@
 import React, {FC, ReactElement} from 'react'
 import ConnectWallet from './ConnectWallet'
 
-
 const TitlePage : FC = () : ReactElement => {
 
   return (

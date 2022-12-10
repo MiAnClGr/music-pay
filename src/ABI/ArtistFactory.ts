@@ -1,5 +1,4 @@
-export default
-[
+export default [
   {
     "anonymous": false,
     "inputs": [
@@ -46,7 +45,7 @@ export default
         "type": "address"
       }
     ],
-    "name": "artistByAddress",
+    "name": "artistAddressToName",
     "outputs": [
       {
         "internalType": "string",
@@ -65,7 +64,7 @@ export default
         "type": "string"
       }
     ],
-    "name": "artistByName",
+    "name": "artistNameToAddress",
     "outputs": [
       {
         "internalType": "address",
@@ -144,6 +143,19 @@ export default
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_artistName",
+        "type": "string"
+      }
+    ],
+    "name": "removeArtist",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

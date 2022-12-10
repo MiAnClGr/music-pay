@@ -1,5 +1,5 @@
 import React, {FC, ReactElement, useContext} from 'react'
-import {ethers, BigNumber} from 'ethers'
+import {BigNumber} from 'ethers'
 import Booking from './Booking'
 import ArtistContext from '../../context/ArtistContext'
 
@@ -7,7 +7,6 @@ const BookingsList :FC = () : ReactElement => {
 
     const {updateDisplayBookings, bookings} = useContext(ArtistContext)
 
-   
     const displayBooking = bookings.map((booking : any[]) =>  
         <Booking
         gigNumber= {(BigNumber.from(booking[0])).toString()}

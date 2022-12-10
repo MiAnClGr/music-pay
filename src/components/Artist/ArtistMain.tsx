@@ -15,7 +15,7 @@ const ArtistMain : FC = () : ReactElement => {
                 <h3 
                 className='Text'
                 style= {{fontSize: '60px'}}
-                >Welcome to Music-Pay for Artists...
+                >Welcome to Music-Pay for Artists
                 </h3>
             </div>
             :

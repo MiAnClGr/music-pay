@@ -2,25 +2,21 @@ import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
 import {ArtistFactoryContract, PerformanceContract} from "../../contracts/ContractObjects"
 import BookingHeader from "../shared/BookingHeader"
 import BookingContext from '../../context/BookingContext'
+import { useNavigate } from 'react-router'
 
 const ArtistBooking : FC = () : ReactElement => {
 
-  const [artistName, setArtistName] = useState(localStorage.getItem("artistName") || "")
-  const [artistBooking, setArtistBooking] = useState({
-    bookingAgent: "",
-    payment: "",
-    time: "",
-    date: "",
-    venue: ""
-  })
+  
+  
+  const {
+    searchedAddress, 
+    artistBooking, 
+    setArtistBooking, 
+    artistName,
+    getArtistName
+  } = useContext(BookingContext)
 
-  const {searchedAddress} = useContext(BookingContext)
-
-  const getArtistName = async () => {
-    const name = await ArtistFactoryContract.artistByAddress(searchedAddress)
-    console.log(name)
-    setArtistName(name)
-  }
+  const navigate = useNavigate()
 
   const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     setArtistBooking(prevFormData => {
@@ -31,29 +27,40 @@ const ArtistBooking : FC = () : ReactElement => {
     })
   }
 
-  const submitBooking = async () => {
-    const booking = await PerformanceContract.createBooking(
-      searchedAddress,
-      artistName,
-      artistBooking.bookingAgent,
-      artistBooking.payment,
-      artistBooking.time,
-      artistBooking.venue,
-      artistBooking.date
-    )
+  // const submitBooking = async () => {
+  //   const booking = await PerformanceContract.createBooking(
+  //     searchedAddress,
+  //     artistName,
+  //     artistBooking.bookingAgent,
+  //     artistBooking.payment,
+  //     artistBooking.time,
+  //     artistBooking.venue,
+  //     artistBooking.date
+  //   )
 
-    await booking.wait()
+  //   await booking.wait()
     
-  }
+  // }
 
-  const handleSubmit = () => {
-    submitBooking()
-    setArtistBooking({
-      bookingAgent: "",
-      payment: "",
-      time: "",
-      date: "",
-      venue: "" })
+  const handleSubmit = async () => {
+    navigate("/Loading")
+    try{
+      const booking = await PerformanceContract.createBooking(
+        searchedAddress,
+        artistName,
+        artistBooking.bookingAgent,
+        artistBooking.payment,
+        artistBooking.time,
+        artistBooking.venue,
+        artistBooking.date
+      )
+      await booking.wait()
+    }catch(e){
+
+    }finally {
+      navigate("/BookingComplete")
+    }
+    
   }
 
   console.log(searchedAddress)

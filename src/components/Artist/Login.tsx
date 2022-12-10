@@ -1,5 +1,4 @@
 import React, {useState, FC, ReactElement} from 'react'
-import { Contract } from 'ethers'
 import {useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract, signer} from "../../contracts/ContractObjects"
 
@@ -20,8 +19,6 @@ const Login : FC = () : ReactElement => {
         try{
             const transaction = await ArtistFactoryContract.createArtist(inputArtistName)
             await transaction.wait()
-
-            
         }catch(e){
             navigate("/NotOwner")
         }finally{
