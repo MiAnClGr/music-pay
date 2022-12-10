@@ -27,21 +27,6 @@ const ArtistBooking : FC = () : ReactElement => {
     })
   }
 
-  // const submitBooking = async () => {
-  //   const booking = await PerformanceContract.createBooking(
-  //     searchedAddress,
-  //     artistName,
-  //     artistBooking.bookingAgent,
-  //     artistBooking.payment,
-  //     artistBooking.time,
-  //     artistBooking.venue,
-  //     artistBooking.date
-  //   )
-
-  //   await booking.wait()
-    
-  // }
-
   const handleSubmit = async () => {
     navigate("/Loading")
     try{

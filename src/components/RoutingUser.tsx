@@ -14,7 +14,7 @@ const RoutingUser : FC = () : ReactElement => {
         ?
         <Link
         className='Link'
-        to= "/Profile"
+        to= "/ArtistProfile"
         >
         Artists
         </Link>
