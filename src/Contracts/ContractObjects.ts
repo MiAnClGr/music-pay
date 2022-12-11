@@ -10,10 +10,10 @@ export const signer : ethers.providers.JsonRpcSigner = provider.getSigner()
 
 /// Artist Factory
 
-export const ArtistFactoryAddress = "0xc5D156eda6e84076b0FB3c0Aa1E3850Be8F129BD"
+export const ArtistFactoryAddress = "0x029e21Dfe6C66D319b06Fd4F890FDBA9041308d9"
 export const ArtistFactoryContract : Contract = new ethers.Contract(ArtistFactoryAddress, ArtistFactoryABI, signer);
 
 /// Artist Profile 
 
-export const PerformanceContractAddress = "0xAfd020F0EE217Ab6ad5bdbdAAbdE59a1bd7C32c7"
+export const PerformanceContractAddress = "0xf4dD1a717ae5177BD85c827def57BdcFa4A1EC99"
 export const PerformanceContract : Contract = new ethers.Contract(PerformanceContractAddress, PerformanceContractABI, signer);
