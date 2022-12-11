@@ -15,15 +15,15 @@ const Login : FC = () : ReactElement => {
     }  
 
     const handleSubmitLogIn = async () => {
-        navigate("/Loading")
-        try{
-            const transaction = await ArtistFactoryContract.createArtist(inputArtistName)
-            await transaction.wait()
-        }catch(e){
-            navigate("/NotOwner")
-        }finally{
+        const address = await ArtistFactoryContract.artistNameToAddress(inputArtistName)
+        const user = await signer.getAddress()
+        if(await ArtistFactoryContract.doesArtistExist(inputArtistName) == false){
+            navigate("/ProfileDoesNotExist")
+        }else if(await ArtistFactoryContract.ownerToArtist(user) == address){
             navigate("/ArtistProfile")
-        }   
+        }else{
+            navigate("/NotOwner")
+        }             
     }
 
   return (
