@@ -22,20 +22,17 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
 
     const navigate = useNavigate()
 
+/// Sets the Search Input
+
     const [searchInput, setSearchInput] = useState("")
-    const [searchedAddress, setSearchedAddress] = useState<string>("")
-    const [artistName, setArtistName] = useState("")
-    const [artistBooking, setArtistBooking] = useState({
-    bookingAgent: "",
-    payment: "",
-    time: "",
-    date: "",
-    venue: ""
-  })
 
     const search = (e : React.ChangeEvent<HTMLInputElement>) => {
         setSearchInput(e.target.value)
-      }
+    }
+
+/// Submits a search and sets the searched Address
+
+    const [searchedAddress, setSearchedAddress] = useState<string>("")
 
     const submitSearch = async (e : React.KeyboardEvent<HTMLElement>) => {
         if(e.key === 'Enter'){
@@ -51,11 +48,25 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
         }
     }
 
+///Fetches and sets the artist name using the searched Address     
+
+    const [artistName, setArtistName] = useState("")
+
     const getArtistName = async () => {
         const name = await ArtistFactoryContract.artistAddressToName(searchedAddress)
         console.log(name)
         setArtistName(name)
     }
+
+///State for the artist booking    
+
+    const [artistBooking, setArtistBooking] = useState({
+        bookingAgent: "",
+        payment: "",
+        time: "",
+        date: "",
+        venue: ""
+      })
 
     return(
         <BookingContext.Provider
