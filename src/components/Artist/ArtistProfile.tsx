@@ -3,6 +3,7 @@ import AboutMe from "./AboutMe"
 import ArtistHeader from "../shared/ArtistHeader"
 import BookingsList from "./BookingsList"
 import ArtistContext from '../../Context/ArtistContext'
+import {motion} from 'framer-motion'
 
 const ArtistProfile :FC = () : ReactElement => {
 
@@ -36,7 +37,12 @@ const ArtistProfile :FC = () : ReactElement => {
     },[artistProfileAddress])
 
     return(
-        <div>
+        <motion.div
+        style={{height: "100%"}}
+        initial= {{opacity: 0}}
+        animate= {{opacity: 1}}
+        exit= {{opacity: 0}}
+        >
             <ArtistHeader/>      
             <div className='ProfilePage'>
                 {artistLoggedIn 
@@ -47,7 +53,7 @@ const ArtistProfile :FC = () : ReactElement => {
                 }
                 <BookingsList/>
             </div>     
-        </div>
+        </motion.div>
     )
 }
 

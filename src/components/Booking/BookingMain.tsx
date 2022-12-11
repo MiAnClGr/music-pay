@@ -1,18 +1,26 @@
 import React, {FC, ReactElement} from 'react'
 import BookingHeader from "../shared/BookingHeader"
+import {motion} from 'framer-motion'
 
 const BookingMain : FC = () : ReactElement => {
 
   return (
-    <>
+    <div
+    style={{height: "100%"}}
+    >
       <BookingHeader/>
-      <div style= {{textAlign: 'center', marginTop: '250px'}}>
+      <motion.div 
+      style= {{textAlign: 'center', marginTop: '250px'}}
+      initial= {{opacity: 0}}
+      animate= {{opacity: 1}}
+      exit= {{opacity: 0}}
+      >
             <h3 
             className='Text'
             style= {{fontSize: '60px'}}
             >Welcome to Music-Pay for Bookings</h3>
-        </div>
-    </>
+        </motion.div>
+    </div>
   )
 }
 

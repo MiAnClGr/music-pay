@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import BookingContext from '../../Context/BookingContext'
+import {motion} from 'framer-motion'
 
 const BookingComplete = () => {
 
@@ -18,8 +19,11 @@ const BookingComplete = () => {
     }
 
   return (
-    <div
+    <motion.div
     className='BookingComplete'
+    initial= {{opacity: 0}}
+    animate= {{opacity: 1}}
+    exit= {{opacity: 0}}
     >
         <h1 
         className='Text'
@@ -49,7 +53,7 @@ const BookingComplete = () => {
             Back
         </Link>
 
-    </div>
+    </motion.div>
   )
 }
 

@@ -1,13 +1,19 @@
 import React, {FC, useContext, ReactElement} from 'react'
 import {Link} from 'react-router-dom'
 import ArtistContext from '../Context/ArtistContext'
+import {motion} from 'framer-motion'
 
 const RoutingUser : FC = () : ReactElement => {
 
   const {artistLoggedIn, artistConnected} = useContext(ArtistContext)
 
   return (
-    <div className='TitlePage'>
+    <motion.div 
+    className='TitlePage'
+    initial= {{y:0, opacity: 0}}
+    animate= {{opacity: 1}}
+    exit= {{opacity: 0}}
+    >
       <h1 className='Music-Pay-Title'>Music-Pay</h1>
       <div className='Route'>
         {artistLoggedIn && artistConnected
@@ -36,7 +42,7 @@ const RoutingUser : FC = () : ReactElement => {
         Bookings
         </Link>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

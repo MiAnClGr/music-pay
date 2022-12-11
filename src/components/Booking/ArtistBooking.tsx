@@ -1,8 +1,9 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
-import {ArtistFactoryContract, PerformanceContract} from "../../Contracts/ContractObjects"
+import {PerformanceContract} from "../../Contracts/ContractObjects"
 import BookingHeader from "../shared/BookingHeader"
 import BookingContext from '../../Context/BookingContext'
 import { useNavigate } from 'react-router'
+import {motion} from 'framer-motion'
 
 const ArtistBooking : FC = () : ReactElement => {
 
@@ -28,8 +29,9 @@ const ArtistBooking : FC = () : ReactElement => {
   }
 
   const handleSubmit = async () => {
-    navigate("/Loading")
+    // navigate("/Loading")
     try{
+      console.log("Trying")
       const booking = await PerformanceContract.createBooking(
         searchedAddress,
         artistName,
@@ -48,7 +50,9 @@ const ArtistBooking : FC = () : ReactElement => {
     
   }
 
+  console.log(artistBooking)
   console.log(searchedAddress)
+
 
   useEffect(() => {
     localStorage.setItem("artistName", artistName)
@@ -63,10 +67,17 @@ const ArtistBooking : FC = () : ReactElement => {
   }, [searchedAddress])
 
   return (
-    <div className='Parent-div'>
+    <div
+    style={{height: "100%"}}
+    >
       <BookingHeader/>
       
-      <div className='ArtistBooking'>
+      <motion.div 
+      className='ArtistBooking'
+      initial= {{opacity: 0}}
+      animate= {{opacity: 1}}
+      exit= {{opacity: 0}}
+      >
         <h3 className='ArtistNameBooking'>{artistName}</h3>
           <form className='BookingForm'>
           <input 
@@ -112,7 +123,7 @@ const ArtistBooking : FC = () : ReactElement => {
               Book Artist
             </button>
         </form>
-      </div>
+      </motion.div>
     </div>
   )
 }

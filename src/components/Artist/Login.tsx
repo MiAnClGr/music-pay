@@ -1,6 +1,7 @@
 import React, {useState, FC, ReactElement} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
+import {motion} from 'framer-motion'
 
 
 
@@ -27,23 +28,32 @@ const Login : FC = () : ReactElement => {
     }
 
   return (
-    <div className= 'CreateArtist'>
+    <motion.div
+    style={{textAlign: "center", height: "100%"}} 
+    initial= {{opacity: 0}}
+    animate= {{opacity: 1}}
+    exit= {{opacity: 0}}
+    >
+        <div
+        className= 'CreateArtist'
+        >
+            <h3 className= "HeaderText">Login</h3>
+            <input
+            className= 'Inputs'
+            placeholder= 'Artist Name' 
+            onChange= {handleChange}
+            >
+            </input> 
+            <button 
+            className= 'Submit' 
+            onClick= {handleSubmitLogIn}
+            >
+            Log In
+            </button>
+        </div>
 
-        <h3 className= "HeaderText">Login</h3>
-        <input
-        className= 'Inputs'
-        placeholder= 'Artist Name' 
-        onChange= {handleChange}
-        >
-        </input> 
-        <button 
-        className= 'Submit' 
-        onClick= {handleSubmitLogIn}
-        >
-        Log In
-        </button>
         
-    </div>
+    </motion.div>
   )
 }
 
