@@ -16,7 +16,7 @@ const CreateNew : FC = ({}) : ReactElement => {
     const handleSubmitCreate = async () => {
         navigate("/Loading")
         try{
-            const transaction = await ArtistFactoryContract.createArtist(inputArtistName)
+            const transaction = await ArtistFactoryContract.createOrLoginArtist(inputArtistName)
             await transaction.wait()
             
         }catch(error){
