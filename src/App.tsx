@@ -11,10 +11,12 @@ import BookingComplete from './components/Booking/BookingComplete';
 import Escrow from './components/shared/Escrow'
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
+import ProfileDoesNotExist from './components/LoadingAndError/ProfileDoesNotExist';
 import RoutingUser from './components/RoutingUser';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {ArtistProvider} from './Context/ArtistContext'
 import {BookingProvider}from './Context/BookingContext'
+
 
 function App() {
 
@@ -69,6 +71,10 @@ function App() {
 
             <Route path = "/NotOwner" element = {
               <NotOwner/>
+            }/>
+
+            <Route path = "/ProfileDoesNotExist" element = {
+              <ProfileDoesNotExist/>
             }/>
           </Routes>      
         </BookingProvider>

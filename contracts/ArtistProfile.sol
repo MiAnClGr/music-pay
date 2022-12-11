@@ -140,7 +140,7 @@ contract ArtistProfile {
 /// View
 
     
-    function getBooking(uint _gigNumber) view external 
+    function getBooking(uint _gigNumber) external view
         returns(
             uint256,
             uint256,
