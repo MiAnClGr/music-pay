@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-import {useNavigate} from 'react-router-dom'
 import Home from "../shared/Home"
 
 const NotOwner = () : ReactElement => {
