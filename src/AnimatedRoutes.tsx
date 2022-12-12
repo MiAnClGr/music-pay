@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route, Routes, useLocation} from 'react-router-dom'
-import {AnimatePresence} from 'framer-motion'
+import {AnimatePresence} from 'framer-motion';
 import Login from './components/Artist/Login';
 import CreateNew from './components/Artist/CreateNew';
 import ArtistMain from './components/Artist/ArtistMain';
