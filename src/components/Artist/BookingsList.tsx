@@ -2,6 +2,7 @@ import React, {FC, ReactElement, useContext} from 'react'
 import {BigNumber} from 'ethers'
 import Booking from './Booking'
 import ArtistContext from '../../Context/ArtistContext'
+import {motion} from 'framer-motion'
 
 const BookingsList :FC = () : ReactElement => {
 
@@ -23,13 +24,14 @@ const BookingsList :FC = () : ReactElement => {
         <div>
             {updateDisplayBookings
             ?
-            <div className='BookingsList'>
-                <h1
-                className='Text'
-                >Bookings
-                </h1>
+            <motion.div 
+            className='BookingsList'
+            initial= {{opacity: 0}}
+            animate= {{opacity: 1}}
+            exit= {{opacity: 0}}
+            >
                 {displayBooking}
-            </div>
+            </motion.div>
             :
             <></>
             }

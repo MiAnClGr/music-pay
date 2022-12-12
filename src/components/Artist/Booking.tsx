@@ -48,11 +48,20 @@ const Booking : FC<props>= ({
       <h4 className='Text'>Time: {time}</h4>
       <h4 className='Text'>Date: {date}</h4>
       <h4 className='Text'>Venue: {venue}</h4>
-      <br></br>
+    
       <button 
       className='Submit'
+      style={{
+        color: "white", 
+        backgroundColor: "black",
+        borderWidth: "1px",
+        borderRadius: "5px", 
+        fontWeight: "bold",
+        fontSize: "12px",
+        padding: "7px"
+      }}
       onClick={handleSubmitAcceptBooking}
-      >Accept</button>
+      >ACCEPT</button>
     </div>
     )
 }

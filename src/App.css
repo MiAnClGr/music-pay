@@ -1,13 +1,15 @@
 #root {
   height: 100vh;
+  overflow: hidden;
 }
 
 html{
-  height: 100%
+  height: 100%;
+  overflow: hidden
 }
 
 body {
-  background-color: #333333;
+  background-color: black;
   background-size: cover;
   max-height: 100%;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
@@ -50,19 +52,48 @@ body {
   transform: scale(1.25);
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: #333333;
+  background-color: black;
   width: 40%;
+  
+}
+
+.Inputs:focus {
+  outline: none;
 }
 
 /*Buttons*/
 
 .Submit {
-  transform: scale(1.25);
   color: #eaeaea;
   border-color: #eaeaea;
   background-color: transparent;
-  font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
+  font-family: "Clarkson",Helvetica,sans-serif;
 }
+
+.Loading:after {
+  content: '.';
+  animation: dots 1.5s steps(5, end) infinite;}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  40% {
+    color: white;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  60% {
+    text-shadow:
+      .25em 0 0 white,
+      .5em 0 0 rgba(0,0,0,0);}
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 white,
+      .5em 0 0 white;}}
+
 
 
 
@@ -72,7 +103,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0%;
-  margin-top: 200px;
+  margin-top: 300px;
   justify-content: flex-start;
   align-items: center;
   height: 100vh;
@@ -97,17 +128,17 @@ body {
   justify-content: center;
   gap: 40px;
   margin:auto;
-  margin-top: 200px;
-  width: 20%;
+  margin-top: 150px;
+  width: 25%;
   height: 20%;
   top: 40%;
   padding-top: 7%;
   padding-bottom: 7%;
   text-align: center;
   align-items: center;
-  border-style: solid;
+  /* border-style: solid;
   border-color: #eaeaea;
-  border-radius: 10px;
+  border-radius: 20px; */
 
 }
 
@@ -117,12 +148,13 @@ body {
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #eaeaea;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
-  font-weight: bold;
+  font-weight: lighter;
+  
  
 }
 
 .Connect {
-  background-color: #333333;
+  background-color: black;
   border-color: #eaeaea;
   color: #eaeaea;
   padding: 5px;
@@ -137,8 +169,10 @@ body {
 .LoadingScreen {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin-top: 300px;
+  margin-top: 350px;
   color:#eaeaea
 }
 
@@ -216,7 +250,7 @@ body {
   border-radius: 2px;
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: #333333;
+  background-color: black;
 }
 
 .BookingForm input::-webkit-input-placeholder {
@@ -226,7 +260,7 @@ body {
 
 .SubmitBooking {
   color:#eaeaea;
-  background-color: #333333;
+  background-color: black;
   font-size: 16px;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
   text-decoration: none;
@@ -244,6 +278,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .Bookings{
@@ -253,7 +288,7 @@ body {
   text-align: center;
   border-style: solid;
   border-color: #eaeaea;
-  border-radius: 2px;
+  border-radius: 20px;
 
 }
 
@@ -308,7 +343,7 @@ body {
 
 
 .AboutMeUpdate {
-  background-color: #333333;
+  background-color: black;
   color: #eaeaea;
   width: 400px;
   height: 600px;
@@ -330,7 +365,7 @@ body {
 }
 
 .AboutMeUpdateBox {
-  background-color: #333333;
+  background-color: black;
   width: 400px;
   height: 400px;
   color: #eaeaea;
@@ -346,14 +381,14 @@ body {
   transform: scale(1.25);
   color: #eaeaea;
   /* border-color: #eaeaea; */
-  background-color: #333333;
+  background-color: black;
   font-family: Monaco, "Ubuntu Mono", Terminal, monospace;
 }
 
 /*Header*/
 
 .Header {
-  background-color: #333333;
+  background-color: black;
   color:#eaeaea;
   display: flex;
   align-items: center;
@@ -456,7 +491,7 @@ body {
   height: 22px;
   color: #eaeaea;
   border-color: #eaeaea;
-  background-color: #333333;
+  background-color: black;
   border-radius: 5px;
   padding: 2px;
   padding-bottom: 0;

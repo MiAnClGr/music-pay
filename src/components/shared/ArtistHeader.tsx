@@ -61,7 +61,7 @@ const ArtistHeader : FC = () : ReactElement => {
 				className='Login' 
 				to= "/Login"
 				>
-				Login
+				LOG IN
 				</Link>
 				}
 				{artistLoggedIn 

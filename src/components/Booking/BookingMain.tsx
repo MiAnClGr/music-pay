@@ -10,14 +10,14 @@ const BookingMain : FC = () : ReactElement => {
     >
       <BookingHeader/>
       <motion.div 
-      style= {{textAlign: 'center', marginTop: '250px'}}
+      style= {{textAlign: 'center', marginTop: '280px'}}
       initial= {{opacity: 0}}
       animate= {{opacity: 1}}
       exit= {{opacity: 0}}
       >
             <h3 
             className='Text'
-            style= {{fontSize: '60px'}}
+            style= {{fontSize: '80px'}}
             >Welcome to Music-Pay for Bookings</h3>
         </motion.div>
     </div>

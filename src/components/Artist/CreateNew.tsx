@@ -4,7 +4,7 @@ import {ArtistFactoryContract} from "../../Contracts/ContractObjects"
 import {motion} from 'framer-motion'
 
 
-const CreateNew : FC = ({}) : ReactElement => {
+const CreateNew : FC = () : ReactElement => {
 
     const [inputArtistName, setInputArtistName] = useState("")
 
@@ -33,20 +33,42 @@ const CreateNew : FC = ({}) : ReactElement => {
     initial= {{opacity: 0}}
     animate= {{opacity: 1}}
     exit= {{opacity: 0}}
+    transition={{duration: 0.2}}
     >
         <div className= 'CreateArtist'>
-            <h3 className= "HeaderText">New Artist</h3>      
+            <h3 className= "Text"
+            style={{fontSize: "25px", marginBottom: "0"}}
+            >Create a new profile</h3>      
             <input
             className= 'Inputs'
+            style={{
+                borderBottom : "solid",
+                borderColor: "grey",
+                borderWidth: "1px",
+                borderTop: "hidden", 
+                borderLeft: "hidden", 
+                borderRight: "hidden",
+                width: "70%"
+            }} 
             placeholder= 'Artist Name' 
             onChange= {handleChange}
             >
             </input> 
             <button 
-            className= 'Submit' 
+            className= 'Submit'
+            style={{
+                color: "black", 
+                backgroundColor: "white", 
+                width: "89%",
+                height: "18%",
+                borderWidth: "1px", 
+                fontWeight: "bold",
+                fontSize: "12px",
+                padding: "5px"
+            }} 
             onClick= {handleSubmitCreate}
             >
-            Create
+            CREATE
             </button>
         </div>
     </motion.div>

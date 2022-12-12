@@ -15,15 +15,15 @@ const ArtistMain : FC = () : ReactElement => {
             {artistLoggedIn === false && artistConnected === false         
             ?           
             <motion.div 
-            style= {{height: "100%", textAlign: 'center', marginTop: '250px'}}
+            style= {{height: "100%", textAlign: 'center', marginTop: '280px'}}
             initial= {{opacity: 0}}
             animate= {{opacity: 1}}
-            exit= {{opacity: 0}}    
-
+            exit= {{opacity: 0}} 
+            transition={{duration: 0.2}}
             >
                 <h3 
                 className='Text'
-                style= {{fontSize: '60px'}}
+                style= {{fontSize: '80px'}}
                 >Welcome to Music-Pay for Artists
                 </h3>
             </motion.div>

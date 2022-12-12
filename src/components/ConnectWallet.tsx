@@ -9,7 +9,7 @@ const ConnectWallet : FC = () : ReactElement => {
   const navigate = useNavigate() 
 
   const connect = async () =>  {
-
+      navigate("/Loading")
     await provider.send("eth_requestAccounts", [])
     
     if (window.ethereum.isConnected()){

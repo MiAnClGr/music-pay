@@ -18,9 +18,9 @@ const Login : FC = () : ReactElement => {
     const handleSubmitLogIn = async () => {
         const address = await ArtistFactoryContract.artistNameToAddress(inputArtistName)
         const user = await signer.getAddress()
-        if(await ArtistFactoryContract.doesArtistExist(inputArtistName) == false){
+        if(await ArtistFactoryContract.doesArtistExist(inputArtistName) === false){
             navigate("/ProfileDoesNotExist")
-        }else if(await ArtistFactoryContract.ownerToArtist(user) == address){
+        }else if(await ArtistFactoryContract.ownerToArtist(user) === address){
             navigate("/ArtistProfile")
         }else{
             navigate("/NotOwner")
@@ -33,22 +33,45 @@ const Login : FC = () : ReactElement => {
     initial= {{opacity: 0}}
     animate= {{opacity: 1}}
     exit= {{opacity: 0}}
+    transition={{duration: 0.2}}
     >
         <div
-        className= 'CreateArtist'
-        >
-            <h3 className= "HeaderText">Login</h3>
+        className= 'CreateArtist'>
+            <h2 
+            className= "Text"
+            style={{fontSize: "25px", marginBottom: "0"}}
+            >Log into Music-Pay</h2>
             <input
             className= 'Inputs'
+            style={{
+                borderBottom : "solid",
+                borderColor: "grey",
+                borderWidth: "1px",
+                borderTop: "hidden", 
+                borderLeft: "hidden", 
+                borderRight: "hidden",
+                width: "70%"
+                
+            }} 
             placeholder= 'Artist Name' 
             onChange= {handleChange}
             >
             </input> 
             <button 
-            className= 'Submit' 
+            className= 'Submit'
+            style={{
+                color: "black", 
+                backgroundColor: "white", 
+                width: "89%",
+                height: "18%", 
+                borderWidth: "1px",
+                fontWeight: "bold",
+                fontSize: "12px",
+                padding: "5px"
+            }}
             onClick= {handleSubmitLogIn}
             >
-            Log In
+            LOG IN
             </button>
         </div>
 
