@@ -22,12 +22,13 @@ const ConnectWallet : FC = () : ReactElement => {
   
   return (
     <div>
-      <button
-      className= 'Connect'
+      <h3
+      className= 'Link'
+      style={{fontSize: "22px", fontWeight: "normal", margin: '0', cursor: "pointer"}}
       onClick= {connect}
       >
         Connect Wallet
-      </button>
+      </h3>
     </div>
   )
 }

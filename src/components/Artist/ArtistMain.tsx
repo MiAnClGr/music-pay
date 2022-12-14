@@ -23,7 +23,7 @@ const ArtistMain : FC = () : ReactElement => {
             >
                 <h3 
                 className='Text'
-                style= {{fontSize: '80px'}}
+                style= {{fontSize: '80px', letterSpacing: "3px"}}
                 >Welcome to Music-Pay for Artists
                 </h3>
             </motion.div>

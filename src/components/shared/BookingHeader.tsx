@@ -2,6 +2,7 @@ import React, {FC, useState, ReactElement} from 'react'
 import { Link } from 'react-router-dom'
 import Home from "./Home"
 import SearchArtist from "../shared/SearchArtist"
+import {AnimatePresence} from 'framer-motion'
 
 const BookingHeader : FC= () : ReactElement => {
 
@@ -28,7 +29,9 @@ const BookingHeader : FC= () : ReactElement => {
         </h3>
         {searchClicked 
         ? 
-        <SearchArtist/>
+        <AnimatePresence>
+          <SearchArtist/>
+        </AnimatePresence>
         :
         <></>
         }

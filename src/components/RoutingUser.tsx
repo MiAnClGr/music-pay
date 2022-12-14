@@ -28,6 +28,7 @@ const RoutingUser : FC = () : ReactElement => {
         :
         <Link
         className='Link'
+        style={{fontSize: "22px"}}
         to= "/ArtistMain"
         >
         Artists
@@ -38,6 +39,7 @@ const RoutingUser : FC = () : ReactElement => {
         <br></br>
         <Link 
         className='Link'
+        style={{fontSize: "22px"}}
         to= "/BookingMain"
         >
         Bookings

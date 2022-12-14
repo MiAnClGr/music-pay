@@ -78,9 +78,13 @@ const ArtistBooking : FC = () : ReactElement => {
       animate= {{opacity: 1}}
       exit= {{opacity: 0}}
       >
-        <h3 className='ArtistNameBooking'>{artistName}</h3>
-          <form className='BookingForm'>
+        
+        <form className='BookingForm'>
+          <h3 className='ArtistNameBooking'>{artistName}</h3>
+          <br></br>
+          <br></br>
           <input 
+            className='Inputs'
             autoComplete='off'
             placeholder="Booking Agent" 
             name= "bookingAgent"
@@ -88,6 +92,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
             </input>
             <input 
+            className='Inputs'
             autoComplete='off'
             placeholder="Payment" 
             name= "payment"
@@ -95,6 +100,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
             </input>
             <input 
+            className='Inputs'
             autoComplete='off'
             placeholder="Time" 
             name="time"
@@ -102,6 +108,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
             </input>
             <input 
+            className='Inputs'
             autoComplete='off'
             placeholder="Venue" 
             name="venue"
@@ -109,18 +116,21 @@ const ArtistBooking : FC = () : ReactElement => {
             >
             </input>
             <input 
+            className='Inputs'
             autoComplete='off'
             placeholder="Date" 
             name="date"
             onChange={handleChange}
             >
             </input>
+            <br></br>
+            <br></br>
             <button 
             className='SubmitBooking'
             type= 'submit'
             onClick= {handleSubmit}
             >
-              Book Artist
+              BOOK ARTIST
             </button>
         </form>
       </motion.div>

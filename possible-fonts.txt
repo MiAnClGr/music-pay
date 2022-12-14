@@ -1,0 +1,3 @@
+Monaco, "Ubuntu Mono", Terminal, monospace;
+"Clarkson",Helvetica,sans-serif;
+AlphaLyrae,georgia,serif;

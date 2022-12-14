@@ -58,13 +58,12 @@ const CreateNew : FC = () : ReactElement => {
             className= 'Submit'
             style={{
                 color: "black", 
-                backgroundColor: "white", 
-                width: "89%",
-                height: "18%",
+                backgroundColor: "#b2b2b2", 
+                width: "91%",
                 borderWidth: "1px", 
                 fontWeight: "bold",
                 fontSize: "12px",
-                padding: "5px"
+                padding: "12px"
             }} 
             onClick= {handleSubmitCreate}
             >
