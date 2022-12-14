@@ -110,7 +110,7 @@ body {
   justify-content: start;
   align-items: center;
   height: 100vh;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .Music-Pay-Title {
@@ -267,8 +267,9 @@ body {
 }
 
 .SubmitBooking {
-  color: black;
-  background-color: #b2b2b2;
+  color: white;
+  opacity: 0.8;
+  background-color: black;
   width: 349%;
   height: 30%;
   font-size: 12px;
@@ -277,8 +278,9 @@ body {
   text-decoration: none;
   cursor: pointer;
   border-style: solid;
+  border-color: grey;
+  border-radius: 10px;
   padding: 10px;
-  border-radius: 2px;
 }
 
 .BookingsList {

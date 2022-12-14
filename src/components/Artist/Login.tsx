@@ -60,10 +60,13 @@ const Login : FC = () : ReactElement => {
             <button 
             className= 'Submit'
             style={{
-                color: "black", 
-                backgroundColor: "#b2b2b2", 
+                color: "white", 
+                opacity: "0.8",
+                backgroundColor: "black", 
                 width: "91%",
-                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: "grey",
+                borderRadius: "10px",
                 fontWeight: "bold",
                 fontSize: "12px",
                 padding: "12px"
