@@ -38,7 +38,7 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
         if(e.key === 'Enter'){
             const address = await ArtistFactoryContract.artistNameToAddress(searchInput)
             console.log(address)      
-            if(address !== "0x0000000000000000000000000000000000000000"){
+            if(address != "0x0000000000000000000000000000000000000000"){
                 setSearchedAddress(address)
                 console.log(searchedAddress)
                 navigate("/ArtistBooking")
@@ -53,7 +53,7 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
     const [artistName, setArtistName] = useState("")
 
     const getArtistName = async () => {
-        const name = await ArtistFactoryContract.artistAddressToName(searchedAddress)
+        const name : string = await ArtistFactoryContract.artistAddressToName(searchedAddress)
         console.log(name)
         setArtistName(name)
     }

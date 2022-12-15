@@ -16,6 +16,8 @@ const ArtistProfile :FC = () : ReactElement => {
         getBookings,
     } = useContext(ArtistContext)
 
+    console.log(artistProfileAddress)
+
     useEffect(() => {
         localStorage.setItem("bookings", JSON.stringify(bookings))
     },[bookings])

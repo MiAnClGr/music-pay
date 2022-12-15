@@ -21,12 +21,7 @@ const BookingHeader : FC= () : ReactElement => {
       About
       </Link>
       <div className='Search'>
-        <h3
-        className='SearchText'
-        onClick= {() => setSearchClicked(!searchClicked)}
-        >
-        Search
-        </h3>
+        
         {searchClicked 
         ? 
         <AnimatePresence>
@@ -35,6 +30,12 @@ const BookingHeader : FC= () : ReactElement => {
         :
         <></>
         }
+        <h3
+        className='SearchText'
+        onClick= {() => setSearchClicked(!searchClicked)}
+        >
+        Search
+        </h3>
       </div>
     </header>
   )

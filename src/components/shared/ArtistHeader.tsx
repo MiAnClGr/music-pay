@@ -43,7 +43,7 @@ const ArtistHeader : FC = () : ReactElement => {
 				</div>
 				<Link
 				className='About' 
-				to= "/Login"
+				to= "/About"
 				>
 				About
 				</Link>

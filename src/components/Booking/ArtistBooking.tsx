@@ -29,9 +29,8 @@ const ArtistBooking : FC = () : ReactElement => {
   }
 
   const handleSubmit = async () => {
-    // navigate("/Loading")
+    navigate("/Loading")
     try{
-      console.log("Trying")
       const booking = await PerformanceContract.createBooking(
         searchedAddress,
         artistName,
@@ -43,15 +42,15 @@ const ArtistBooking : FC = () : ReactElement => {
       )
       await booking.wait()
     }catch(e){
-
-    }finally {
+      console.log(e)
+    }finally{
       navigate("/BookingComplete")
-    }
-    
+    } 
   }
 
   console.log(artistBooking)
   console.log(searchedAddress)
+ 
 
 
   useEffect(() => {
@@ -79,7 +78,7 @@ const ArtistBooking : FC = () : ReactElement => {
       exit= {{opacity: 0}}
       >
         
-        <form className='BookingForm'>
+        <div className='BookingForm'>
           <h3 className='ArtistNameBooking'>{artistName}</h3>
           <br></br>
           <br></br>
@@ -132,7 +131,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
               BOOK ARTIST
             </button>
-        </form>
+        </div>
       </motion.div>
     </div>
   )
