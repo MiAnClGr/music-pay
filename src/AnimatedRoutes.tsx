@@ -14,6 +14,7 @@ import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import ProfileDoesNotExist from './components/LoadingAndError/ProfileDoesNotExist';
 import RoutingUser from './components/RoutingUser';
+import About from './components/shared/About';
 
 const AnimatedRoutes = () => {
 
@@ -36,6 +37,8 @@ const AnimatedRoutes = () => {
         <Route path= "/ArtistProfile" element = {<ArtistProfile/>}/>
 
         <Route path= "/BookingMain" element = {<BookingMain/>}/>
+
+        <Route path= "/About" element = {<About/>}/>
 
         <Route path = "/ArtistBooking" element = {<ArtistBooking/>}/>
 
