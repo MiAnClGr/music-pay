@@ -1,4 +1,4 @@
-import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
+  import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
 import {ethers, Contract} from 'ethers'
 import EscrowABI from '../../ABI/BookingEscrow'
 import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
@@ -21,6 +21,8 @@ const Escrow : FC = () : ReactElement => {
 
     const getArtistName = async () => {
       const name = await ArtistFactoryContract.artistAddressToName(artist)
+      console.log(artist)
+      console.log(name)
       setArtistName(name)
     }
 
@@ -66,6 +68,8 @@ const Escrow : FC = () : ReactElement => {
       const EscrowContract = createEscrowInstance()
       await EscrowContract.completeBooking()
     }
+
+    console.log(artistName)
 
     useEffect(() => {
         getEscrowAddress()

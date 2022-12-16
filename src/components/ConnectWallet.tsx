@@ -28,7 +28,7 @@ const ConnectWallet : FC = () : ReactElement => {
     style={{
       color: "white",
       backgroundColor: "black",
-      width: "25%",
+      width: "20%",
       marginLeft: "auto",
       marginRight: "auto",
       fontWeight: "bold",

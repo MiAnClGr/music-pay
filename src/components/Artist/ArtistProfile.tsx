@@ -40,7 +40,7 @@ const ArtistProfile :FC = () : ReactElement => {
 
     return(
         <motion.div
-        style={{height: "100%", overflow: "hidden"}}
+        style={{height: "100%"}}
         initial= {{opacity: 0}}
         animate= {{opacity: 1}}
         exit= {{opacity: 0}}
@@ -54,9 +54,9 @@ const ArtistProfile :FC = () : ReactElement => {
                 :
                 <></>       
                 }
-                <AnimatePresence>
+                {/* <AnimatePresence>
                     <BookingsList/>
-                </AnimatePresence>
+                </AnimatePresence> */}
             </div>     
         </motion.div>
     )

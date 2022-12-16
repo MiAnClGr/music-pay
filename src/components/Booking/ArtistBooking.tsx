@@ -79,7 +79,10 @@ const ArtistBooking : FC = () : ReactElement => {
       >
         
         <div className='BookingForm'>
-          <h3 className='ArtistNameBooking'>{artistName}</h3>
+          <h3 
+          className='ArtistNameBooking'
+          style={{fontSize: "65px"}}
+          >{artistName}</h3>
           <br></br>
           <br></br>
           <input 

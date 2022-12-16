@@ -9,7 +9,7 @@ const ArtistMain : FC = () : ReactElement => {
 
     return (      
         <div
-        style={{height: "100%"}}
+        style={{height: "100%", overflow: "hidden"}}
         >
             <ArtistHeader/>
             {artistLoggedIn === false && artistConnected === false         

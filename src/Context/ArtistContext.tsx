@@ -2,6 +2,7 @@ import React, {createContext, useState, ReactNode} from 'react'
 import {ethers, Contract} from 'ethers'
 import {ArtistFactoryContract, signer} from '../Contracts/ContractObjects'
 import ArtistProfileABI from '../ABI/ArtistProfile'
+import { useNavigate } from 'react-router'
 
 interface ArtistContextInterface {
     artistAddress : string
@@ -31,6 +32,8 @@ interface ArtistContextInterface {
 const ArtistContext = createContext<ArtistContextInterface>({} as ArtistContextInterface)
 
 export const ArtistProvider  = ({children} : {children : ReactNode}) => {
+
+    const navigate = useNavigate()
 
 /// Creates an instance of the Artist Profile Contract
 
@@ -100,7 +103,8 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
     const [updateDisplayBookings, setUpdateDisplayBookings] = useState<boolean>(false)
 
     const displayBookings = () => {
-        setUpdateDisplayBookings(!updateDisplayBookings)   
+        // setUpdateDisplayBookings(!updateDisplayBookings) 
+        navigate("/BookingsList")  
     }
 
 /// Fetches the Bookings from the Artist Profile contract and saves them to state    

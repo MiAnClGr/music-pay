@@ -42,26 +42,36 @@ const Booking : FC<props>= ({
   }
   
   return (
-    <div className='Bookings'>
-      <h4 className='Text'>No. {gigNumber}</h4>
-      <h4 className='Text'>Payment: {payment}</h4>
-      <h4 className='Text'>Time: {time}</h4>
-      <h4 className='Text'>Date: {date}</h4>
-      <h4 className='Text'>Venue: {venue}</h4>
+    <div 
+    className='Bookings'>
+      <div
+      className= "BookingsDiv">
+        <h4 
+        className='Text'
+        style= {{width: "100px", textAlign: "center", fontSize: "20px", color: "grey"}}
+        >{gigNumber}</h4>
+        <h4 className='Text'
+        style= {{width: "200px", textAlign: "center", fontSize: "18px"}}
+        >{venue}</h4> 
+        <h4 
+        className='Text'
+        style= {{width: "200px", textAlign: "center", fontSize: "18px"}}
+        >{date}</h4>
+        <h4 
+        className='Text'
+        style= {{width: "200px", textAlign: "center", fontSize: "18px"}}
+        >${payment}</h4>
+        <h4 
+        className='Text'
+        style= {{width: "100px", textAlign: "center", fontSize: "18px"}}
+        >{time}</h4>
+        <button 
+        className='Submit'
+        style={{width: "5%"}}
+        onClick={handleSubmitAcceptBooking}
+        >Accept</button>
+      </div>
     
-      <button 
-      className='Submit'
-      style={{
-        color: "white", 
-        backgroundColor: "black",
-        borderWidth: "1px",
-        borderRadius: "5px", 
-        fontWeight: "bold",
-        fontSize: "12px",
-        padding: "7px"
-      }}
-      onClick={handleSubmitAcceptBooking}
-      >ACCEPT</button>
     </div>
     )
 }

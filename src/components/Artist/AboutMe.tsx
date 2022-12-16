@@ -46,33 +46,29 @@ const AboutMe : FC = () : ReactElement => {
     },[])
 
   return (
-  
-    <div className='AboutMe'>
-        <div className='AboutMeBox' >
-            <h4>
-                {aboutArtist}
-            </h4>
-            <br></br>
-            <br></br>
-            
-            <br></br>
-            <br></br>
-            {updateClicked
-            ?
-            <div className='AboutMeUpdate'>
-                <textarea
-                className='AboutMeUpdateBox'
-                placeholder='About...'
-                onChange= {updateAboutMe}
-                onKeyDown= {handleSubmitAboutMe}
-                >
-                </textarea> 
-            </div>          
-            :
-            <></>}       
-        </div>
+    <div className='AboutMeBox' >
+        <h4 style={{color: "white"}}>
+            {aboutArtist}
+        </h4>
+        <br></br>
+        <br></br>
+        
+        <br></br>
+        <br></br>
+        {updateClicked
+        ?
+        <div className='AboutMeUpdate'>
+            <textarea
+            className='AboutMeUpdateBox'
+            placeholder='About...'
+            onChange= {updateAboutMe}
+            onKeyDown= {handleSubmitAboutMe}
+            >
+            </textarea> 
+        </div>          
+        :
+        <></>}       
     </div>
-
   )
 }
 

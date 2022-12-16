@@ -1,11 +1,13 @@
 #root {
   height: 100vh;
   overflow: hidden;
+ 
 }
 
 html{
   height: 100%;
-  overflow: hidden
+  overflow: hidden;
+  
 }
 
 body {
@@ -14,8 +16,9 @@ body {
   max-height: 100%;
   font-family: "Clarkson",Helvetica,sans-serif;
   letter-spacing: 1px;
-
+  
 }
+
 
 /*Shared*/
 
@@ -43,7 +46,6 @@ body {
   font-size: 16px;
   font-family: "Clarkson",Helvetica,sans-serif;
   text-decoration: none;
-  cursor: pointer;
   font-weight: lighter;
 }
 
@@ -121,7 +123,8 @@ body {
   margin-top: 15%;
   justify-content: start;
   align-items: center;
-  height: 100vh;
+  height: 70%;
+  overflow: hidden;
   /* text-align: center; */
 }
 
@@ -213,7 +216,7 @@ body {
 
 .ArtistBooking {
   height: 100vh;
-  width: 400px;
+  width: 50%;
   display: flex;
   flex-direction: column;
   margin-top: 5%;
@@ -245,14 +248,13 @@ body {
 .ArtistNameBooking {
   color: #eaeaea;
   text-align: center;
-  font-size: 50px;
   margin: 0;
 }
 
 .BookingForm {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 50%;
   height: 150px;
   align-items: center;
   margin-top: 40px;
@@ -263,20 +265,22 @@ body {
 .BookingForm input {
   margin: 10px;
   transform: scale(1.1);
-  width: 300px;
+  width: 100%;
+  padding-bottom: 10px;
  
 }
 
 .BookingForm input::-webkit-input-placeholder {
   font-weight: lighter;
   font-size: 14px;
+  
 }
 
 .SubmitBooking {
   color: white;
   opacity: 0.8;
   background-color: black;
-  width: 349%;
+  width: 113%;
   height: 30%;
   font-size: 12px;
   font-family: "Clarkson",Helvetica,sans-serif;
@@ -290,22 +294,43 @@ body {
 }
 
 .BookingsList {
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   gap: 10px;
-  margin-top: 20px;
+  margin-bottom: 100px;
+  /* margin-left: auto;
+  margin-right: auto; */
+  
+  
+  
 }
 
 .Bookings{
-  width: 200px;
-  height: 300px;
+  height: 100%;
+  width: 100%;
   color:#eaeaea;
-  text-align: center;
-  border-style: solid;
-  border-color: #eaeaea;
-  border-radius: 20px;
+  border-style: dotted;
+  border-right: hidden;
+  border-left: hidden;
+  border-top: hidden;
+  border-width: 1px;
+  /* padding-bottom: 30px; */
+  padding-left: 0;
+  padding-right: 0;
 
+}
+
+.BookingsDiv {
+  display: flex; 
+  justify-content: space-between;
+  text-align: center;
+  gap: 100px;
+  align-items: center;
+  padding-top: 1%;
+  padding-bottom: 1%
 }
 
 .BookingComplete {
@@ -327,9 +352,6 @@ body {
 /*Profile*/
 
 .ProfilePage {
-  display: flex;
-  justify-content: end;
-  gap: 100px;
   padding-right: 20px;
   padding-left: 20px;
 }
@@ -420,6 +442,7 @@ body {
   border-bottom: solid;
   border-color: #eaeaea;
   top: 0;
+  position: sticky;
 }
 
 .HomeHeader {
