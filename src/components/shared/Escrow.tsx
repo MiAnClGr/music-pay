@@ -81,40 +81,72 @@ const Escrow : FC = () : ReactElement => {
 
   return (
     <div className='Escrow'>
-      <h1 className='HeaderText'>ESCROW</h1>
-      <h3 className='Text'>Booking Number: {bookingNumber}</h3>
-      <h3 className='Text'>Artist : {artistName}</h3>
-      <h3 className='Text'>Booking Agent: {bookingAgentName}</h3>
-      <h3 className='Text'> Step 1: Booking agent to pay deposit</h3>
-      <button 
-      className='Submit'
-      onClick={payDeposit}
-      >Pay
-      </button>
-      <h3 className='Text'> Step 2: Artist to confirm performance </h3>
-      <button 
-      className='Submit'
-      onClick={confirmPerformance}
-      >Confirm
-      </button>
-      <h3 className='Text'> Step 3: Booking Agent to confirm performance </h3>
-      <button 
-      className='Submit'
-      onClick={confirmPerformance}
-      >Confirm
-      </button>
-      <h3 className='Text'> Step 4: Booking Agent to finalise payment </h3>
-      <button 
-      className='Submit'
-      onClick={finalisePayment}
-      >Confirm
-      </button>
-      <h3 className='Text'> Step 5: Artist to confirm payment </h3>
-      <button 
-      className='Submit'
-      onClick={confirmPayment}
-      >Confirm
-      </button>
+      <h1 
+      className='HeaderText'
+      style={{fontSize: "60px"}}
+      >ESCROW</h1>
+      <br></br>
+      <br></br>
+      <div className='EscrowDiv'>
+        <h3 className='Text' style={{fontSize: "25px"}}>Booking Number: {bookingNumber}</h3>
+        <h3 className='Text' style={{fontSize: "25px"}}>Artist : {artistName}</h3>
+        <h3 className='Text' style={{fontSize: "25px"}}>Booking Agent: {bookingAgentName}</h3>
+      </div>
+      <div
+      className= "EscrowDiv"
+      >
+        <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 1:</h3>
+        <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>Booking agent to pay deposit</h3>
+        <button 
+        className='Submit'
+        onClick={payDeposit}
+        >Pay
+        </button>
+      </div>
+      <div
+      className= "EscrowDiv"
+      >
+        <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 2:</h3>
+        <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>Artist to confirm performance</h3>
+        <button 
+        className='Submit'
+        onClick={confirmPerformance}
+        >Confirm
+        </button>
+      </div>
+      <div
+      className= "EscrowDiv"
+      >
+        <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 3:</h3>
+        <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Booking Agent to confirm performance</h3>
+        <button 
+        className='Submit'
+        onClick={confirmPerformance}
+        >Confirm
+        </button>
+      </div>
+      <div
+      className= "EscrowDiv"
+      >
+        <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 4:</h3>
+        <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Booking Agent to finalise payment</h3>
+        <button 
+        className='Submit'
+        onClick={finalisePayment}
+        >Confirm
+        </button>
+      </div>
+      <div
+      className= "EscrowDiv"
+      >
+        <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 5:</h3>
+        <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Artist to confirm payment</h3>
+        <button 
+        className='Submit'
+        onClick={confirmPayment}
+        >Confirm
+        </button>
+      </div>
       <br></br>
       <br></br>
       <br></br>

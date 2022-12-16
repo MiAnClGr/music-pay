@@ -52,10 +52,13 @@ body {
 .Inputs {
   transform: scale(1.25);
   color: #eaeaea;
-  border-color: #eaeaea;
   background-color: black;
-  width: 40%;
-  padding: 5px;
+  border-bottom: solid;
+  border-color: grey; 
+  border-width: 1px;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;  
 }
 
 .Inputs:focus {
@@ -69,7 +72,16 @@ body {
 /*Buttons*/
 
 .Submit {
+  color: white;
+  opacity: 0.8;
+  background-color: black;
+  border-style: solid;
+  border-color: grey;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 12px;
   font-family: "Clarkson",Helvetica,sans-serif;
+  padding: 12px;
   cursor: pointer;
 }
 
@@ -252,13 +264,7 @@ body {
   margin: 10px;
   transform: scale(1.1);
   width: 300px;
-  border-width: 1px;
-  color: #eaeaea;
-  border-color: grey;
-  border-top: hidden;
-  border-left: hidden;
-  border-right: hidden;
-  background-color: black;
+ 
 }
 
 .BookingForm input::-webkit-input-placeholder {
@@ -386,6 +392,10 @@ body {
   font-size: 16px;
   outline: none;
   border: none;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  letter-spacing: 1px;
+  font-weight: normal;
+
 }
 
 .AboutMeUpdate button {
@@ -531,15 +541,34 @@ body {
 
 .Escrow {
   text-align: center;
-  border-style: solid;
-  border-color: #eaeaea;
-  border-radius: 2px;
   padding: 20px;
-  width: 60%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
   margin-bottom: 5%;
+}
+
+.Escrow button {
+  width: 20%;
+}
+
+.EscrowDiv {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-around;
+  gap: 15%;
+  align-items: center;
+  margin-bottom: 1%;
+  border-bottom: #eaeaea;
+  border-style: solid;
+  border-color: grey;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-width: 1px;
+  padding-bottom: 1%;
 }
 
 

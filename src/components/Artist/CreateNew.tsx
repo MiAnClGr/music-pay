@@ -41,33 +41,14 @@ const CreateNew : FC = () : ReactElement => {
             >Create a new profile</h3>      
             <input
             className= 'Inputs'
-            style={{
-                borderBottom : "solid",
-                borderColor: "grey",
-                borderWidth: "1px",
-                borderTop: "hidden", 
-                borderLeft: "hidden", 
-                borderRight: "hidden",
-                width: "70%"
-            }} 
+            style={{width: "70%"}} 
             placeholder= 'Artist Name' 
             onChange= {handleChange}
             >
             </input> 
             <button 
             className= 'Submit'
-            style={{
-                color: "white", 
-                opacity: "0.8",
-                backgroundColor: "black", 
-                width: "91%",
-                borderStyle: "solid",
-                borderColor: "grey",
-                borderRadius: "10px",
-                fontWeight: "bold",
-                fontSize: "12px",
-                padding: "12px"
-            }} 
+            style={{width: "91%"}} 
             onClick= {handleSubmitCreate}
             >
             CREATE
