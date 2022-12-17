@@ -56,7 +56,7 @@ body {
   color: #eaeaea;
   background-color: black;
   border-bottom: solid;
-  border-color: gray; 
+  border-color: grey; 
   border-width: 1px;
   border-top: hidden;
   border-left: hidden;
@@ -71,6 +71,7 @@ body {
   color: white;
   opacity: 0.6;
 }
+
 /*Buttons*/
 
 .Submit {
@@ -121,7 +122,7 @@ body {
   flex-direction: column;
   gap: 5%;
   margin-top: 15%;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   height: 70%;
   overflow: hidden;
@@ -220,14 +221,10 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 5%;
-  
-  justify-content: start;
+  justify-content: flex-start;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  /* border-style: solid;
-  border-color: #eaeaea;
-  border-radius: 2px; */
 }
 
 .ArtistBookingHeader {
@@ -301,11 +298,6 @@ body {
   justify-content: space-around;
   gap: 10px;
   margin-bottom: 100px;
-  /* margin-left: auto;
-  margin-right: auto; */
-  
-  
-  
 }
 
 .Bookings{
@@ -317,7 +309,6 @@ body {
   border-left: hidden;
   border-top: hidden;
   border-width: 1px;
-  /* padding-bottom: 30px; */
   padding-left: 0;
   padding-right: 0;
 
@@ -343,10 +334,6 @@ body {
   margin-right: auto;
   margin-top: 150px;
   margin-bottom: 20%;
-  /* border-style: solid;
-  border-color: grey;
-  border-radius: 10px;
-  border-width: 1px; */
 }
 
 /*Profile*/
@@ -424,7 +411,6 @@ body {
   width: 60px;
   transform: scale(1.25);
   color: #eaeaea;
-  /* border-color: #eaeaea; */
   background-color: black;
   font-family: "Clarkson",Helvetica,sans-serif;
 }
@@ -550,9 +536,6 @@ body {
   border-color: grey;
   border-radius: 10px;
   border-style: solid;
-  /* border-top: hidden;
-  border-left: hidden;
-  border-right: hidden; */
   background-color: black;
 
   padding: 2px;
