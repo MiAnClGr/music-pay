@@ -59,6 +59,7 @@ const ArtistHeader : FC = () : ReactElement => {
 				: 
 				<Link
 				className='Login' 
+				style={{fontSize: "15px"}}
 				to= "/Login"
 				>
 				LOG IN

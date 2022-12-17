@@ -456,9 +456,20 @@ body {
 
 .Login {
   color: #eaeaea;
-  font-size: 18px;
+  font-size: 15px;
   position:absolute;
   right: 2%;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.Logout {
+  color: #eaeaea;
+  font-size: 14px;
+  position:absolute;
+  right: 1%;
+  bottom: 2%;
   font-family: "Clarkson",Helvetica,sans-serif;
   text-decoration: none;
   cursor: pointer;

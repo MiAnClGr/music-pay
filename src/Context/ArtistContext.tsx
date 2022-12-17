@@ -8,6 +8,7 @@ interface ArtistContextInterface {
     artistAddress : string
     artistProfileAddress : string
     loginArtist : () => Promise<void>
+    logoutArtist : () => Promise<void>
     setArtist : () => Promise<void>
     artistLoggedIn : boolean
     artistConnected : boolean
@@ -54,6 +55,15 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
         setArtistProfileAddress(artist)
         setArtistLoggedIn(true)
     } 
+
+/// Logging out the Artist 
+
+    const logoutArtist = async () => {
+        setArtistProfileAddress("")
+        setArtistLoggedIn(false)
+        setArtistAddress("")
+        setBookings([])
+    }
 
 /// Checks the connected address is the same as the artist address in the Artist Profile Contract and saves to state    
 
@@ -145,6 +155,7 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             artistAddress,
             artistProfileAddress,
             loginArtist,
+            logoutArtist,
             setArtist,
             artistLoggedIn,
             artistConnected,

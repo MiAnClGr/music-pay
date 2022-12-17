@@ -4,6 +4,7 @@ import ArtistHeader from "../shared/ArtistHeader"
 import BookingsList from "./BookingsList"
 import ArtistContext from '../../Context/ArtistContext'
 import {motion, AnimatePresence} from 'framer-motion'
+import LogOut from '../shared/LogOut'
 
 const ArtistProfile :FC = () : ReactElement => {
 
@@ -54,10 +55,9 @@ const ArtistProfile :FC = () : ReactElement => {
                 :
                 <></>       
                 }
-                {/* <AnimatePresence>
-                    <BookingsList/>
-                </AnimatePresence> */}
-            </div>     
+                
+            </div>
+            <LogOut/>     
         </motion.div>
     )
 }
