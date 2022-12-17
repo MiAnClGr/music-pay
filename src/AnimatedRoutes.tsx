@@ -16,6 +16,7 @@ import ProfileDoesNotExist from './components/LoadingAndError/ProfileDoesNotExis
 import RoutingUser from './components/RoutingUser';
 import About from './components/shared/About';
 import BookingsList from './components/Artist/BookingsList';
+import MetamaskNotDetected from './components/LoadingAndError/MetamaskNotDetected';
 
 const AnimatedRoutes = () => {
 
@@ -54,6 +55,8 @@ const AnimatedRoutes = () => {
         <Route path = "/NotOwner" element = {<NotOwner/>}/>
 
         <Route path = "/ProfileDoesNotExist" element = {<ProfileDoesNotExist/>}/>
+
+        <Route path = "/MetamaskNotDetected" element = {<MetamaskNotDetected/>}/>
         
       </Routes>  
     </AnimatePresence>

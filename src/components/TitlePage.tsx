@@ -1,8 +1,20 @@
-import React, {FC, ReactElement} from 'react'
+import React, {FC, ReactElement, useEffect} from 'react'
 import ConnectWallet from './ConnectWallet'
+import {provider} from '../Contracts/ContractObjects'
 import {motion} from 'framer-motion'
 
+declare var window : any 
+
 const TitlePage : FC = () : ReactElement => {
+
+  const isConnected = async () => {
+    if(provider != window.ethereum){
+      console.log("install metamask")
+    }
+  }
+
+  useEffect(() =>{
+  }, [isConnected()])
 
   return (
     <motion.div 

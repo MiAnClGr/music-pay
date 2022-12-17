@@ -11,16 +11,19 @@ const ConnectWallet : FC = () : ReactElement => {
 
   const connect = async () =>  {
       navigate("/Loading")
-    await provider.send("eth_requestAccounts", [])
-    
-    if (window.ethereum.isConnected()){
-      navigate("/RoutingUser")
+
+    try{
+      await provider.send("eth_requestAccounts", [])
+    }catch(e){
+      console.log(e,"metamask is not detected")
+      navigate("/MetamaskNotDetected")
+    }finally{
+      if (window.ethereum.isConnected()){
+        navigate("/RoutingUser")
     }
   }
 
-  useEffect(() =>{
-  }, [window.ethereum.isConnected()])
-  
+}
   return (
    
     <button
