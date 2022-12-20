@@ -39,7 +39,7 @@ const BookingComplete = () => {
         className='Text'
         style={{fontSize: '22px'}}
         >
-            You have booked {artistName} to perform at {artistBooking.venue} 
+            You have sent a Booking request to {artistName} to perform at {artistBooking.venue} 
         </h1>
         <h1 
         className='Text'

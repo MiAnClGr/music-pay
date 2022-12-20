@@ -42,21 +42,21 @@ const BookingsList :FC = () : ReactElement => {
                 color: "grey", 
                 fontSize: "23px",
                 borderBottom: "dotted",
-                borderColor: "white",
+                borderColor: "grey",
                 borderWidth: "1px",
                 position: "sticky"
                 
             }}
             >
-                <h4 style={{width: "100px"}}>Booking</h4>
-                <h4 style={{width: "200px"}}>Venue</h4>
-                <h4 style={{width: "200px"}}>Date</h4>
-                <h4 style={{width: "200px"}}>Payment</h4>
-                <h4 style={{width: "100px"}}>Time</h4>
-                <h4 style={{width: "76px", color: "black"}}>Hidden</h4>
+                <h4 style={{width: "100px", minWidth: "80px"}}>Booking</h4>
+                <h4 style={{width: "200px", minWidth: "150px"}}>Venue</h4>
+                <h4 style={{width: "200px", minWidth: "150px"}}>Date</h4>
+                <h4 style={{width: "200px", minWidth: "150px"}}>Payment</h4>
+                <h4 style={{width: "100px", minWidth: "80px"}}>Time</h4>
+                <h4 style={{width: "6%", minWidth: "82px", color: "black"}}>Hidden</h4>
                 
             </div>
-            <motion.div 
+            <motion.div
             className='BookingsList'
             initial= {{opacity: 0}}
             animate= {{opacity: 1}}

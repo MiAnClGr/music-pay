@@ -78,7 +78,12 @@ const ArtistBooking : FC = () : ReactElement => {
       exit= {{opacity: 0}}
       >
         
-        <div className='BookingForm'>
+        <motion.div 
+        className='BookingForm'
+        initial= {{opacity: 0}}
+        animate= {{opacity: 1}}
+        exit= {{opacity: 0}}
+        >
           <h3 
           className='ArtistNameBooking'
           style={{fontSize: "65px"}}
@@ -134,7 +139,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
               BOOK ARTIST
             </button>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   )

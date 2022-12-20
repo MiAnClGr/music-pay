@@ -48,26 +48,26 @@ const Booking : FC<props>= ({
       className= "BookingsDiv">
         <h4 
         className='Text'
-        style= {{width: "100px", textAlign: "center", fontSize: "20px", color: "grey"}}
+        style= {{width: "100px", minWidth: "80px", textAlign: "center", fontSize: "20px", color: "grey"}}
         >{gigNumber}</h4>
         <h4 className='Text'
-        style= {{width: "200px", textAlign: "center", fontSize: "18px"}}
+        style= {{width: "200px", minWidth: "150px", textAlign: "center", fontSize: "18px"}}
         >{venue}</h4> 
         <h4 
         className='Text'
-        style= {{width: "200px", textAlign: "center", fontSize: "18px"}}
+        style= {{width: "200px", minWidth: "150px", textAlign: "center", fontSize: "18px"}}
         >{date}</h4>
         <h4 
         className='Text'
-        style= {{width: "200px", textAlign: "center", fontSize: "18px"}}
+        style= {{width: "200px", minWidth: "150px", textAlign: "center", fontSize: "18px"}}
         >${payment}</h4>
         <h4 
         className='Text'
-        style= {{width: "100px", textAlign: "center", fontSize: "18px"}}
+        style= {{width: "100px", minWidth: "80px", textAlign: "center", fontSize: "18px"}}
         >{time}</h4>
         <button 
         className='Submit'
-        style={{width: "5%"}}
+        style={{width: "6%", minWidth: "80px"}}
         onClick={handleSubmitAcceptBooking}
         >Accept</button>
       </div>
