@@ -5,8 +5,8 @@ import PerformanceContractABI from "../ABI/PerformanceContract"
 
 declare var window: any
 
-const ArtistFactoryAddress = "0xaDf773Bb65dA49F63ABBA23bD8920a50E2855FC8"
-const PerformanceContractAddress = "0xfF38F0dFC33a3df7FAf57a3EdF227031815EF71f"
+const ArtistFactoryAddress = "0x2E38cEfBc721dFcF5d7dA9A4609d31D23d034C19"
+const PerformanceContractAddress = "0xCe145823a9C038E83DC893e1c97F0CC77b4Ef494"
 
 let provider : ethers.providers.Web3Provider
 let signer : ethers.providers.JsonRpcSigner
