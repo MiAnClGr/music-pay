@@ -7,11 +7,14 @@ import ArtistContext from '../../Context/ArtistContext'
 const Escrow : FC = () : ReactElement => {
 
     const [artistName, setArtistName] = useState("")
-    const [artist, setArtist] = useState("")
-    const [bookingAgent, setBookingAgent] = useState("")
     const [bookingAgentName, setBookingAgentName] = useState("")
+    const [escrowState, setEscrowState] = useState<number>(0)
+
+   
 
     const {bookingNumber, escrowAddress, getEscrowAddress} = useContext(ArtistContext)
+
+    console.log(escrowAddress)
 
     const createEscrowInstance = () => {
         const EscrowContract : Contract = new ethers.Contract(escrowAddress, EscrowABI, signer)
@@ -20,23 +23,11 @@ const Escrow : FC = () : ReactElement => {
     }
 
     const getArtistName = async () => {
-      const name = await ArtistFactoryContract.artistAddressToName(artist)
-      console.log(artist)
+      const EscrowContract = createEscrowInstance()
+      const name = await EscrowContract.artistName()
       console.log(name)
       setArtistName(name)
     }
-
-    const getArtist = async () => {
-      const EscrowContract = createEscrowInstance()
-      const artist = await EscrowContract.artist()
-      setArtist(artist)
-    } 
-
-    const getBookingAgent = async () => {
-      const EscrowContract = createEscrowInstance()
-      const bookingAgent = await EscrowContract.bookingAgent()
-      setBookingAgent(bookingAgent)
-    } 
 
     const getBookingAgentName = async () => {
       const EscrowContract = createEscrowInstance()
@@ -69,17 +60,30 @@ const Escrow : FC = () : ReactElement => {
       await EscrowContract.completeBooking()
     }
 
+    const getCurrentState = async () => {
+      const EscrowContract = createEscrowInstance()
+      const state = await EscrowContract.currentState()
+      setEscrowState(state)
+    }
+
+    
+
+    // const determineState = async () => {
+    //   const EscrowContract = createEscrowInstance()
+    //   if(EscrowContract.currentState)
+    // }
+
     console.log(artistName)
+    console.log(escrowState)
 
     useEffect(() => {
         getEscrowAddress()
     },[])
 
     useEffect(() => {
-      getArtist()
-      getBookingAgent()
       getArtistName()
       getBookingAgentName()
+      getCurrentState()
     }, [escrowAddress])
 
 

@@ -138,11 +138,10 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
     const [escrowAddress, setEscrowAddress] = useState<string>("")
 
-    const getEscrowAddress = () => {
+    const getEscrowAddress = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        artistProfileContract.on("EscrowCreated", (escrowAddress => {
-            setEscrowAddress(escrowAddress)
-          }))
+        const address = await artistProfileContract.bookingNumberToEscrow(bookingNumber)
+        setEscrowAddress(address)
     }
 
 /// Booking number is set during the booking and displayed in the Escrow Component    

@@ -52,6 +52,8 @@ contract ArtistProfile {
 
     mapping(address => address) public bookingAgentToEscrow;
 
+    mapping(uint => address) public bookingNumberToEscrow;
+
     enum State {notCompleted, bookingComplete, performanceCompleted, paymentComplete}
 
 /// Modifiers 
@@ -119,6 +121,7 @@ contract ArtistProfile {
 
         escrow =  new BookingEscrow(
             booking.artist,
+            booking.artistName,
             booking.bookingAgent,
             booking.bookingAgentName,
             booking.gigNumber, 
@@ -126,6 +129,7 @@ contract ArtistProfile {
         );
 
         bookingAgentToEscrow[booking.bookingAgent] = address(escrow);
+        bookingNumberToEscrow[_gigNumber] = address(escrow);
 
         emit DepositPaid(_gigNumber);
         emit EscrowCreated(address(escrow));

@@ -14,15 +14,18 @@ contract BookingEscrow {
     enum PaymentState {
         NO_PAYMENT_MADE, 
         DEPOSIT_PAID, 
+        PERFORMANCE_FINALISED_ARTIST,
+        PERFORMANCE_FINALISED_AGENT,
         PERFORMANCE_FINALISED, 
         PAYMENT_FINALISED,
         PAYMENT_CONFIRMED, 
         COMPLETE
         }
 
-    PaymentState currentState;
+    PaymentState public currentState;
 
     address public artist;
+    string public artistName;
     address public bookingAgent;
     string public bookingAgentName;
     uint256 public gigNumber;
@@ -46,12 +49,14 @@ contract BookingEscrow {
     
     constructor(
         address _artist,
+        string memory _artistName,
         address _bookingAgent, 
         string memory _bookingAgentName,
         uint _gigNumber, 
         uint256 _payment
         ) payable {
         artist = _artist;
+        artistName = _artistName;
         bookingAgent = _bookingAgent;
         bookingAgentName = _bookingAgentName;
         gigNumber = _gigNumber;
@@ -74,9 +79,12 @@ contract BookingEscrow {
     function confirmPerformance() external {
         require(currentState == PaymentState.DEPOSIT_PAID);
         if(msg.sender == artist) {
-            performanceConfirmedArtist = true;}
+            performanceConfirmedArtist = true;
+            currentState = PaymentState.PERFORMANCE_FINALISED_ARTIST;    
+        }
         else if(msg.sender == bookingAgent) {
             performanceConfirmedAgent = true;
+            currentState = PaymentState.PERFORMANCE_FINALISED_AGENT;
         }if(performanceConfirmedArtist && performanceConfirmedAgent){
             currentState = PaymentState.PERFORMANCE_FINALISED;
         }
