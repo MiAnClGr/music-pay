@@ -51,7 +51,7 @@ body {
 
 /*Input Fields*/
 
-.Inputs {
+.Input {
   transform: scale(1.25);
   color: #eaeaea;
   background-color: black;
@@ -63,11 +63,11 @@ body {
   border-right: hidden;  
 }
 
-.Inputs:focus {
+.Input:focus {
   outline: none;
 }
 
-.Inputs::-webkit-input-placeholder {
+.Input::-webkit-input-placeholder {
   color: white;
   opacity: 0.6;
 }

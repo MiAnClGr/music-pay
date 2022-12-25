@@ -40,7 +40,7 @@ const CreateNew : FC = () : ReactElement => {
             style={{fontSize: "25px", marginBottom: "0"}}
             >Create a new profile</h3>      
             <input
-            className= 'Inputs'
+            className= 'Input'
             style={{width: "70%"}} 
             placeholder= 'Artist Name' 
             onChange= {handleChange}
