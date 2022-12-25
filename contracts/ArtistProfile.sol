@@ -65,10 +65,10 @@ contract ArtistProfile {
 
 /// Constructor
 
-    constructor(string memory _artistName, address _artist) {
+    constructor(string memory _artistName, address _artist, address _daiAddress) {
         artistName = _artistName;
         artist = payable(_artist);
-        DAI = ERC20(0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60);
+        DAI = ERC20(_daiAddress);
     }
 
 /// Receive
@@ -125,7 +125,8 @@ contract ArtistProfile {
             booking.bookingAgent,
             booking.bookingAgentName,
             booking.gigNumber, 
-            booking.payment
+            booking.payment,
+            payable(address(DAI))
         );
 
         bookingAgentToEscrow[booking.bookingAgent] = address(escrow);

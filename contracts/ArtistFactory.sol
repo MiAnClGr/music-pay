@@ -5,6 +5,8 @@ import "./ArtistProfile.sol";
 
 contract ArtistFactory {
 
+    address daiAddress;
+
     mapping(address => address) public ownerToArtist;
     mapping(string => address) public artistNameToAddress;
     mapping(address => string) public artistAddressToName;
@@ -15,9 +17,14 @@ contract ArtistFactory {
 
     event Artist(address, string);
 
+    constructor(address _daiAddress){
+        daiAddress = _daiAddress;
+    }
+
+
     function createArtist(string memory _artistName) external {
     
-        ArtistProfile artistProfile = new ArtistProfile(_artistName, msg.sender);
+        ArtistProfile artistProfile = new ArtistProfile(_artistName, msg.sender, daiAddress);
         ownerToArtist[msg.sender] = address(artistProfile);
         artistNameToAddress[_artistName] = address(artistProfile);
         artistAddressToName[address(artistProfile)] = _artistName;

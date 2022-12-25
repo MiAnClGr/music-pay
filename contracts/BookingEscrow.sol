@@ -55,7 +55,8 @@ contract BookingEscrow {
         address _bookingAgent, 
         string memory _bookingAgentName,
         uint _gigNumber, 
-        uint256 _payment
+        uint256 _payment,
+        address _daiAddress
         ) payable {
         artist = _artist;
         artistName = _artistName;
@@ -63,16 +64,15 @@ contract BookingEscrow {
         bookingAgentName = _bookingAgentName;
         gigNumber = _gigNumber;
         payment = _payment;
-        DAI = ERC20(0x5FbDB2315678afecb367f032d93F642f64180aa3);
+        DAI = ERC20(_daiAddress);
 
         currentState = PaymentState.NO_PAYMENT_MADE;
         
     }
 
-    function payDeposit() external onlyBookingAgent {
+    function payDeposit() external {
         require(currentState == PaymentState.NO_PAYMENT_MADE);
-        uint deposit = payment/5;
-        console.log(deposit);
+        uint deposit = (payment*10**18) /5;
         bool success = DAI.transferFrom(msg.sender, address(this), deposit);
         require(success);
 
