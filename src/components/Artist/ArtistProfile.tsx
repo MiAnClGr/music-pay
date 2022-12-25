@@ -57,7 +57,12 @@ const ArtistProfile :FC = () : ReactElement => {
                 }
                 
             </div>
-            <LogOut/>     
+            {artistLoggedIn
+            ?
+            <LogOut/>
+            :
+            <></>   
+            }
         </motion.div>
     )
 }
