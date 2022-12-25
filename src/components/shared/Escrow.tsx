@@ -1,7 +1,7 @@
   import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
-import {ethers, Contract} from 'ethers'
+import {ethers, utils, Contract} from 'ethers'
 import EscrowABI from '../../ABI/BookingEscrow'
-import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
+import {MockDai, signer} from "../../Contracts/ContractObjects"
 import ArtistContext from '../../Context/ArtistContext'
 
 const Escrow : FC = () : ReactElement => {
@@ -9,8 +9,7 @@ const Escrow : FC = () : ReactElement => {
     const [artistName, setArtistName] = useState("")
     const [bookingAgentName, setBookingAgentName] = useState("")
     const [escrowState, setEscrowState] = useState<number>(0)
-
-   
+    const [paymentApproved, setPaymentApproved] = useState<boolean>(false)
 
     const {bookingNumber, escrowAddress, getEscrowAddress} = useContext(ArtistContext)
 
@@ -35,9 +34,29 @@ const Escrow : FC = () : ReactElement => {
       setBookingAgentName(bookingAgentName)
     }
 
-    const payDeposit = async () => {
+    const approve = async () => {
       const EscrowContract = createEscrowInstance()
-      await EscrowContract.payDeposit()
+      const deposit = await EscrowContract.payment()/5
+      try{
+        const approval = await MockDai.approve(escrowAddress, utils.parseEther(deposit.toString()) )
+        await approval.wait()
+      }catch(error){
+        console.log(error)
+      }finally{
+        setPaymentApproved(true)
+      }
+    }
+
+    const payDeposit = async () =>{
+      const EscrowContract = createEscrowInstance()
+      try{
+        const pay = await EscrowContract.payDeposit()
+        await pay.wait()
+      }catch(error){
+        console.log(error)
+      }finally{
+        setPaymentApproved(false)
+      }
     }
 
     const confirmPerformance = async () => {
@@ -105,11 +124,20 @@ const Escrow : FC = () : ReactElement => {
       >
         <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 1:</h3>
         <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>Booking agent to pay deposit</h3>
-        <button 
-        className='Submit'
-        onClick={payDeposit}
-        >Pay
-        </button>
+        {paymentApproved
+        ?
+          <button 
+          className='Submit'
+          onClick={payDeposit}
+          >Pay
+          </button>
+        :
+          <button 
+          className='Submit'
+          onClick={approve}
+          >Approve
+          </button>
+        }
       </div>
       <div
       className= "EscrowDiv"

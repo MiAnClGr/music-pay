@@ -7,8 +7,6 @@ import {motion} from 'framer-motion'
 
 const ArtistBooking : FC = () : ReactElement => {
 
-  
-  
   const {
     searchedAddress, 
     artistBooking, 
