@@ -42,7 +42,7 @@ const Login : FC = () : ReactElement => {
             style={{fontSize: "25px", marginBottom: "0"}}
             >Log into Music-Pay</h2>
             <input
-            className= 'Input'
+            // className= 'Input'
             style={{width: "70%"}} 
             placeholder= 'Artist Name' 
             onChange= {handleChange}

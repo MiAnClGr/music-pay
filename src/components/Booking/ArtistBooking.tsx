@@ -89,7 +89,7 @@ const ArtistBooking : FC = () : ReactElement => {
           <br></br>
           <br></br>
           <input 
-            className='Input'
+            // className='Input'
             autoComplete='off'
             placeholder="Booking Agent" 
             name= "bookingAgent"
@@ -97,7 +97,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
             </input>
             <input 
-            className='Input'
+            // className='Input'
             autoComplete='off'
             placeholder="Payment" 
             name= "payment"
@@ -105,7 +105,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
             </input>
             <input 
-            className='Input'
+            // className='Input'
             autoComplete='off'
             placeholder="Time" 
             name="time"
@@ -113,7 +113,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
             </input>
             <input 
-            className='Input'
+            // className='Input'
             autoComplete='off'
             placeholder="Venue" 
             name="venue"
@@ -121,7 +121,7 @@ const ArtistBooking : FC = () : ReactElement => {
             >
             </input>
             <input 
-            className='Input'
+            // className='Input'
             autoComplete='off'
             placeholder="Date" 
             name="date"

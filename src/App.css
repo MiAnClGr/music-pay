@@ -50,7 +50,7 @@ body {
 }
 
 /*Input Fields*/
-
+/* 
 .Input {
   transform: scale(1.25);
   color: #eaeaea;
@@ -70,7 +70,7 @@ body {
 .Input::-webkit-input-placeholder {
   color: white;
   opacity: 0.6;
-}
+} */
 
 /*Buttons*/
 
