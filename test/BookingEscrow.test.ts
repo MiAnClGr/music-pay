@@ -18,16 +18,13 @@ describe("Using the bookingEscrow Contract", () => {
 
     [artist, bookingAgent] = await ethers.getSigners()
 
-    const mockDaiFactory = await ethers.getContractFactory("MockDai")
+    await deployments.fixture('MockDai')
     const bookingEscrowFactory = await ethers.getContractFactory("BookingEscrow")
 
-    
+    MockDaiContract = await ethers.getContract('MockDai')
     BookingEscrowContract = await 
-        bookingEscrowFactory.deploy(artist.address, "ZONG", bookingAgent.address, "Joe", 1, 1000)
-    MockDaiContract = await mockDaiFactory.deploy()
-
-
-    await MockDaiContract.connect(bookingAgent).mintDai(ethers.utils.parseEther('1000'))
+        bookingEscrowFactory.deploy(artist.address, "ZONG", bookingAgent.address, "Joe", 1, 1000, MockDaiContract.address)
+    
     await MockDaiContract.connect(bookingAgent).approve(BookingEscrowContract.address, ethers.utils.parseEther('1000'))
   })
 
@@ -40,6 +37,13 @@ describe("Using the bookingEscrow Contract", () => {
     expect(allowance).to.equal(ethers.utils.parseEther('1000'))
   })
 
+  it('should transfer the payment from the booking agent to the escrow contract', async () => {
+    await BookingEscrowContract.connect(bookingAgent).payDeposit()
+    const balance = await MockDaiContract.balanceOf(BookingEscrowContract.address)
+    expect(balance).to.equal(ethers.utils.parseEther('200'))
+    const agentBalance = await MockDaiContract.balanceOf(bookingAgent.address)
+    expect(agentBalance).to.equal(ethers.utils.parseEther('800'))
+  })
 
 
 
