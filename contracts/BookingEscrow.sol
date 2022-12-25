@@ -3,6 +3,8 @@
 import "./ProofOfPayment.sol";
 import "./PerformanceContract.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "hardhat/console.sol";
+
 
 pragma solidity 0.8.17;
 
@@ -61,7 +63,7 @@ contract BookingEscrow {
         bookingAgentName = _bookingAgentName;
         gigNumber = _gigNumber;
         payment = _payment;
-        DAI = ERC20(0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60);
+        DAI = ERC20(0x5FbDB2315678afecb367f032d93F642f64180aa3);
 
         currentState = PaymentState.NO_PAYMENT_MADE;
         
@@ -69,7 +71,9 @@ contract BookingEscrow {
 
     function payDeposit() external onlyBookingAgent {
         require(currentState == PaymentState.NO_PAYMENT_MADE);
-        bool success = DAI.transferFrom(msg.sender, address(this), payment / 5);
+        uint deposit = payment/5;
+        console.log(deposit);
+        bool success = DAI.transferFrom(msg.sender, address(this), deposit);
         require(success);
 
         currentState = PaymentState.DEPOSIT_PAID;
