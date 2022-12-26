@@ -7,6 +7,8 @@ contract ArtistFactory {
 
     address daiAddress;
 
+    mapping(address => address[]) public agentToCurrentEscrow;
+
     mapping(address => address) public ownerToArtist;
     mapping(string => address) public artistNameToAddress;
     mapping(address => string) public artistAddressToName;
@@ -38,5 +40,17 @@ contract ArtistFactory {
     function removeArtist(string memory _artistName) external {
         require(artistProfileToArtist[artistNameToAddress[_artistName]] == msg.sender);
         doesArtistExist[_artistName] = false;
+    }
+
+    function addEscrow(address _bookingAgent) external {
+        agentToCurrentEscrow[_bookingAgent].push(msg.sender);
+    }
+
+    function getEscrow(address _bookingAgent, uint _index) external view returns(address){
+        return agentToCurrentEscrow[_bookingAgent][_index];
+    }
+
+    function getEscrowArrayLength(address _bookingAgent) external view returns(uint) {
+        return (agentToCurrentEscrow[_bookingAgent].length - 1);
     }
 }

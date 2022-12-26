@@ -45,6 +45,7 @@ contract ArtistProfile {
 
     string public artistName;
     address public artist;
+    address public artistFactory;
 
     string public aboutMe;
 
@@ -69,6 +70,8 @@ contract ArtistProfile {
         artistName = _artistName;
         artist = payable(_artist);
         DAI = ERC20(_daiAddress);
+        artistFactory = msg.sender;
+        
     }
 
 /// Receive
@@ -126,7 +129,9 @@ contract ArtistProfile {
             booking.bookingAgentName,
             booking.gigNumber, 
             booking.payment,
-            payable(address(DAI))
+            payable(address(DAI)),
+            artistFactory
+            
         );
 
         bookingAgentToEscrow[booking.bookingAgent] = address(escrow);

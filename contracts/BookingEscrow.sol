@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 
 import "./ProofOfPayment.sol";
+import "./ArtistFactory.sol";
 import "./PerformanceContract.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
@@ -11,6 +12,7 @@ pragma solidity 0.8.17;
 contract BookingEscrow {
 
     ERC20 DAI;
+    ArtistFactory artistFactory;
     ProofOfPayment proofOfPayment;
 
     enum PaymentState {
@@ -56,7 +58,8 @@ contract BookingEscrow {
         string memory _bookingAgentName,
         uint _gigNumber, 
         uint256 _payment,
-        address _daiAddress
+        address _daiAddress,
+        address _artistFactoryAddress
         ) payable {
         artist = _artist;
         artistName = _artistName;
@@ -65,7 +68,8 @@ contract BookingEscrow {
         gigNumber = _gigNumber;
         payment = _payment;
         DAI = ERC20(_daiAddress);
-
+        artistFactory = ArtistFactory(_artistFactoryAddress);
+        artistFactory.addEscrow(_bookingAgent);
         currentState = PaymentState.NO_PAYMENT_MADE;
         
     }

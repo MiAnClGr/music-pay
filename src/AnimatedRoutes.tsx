@@ -17,6 +17,7 @@ import RoutingUser from './components/RoutingUser';
 import About from './components/shared/About';
 import BookingsList from './components/Artist/BookingsList';
 import MetamaskNotDetected from './components/LoadingAndError/MetamaskNotDetected';
+import EscrowList from './components/Booking/EscrowList';
 
 const AnimatedRoutes = () => {
 
@@ -49,6 +50,8 @@ const AnimatedRoutes = () => {
         <Route path = "/BookingsList" element = {<BookingsList/>}/>
 
         <Route path = "/Escrow" element = {<Escrow/>}/>
+
+        <Route path = "/EscrowList" element = {<EscrowList/>}/>
 
         <Route path = "/Loading" element = {<Loading/>}/>
 
