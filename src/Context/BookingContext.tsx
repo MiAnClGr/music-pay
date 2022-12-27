@@ -1,7 +1,8 @@
 import React, {createContext, useState, ReactNode} from 'react'
+import {ethers, Contract} from 'ethers'
 import { useNavigate } from 'react-router'
 import {ArtistFactoryContract, signer} from '../Contracts/ContractObjects'
-
+import EscrowABI from '../ABI/BookingEscrow'
 
 interface BookingContextInterface {
     search : (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -15,6 +16,12 @@ interface BookingContextInterface {
     getArtistName : () => Promise<void>
     escrowList : any[]
     getEscrowList : () => Promise<void>
+    escrowAddressAgent : string
+    setEscrowAddressAgent : React.Dispatch<React.SetStateAction<string>>
+    EscrowContractAgent : Contract
+    bookingNumberAgent : string
+    setBookingNumberAgent : React.Dispatch<React.SetStateAction<string>>
+    createEscrowInstanceAgent : () => ethers.Contract
 }
 
 
@@ -70,6 +77,20 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
         venue: ""
     })
 
+///Fetches the escrow address for the agent 
+
+    const [escrowAddressAgent, setEscrowAddressAgent] = useState<string>("")
+
+///Creates an instance of the Escrow Account for the booking agent 
+
+    const createEscrowInstanceAgent = () => {
+        const EscrowContract : Contract = new ethers.Contract(escrowAddressAgent, EscrowABI, signer) 
+
+        return EscrowContract
+    }
+
+    const EscrowContractAgent = createEscrowInstanceAgent()
+
 ///Fetches a list of addressess of escrow contracts that the booking agent is a part of 
 
     const [escrowList, setEscrowList] = useState<any[]>([])
@@ -77,7 +98,6 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
     const getEscrowList = async () => {
         let escrowAddressList : any[] = []
         const arrayLength = await ArtistFactoryContract.getEscrowArrayLength(await signer.getAddress())
-        console.log(arrayLength)
         for(let i=0; i <= arrayLength; i++){
             const userAddress = await signer.getAddress()
             const address = await ArtistFactoryContract.getEscrow(userAddress, i)
@@ -86,6 +106,8 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
         }
         setEscrowList(escrowAddressList)
     }
+
+    const [bookingNumberAgent, setBookingNumberAgent] = useState<string>("")
 
 
     return(
@@ -101,7 +123,13 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
             setArtistName,
             getArtistName,
             escrowList,
-            getEscrowList
+            getEscrowList, 
+            escrowAddressAgent,
+            setEscrowAddressAgent,
+            EscrowContractAgent,
+            bookingNumberAgent,
+            setBookingNumberAgent,
+            createEscrowInstanceAgent
         
         }}
         >

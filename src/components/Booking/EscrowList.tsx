@@ -4,13 +4,13 @@ import Escrow from '../Booking/Escrow'
 
 const EscrowList = () => {
 
-    const {escrowList, getEscrowList } = useContext(BookingContext)
+    const {escrowList, getEscrowList} = useContext(BookingContext)
 
-    const displayEscrow = escrowList.map((escrowaddress : string) => 
-            <Escrow
-            escrowAddress= {escrowaddress}
-            />
-        )
+    const displayEscrow = escrowList.map((escrowAddress : string) => 
+      <Escrow
+      escrowAddress= {escrowAddress}
+      />
+    )
        
     
 

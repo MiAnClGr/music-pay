@@ -2,6 +2,7 @@ import React, {createContext, useState, ReactNode} from 'react'
 import {ethers, Contract} from 'ethers'
 import {ArtistFactoryContract, signer} from '../Contracts/ContractObjects'
 import ArtistProfileABI from '../ABI/ArtistProfile'
+import EscrowABI from '../ABI/BookingEscrow'
 import { useNavigate } from 'react-router'
 
 interface ArtistContextInterface {
@@ -23,10 +24,9 @@ interface ArtistContextInterface {
     getBookings :  () => Promise<void>
     bookingNumberArtist : string
     setBookingNumberArtist : React.Dispatch<React.SetStateAction<string>>
-    bookingNumberAgent : string
-    setBookingNumberAgent : React.Dispatch<React.SetStateAction<string>>
-    escrowAddress : string
-    getEscrowAddress : () => void
+    escrowAddressArtist : string
+    getEscrowAddressArtist : () => void
+    EscrowContractArtist : Contract
 
 
 }
@@ -138,18 +138,28 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
 /// Fetches the address of a newly created Escrow contract  
 
-    const [escrowAddress, setEscrowAddress] = useState<string>("")
+    const [escrowAddressArtist, setEscrowAddressArtist] = useState<string>("")
 
-    const getEscrowAddress = async () => {
+    const getEscrowAddressArtist = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         const address = await artistProfileContract.bookingNumberToEscrow(bookingNumberArtist)
-        setEscrowAddress(address)
+        setEscrowAddressArtist(address)
     }
+
+/// Create an instance of the EscrowContract 
+
+const createEscrowInstanceArtist = () => {
+    const EscrowContract : Contract = new ethers.Contract(escrowAddressArtist, EscrowABI, signer) 
+
+    return EscrowContract
+}
+
+const EscrowContractArtist = createEscrowInstanceArtist()
 
 /// Booking number is set during the booking and displayed in the Escrow Component    
 
     const [bookingNumberArtist, setBookingNumberArtist] = useState<string>("")
-    const [bookingNumberAgent, setBookingNumberAgent] = useState<string>("")
+    
 
     return(
         <ArtistContext.Provider
@@ -172,10 +182,9 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             getBookings,
             bookingNumberArtist,
             setBookingNumberArtist,
-            bookingNumberAgent,
-            setBookingNumberAgent,
-            escrowAddress,
-            getEscrowAddress           
+            escrowAddressArtist,
+            getEscrowAddressArtist,
+            EscrowContractArtist           
         }}
         >
             {children}

@@ -1,108 +1,85 @@
   import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
-import {ethers, utils, Contract} from 'ethers'
-import EscrowABI from '../../ABI/BookingEscrow'
+import {utils} from 'ethers'
 import {MockDai, signer} from "../../Contracts/ContractObjects"
 import ArtistContext from '../../Context/ArtistContext'
+import BookingContext from '../../Context/BookingContext'
+import EscrowContext from '../../Context/EscrowContext'
 
 const EscrowMain : FC = () : ReactElement => {
 
-    const [artistName, setArtistName] = useState("")
-    const [bookingAgentName, setBookingAgentName] = useState("")
-    const [escrowState, setEscrowState] = useState<number>(0)
-    
-    const {bookingNumberArtist, escrowAddress, getEscrowAddress} = useContext(ArtistContext)
+  const {bookingNumberArtist, escrowAddressArtist, getEscrowAddressArtist, EscrowContractArtist} = useContext(ArtistContext)
+  const {escrowAddressAgent, EscrowContractAgent} = useContext(BookingContext)
+  const {
+    artistName, 
+    getArtistName, 
+    userIsAgent,
+    bookingAgentName,
+    getBookingAgentName,
+    getCurrentState,
+    escrowState
+  } = useContext(EscrowContext)
 
-    console.log(escrowAddress)
-
-    const createEscrowInstance = () => {
-        const EscrowContract : Contract = new ethers.Contract(escrowAddress, EscrowABI, signer)
-        console.log(EscrowContract)
-        return EscrowContract
+  const currentContract = userIsAgent ? EscrowContractAgent : EscrowContractArtist
+  const currentAddress = userIsAgent ? escrowAddressAgent : escrowAddressArtist
+  
+  const payDeposit = async () => {
+    const deposit = await EscrowContractAgent.payment()/5
+    try{
+      const approval = await MockDai.approve(escrowAddressAgent, utils.parseEther(deposit.toString()) )
+      await approval.wait()
+    }catch(error){
+      console.log(error)
+    }finally{
+      finaliseDeposit()
     }
+  }
 
-    const getArtistName = async () => {
-      const EscrowContract = createEscrowInstance()
-      const name = await EscrowContract.artistName()
-      console.log(name)
-      setArtistName(name)
+  const finaliseDeposit = async () =>{
+    try{
+      const pay = await EscrowContractAgent.payDeposit()
+      await pay.wait()
+    }catch(error){
+      console.log(error)
+    }finally{
+      console.log("payment complete")
     }
+  }
 
-    const getBookingAgentName = async () => {
-      const EscrowContract = createEscrowInstance()
-      const bookingAgentName = await EscrowContract.bookingAgentName()
-      setBookingAgentName(bookingAgentName)
-    }
+  const confirmPerformance = async () => {
+    await EscrowContractArtist.confirmPerformance()
+    await EscrowContractAgent.confirmPerformance()
+  }
 
-    const payDeposit = async () => {
-      const EscrowContract = createEscrowInstance()
-      const deposit = await EscrowContract.payment()/5
-      try{
-        const approval = await MockDai.approve(escrowAddress, utils.parseEther(deposit.toString()) )
-        await approval.wait()
-      }catch(error){
-        console.log(error)
-      }finally{
-        finaliseDeposit()
-      }
-    }
+  const finalisePayment = async () => {
+    await EscrowContractAgent.finalisePayment()
+  }
 
-    const finaliseDeposit = async () =>{
-      const EscrowContract = createEscrowInstance()
-      try{
-        const pay = await EscrowContract.payDeposit()
-        await pay.wait()
-      }catch(error){
-        console.log(error)
-      }finally{
-        console.log("payment complete")
-      }
-    }
+  const confirmPayment = async () => {
+    await EscrowContractArtist.confirmPayment()
+  }
 
-    const confirmPerformance = async () => {
-      const EscrowContract = createEscrowInstance()
-      await EscrowContract.confirmPerformance()
-    }
+  const completeBooking = async () => {
+    await EscrowContractArtist.completeBooking()
+  }
+  
 
-    const finalisePayment = async () => {
-      const EscrowContract = createEscrowInstance()
-      await EscrowContract.finalisePayment()
-    }
+  // const determineState = async () => {
+  //   const EscrowContract = createEscrowInstance()
+  //   if(EscrowContract.currentState)
+  // }
 
-    const confirmPayment = async () => {
-      const EscrowContract = createEscrowInstance()
-      await EscrowContract.confirmPayment()
-    }
 
-    const completeBooking = async () => {
-      const EscrowContract = createEscrowInstance()
-      await EscrowContract.completeBooking()
-    }
+  useEffect(() => {
+      getEscrowAddressArtist()
+  },[])
 
-    const getCurrentState = async () => {
-      const EscrowContract = createEscrowInstance()
-      const state = await EscrowContract.currentState()
-      setEscrowState(state)
-    }
+  ///Determine is user is agent or artist
 
-    
-
-    // const determineState = async () => {
-    //   const EscrowContract = createEscrowInstance()
-    //   if(EscrowContract.currentState)
-    // }
-
-    console.log(artistName)
-    console.log(escrowState)
-
-    useEffect(() => {
-        getEscrowAddress()
-    },[])
-
-    useEffect(() => {
-      getArtistName()
-      getBookingAgentName()
-      getCurrentState()
-    }, [escrowAddress])
+  useEffect(() => {
+    getArtistName(currentContract)
+    getBookingAgentName(currentContract)
+    getCurrentState(currentContract)
+  }, [currentAddress])
 
 
   return (
