@@ -21,8 +21,10 @@ interface ArtistContextInterface {
     updateDisplayBookings : Boolean
     bookings : any[]
     getBookings :  () => Promise<void>
-    bookingNumber : string
-    setBookingNumber : React.Dispatch<React.SetStateAction<string>>
+    bookingNumberArtist : string
+    setBookingNumberArtist : React.Dispatch<React.SetStateAction<string>>
+    bookingNumberAgent : string
+    setBookingNumberAgent : React.Dispatch<React.SetStateAction<string>>
     escrowAddress : string
     getEscrowAddress : () => void
 
@@ -140,13 +142,14 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
     const getEscrowAddress = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        const address = await artistProfileContract.bookingNumberToEscrow(bookingNumber)
+        const address = await artistProfileContract.bookingNumberToEscrow(bookingNumberArtist)
         setEscrowAddress(address)
     }
 
 /// Booking number is set during the booking and displayed in the Escrow Component    
 
-    const [bookingNumber, setBookingNumber] = useState<string>("")
+    const [bookingNumberArtist, setBookingNumberArtist] = useState<string>("")
+    const [bookingNumberAgent, setBookingNumberAgent] = useState<string>("")
 
     return(
         <ArtistContext.Provider
@@ -167,8 +170,10 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             updateDisplayBookings,
             bookings,
             getBookings,
-            bookingNumber,
-            setBookingNumber,
+            bookingNumberArtist,
+            setBookingNumberArtist,
+            bookingNumberAgent,
+            setBookingNumberAgent,
             escrowAddress,
             getEscrowAddress           
         }}

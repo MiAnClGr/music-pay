@@ -3,50 +3,28 @@ import {useNavigate} from 'react-router-dom'
 import ArtistContext from '../../Context/ArtistContext'
 
 type props = {
-  gigNumber : string,
-  payment : string,
-  time : string,
-  date : string,
-  venue : string,
+  escrowAddress : string
 }
 
-const Booking : FC<props>= ({
-  gigNumber, 
-  payment, 
-  time,
-  date, 
-  venue, 
-  }) : ReactElement => {
+const Escrow : FC<props>= ({escrowAddress}) : ReactElement => {
 
   const navigate = useNavigate()
 
-  const {
-    artistProfileAddress, 
-    createArtistProfileInstance, 
-    setBookingNumberArtist
-  } = useContext(ArtistContext)
+  console.log(escrowAddress)
+
+
 
   const handleSubmitAcceptBooking = async () => {
-    setBookingNumberArtist(gigNumber)
-    const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-    navigate("/Loading")
-    try{
-      const transaction = await artistProfileContract.agreement(gigNumber)
-      await transaction.wait()
-      navigate("/Escrow")
-    }catch(e){
-      console.log("error")
-    }finally{
-      
-    }   
+    navigate("/EscrowMain") 
   }
   
   return (
     <div 
-    className='Bookings'>
+    className='Escrow'>
       <div
-      className= "BookingsDiv">
-        <h4 
+      className= "EscrowDiv">
+        <h1 className='Text'>{escrowAddress}</h1>
+        {/* <h4 
         className='Text'
         style= {{width: "100px", minWidth: "80px", textAlign: "center", fontSize: "20px", color: "grey"}}
         >{gigNumber}</h4>
@@ -64,7 +42,7 @@ const Booking : FC<props>= ({
         <h4 
         className='Text'
         style= {{width: "100px", minWidth: "80px", textAlign: "center", fontSize: "18px"}}
-        >{time}</h4>
+        >{time}</h4> */}
         <button 
         className='Submit'
         style={{width: "6%", minWidth: "80px"}}
@@ -76,4 +54,4 @@ const Booking : FC<props>= ({
     )
 }
 
-export default Booking
+export default Escrow

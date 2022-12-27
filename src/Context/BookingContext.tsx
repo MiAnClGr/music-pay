@@ -13,6 +13,8 @@ interface BookingContextInterface {
     artistName : string
     setArtistName : React.Dispatch<React.SetStateAction<string>>
     getArtistName : () => Promise<void>
+    escrowList : any[]
+    getEscrowList : () => Promise<void>
 }
 
 
@@ -66,7 +68,25 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
         time: "",
         date: "",
         venue: ""
-      })
+    })
+
+///Fetches a list of addressess of escrow contracts that the booking agent is a part of 
+
+    const [escrowList, setEscrowList] = useState<any[]>([])
+
+    const getEscrowList = async () => {
+        let escrowAddressList : any[] = []
+        const arrayLength = await ArtistFactoryContract.getEscrowArrayLength(await signer.getAddress())
+        console.log(arrayLength)
+        for(let i=0; i <= arrayLength; i++){
+            const userAddress = await signer.getAddress()
+            const address = await ArtistFactoryContract.getEscrow(userAddress, i)
+            escrowAddressList.push(address)
+            console.log(escrowAddressList)
+        }
+        setEscrowList(escrowAddressList)
+    }
+
 
     return(
         <BookingContext.Provider
@@ -79,7 +99,9 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
             setArtistBooking,
             artistName,
             setArtistName,
-            getArtistName
+            getArtistName,
+            escrowList,
+            getEscrowList
         
         }}
         >

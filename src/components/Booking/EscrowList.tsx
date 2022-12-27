@@ -1,37 +1,27 @@
-import React, { useState } from 'react'
-import { BigNumber, ethers } from 'ethers'
-import { ArtistFactoryContract, signer } from '../../Contracts/ContractObjects'
-import { array } from 'yargs'
+import React, {useContext, useEffect} from 'react'
+import BookingContext from '../../Context/BookingContext'
+import Escrow from '../Booking/Escrow'
 
 const EscrowList = () => {
 
-    const [escrowList, setEscrowList] = useState<any[]>([])
+    const {escrowList, getEscrowList } = useContext(BookingContext)
 
-    const getEscrow = async () => {
-        let escrowAddressList : any[] = []
-        const arrayLength = await ArtistFactoryContract.getEscrowArrayLength(await signer.getAddress())
-        console.log(arrayLength)
-        for(let i=0; i <= arrayLength; i++){
-            const userAddress = await signer.getAddress()
-            console.log(userAddress)
-            console.log(BigNumber.from(i))
-            
-            const address = await ArtistFactoryContract.getEscrow(userAddress, i)
-            escrowAddressList.push(address)
-            console.log(escrowAddressList)
-        }
-        setEscrowList(escrowAddressList)
-    }
+    const displayEscrow = escrowList.map((escrowaddress : string) => 
+            <Escrow
+            escrowAddress= {escrowaddress}
+            />
+        )
+       
+    
 
-    console.log(escrowList)
+    useEffect(() => {
+        getEscrowList()
+    },[])
+
+    
   return (
     <div>
-      <button
-      onClick={getEscrow}
-      style={{width: "10%"}}
-      >
-        get Escrow
-      </button>
+        {displayEscrow}
     </div>
   )
 }

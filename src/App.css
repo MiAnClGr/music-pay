@@ -557,7 +557,7 @@ body {
   bottom: 5px;
 }
 
-.Escrow {
+.EscrowMain {
   text-align: center;
   padding: 20px;
   width: 100%;
@@ -566,11 +566,11 @@ body {
   margin-bottom: 5%;
 }
 
-.Escrow button {
+.EscrowMain button {
   width: 20%;
 }
 
-.EscrowDiv {
+.EscrowMainDiv {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
@@ -589,4 +589,13 @@ body {
   padding-bottom: 1%;
 }
 
+.Escrow {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 10px;
+  margin-bottom: 100px;
+}
 

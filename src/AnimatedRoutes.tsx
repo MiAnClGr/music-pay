@@ -9,7 +9,7 @@ import ArtistProfile from './components/Artist/ArtistProfile'
 import BookingMain from './components/Booking/BookingMain';
 import ArtistBooking from './components/Booking/ArtistBooking';
 import BookingComplete from './components/Booking/BookingComplete';
-import Escrow from './components/shared/Escrow'
+import EscrowMain from './components/shared/EscrowMain'
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import ProfileDoesNotExist from './components/LoadingAndError/ProfileDoesNotExist';
@@ -49,7 +49,7 @@ const AnimatedRoutes = () => {
 
         <Route path = "/BookingsList" element = {<BookingsList/>}/>
 
-        <Route path = "/Escrow" element = {<Escrow/>}/>
+        <Route path = "/EscrowMain" element = {<EscrowMain/>}/>
 
         <Route path = "/EscrowList" element = {<EscrowList/>}/>
 
