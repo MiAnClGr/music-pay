@@ -59,24 +59,19 @@ const Escrow : FC<props>= ({escrowAddress}) : ReactElement => {
   return (
     <div 
     className='Escrow'>
-      <div
-      className= "EscrowDiv">
-        
-        <h4 className='Text'
-        style= {{width: "200px", minWidth: "150px", textAlign: "center", fontSize: "18px"}}
-        >{artistName}</h4> 
-        <h4 
-        className='Text'
-        style= {{width: "200px", minWidth: "150px", textAlign: "center", fontSize: "18px"}}
-        >${payment}</h4>
-       
-        <button 
-        className='Submit'
-        style={{width: "6%", minWidth: "80px"}}
-        onClick={handleSubmitAcceptBooking}
-        >Open</button>
-      </div>
-    
+      <h4 className='Text'
+      style= {{width: "80px", minWidth: "150px", textAlign: "center", fontSize: "18px"}}
+      >{artistName}</h4> 
+      <h4 
+      className='Text'
+      style= {{width: "80px", minWidth: "150px", textAlign: "center", fontSize: "18px"}}
+      >${payment}</h4>
+      
+      <button 
+      className='Submit'
+      style={{height: "50%", width: "6%", minWidth: "100px"}}
+      onClick={handleSubmitAcceptBooking}
+      >Open</button>
     </div>
     )
 }

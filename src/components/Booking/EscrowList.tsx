@@ -21,7 +21,12 @@ const EscrowList = () => {
     
   return (
     <div>
-        {displayEscrow}
+        <h1
+        style={{color: "#eaeaea", fontSize: "60px", textAlign: "center", position: "sticky"}}
+        >Current Escrows</h1>
+      <div className='EscrowList'>
+          {displayEscrow}
+      </div>
     </div>
   )
 }

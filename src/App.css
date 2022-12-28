@@ -591,11 +591,30 @@ body {
 
 .Escrow {
   width: 100%;
+  height: 100%;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-around;
   gap: 10px;
-  margin-bottom: 100px;
+  color:#eaeaea;
+  border-style: dotted;
+  border-right: hidden;
+  border-left: hidden;
+  border-top: hidden;
+  border-width: 1px;
+  border-color: grey;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.EscrowList {
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
 }
 
