@@ -21,8 +21,8 @@ const BookingHeader : FC= () : ReactElement => {
       About
       </Link>
       <Link
-      className='EscrowList' 
-      to= "/Escrowlist"
+      className='ActiveEscrows' 
+      to= "/ActiveEscrows"
       >
       Active Escrows
       </Link>

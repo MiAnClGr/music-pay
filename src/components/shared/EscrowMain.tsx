@@ -7,8 +7,18 @@ import EscrowContext from '../../Context/EscrowContext'
 
 const EscrowMain : FC = () : ReactElement => {
 
-  const {bookingNumberArtist, escrowAddressArtist, getEscrowAddressArtist, EscrowContractArtist} = useContext(ArtistContext)
-  const {escrowAddressAgent, EscrowContractAgent} = useContext(BookingContext)
+  const {
+    bookingNumberArtist, 
+    escrowAddressArtist, 
+    getEscrowAddressArtist, 
+    EscrowContractArtist
+  } = useContext(ArtistContext)
+
+  const {
+    escrowAddressAgent, 
+    EscrowContractAgent
+  } = useContext(BookingContext)
+
   const {
     artistName, 
     getArtistName, 
@@ -63,12 +73,6 @@ const EscrowMain : FC = () : ReactElement => {
   }
   
 
-  // const determineState = async () => {
-  //   const EscrowContract = createEscrowInstance()
-  //   if(EscrowContract.currentState)
-  // }
-
-
   useEffect(() => {
       getEscrowAddressArtist()
   },[])
@@ -88,6 +92,20 @@ const EscrowMain : FC = () : ReactElement => {
       className='HeaderText'
       style={{fontSize: "60px"}}
       >ESCROW</h1>
+      {userIsAgent
+      ?
+      <h3 
+      className='Text'
+      style={{fontSize: "20px"}}
+      >Viewing as: Agent
+      </h3>
+      :
+      <h3 
+      className='Text'
+      style={{fontSize: "20px"}}
+      >Viewing as: Artist
+      </h3>
+      }
       <br></br>
       <br></br>
       <div className='EscrowMainDiv'>

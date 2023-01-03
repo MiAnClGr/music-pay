@@ -1,6 +1,7 @@
 import React, {FC, ReactElement, useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 import ArtistContext from '../../Context/ArtistContext'
+import EscrowContext from '../../Context/EscrowContext'
 
 type props = {
   gigNumber : string,
@@ -26,6 +27,8 @@ const Booking : FC<props>= ({
     setBookingNumberArtist
   } = useContext(ArtistContext)
 
+  const {setUserIsAgent} = useContext(EscrowContext)
+
   const handleSubmitAcceptBooking = async () => {
     setBookingNumberArtist(gigNumber)
     const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
@@ -33,11 +36,11 @@ const Booking : FC<props>= ({
     try{
       const transaction = await artistProfileContract.agreement(gigNumber)
       await transaction.wait()
-      navigate("/Escrow")
+      navigate("/EscrowMain")
     }catch(e){
       console.log("error")
     }finally{
-      
+      setUserIsAgent(false)
     }   
   }
   

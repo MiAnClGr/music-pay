@@ -148,13 +148,13 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
 /// Create an instance of the EscrowContract 
 
-const createEscrowInstanceArtist = () => {
-    const EscrowContract : Contract = new ethers.Contract(escrowAddressArtist, EscrowABI, signer) 
+    const createEscrowInstanceArtist = () => {
+        const EscrowContract : Contract = new ethers.Contract(escrowAddressArtist, EscrowABI, signer) 
 
-    return EscrowContract
-}
+        return EscrowContract
+    }
 
-const EscrowContractArtist = createEscrowInstanceArtist()
+    const EscrowContractArtist = createEscrowInstanceArtist()
 
 /// Booking number is set during the booking and displayed in the Escrow Component    
 
