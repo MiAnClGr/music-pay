@@ -20,8 +20,13 @@ const BookingHeader : FC= () : ReactElement => {
       >
       About
       </Link>
+      <Link
+      className='EscrowList' 
+      to= "/Escrowlist"
+      >
+      Active Escrows
+      </Link>
       <div className='Search'>
-        
         {searchClicked 
         ? 
         <AnimatePresence>

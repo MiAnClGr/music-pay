@@ -471,6 +471,15 @@ body {
   text-decoration: none;
 }
 
+.EscrowList {
+  color: #eaeaea;
+  font-size: 18px;
+  position: absolute;
+  left: 22%;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  text-decoration: none;
+}
+
 .Create {
   color: #eaeaea;
   font-size: 18px;
