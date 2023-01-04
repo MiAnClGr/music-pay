@@ -1,21 +1,25 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
+import ArtistDropdownMenu from './ArtistDropdownMenu'
 import {Link} from 'react-router-dom'
-import Home from "./Home"
-import ArtistContext from '../../Context/ArtistContext'
+import ArtistContext from '../../../Context/ArtistContext'
+import { IoIosMenu } from 'react-icons/io'
 
-const ArtistHeader : FC = () : ReactElement => {
+const ArtistHeaderMobile : FC = () : ReactElement => {
 
 		const {
 			artistProfileAddress, 
 			artistLoggedIn, 
 			createArtistProfileInstance,
 			getArtistConnected,
-			displayUpdateAboutMe,
-			displayBookings
 		} = useContext(ArtistContext)
 
 
 		const [name, setName] = useState("")
+        const [iconClicked, setIconClicked] = useState(false)
+
+        const handleClick = () => {
+            setIconClicked(!iconClicked)
+        }
 
 
 		const getArtistName = async () => {
@@ -37,22 +41,20 @@ const ArtistHeader : FC = () : ReactElement => {
 
 		return(
 			
-			<header className='Header'>
-				<div className='HomeHeader'>
-					<Home/>
-				</div>
-				<Link
-				className='About' 
-				to= "/About"
-				>
-				About
-				</Link>
-				<Link
-				className='Create' 
-				to= "/CreateNew"
-				>
-				Create
-				</Link>
+			<header className='HeaderMobile'>
+				
+				<IoIosMenu
+                className='ArtistDropdownIcon'
+                onClick={handleClick}
+                />
+
+                {iconClicked
+                ?
+                <ArtistDropdownMenu/>
+                :
+                <></>
+                }
+				
 				{artistLoggedIn 
 				? 
 				<h1 className='ArtistName'>{name}</h1>
@@ -65,33 +67,13 @@ const ArtistHeader : FC = () : ReactElement => {
 				LOG IN
 				</Link>
 				}
-				{artistLoggedIn 
-				?
-				<h4  
-				className='UpdateAboutMe'
-				onClick= {displayUpdateAboutMe} 
-				>
-					Update
-				</h4>
-				:
-				<></>
-				}
-				{artistLoggedIn 
-				?
-				<h4
-				className='DisplayBookings'
-				onClick={displayBookings}
-				>
-					Bookings
-				</h4>
-				:
-				<></>
-				}
+				
+				
 			</header>
 		)
 }
 
-export default ArtistHeader
+export default ArtistHeaderMobile
 
 
 

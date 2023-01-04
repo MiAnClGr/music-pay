@@ -126,7 +126,6 @@ body {
   align-items: center;
   height: 70%;
   overflow: hidden;
-  /* text-align: center; */
 }
 
 .Music-Pay-Title {
@@ -171,14 +170,19 @@ body {
 }
 
 .Connect {
+  color: white;
   background-color: black;
-  border-color: #eaeaea;
-  color: #eaeaea;
-  padding: 5px;
-  font-size: 25px;
-  height: 35px;
-  font-family: "Clarkson",Helvetica,sans-serif;
-  border-radius: 2px;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  opacity: 0.8;
+  font-size: 12px;
+  cursor: pointer;
+  border-style: solid;
+  border-color: grey;
+  padding: 12px;
+  border-radius: 10px;
 }
 
 /*LoadingAndError*/
@@ -339,6 +343,20 @@ body {
 
 /*Profile*/
 
+.ArtistMain {
+  height: 100%;
+  text-align: center;
+  margin-top: 280px;
+}
+
+.ArtistMain h3 {
+  color:#eaeaea;
+  font-size: 80px;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  font-weight: lighter;
+  letter-spacing: 3px;
+}
+
 .ProfilePage {
   padding-right: 20px;
   padding-left: 20px;
@@ -430,6 +448,10 @@ body {
   border-color: #eaeaea;
   top: 0;
   position: sticky;
+}
+
+.HeaderMobile {
+  display: none;
 }
 
 .HomeHeader {

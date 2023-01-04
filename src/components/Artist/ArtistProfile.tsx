@@ -1,10 +1,11 @@
 import React, {FC, useEffect, useContext, ReactElement} from 'react'
 import AboutMe from "./AboutMe"
-import ArtistHeader from "../shared/ArtistHeader"
+import ArtistHeader from "./ArtistHeader"
 import BookingsList from "./BookingsList"
 import ArtistContext from '../../Context/ArtistContext'
 import {motion, AnimatePresence} from 'framer-motion'
 import LogOut from '../shared/LogOut'
+import ArtistHeaderMobile from './Mobile/ArtistHeaderMobile'
 
 const ArtistProfile :FC = () : ReactElement => {
 
@@ -47,7 +48,8 @@ const ArtistProfile :FC = () : ReactElement => {
         exit= {{opacity: 0}}
         transition={{duration: 0.2}}
         >
-            <ArtistHeader/>      
+            <ArtistHeader/>   
+            <ArtistHeaderMobile/>   
             <div className='ProfilePage'>
                 {artistLoggedIn 
                 ?

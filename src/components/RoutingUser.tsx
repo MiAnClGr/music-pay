@@ -23,7 +23,7 @@ const RoutingUser : FC = () : ReactElement => {
         className='Link'
         to= "/ArtistProfile"
         >
-        Artists
+        Enter Artists
         </Link>
         :
         <Link
@@ -31,7 +31,7 @@ const RoutingUser : FC = () : ReactElement => {
         style={{fontSize: "22px"}}
         to= "/ArtistMain"
         >
-        Artists
+        Enter Artists
         </Link>
         }
         <br></br>
@@ -42,7 +42,7 @@ const RoutingUser : FC = () : ReactElement => {
         style={{fontSize: "22px"}}
         to= "/BookingMain"
         >
-        Bookings
+        Enter Bookings
         </Link>
       </div>
     </motion.div>

@@ -27,23 +27,7 @@ const ConnectWallet : FC = () : ReactElement => {
   return (
    
     <button
-    className= 'Submit'
-    style={{
-      color: "white",
-      backgroundColor: "black",
-      width: "20%",
-      marginLeft: "auto",
-      marginRight: "auto",
-      fontWeight: "bold",
-      opacity: "0.8",
-      fontSize: "12px",
-      cursor: "pointer",
-      borderStyle: "solid",
-      borderColor: "grey",
-      padding: "12px",
-      borderRadius: "10px"
-
-      }}
+    className= 'Connect'
     onClick= {connect}
     >
       CONNECT WALLET

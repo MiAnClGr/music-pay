@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './App.mobile.css';
 import {BrowserRouter} from 'react-router-dom'
 import {ArtistProvider} from './Context/ArtistContext'
 import {BookingProvider} from './Context/BookingContext'
