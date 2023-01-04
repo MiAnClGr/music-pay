@@ -1,9 +1,12 @@
 import React, {useContext} from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Home from '../../shared/Home'
 import ArtistContext from '../../../Context/ArtistContext'
+import {motion} from 'framer-motion'
 
 const ArtistDropdownMenu = () => {
+
+    const navigate = useNavigate()
 
     const {
         artistLoggedIn, 
@@ -12,64 +15,70 @@ const ArtistDropdownMenu = () => {
     } = useContext(ArtistContext)
 
   return (
-    <div
+    <motion.div
     className='ArtistDropdownMenu'
+    initial= {{opacity: 0}}
+    animate= {{opacity: 1}}
+    exit= {{opacity: 0}}
     >
-        <br></br>
-        <div className='HomeHeaderMobile'>
+        
+        <div className='DropdownItem'>
 			<Home/>
         </div>
-        <br></br>
-        <Link
-        className='AboutMobile' 
-        to= "/About"
+        
+        <div 
+        className='DropdownItem'
+        onClick={() => navigate('/About')} 
         >
-        About
-        </Link>
-        <br></br>
-        <Link
-        className='CreateMobile' 
-        to= "/CreateNew"
+            <h4
+            className='AboutMobile'
+            >
+            About
+            </h4>
+        </div>
+        
+        <div 
+        className='DropdownItem' 
+        onClick={() => navigate('/CreateNew')}
         >
-        Create
-        </Link>
-        <br></br>
+            <h4
+            className='CreateMobile'
+            >
+            Create
+            </h4>
+        </div>
+
         {artistLoggedIn 
         ?
-        <h4  
-        className='UpdateAboutMeMobile'
-        onClick= {displayUpdateAboutMe} 
-        >
-            Update
-        </h4>
+        <div className='DropdownItem'>
+            
+            <h4  
+            className='UpdateAboutMeMobile'
+            onClick= {displayUpdateAboutMe} 
+            >
+                Update
+            </h4>
+        
+        </div>
         :
         <></>
         }
-        {artistLoggedIn
-        ?
-        <br></br>
-        :
-        <></>
-        }
+        
         {artistLoggedIn 
         ?
-        <h4
-        className='DisplayBookingsMobile'
-        onClick={displayBookings}
-        >
-            Bookings
-        </h4>
-        :
+        <div className='DropdownItem'>
+            
+            <h4
+            className='DisplayBookingsMobile'
+            onClick={displayBookings}
+            >
+                Bookings
+            </h4>
+        </div>
+		:
         <></>
         }
-        {artistLoggedIn
-        ?
-        <br></br>
-        :
-        <></>
-        }
-		
-    </div>
+    </motion.div>
   )
 }
 

@@ -546,6 +546,21 @@ body {
   right: 20px;
 }
 
+/* Booking*/
+
+.BookingMain {
+  height: 100%;
+  text-align: center;
+  margin-top: 280px;
+}
+
+.BookingMain h3 {
+  color:#eaeaea;
+  font-size: 80px;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  font-weight: lighter;
+  letter-spacing: 3px;
+}
 /*Search*/
 
 .Search {

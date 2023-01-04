@@ -47,7 +47,7 @@
   justify-content: center;
 }
 
-/* Artist Main */
+/* Artist Main and Profile*/
 
 .ArtistMain {
   height: 100%;
@@ -75,20 +75,143 @@
   gap: 20%;
   width: 100%;
   height: 80px;
-  border-bottom: solid;
-  border-color: #eaeaea;
+  /* border-bottom: solid;
+  border-color: #eaeaea; */
   top: 0;
   position: sticky;
 }
 
-.ArtistDropdownIcon {
+.IconWrapper {
+  background-color: #282828;
   position: absolute;
-  left: 2%;
-  width: 10%;
-  height: 50%;
+  left: 5%;
+  width: 12%;
+  height: 52%;
+  border-radius: 50px;
+}
+
+.DropdownIcon {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  margin: auto;
 }
 
 .ArtistDropdownMenu {
+  background-color: black;
+  position: absolute;
+  top: 80px;
+  height: 500%;
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
+.DropdownItem {
+  background-color: black;
+  width: 100%;
+  height: 5%;
+  color: #eaeaea;
+  font-size: 25px;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  margin-left: 10%;
+} 
+
+.HomeHeaderMobile {
+  color: #eaeaea;
+  font-size: 18px;
+  border-bottom: solid;
+  border-color: #eaeaea;
+}
+
+.AboutMobile {
+  font-weight: lighter;
+  margin: 0;
+}
+
+.CreateMobile {
+  font-weight: lighter;
+  margin: 0;
+}
+
+.UpdateAboutMeMobile {
+  color: #eaeaea;
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: lighter;
+  margin: 0;
+}
+
+.DisplayBookingsMobile {
+  color: #eaeaea;
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: lighter;
+  margin: 0;
+}
+
+.CreateOrLogInArtist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  margin:auto;
+  margin-top: 40%;
+  width: 70%;
+  height: 20%;
+  top: 40%;
+  padding-top: 7%;
+  padding-bottom: 7%;
+  text-align: center;
+  align-items: center;
+}
+
+.CreateOrLogInArtist h2 {
+  font-size: 40px;
+  margin-bottom: 0;
+}
+
+.LoginMobile {
+  color: #eaeaea;
+  font-size: 15px;
+  position:absolute;
+  right: 5%;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.Logout {
+  color: #eaeaea;
+  font-size: 14px;
+  position:absolute;
+  right: 3%;
+  bottom: 2%;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*Booking Main and Profile*/
+
+.BookingMain {
+  height: 100%;
+  text-align: center;
+  margin-top: 45%;
+}
+
+.BookingMain h3 {
+  color:#eaeaea;
+  font-size: 50px;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  font-weight: lighter;
+  letter-spacing: 3px;
+}
+
+.BookingDropdownMenu {
   background-color: black;
   border-style: solid;
   border-color: #eaeaea;
@@ -104,67 +227,12 @@
  
 }
 
-.HomeHeaderMobile {
-  color: #eaeaea;
-  font-size: 18px;  
-}
-
-.AboutMobile {
+.ActiveEscrowsMobile {
   color: #eaeaea;
   font-size: 18px;
+  font-family: "Clarkson",Helvetica,sans-serif;
   text-decoration: none;
 }
-
-.CreateMobile {
-  color: #eaeaea;
-  font-size: 18px;
-  text-decoration: none;
-}
-
-.UpdateAboutMeMobile {
-  color: #eaeaea;
-  font-size: 18px;
-  text-decoration: none;
-  font-weight: lighter;
-  margin: 0;
-}
-
-.DisplayBookingsMobile {
-  color: #eaeaea;
-  font-size: 18px;
-  text-decoration: none;
-  font-weight: lighter;
-  margin: 0;
-}
-
-.CreateOrLogInArtist {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 40px;
-  margin:auto;
-  margin-top: 55%;
-  width: 70%;
-  height: 20%;
-  top: 40%;
-  padding-top: 7%;
-  padding-bottom: 7%;
-  text-align: center;
-  align-items: center;
-}
-
-.CreateOrLogInArtist h2 {
-  font-size: 25px;
-  margin-bottom: 0;
-}
-
-
-
-
-
-
-
-
 
 
 

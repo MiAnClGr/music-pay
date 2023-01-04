@@ -1,6 +1,6 @@
 import React, {FC, useState, ReactElement} from 'react'
 import { Link } from 'react-router-dom'
-import Home from "./Home"
+import Home from "../shared/Home"
 import SearchArtist from "../shared/SearchArtist"
 import {AnimatePresence} from 'framer-motion'
 

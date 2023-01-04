@@ -1,6 +1,6 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
 import {PerformanceContract} from "../../Contracts/ContractObjects"
-import BookingHeader from "../shared/BookingHeader"
+import BookingHeader from "./BookingHeader"
 import BookingContext from '../../Context/BookingContext'
 import { useNavigate } from 'react-router'
 import {motion} from 'framer-motion'

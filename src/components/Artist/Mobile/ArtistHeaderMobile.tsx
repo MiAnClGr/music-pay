@@ -3,6 +3,7 @@ import ArtistDropdownMenu from './ArtistDropdownMenu'
 import {Link} from 'react-router-dom'
 import ArtistContext from '../../../Context/ArtistContext'
 import { IoIosMenu } from 'react-icons/io'
+import { RxCross2 } from 'react-icons/rx'
 
 const ArtistHeaderMobile : FC = () : ReactElement => {
 
@@ -42,11 +43,22 @@ const ArtistHeaderMobile : FC = () : ReactElement => {
 		return(
 			
 			<header className='HeaderMobile'>
-				
-				<IoIosMenu
-                className='ArtistDropdownIcon'
-                onClick={handleClick}
-                />
+				{iconClicked
+				?
+				<div className='IconWrapper'>
+					<RxCross2
+					className='DropdownIcon'
+					onClick={handleClick}
+					/>
+				</div>
+				:
+				<div className='IconWrapper'>
+					<IoIosMenu
+					className='DropdownIcon'
+					onClick={handleClick}
+					/>
+				</div>
+				}
 
                 {iconClicked
                 ?
@@ -60,7 +72,7 @@ const ArtistHeaderMobile : FC = () : ReactElement => {
 				<h1 className='ArtistName'>{name}</h1>
 				: 
 				<Link
-				className='Login' 
+				className='LoginMobile' 
 				style={{fontSize: "15px"}}
 				to= "/Login"
 				>
