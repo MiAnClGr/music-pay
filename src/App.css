@@ -142,7 +142,7 @@ body {
 }
 
 
-.CreateArtist {
+.CreateOrLogInArtist {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -156,6 +156,11 @@ body {
   padding-bottom: 7%;
   text-align: center;
   align-items: center;
+}
+
+.CreateOrLogInArtist h2 {
+  font-size: 25px;
+  margin-bottom: 0;
 }
 
 

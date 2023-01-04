@@ -36,10 +36,9 @@ const Login : FC = () : ReactElement => {
     transition={{duration: 0.2}}
     >
         <div
-        className= 'CreateArtist'>
+        className= 'CreateOrLogInArtist'>
             <h2 
             className= "Text"
-            style={{fontSize: "25px", marginBottom: "0"}}
             >Log into Music-Pay</h2>
             <input
             className= 'Input'

@@ -35,7 +35,7 @@ const CreateNew : FC = () : ReactElement => {
     exit= {{opacity: 0}}
     transition={{duration: 0.2}}
     >
-        <div className= 'CreateArtist'>
+        <div className= 'CreateOrLogInArtist'>
             <h3 className= "Text"
             style={{fontSize: "25px", marginBottom: "0"}}
             >Create a new profile</h3>      

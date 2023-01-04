@@ -137,6 +137,26 @@
   margin: 0;
 }
 
+.CreateOrLogInArtist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  margin:auto;
+  margin-top: 55%;
+  width: 70%;
+  height: 20%;
+  top: 40%;
+  padding-top: 7%;
+  padding-bottom: 7%;
+  text-align: center;
+  align-items: center;
+}
+
+.CreateOrLogInArtist h2 {
+  font-size: 25px;
+  margin-bottom: 0;
+}
 
 
 
