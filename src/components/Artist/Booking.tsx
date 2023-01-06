@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useContext} from 'react'
+import React, {FC, ReactElement, useState, useContext, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import ArtistContext from '../../Context/ArtistContext'
 import EscrowContext from '../../Context/EscrowContext'
@@ -9,6 +9,7 @@ type props = {
   time : string,
   date : string,
   venue : string,
+  agreed : boolean
 }
 
 const Booking : FC<props>= ({
@@ -16,8 +17,11 @@ const Booking : FC<props>= ({
   payment, 
   time,
   date, 
-  venue, 
+  venue,
+  agreed 
   }) : ReactElement => {
+
+    console.log(agreed)
 
   const navigate = useNavigate()
 
@@ -29,6 +33,11 @@ const Booking : FC<props>= ({
 
   const {setUserIsAgent} = useContext(EscrowContext)
 
+  const [bookingAccepted, setBookingAccepted] = useState(false)
+
+  const getBookingAccepted = () => {
+    agreed ? setBookingAccepted(true) : setBookingAccepted(false)
+  }
   const handleSubmitAcceptBooking = async () => {
     setBookingNumberArtist(gigNumber)
     const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
@@ -43,6 +52,15 @@ const Booking : FC<props>= ({
       setUserIsAgent(false)
     }   
   }
+
+  const handleSubmitToEscrow = () => {
+    setBookingNumberArtist(gigNumber)
+    navigate("/EscrowMain")
+  }
+
+  useEffect(() => {
+    getBookingAccepted()
+  }, [])
   
   return (
     <div 
@@ -68,11 +86,22 @@ const Booking : FC<props>= ({
         className='Text'
         style= {{width: "100px", minWidth: "80px", textAlign: "center", fontSize: "18px"}}
         >{time}</h4>
-        <button 
-        className='Submit'
-        style={{width: "6%", minWidth: "80px"}}
-        onClick={handleSubmitAcceptBooking}
-        >Accept</button>
+        {bookingAccepted
+        ?
+          <button
+          className='Submit'
+          style={{width: "6%", minWidth: "80px"}}
+          onClick={handleSubmitToEscrow}
+          >To Escrow</button>
+
+        :  
+          <button 
+          className='Submit'
+          style={{width: "6%", minWidth: "80px"}}
+          onClick={handleSubmitAcceptBooking}
+          >Accept</button>
+        
+        }
       </div>
     
     </div>
