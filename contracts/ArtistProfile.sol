@@ -157,7 +157,8 @@ contract ArtistProfile {
             uint256,
             string memory,
             string memory,
-            address
+            address,
+            bool
             ) {
 
         Booking storage booking = bookings[_gigNumber];
@@ -168,7 +169,8 @@ contract ArtistProfile {
             booking.time,
             booking.date, 
             booking.venueName,
-            booking.bookingAgent
+            booking.bookingAgent,
+            booking.agreed
             );
     }
 

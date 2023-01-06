@@ -8,6 +8,7 @@ contract ArtistFactory {
     address daiAddress;
 
     mapping(address => address[]) public agentToCurrentEscrow;
+    mapping(address => address[]) public artistToCurrentEscrow;
 
     mapping(address => address) public ownerToArtist;
     mapping(string => address) public artistNameToAddress;
@@ -42,8 +43,12 @@ contract ArtistFactory {
         doesArtistExist[_artistName] = false;
     }
 
-    function addEscrow(address _bookingAgent) external {
+    function addEscrowAgent(address _bookingAgent) external {
         agentToCurrentEscrow[_bookingAgent].push(msg.sender);
+    }
+
+    function addEscrowArtist(address _artist) external {
+        agentToCurrentEscrow[_artist].push(msg.sender);
     }
 
     function getEscrow(address _bookingAgent, uint _index) external view returns(address){

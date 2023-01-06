@@ -69,7 +69,8 @@ contract BookingEscrow {
         payment = _payment;
         DAI = ERC20(_daiAddress);
         artistFactory = ArtistFactory(_artistFactoryAddress);
-        artistFactory.addEscrow(_bookingAgent);
+        artistFactory.addEscrowAgent(_bookingAgent);
+        artistFactory.addEscrowArtist(_artist);
         currentState = PaymentState.NO_PAYMENT_MADE;
         
     }
