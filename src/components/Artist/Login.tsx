@@ -15,16 +15,31 @@ const Login : FC = () : ReactElement => {
         setInputArtistName(e.target.value)
     }  
 
+    const handleKeyDownLogIn = async (e : React.KeyboardEvent<HTMLElement>) => {
+        if(e.key === 'Enter'){
+
+            const address = await ArtistFactoryContract.artistNameToAddress(inputArtistName)
+            const user = await signer.getAddress()
+            if(await ArtistFactoryContract.doesArtistExist(inputArtistName) === false){
+                navigate("/ProfileDoesNotExist")
+            }else if(await ArtistFactoryContract.ownerToArtist(user) === address){
+                navigate("/ArtistProfile")
+            }else{
+                navigate("/NotOwner")
+            }             
+        }
+    }
+
     const handleSubmitLogIn = async () => {
         const address = await ArtistFactoryContract.artistNameToAddress(inputArtistName)
-        const user = await signer.getAddress()
-        if(await ArtistFactoryContract.doesArtistExist(inputArtistName) === false){
-            navigate("/ProfileDoesNotExist")
-        }else if(await ArtistFactoryContract.ownerToArtist(user) === address){
-            navigate("/ArtistProfile")
-        }else{
-            navigate("/NotOwner")
-        }             
+            const user = await signer.getAddress()
+            if(await ArtistFactoryContract.doesArtistExist(inputArtistName) === false){
+                navigate("/ProfileDoesNotExist")
+            }else if(await ArtistFactoryContract.ownerToArtist(user) === address){
+                navigate("/ArtistProfile")
+            }else{
+                navigate("/NotOwner")
+            }  
     }
 
   return (
@@ -45,6 +60,7 @@ const Login : FC = () : ReactElement => {
             style={{width: "70%"}} 
             placeholder= 'Artist Name' 
             onChange= {handleChange}
+            onKeyDown= {handleKeyDownLogIn}
             >
             </input> 
             <button 

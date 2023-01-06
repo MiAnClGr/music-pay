@@ -14,6 +14,21 @@ const CreateNew : FC = () : ReactElement => {
         setInputArtistName(e.target.value)
     }  
 
+    const handleKeyDownCreate = async (e : React.KeyboardEvent<HTMLElement>) => {
+        if(e.key === 'Enter'){
+                navigate("/Loading")
+            try{
+                const transaction = await ArtistFactoryContract.createArtist(inputArtistName)
+                await transaction.wait()
+                
+            }catch(error){
+                console.log(error)
+            }finally{ 
+                navigate("/ArtistProfile")
+            }
+        }
+    }
+
     const handleSubmitCreate = async () => {
         navigate("/Loading")
         try{
@@ -44,6 +59,7 @@ const CreateNew : FC = () : ReactElement => {
             style={{width: "70%"}} 
             placeholder= 'Artist Name' 
             onChange= {handleChange}
+            onKeyDown= {handleKeyDownCreate}
             >
             </input> 
             <button 
