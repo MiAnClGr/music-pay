@@ -5,7 +5,7 @@ const Home = () : ReactElement => {
 
   return (
     <Link
-    className='Home' 
+    className='Home'
     to= "/RoutingUser"
     >
     Home
