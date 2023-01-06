@@ -1,9 +1,11 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Home from "../shared/Home"
 import ArtistContext from '../../Context/ArtistContext'
 
 const ArtistHeader : FC = () : ReactElement => {
+
+	const navigate = useNavigate()
 
 		const {
 			artistProfileAddress, 
@@ -38,9 +40,9 @@ const ArtistHeader : FC = () : ReactElement => {
 		return(
 			
 			<header className='Header'>
-				<div className='HomeHeader'>
-					<Home/>
-				</div>
+				
+				<Home/>
+				
 				<Link
 				className='About' 
 				to= "/About"
@@ -55,7 +57,9 @@ const ArtistHeader : FC = () : ReactElement => {
 				</Link>
 				{artistLoggedIn 
 				? 
-				<h1 className='ArtistName'>{name}</h1>
+				<h1 className='ArtistName'
+				onClick={() => navigate("/ArtistProfile")}
+				>{name}</h1>
 				: 
 				<Link
 				className='Login' 
