@@ -30,6 +30,16 @@ export default [
         "internalType": "uint256",
         "name": "_payment",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_daiAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_artistFactoryAddress",
+        "type": "address"
       }
     ],
     "stateMutability": "payable",

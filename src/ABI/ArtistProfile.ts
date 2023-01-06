@@ -10,6 +10,11 @@ export default [
         "internalType": "address",
         "name": "_artist",
         "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_daiAddress",
+        "type": "address"
       }
     ],
     "stateMutability": "nonpayable",
@@ -89,6 +94,19 @@ export default [
   {
     "inputs": [],
     "name": "artist",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "artistFactory",
     "outputs": [
       {
         "internalType": "address",
@@ -271,6 +289,11 @@ export default [
         "internalType": "address",
         "name": "",
         "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
