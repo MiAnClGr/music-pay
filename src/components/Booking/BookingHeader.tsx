@@ -11,9 +11,9 @@ const BookingHeader : FC= () : ReactElement => {
   return(
     
     <header className='Header'>
-      <div className='HomeHeader'>
-        <Home/>
-      </div>
+      
+      <Home/>
+      
       <Link
       className='About' 
       to= "/About"
@@ -22,7 +22,7 @@ const BookingHeader : FC= () : ReactElement => {
       </Link>
       <Link
       className='ActiveEscrows' 
-      to= "/ActiveEscrows"
+      to= "/EscrowList"
       >
       Active Escrows
       </Link>
