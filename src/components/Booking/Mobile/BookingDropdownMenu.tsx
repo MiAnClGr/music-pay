@@ -18,7 +18,7 @@ const BookingDropdownMenu = () => {
       </Link>
       <Link
       className='ActiveEscrowsMobile' 
-      to= "/ActiveEscrows"
+      to= "/EscrowList"
       >
       Active Escrows
       </Link>
