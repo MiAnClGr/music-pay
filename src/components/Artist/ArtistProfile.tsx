@@ -41,16 +41,18 @@ const ArtistProfile :FC = () : ReactElement => {
     },[artistProfileAddress])
 
     return(
-        <motion.div
+        <div
         style={{height: "100%"}}
-        initial= {{opacity: 0}}
-        animate= {{opacity: 1}}
-        exit= {{opacity: 0}}
-        transition={{duration: 0.2}}
+        
         >
             <ArtistHeader/>   
             <ArtistHeaderMobile/>   
-            <div className='ProfilePage'>
+            <motion.div 
+            className='ProfilePage'
+            initial= {{opacity: 0}}
+            animate= {{opacity: 1}}
+            exit= {{opacity: 0}}
+            >
                 {artistLoggedIn 
                 ?
                 <AboutMe/>
@@ -58,14 +60,14 @@ const ArtistProfile :FC = () : ReactElement => {
                 <></>       
                 }
                 
-            </div>
+            </motion.div>
             {artistLoggedIn
             ?
             <LogOut/>
             :
             <></>   
             }
-        </motion.div>
+        </div>
     )
 }
 

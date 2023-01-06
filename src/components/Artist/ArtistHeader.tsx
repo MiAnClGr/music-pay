@@ -40,21 +40,49 @@ const ArtistHeader : FC = () : ReactElement => {
 		return(
 			
 			<header className='Header'>
-				
+
 				<Home/>
 				
-				<Link
-				className='About' 
-				to= "/About"
+				<div
+				className='HeaderMenu'
 				>
-				About
-				</Link>
-				<Link
-				className='Create' 
-				to= "/CreateNew"
-				>
-				Create
-				</Link>
+					
+					<Link
+					className='HeaderMenuTitle' 
+					to= "/About"
+					>
+					About
+					</Link>
+					<Link
+					className='HeaderMenuTitle' 
+					to= "/CreateNew"
+					>
+					Create
+					</Link>
+					{artistLoggedIn 
+					?
+					<h4  
+					className='HeaderMenuTitle'
+					onClick= {displayUpdateAboutMe} 
+					>
+						Update
+					</h4>
+					:
+					<></>
+					}
+					{artistLoggedIn 
+					?
+					<h4
+					className='HeaderMenuTitle'
+					onClick={displayBookings}
+					>
+						Bookings
+					</h4>
+					:
+					<></>
+					}
+				</div>
+
 				{artistLoggedIn 
 				? 
 				<h1 className='ArtistName'
@@ -68,28 +96,6 @@ const ArtistHeader : FC = () : ReactElement => {
 				>
 				LOG IN
 				</Link>
-				}
-				{artistLoggedIn 
-				?
-				<h4  
-				className='UpdateAboutMe'
-				onClick= {displayUpdateAboutMe} 
-				>
-					Update
-				</h4>
-				:
-				<></>
-				}
-				{artistLoggedIn 
-				?
-				<h4
-				className='DisplayBookings'
-				onClick={displayBookings}
-				>
-					Bookings
-				</h4>
-				:
-				<></>
 				}
 			</header>
 		)

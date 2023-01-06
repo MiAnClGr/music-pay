@@ -8,7 +8,7 @@ const Home = () : ReactElement => {
     className='Home'
     to= "/RoutingUser"
     >
-    Home
+    MUSIC-PAY
     </Link>
   )
 }

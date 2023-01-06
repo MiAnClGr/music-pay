@@ -31,6 +31,10 @@ const EscrowMain : FC = () : ReactElement => {
 
   const currentContract = userIsAgent ? EscrowContractAgent : EscrowContractArtist
   const currentAddress = userIsAgent ? escrowAddressAgent : escrowAddressArtist
+
+  console.log(currentContract)
+  console.log(currentAddress)
+  console.log(escrowAddressAgent)
   
   const payDeposit = async () => {
     const deposit = await EscrowContractAgent.payment()/5
@@ -75,6 +79,7 @@ const EscrowMain : FC = () : ReactElement => {
 
   useEffect(() => {
       getEscrowAddressArtist()
+      console.log(escrowAddressArtist)
   },[])
 
   ///Determine is user is agent or artist
@@ -139,6 +144,7 @@ const EscrowMain : FC = () : ReactElement => {
         >
           <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 2:</h3>
           <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>Artist to confirm performance</h3>
+          
           <button 
           className='Submit'
           onClick={confirmPerformance}

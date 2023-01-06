@@ -82,12 +82,16 @@
 }
 
 .IconWrapper {
-  background-color: #282828;
+  background-color: black;
   position: absolute;
   left: 5%;
   width: 12%;
   height: 52%;
   border-radius: 50px;
+}
+
+.IconWrapper:hover {
+  background-color: #282828;
 }
 
 .DropdownIcon {
