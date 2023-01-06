@@ -6,6 +6,7 @@ import ArtistContext from '../../Context/ArtistContext'
 const ArtistHeader : FC = () : ReactElement => {
 
 	const navigate = useNavigate()
+	
 
 		const {
 			artistProfileAddress, 
@@ -81,7 +82,14 @@ const ArtistHeader : FC = () : ReactElement => {
 					:
 					<></>
 					}
+					<Link
+					className='HeaderMenuTitle' 
+					to= "/Contact"
+					>
+					Contact
+					</Link>
 				</div>
+				
 
 				{artistLoggedIn 
 				? 

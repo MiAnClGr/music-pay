@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract} from "../../Contracts/ContractObjects"
 import {motion} from 'framer-motion'
 import LogOut from '../shared/LogOut'
+import Home from '../shared/Home'
 
 
 const CreateNew : FC = () : ReactElement => {
@@ -52,12 +53,11 @@ const CreateNew : FC = () : ReactElement => {
     <div
     style={{height: "100%"}}
     >
-        {artistLoggedIn
-        ?
-        <ArtistHeader/>
-        :
-        <BookingHeader/>
-        }
+        <div
+        style={{height: "80px", display: "flex", alignItems: "center"}}
+        >
+            <Home/>
+        </div>
         <motion.div 
         className= 'CreateOrLogInArtist'
         style={{textAlign: "center", height: "100%"}} 
@@ -66,7 +66,7 @@ const CreateNew : FC = () : ReactElement => {
         exit= {{opacity: 0}}
         >
             <h3 className= "Text"
-            style={{fontSize: "35px", marginBottom: "0"}}
+            style={{fontSize: "35px", marginTop: "50%", marginBottom: "0"}}
             >Create a new profile</h3>      
             <input
             className= 'Input'

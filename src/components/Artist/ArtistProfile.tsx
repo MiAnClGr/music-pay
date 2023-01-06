@@ -7,6 +7,7 @@ import {motion, AnimatePresence} from 'framer-motion'
 import LogOut from '../shared/LogOut'
 import ArtistHeaderMobile from './Mobile/ArtistHeaderMobile'
 
+
 const ArtistProfile :FC = () : ReactElement => {
 
     const {

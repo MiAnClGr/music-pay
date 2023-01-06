@@ -13,19 +13,30 @@ const BookingHeader : FC= () : ReactElement => {
     <header className='Header'>
       
       <Home/>
+
+      <div
+      className='HeaderMenu'
+      >
+        <Link
+        className='HeaderMenuTitle' 
+        to= "/About"
+        >
+        About
+        </Link>
+        <Link
+        className='HeaderMenuTitle' 
+        to= "/EscrowList"
+        >
+        Active Escrows
+        </Link>
+        <Link
+					className='HeaderMenuTitle' 
+					to= "/Contact"
+					>
+					Contact
+				</Link>
+      </div>
       
-      <Link
-      className='About' 
-      to= "/About"
-      >
-      About
-      </Link>
-      <Link
-      className='ActiveEscrows' 
-      to= "/EscrowList"
-      >
-      Active Escrows
-      </Link>
       <div className='Search'>
         {searchClicked 
         ? 

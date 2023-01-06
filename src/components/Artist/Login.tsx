@@ -2,6 +2,7 @@ import React, {useState, FC, ReactElement} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
 import {motion} from 'framer-motion'
+import Home from '../shared/Home'
 
 
 
@@ -43,18 +44,25 @@ const Login : FC = () : ReactElement => {
     }
 
   return (
-    <motion.div
-    style={{textAlign: "center", height: "100%"}} 
-    initial= {{opacity: 0}}
-    animate= {{opacity: 1}}
-    exit= {{opacity: 0}}
-    transition={{duration: 0.2}}
+    <div
+    style={{height: "100%"}}
     >
         <div
-        className= 'CreateOrLogInArtist'>
-            <h2 
+        style={{height: "80px", display: "flex", alignItems: "center"}}
+        >
+            <Home/>
+        </div>
+        <motion.div
+        className= 'CreateOrLogInArtist'
+        style={{textAlign: "center", height: "100%"}} 
+        initial= {{opacity: 0}}
+        animate= {{opacity: 1}}
+        exit= {{opacity: 0}}
+        >
+            <h3 
             className= "Text"
-            >Log into Music-Pay</h2>
+            style={{fontSize: "35px", marginTop: "50%", marginBottom: "0"}}
+            >Log into Music-Pay</h3>
             <input
             className= 'Input'
             style={{width: "70%"}} 
@@ -70,10 +78,10 @@ const Login : FC = () : ReactElement => {
             >
             LOG IN
             </button>
-        </div>
+        </motion.div>
 
         
-    </motion.div>
+    </div>
   )
 }
 
