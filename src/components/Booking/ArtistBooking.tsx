@@ -83,15 +83,19 @@ const ArtistBooking : FC = () : ReactElement => {
         exit= {{opacity: 0}}
         >
           <h3 
+          className='Text'
+          style={{fontSize: "50px", marginBottom: "10px", width: "500px"}}
+          >You are now booking</h3>
+          <h3 
           className='ArtistNameBooking'
-          style={{fontSize: "65px"}}
+          style={{fontSize: "60px"}}
           >{artistName}</h3>
           <br></br>
           <br></br>
           <input 
             className='Input'
             autoComplete='off'
-            placeholder="Booking Agent" 
+            placeholder="Booking Agent Name" 
             name= "bookingAgent"
             onChange={handleChange}
             >
