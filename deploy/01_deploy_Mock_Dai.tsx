@@ -21,7 +21,7 @@ const func : DeployFunction = async (hre : HardhatRuntimeEnvironment) => {
     const MockDai : Contract = await ethers.getContract("MockDai")
 
     await MockDai.connect(userOne).mintDai(utils.parseEther('1000'))
-    await MockDai.connect(userTwo).mintDai(utils.parseEther("1000"))
+    await MockDai.connect(userTwo).mintDai(utils.parseEther('1000'))
 }
 export default func
 
