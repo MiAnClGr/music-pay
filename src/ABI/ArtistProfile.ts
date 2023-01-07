@@ -300,6 +300,19 @@ export default [
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "profilePicURL",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "string",
@@ -356,6 +369,19 @@ export default [
       }
     ],
     "name": "updateBooking",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_url",
+        "type": "string"
+      }
+    ],
+    "name": "updateProfilePicURL",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

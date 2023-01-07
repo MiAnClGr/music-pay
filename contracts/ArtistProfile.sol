@@ -48,6 +48,7 @@ contract ArtistProfile {
     address public artistFactory;
 
     string public aboutMe;
+    string public profilePicURL;
 
     mapping(uint => Booking) public bookings;
 
@@ -116,6 +117,10 @@ contract ArtistProfile {
  
     function updateAboutMe(string memory _update) external {
         aboutMe = _update;
+    }
+
+    function updateProfilePicURL(string memory _url) external {
+        profilePicURL = _url;
     }
 
     function agreement(uint _gigNumber) external onlyArtist {

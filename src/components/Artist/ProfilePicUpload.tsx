@@ -1,6 +1,7 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import {create} from 'ipfs-http-client'
 import {Buffer} from 'buffer'
+import ArtistContext from '../../Context/ArtistContext'
 
 
 const ID = '2JyLq457L1ui2mdONs7nmP6mq4G'
@@ -19,23 +20,33 @@ const client = create({
 
 const ProfilePicUpload = () => {
 
+    const {artistProfileAddress, createArtistProfileInstance} = useContext(ArtistContext)
+
     const [picURL, setPicURL] = useState("")
 
+    const getProfilePicURL = async () => {
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
+        const url = await artistProfileContract.profilePicURL()
+        setPicURL(url)
+    }
 
     const handleUpload = async (e : any) => {
         const profilePic : any = e.target.files[0]
-
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         try{
             const added = await client.add(profilePic)
             const url = `https://music-pay-profile-pic.infura-ipfs.io/ipfs/${added.path}`
             setPicURL(url)
+            await artistProfileContract.updateProfilePicURL(url)
         }catch(error){
             console.log(error)
         }
     }
 
     
-
+    useEffect(() => {
+        getProfilePicURL()
+    },[])
 
 
   return (
