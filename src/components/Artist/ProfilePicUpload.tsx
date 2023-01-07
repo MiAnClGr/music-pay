@@ -20,15 +20,9 @@ const client = create({
 
 const ProfilePicUpload = () => {
 
-    const {artistProfileAddress, createArtistProfileInstance} = useContext(ArtistContext)
+    const {picURL, setPicURL, artistProfileAddress, createArtistProfileInstance} = useContext(ArtistContext)
 
-    const [picURL, setPicURL] = useState("")
-
-    const getProfilePicURL = async () => {
-        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        const url = await artistProfileContract.profilePicURL()
-        setPicURL(url)
-    }
+    console.log(picURL)
 
     const handleUpload = async (e : any) => {
         const profilePic : any = e.target.files[0]
@@ -42,11 +36,6 @@ const ProfilePicUpload = () => {
             console.log(error)
         }
     }
-
-    
-    useEffect(() => {
-        getProfilePicURL()
-    },[])
 
 
   return (

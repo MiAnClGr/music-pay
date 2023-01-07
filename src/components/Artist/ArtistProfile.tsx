@@ -18,6 +18,7 @@ const ArtistProfile :FC = () : ReactElement => {
         setArtist, 
         bookings,
         getBookings,
+        getProfilePicURL
     } = useContext(ArtistContext)
 
     console.log(artistProfileAddress)
@@ -34,6 +35,7 @@ const ArtistProfile :FC = () : ReactElement => {
     useEffect(() => {
         setArtist()
         getBookings()
+        getProfilePicURL()
         console.log("useEffect 2")
     }, [artistProfileAddress])
 

@@ -27,7 +27,9 @@ interface ArtistContextInterface {
     escrowAddressArtist : string
     getEscrowAddressArtist : () => void
     EscrowContractArtist : Contract
-
+    picURL : string
+    setPicURL : React.Dispatch<React.SetStateAction<string>>
+    getProfilePicURL : () => Promise<void>
 
 }
 
@@ -109,6 +111,17 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
     const displayUpdateAboutMe = () => {
         setUpdateClicked(!updateClicked)
     }
+
+/// Fetches and sets the profile pic URL
+
+const [picURL, setPicURL] = useState("")
+
+const getProfilePicURL = async () => {
+    const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
+    const url = await artistProfileContract.profilePicURL()
+    console.log(url)
+    setPicURL(url)
+}
     
 /// Displays current bookings on the profile page    
 
@@ -184,7 +197,10 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             setBookingNumberArtist,
             escrowAddressArtist,
             getEscrowAddressArtist,
-            EscrowContractArtist           
+            EscrowContractArtist,
+            picURL,
+            setPicURL,
+            getProfilePicURL         
         }}
         >
             {children}
