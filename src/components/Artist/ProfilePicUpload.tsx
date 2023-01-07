@@ -61,7 +61,7 @@ const ProfilePicUpload = () => {
         >
             {picURL
             ?
-            <img src={picURL} width="99%"/>
+            <img src={picURL} width="99%" height="99%"/>
             :
             <h3 
             className='Text'
