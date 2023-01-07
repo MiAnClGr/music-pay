@@ -5,6 +5,7 @@ import BookingsList from "./BookingsList"
 import ArtistContext from '../../Context/ArtistContext'
 import {motion, AnimatePresence} from 'framer-motion'
 import LogOut from '../shared/LogOut'
+import ProfilePicUpload from './ProfilePicUpload'
 import ArtistHeaderMobile from './Mobile/ArtistHeaderMobile'
 
 
@@ -62,6 +63,7 @@ const ArtistProfile :FC = () : ReactElement => {
                 }
                 
             </motion.div>
+            <ProfilePicUpload/>
             {artistLoggedIn
             ?
             <LogOut/>
