@@ -84,11 +84,11 @@ const ArtistBooking : FC = () : ReactElement => {
         >
           <h3 
           className='Text'
-          style={{fontSize: "50px", marginBottom: "10px", width: "500px"}}
+          style={{fontSize: "45px", marginTop: "0", marginBottom: "10px", width: "500px"}}
           >You are now booking</h3>
           <h3 
           className='ArtistNameBooking'
-          style={{fontSize: "60px"}}
+          style={{fontSize: "50px"}}
           >{artistName}</h3>
           <br></br>
           <br></br>

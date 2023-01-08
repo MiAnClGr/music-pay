@@ -3,14 +3,14 @@ import {BigNumber} from 'ethers'
 import Booking from './Booking'
 import ArtistContext from '../../Context/ArtistContext'
 import {motion} from 'framer-motion'
-import Home from '../shared/Home'
-import { Link } from 'react-router-dom'
 import ArtistHeader from './ArtistHeader'
 import LogOut from '../shared/LogOut'
 
 const BookingsList :FC = () : ReactElement => {
 
-    const {updateDisplayBookings, bookings, artistLoggedIn} = useContext(ArtistContext)
+    const {bookings, artistLoggedIn} = useContext(ArtistContext)
+
+    console.log(bookings.length)
 
     const displayBooking = bookings.map((booking : any[]) =>  
         <Booking
@@ -32,13 +32,6 @@ const BookingsList :FC = () : ReactElement => {
             width: "100%",  
         }}
         > 
-            {/* <Link
-            to={"/ArtistProfile"}
-            className='Link'
-            style={{position: "absolute", left: "2%", fontSize: "18px"}}
-            >
-            Back
-            </Link>   */}
             <ArtistHeader/>
             <motion.div 
             initial= {{opacity: 0}}
@@ -46,9 +39,10 @@ const BookingsList :FC = () : ReactElement => {
             exit= {{opacity: 0}}
             style={{width: "100%",  textAlign: "center", marginTop: "5%"}}
             >
-                {/* <h1
-                style={{color: "#eaeaea", fontSize: "60px", textAlign: "center", position: "sticky"}}
-                >Bookings</h1> */}
+                {bookings.length === 0
+                ?
+                <h1 className='Text' style={{fontSize: "30px", marginTop: "18%"}}> You currently have no Bookings</h1>
+                :
                 <div
                 className='BookingsDiv'
                 style={{
@@ -72,6 +66,7 @@ const BookingsList :FC = () : ReactElement => {
                     <h4 style={{width: "6%", minWidth: "82px", color: "black"}}>Hidden</h4>
                     
                 </div>
+                }
                 <motion.div
                 className='BookingsList'
                 style={{

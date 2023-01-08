@@ -4,6 +4,7 @@ import {MockDai, signer} from "../../Contracts/ContractObjects"
 import ArtistContext from '../../Context/ArtistContext'
 import BookingContext from '../../Context/BookingContext'
 import EscrowContext from '../../Context/EscrowContext'
+import Home from './Home'
 
 const EscrowMain : FC = () : ReactElement => {
 
@@ -35,6 +36,7 @@ const EscrowMain : FC = () : ReactElement => {
   console.log(currentContract)
   console.log(currentAddress)
   console.log(escrowAddressAgent)
+  console.log(escrowState)
   
   const payDeposit = async () => {
     const deposit = await EscrowContractAgent.payment()/5
@@ -93,6 +95,11 @@ const EscrowMain : FC = () : ReactElement => {
 
   return (
     <div className='EscrowMain'>
+      <div
+        style={{height: "80px", display: "flex", alignItems: "center"}}
+        >
+            <Home/>
+        </div>
       <h1 
       className='HeaderText'
       style={{fontSize: "60px"}}
@@ -114,9 +121,9 @@ const EscrowMain : FC = () : ReactElement => {
       <br></br>
       <br></br>
       <div className='EscrowMainDiv'>
-        <h3 className='Text' style={{fontSize: "25px"}}>Booking Number: {bookingNumberArtist}</h3>
-        <h3 className='Text' style={{fontSize: "25px"}}>Artist : {artistName}</h3>
-        <h3 className='Text' style={{fontSize: "25px"}}>Booking Agent: {bookingAgentName}</h3>
+        <h3 className='Text' style={{fontSize: "20px"}}>Booking Number: {bookingNumberArtist}</h3>
+        <h3 className='Text' style={{fontSize: "20px"}}>Artist : {artistName}</h3>
+        <h3 className='Text' style={{fontSize: "20px"}}>Booking Agent: {bookingAgentName}</h3>
       </div>
       <div
       className= "EscrowMainDiv"

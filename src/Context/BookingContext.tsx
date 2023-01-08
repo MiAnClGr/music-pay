@@ -50,7 +50,7 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
             if(address != "0x0000000000000000000000000000000000000000"){
                 setSearchedAddress(address)
                 console.log(searchedAddress)
-                navigate("/ArtistBooking")
+                navigate("/Artist")
             }else{
                 navigate("/NotOwner")
             }
