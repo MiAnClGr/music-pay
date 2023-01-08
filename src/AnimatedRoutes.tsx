@@ -7,6 +7,7 @@ import ArtistMain from './components/Artist/ArtistMain';
 import TitlePage from './components/TitlePage'
 import ArtistProfile from './components/Artist/ArtistProfile'
 import BookingMain from './components/Booking/BookingMain';
+import ArtistPage from './components/Booking/ArtistPage';
 import ArtistBooking from './components/Booking/ArtistBooking';
 import BookingComplete from './components/Booking/BookingComplete';
 import EscrowMain from './components/shared/EscrowMain'
@@ -40,6 +41,8 @@ const AnimatedRoutes = () => {
         <Route path= "/ArtistProfile" element = {<ArtistProfile/>}/>
 
         <Route path= "/BookingMain" element = {<BookingMain/>}/>
+
+        <Route path= "/Artist" element = {<ArtistPage/>}/>
 
         <Route path= "/About" element = {<About/>}/>
 
