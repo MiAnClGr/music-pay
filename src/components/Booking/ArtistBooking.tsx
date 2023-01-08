@@ -94,44 +94,65 @@ const ArtistBooking : FC = () : ReactElement => {
           <br></br>
           <input 
             className='Input'
+            style={{
+              borderBottom: "solid",
+              borderWidth: "1px",
+              borderColor: "grey"
+            }}
             autoComplete='off'
             placeholder="Booking Agent Name" 
             name= "bookingAgent"
             onChange={handleChange}
-            >
-            </input>
+            />
             <input 
             className='Input'
+            style={{
+              borderBottom: "solid",
+              borderWidth: "1px",
+              borderColor: "grey"
+            }}
             autoComplete='off'
             placeholder="Payment" 
             name= "payment"
             onChange={handleChange}
-            >
-            </input>
+            />
             <input 
             className='Input'
+            style={{
+              borderBottom: "solid",
+              borderWidth: "1px",
+              borderColor: "grey"
+            }}
             autoComplete='off'
             placeholder="Time" 
             name="time"
             onChange={handleChange}
-            >
-            </input>
+            />
             <input 
             className='Input'
+            style={{
+              borderBottom: "solid",
+              borderWidth: "1px",
+              borderColor: "grey"
+            }}
             autoComplete='off'
             placeholder="Venue" 
             name="venue"
             onChange={handleChange}
-            >
-            </input>
+            />
             <input 
             className='Input'
+            style={{
+              borderBottom: "solid",
+              borderWidth: "1px",
+              borderColor: "grey"
+            }}
             autoComplete='off'
             placeholder="Date" 
             name="date"
             onChange={handleChange}
-            >
-            </input>
+            />
+           
             <br></br>
             <br></br>
             <button 
