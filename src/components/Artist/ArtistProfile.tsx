@@ -57,6 +57,7 @@ const ArtistProfile :FC = () : ReactElement => {
             animate= {{opacity: 1}}
             exit= {{opacity: 0}}
             >
+                <ProfilePicUpload/>
                 {artistLoggedIn 
                 ?
                 <AboutMe/>
@@ -65,7 +66,7 @@ const ArtistProfile :FC = () : ReactElement => {
                 }
                 
             </motion.div>
-            <ProfilePicUpload/>
+            
             {artistLoggedIn
             ?
             <LogOut/>

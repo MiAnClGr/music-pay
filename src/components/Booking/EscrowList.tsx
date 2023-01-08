@@ -12,28 +12,41 @@ const EscrowList = () => {
       escrowAddress= {escrowAddress}
       />
     )
-       
-    
-
+      
     useEffect(() => {
         getEscrowList()
     },[])
 
-    
   return (
     <div>
       <BookingHeader/>
       <div
       className='EscrowList'
-      style={{
-      borderStyle: "dotted",
-      borderRight: "hidden",
-      borderLeft: "hidden",
-      borderTop: "hidden",
-      borderWidth: "1px",
-      borderColor: "grey"
-      }}
       >
+        <div
+        className='BookingsDiv'
+        style={{
+          color: "grey", 
+          fontSize: "23px",
+          borderBottom: "dotted",
+          borderColor: "grey",
+          borderWidth: "1px",
+          position: "sticky",
+          width: "100%",
+          marginLeft: "auto", 
+          marginRight: "auto",
+            
+        }}
+        >
+          <h4 style={{width: "100px", minWidth: "80px"}}>Artist</h4>
+          <h4 style={{width: "200px", minWidth: "150px"}}>Venue</h4>
+          <h4 style={{width: "200px", minWidth: "150px"}}>Date</h4>
+          <h4 style={{width: "200px", minWidth: "150px"}}>Payment</h4>
+          <h4 style={{width: "100px", minWidth: "80px"}}>Time</h4>
+          <h4 style={{width: "6%", minWidth: "82px", color: "black"}}>Hidden</h4>
+            
+        </div>
+    
         <div className='EscrowListDiv'>
             {displayEscrow}
         </div>

@@ -20,7 +20,13 @@ const client = create({
 
 const ProfilePicUpload = () => {
 
-    const {picURL, setPicURL, artistProfileAddress, createArtistProfileInstance} = useContext(ArtistContext)
+    const {
+        picURL, 
+        setPicURL, 
+        artistProfileAddress, 
+        createArtistProfileInstance,
+        updateClicked
+    } = useContext(ArtistContext)
 
     console.log(picURL)
 
@@ -43,9 +49,6 @@ const ProfilePicUpload = () => {
     style={{
     width: "400px", 
     height: "500px", 
-    position: "absolute", 
-    left: "2%", 
-    top: "20%",
     display: "flex",
     flexDirection: "column",   
     }}>
@@ -70,11 +73,16 @@ const ProfilePicUpload = () => {
             }
         </div>
         <br></br>
+        {updateClicked
+        ?
         <input
         type= 'file'
         className='UploadProfilePic'
         onChange={handleUpload}
         />
+        :
+        <></>
+        }
     </div>
   )
 }
