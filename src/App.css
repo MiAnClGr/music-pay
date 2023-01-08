@@ -47,9 +47,6 @@ body {
   transform: scale(1.25);
   color: #eaeaea;
   background-color: black;
-  border-bottom: solid;
-  border-color: grey; 
-  border-width: 1px;
   border-top: hidden;
   border-left: hidden;
   border-right: hidden;  

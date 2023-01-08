@@ -70,7 +70,12 @@ const CreateNew : FC = () : ReactElement => {
             >Create a new profile</h3>      
             <input
             className= 'Input'
-            style={{width: "70%"}} 
+            style={{
+                width: "70%",
+                borderBottom: "solid",
+                borderWidth: "1px",
+                borderColor: "grey"
+            }} 
             placeholder= 'Artist Name' 
             onChange= {handleChange}
             onKeyDown= {handleKeyDownCreate}
