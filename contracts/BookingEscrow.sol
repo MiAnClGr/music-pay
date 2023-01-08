@@ -34,6 +34,9 @@ contract BookingEscrow {
     string public bookingAgentName;
     uint256 public gigNumber;
     uint256 public payment;
+    uint256 public time;
+    string public venueName;
+    string public date;
 
     bool public performanceConfirmedArtist;
     bool public performanceConfirmedAgent;
@@ -58,6 +61,9 @@ contract BookingEscrow {
         string memory _bookingAgentName,
         uint _gigNumber, 
         uint256 _payment,
+        uint _time,
+        string memory _venueName,
+        string memory _date,
         address _daiAddress,
         address _artistFactoryAddress
         ) payable {
@@ -67,6 +73,9 @@ contract BookingEscrow {
         bookingAgentName = _bookingAgentName;
         gigNumber = _gigNumber;
         payment = _payment;
+        time = _time;
+        venueName = _venueName;
+        date = _date;
         DAI = ERC20(_daiAddress);
         artistFactory = ArtistFactory(_artistFactoryAddress);
         artistFactory.addEscrowAgent(_bookingAgent);

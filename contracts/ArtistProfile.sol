@@ -134,6 +134,9 @@ contract ArtistProfile {
             booking.bookingAgentName,
             booking.gigNumber, 
             booking.payment,
+            booking.time,
+            booking.venueName,
+            booking.date,
             payable(address(DAI)),
             artistFactory
             
