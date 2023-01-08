@@ -25,20 +25,20 @@ const AboutMe : FC = () : ReactElement => {
         setUpdate(e.target.value)
     }
 
-    const handleSubmitAboutMe = async (e : React.KeyboardEvent<HTMLElement>) => {
+    const handleSubmitAboutMe = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        if(e.key === 'Enter'){
-            try{
-                const updated = await artistProfileContract.updateAboutMe(update)
-                await updated.wait()
-            }catch(error){
+        
+        try{
+            const updated = await artistProfileContract.updateAboutMe(update)
+            await updated.wait()
+        }catch(error){
 
-            }finally{
-                getAboutMe()
-                setUpdateClicked(!updateClicked)
-                console.log("submitted")
-            }
+        }finally{
+            getAboutMe()
+            setUpdateClicked(!updateClicked)
+            console.log("submitted")
         }
+        
     }
  
     useEffect(() => {
@@ -46,28 +46,52 @@ const AboutMe : FC = () : ReactElement => {
     },[])
 
   return (
-    <div className='AboutMeBox' >
-        <h4 style={{color: "white"}}>
-            {aboutArtist}
-        </h4>
-        <br></br>
-        <br></br>
-        
-        <br></br>
+    <div
+    style={{
+        width: "400px", 
+        height: "500px", 
+        display: "flex",
+        flexDirection: "column",   
+        }}
+    >   
+        <div className='AboutMeBox' >
+            <h4 className='Text' style={{fontWeight: "bold"}}>ABOUT</h4>
+            {!updateClicked
+            ?
+            <h4 style={{color: "white"}}>
+                {aboutArtist}
+            </h4>
+            :
+            <></> 
+            }
+            
+            {updateClicked
+            ?
+            <div className='AboutMeUpdate'>
+                <textarea
+                className='AboutMeUpdateBox'
+                style={{opacity: "0.7"}}
+                placeholder='About...'
+                onChange= {updateAboutMe}
+                >
+                    {aboutArtist}
+                </textarea> 
+            </div>          
+            :
+            <></>} 
+        </div>
         <br></br>
         {updateClicked
         ?
-        <div className='AboutMeUpdate'>
-            <textarea
-            className='AboutMeUpdateBox'
-            placeholder='About...'
-            onChange= {updateAboutMe}
-            onKeyDown= {handleSubmitAboutMe}
-            >
-            </textarea> 
-        </div>          
+        <button
+        className='Submit'
+        onClick={handleSubmitAboutMe}
+        >
+            Save    
+        </button>  
         :
-        <></>}       
+        <></>    
+        }
     </div>
   )
 }
