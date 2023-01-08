@@ -69,8 +69,8 @@ const Login : FC = () : ReactElement => {
             placeholder= 'Artist Name' 
             onChange= {handleChange}
             onKeyDown= {handleKeyDownLogIn}
-            >
-            </input> 
+            />
+            
             <button 
             className= 'Submit'
             style={{width: "91%"}}

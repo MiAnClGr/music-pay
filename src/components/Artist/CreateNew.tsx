@@ -74,8 +74,8 @@ const CreateNew : FC = () : ReactElement => {
             placeholder= 'Artist Name' 
             onChange= {handleChange}
             onKeyDown= {handleKeyDownCreate}
-            >
-            </input> 
+            />
+             
             <button 
             className= 'Submit'
             style={{width: "91%"}} 
