@@ -66,7 +66,7 @@ const CreateNew : FC = () : ReactElement => {
         exit= {{opacity: 0}}
         >
             <h3 className= "Text"
-            style={{fontSize: "35px", marginTop: "50%", marginBottom: "0"}}
+            style={{fontSize: "40px", marginTop: "50%", marginBottom: "0"}}
             >Create a new profile</h3>      
             <input
             className= 'Input'

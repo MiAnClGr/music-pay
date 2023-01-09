@@ -61,8 +61,8 @@ const Login : FC = () : ReactElement => {
         >
             <h3 
             className= "Text"
-            style={{fontSize: "35px", marginTop: "50%", marginBottom: "0"}}
-            >Log into Music-Pay</h3>
+            style={{fontSize: "40px", marginTop: "50%", marginBottom: "0"}}
+            >Log in to Music-Pay</h3>
             <input
             className= 'Input'
             style={{
