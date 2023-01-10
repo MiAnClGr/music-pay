@@ -6,9 +6,17 @@ import MockDaiABI from "../ABI/MockDai"
 
 declare var window: any
 
-const MockDaiAddress = "0xa73BD0bB26b0587C004A95D3FB2B655c86685CC0"
-const ArtistFactoryAddress = "0xA2a3DC7c94CEC1916cf68ADCE526987E3caA4A22"
-const PerformanceContractAddress = "0x2284036b628CF910B708893BB8590B2842752200"
+//Goerli
+
+// const MockDaiAddress = "0xa73BD0bB26b0587C004A95D3FB2B655c86685CC0"
+// const ArtistFactoryAddress = "0xA2a3DC7c94CEC1916cf68ADCE526987E3caA4A22"
+// const PerformanceContractAddress = "0x2284036b628CF910B708893BB8590B2842752200"
+
+///Mumbai
+
+const MockDaiAddress = "0x1023acA55D6aA1A8Dd0AcA62C6d559EdD09486F8"
+const ArtistFactoryAddress = "0x41A68550EcE02B3D223C4c168e045b335B2A098f"
+const PerformanceContractAddress = "0x9E86c84A90744F774f54aD51273E7B6f38082910"
 
 let provider : ethers.providers.Web3Provider
 let signer : ethers.providers.JsonRpcSigner
