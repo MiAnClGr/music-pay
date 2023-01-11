@@ -3,7 +3,6 @@
 pragma solidity 0.8.17;
 
 import "./BookingEscrow.sol";
-import "./ProofOfBooking.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
@@ -11,7 +10,6 @@ contract ArtistProfile {
     using Strings for uint256;
 
     BookingEscrow escrow;
-    ProofOfBooking proofOfBooking;
     ERC20 DAI;
 
 // Events
