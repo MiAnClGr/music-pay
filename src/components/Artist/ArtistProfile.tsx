@@ -18,7 +18,8 @@ const ArtistProfile :FC = () : ReactElement => {
         setArtist, 
         bookings,
         getBookings,
-        getProfilePicURL
+        getProfilePicURL,
+        setUpdateClickedPic
     } = useContext(ArtistContext)
 
     console.log(artistProfileAddress)
@@ -53,6 +54,7 @@ const ArtistProfile :FC = () : ReactElement => {
             <ArtistHeaderMobile/>   
             <motion.div 
             className='ProfilePage'
+            onClick={()=> setUpdateClickedPic(false)}
             initial= {{opacity: 0}}
             animate= {{opacity: 1}}
             exit= {{opacity: 0}}

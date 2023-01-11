@@ -29,7 +29,7 @@ const ProfilePicUpload = () => {
         setUpdateClickedPic
     } = useContext(ArtistContext)
 
-    console.log(picURL)
+    console.log(updateClickedPic)
 
     const handleUpload = async (e : any) => {
         const profilePic : any = e.target.files[0]

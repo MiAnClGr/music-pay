@@ -383,7 +383,7 @@ body {
   height: 70%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #191919;
+  border: solid 2px #191919;
   border-radius: 20px;
   margin-top: 2%;
 }
@@ -392,12 +392,12 @@ body {
   width: 400px;
   height: 401px;
   text-align: center;
-  background-color: #323232;
+  border: solid 2px #191919;
   border-radius: 20px;
 }
 
 .AboutMeBox:hover {
-  background-color: #4c4c4c;
+  background-color: #191919;
 }
 
 .AboutMeBox h4 {
@@ -448,12 +448,12 @@ body {
 }
 
 .ProfilePic {
-  background-color: #323232;
+  border: solid 2px #191919;
   border-radius: 20px;
 }
 
 .ProfilePic:hover {
-  background-color: #4c4c4c;
+  background-color: #191919;
 }
 
 /*Header*/
