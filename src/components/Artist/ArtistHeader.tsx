@@ -13,7 +13,6 @@ const ArtistHeader : FC = () : ReactElement => {
 			artistLoggedIn, 
 			createArtistProfileInstance,
 			getArtistConnected,
-			displayUpdateAboutMe,
 			displayBookings
 		} = useContext(ArtistContext)
 
@@ -64,7 +63,6 @@ const ArtistHeader : FC = () : ReactElement => {
 					?
 					<h4  
 					className='HeaderMenuTitle'
-					onClick= {displayUpdateAboutMe} 
 					>
 						Update
 					</h4>

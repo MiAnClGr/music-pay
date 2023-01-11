@@ -6,8 +6,8 @@ const AboutMe : FC = () : ReactElement => {
     const {
         createArtistProfileInstance,
         artistProfileAddress,
-        updateClicked,
-        setUpdateClicked
+        updateClickedAbout,
+        setUpdateClickedAbout
     } = useContext(ArtistContext)
 
     
@@ -35,7 +35,7 @@ const AboutMe : FC = () : ReactElement => {
 
         }finally{
             getAboutMe()
-            setUpdateClicked(!updateClicked)
+            setUpdateClickedAbout(!updateClickedAbout)
             console.log("submitted")
         }
         
@@ -54,9 +54,15 @@ const AboutMe : FC = () : ReactElement => {
         flexDirection: "column",   
         }}
     >   
-        <div className='AboutMeBox' >
-            <h4 className='Text' style={{fontWeight: "bold"}}>ABOUT</h4>
-            {!updateClicked
+        {!updateClickedAbout
+        ?
+            <div 
+            className='AboutMeBox'
+            onClick={() => setUpdateClickedAbout(true)}
+            >
+                <h3 className='Text' style={{marginTop: "45%"}}>Update Bio</h3>
+                
+            {!updateClickedAbout
             ?
             <h4 style={{color: "white"}}>
                 {aboutArtist}
@@ -64,24 +70,27 @@ const AboutMe : FC = () : ReactElement => {
             :
             <></> 
             }
-            
-            {updateClicked
-            ?
+            </div>
+        :
             <div className='AboutMeUpdate'>
-                <textarea
-                className='AboutMeUpdateBox'
-                style={{opacity: "0.7"}}
-                placeholder='About...'
-                onChange= {updateAboutMe}
-                >
-                    {aboutArtist}
-                </textarea> 
-            </div>          
-            :
-            <></>} 
-        </div>
+            <textarea
+            className='AboutMeUpdateBox'
+            style={{opacity: "0.7"}}
+            placeholder='About...'
+            onChange= {updateAboutMe}
+            >
+                {aboutArtist}
+            </textarea> 
+            </div>    
+        }
+        
+       
+        
+              
+      
+        
         <br></br>
-        {updateClicked
+        {updateClickedAbout
         ?
         <button
         className='Submit'

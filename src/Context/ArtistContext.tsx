@@ -15,9 +15,11 @@ interface ArtistContextInterface {
     artistConnected : boolean
     createArtistProfileInstance : (artist: string) => ethers.Contract
     getArtistConnected : () => Promise<void>
-    updateClicked : boolean
-    setUpdateClicked : React.Dispatch<React.SetStateAction<boolean>>
-    displayUpdateAboutMe :  () => void
+    updateClickedAbout : boolean
+    updateClickedPic : boolean
+    setUpdateClickedAbout : React.Dispatch<React.SetStateAction<boolean>>
+    setUpdateClickedPic : React.Dispatch<React.SetStateAction<boolean>>
+    // displayUpdateAboutMe :  () => void
     displayBookings : () => void
     updateDisplayBookings : Boolean
     bookings : any[]
@@ -106,11 +108,12 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
 /// Displays about me update box if update is clicked    
 
-    const [updateClicked, setUpdateClicked] = useState<boolean>(false)                       
+    const [updateClickedAbout, setUpdateClickedAbout] = useState<boolean>(false) 
+    const [updateClickedPic, setUpdateClickedPic] = useState<boolean>(false)                         
 
-    const displayUpdateAboutMe = () => {
-        setUpdateClicked(!updateClicked)
-    }
+    // const displayUpdateAboutMe = () => {
+    //     setUpdateClicked(!updateClicked)
+    // }
 
 /// Fetches and sets the profile pic URL
 
@@ -186,9 +189,10 @@ const getProfilePicURL = async () => {
             artistConnected,
             createArtistProfileInstance,
             getArtistConnected,
-            updateClicked,
-            setUpdateClicked,
-            displayUpdateAboutMe,
+            updateClickedAbout,
+            updateClickedPic,
+            setUpdateClickedAbout,
+            setUpdateClickedPic,
             displayBookings,
             updateDisplayBookings,
             bookings,

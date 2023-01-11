@@ -62,6 +62,7 @@ body {
 }
 
 .UploadProfilePic::-webkit-file-upload-button {
+  height: 100%;
   width: 100%;
   color: white;
   opacity: 0.8;
@@ -377,20 +378,26 @@ body {
   gap: 5%;
   padding-right: 20px;
   padding-left: 20px;
+  padding-top: 5%;
   width: 70%;
   height: 70%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
+  background-color: #191919;
+  border-radius: 20px;
+  margin-top: 2%;
 }
 
 .AboutMeBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
   width: 400px;
   height: 401px;
   text-align: center;
+  background-color: #323232;
+  border-radius: 20px;
+}
+
+.AboutMeBox:hover {
+  background-color: #4c4c4c;
 }
 
 .AboutMeBox h4 {
@@ -406,7 +413,7 @@ body {
   width: 400px;
   height: 400px;
   text-align: left;
-  
+  border-radius: 20px;
 }
 
 .AboutMeUpDateBox ::-webkit-input-placeholder {
@@ -416,10 +423,10 @@ body {
 
 .AboutMeUpdateBox {
   background-color: black;
-  width: 400px;
-  height: 400px;
+  width: 360px;
+  height: 360px;
   color: #eaeaea;
-  padding: 5px;
+  padding: 20px;
   resize: none;
   font-size: 16px;
   outline: none;
@@ -427,6 +434,8 @@ body {
   font-family: "Clarkson",Helvetica,sans-serif;
   letter-spacing: 1px;
   font-weight: normal;
+  margin-top: 0;
+  border-radius: 20px;
 
 }
 
@@ -436,6 +445,15 @@ body {
   color: #eaeaea;
   background-color: black;
   font-family: "Clarkson",Helvetica,sans-serif;
+}
+
+.ProfilePic {
+  background-color: #323232;
+  border-radius: 20px;
+}
+
+.ProfilePic:hover {
+  background-color: #4c4c4c;
 }
 
 /*Header*/

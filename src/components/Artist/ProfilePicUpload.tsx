@@ -25,7 +25,8 @@ const ProfilePicUpload = () => {
         setPicURL, 
         artistProfileAddress, 
         createArtistProfileInstance,
-        updateClicked
+        updateClickedPic,
+        setUpdateClickedPic
     } = useContext(ArtistContext)
 
     console.log(picURL)
@@ -49,14 +50,26 @@ const ProfilePicUpload = () => {
     style={{
     width: "400px", 
     height: "500px", 
-    display: "flex",
-    flexDirection: "column",   
+    // display: "flex",
+    // flexDirection: "column",   
     }}>
-        <div
+        
+        {updateClickedPic
+        ?
+        <input
         style={{
-        borderStyle: "solid",
-        borderColor: "white",
-        borderWidth: "1px",
+            height: "400px",
+            width: "400px"
+            }}
+        type= 'file'
+        className='UploadProfilePic'
+        onChange={handleUpload}
+        />
+        :
+        <div
+        className='ProfilePic'
+        onClick={() => {setUpdateClickedPic(true)}}
+        style={{
         height: "400px",
         width: "400px"
         }}
@@ -66,22 +79,10 @@ const ProfilePicUpload = () => {
             ?
             <img src={picURL} width="99%" height="99%"/>
             :
-            <h3 
-            className='Text'
-            style={{textAlign: "center", marginTop: "45%"}}
-            >Upload Profile Pic</h3>
+            <></>
+            
             }
         </div>
-        <br></br>
-        {updateClicked
-        ?
-        <input
-        type= 'file'
-        className='UploadProfilePic'
-        onChange={handleUpload}
-        />
-        :
-        <></>
         }
     </div>
   )

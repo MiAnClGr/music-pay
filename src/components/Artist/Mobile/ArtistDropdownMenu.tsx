@@ -11,7 +11,6 @@ const ArtistDropdownMenu = () => {
     const {
         artistLoggedIn, 
         displayBookings,
-        displayUpdateAboutMe
     } = useContext(ArtistContext)
 
   return (
@@ -54,7 +53,6 @@ const ArtistDropdownMenu = () => {
             
             <h4  
             className='UpdateAboutMeMobile'
-            onClick= {displayUpdateAboutMe} 
             >
                 Update
             </h4>
