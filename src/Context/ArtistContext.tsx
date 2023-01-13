@@ -17,9 +17,10 @@ interface ArtistContextInterface {
     getArtistConnected : () => Promise<void>
     updateClickedAbout : boolean
     updateClickedPic : boolean
+    updateClickedWhole : boolean
     setUpdateClickedAbout : React.Dispatch<React.SetStateAction<boolean>>
     setUpdateClickedPic : React.Dispatch<React.SetStateAction<boolean>>
-    // displayUpdateAboutMe :  () => void
+    setUpdateClickedWhole : React.Dispatch<React.SetStateAction<boolean>>
     displayBookings : () => void
     updateDisplayBookings : Boolean
     bookings : any[]
@@ -108,12 +109,9 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
 /// Displays about me update box if update is clicked    
 
+    const [updateClickedWhole, setUpdateClickedWhole] = useState<boolean>(false)
     const [updateClickedAbout, setUpdateClickedAbout] = useState<boolean>(false) 
     const [updateClickedPic, setUpdateClickedPic] = useState<boolean>(false)                         
-
-    // const displayUpdateAboutMe = () => {
-    //     setUpdateClicked(!updateClicked)
-    // }
 
 /// Fetches and sets the profile pic URL
 
@@ -191,8 +189,10 @@ const getProfilePicURL = async () => {
             getArtistConnected,
             updateClickedAbout,
             updateClickedPic,
+            updateClickedWhole,
             setUpdateClickedAbout,
             setUpdateClickedPic,
+            setUpdateClickedWhole,
             displayBookings,
             updateDisplayBookings,
             bookings,

@@ -26,7 +26,8 @@ const ProfilePicUpload = () => {
         artistProfileAddress, 
         createArtistProfileInstance,
         updateClickedPic,
-        setUpdateClickedPic
+        setUpdateClickedPic,
+        updateClickedWhole
     } = useContext(ArtistContext)
 
     console.log(updateClickedPic)
@@ -51,10 +52,8 @@ const ProfilePicUpload = () => {
   return (
     <div
     style={{
-        width: "400px", 
-        height: "500px",
-        display: "flex",
-        flexDirection: "column",
+        width: "500px", 
+        height: "500px"
     }}
     >
         {updateClickedPic
@@ -62,8 +61,8 @@ const ProfilePicUpload = () => {
             <div 
             className='ProfilePic'
             style={{
-                width: "400px", 
-                height: "400px", 
+                width: "500px", 
+                height: "500px", 
                 border: "solid 2px #7f7f7f",
                 opacity: "0.9" 
             }}
@@ -87,8 +86,8 @@ const ProfilePicUpload = () => {
                 <div
                 className='ProfilePic'
                 style={{
-                height: "400px",
-                width: "400px"
+                height: "500px",
+                width: "500px"
                 }}
                 
                 >
@@ -106,8 +105,8 @@ const ProfilePicUpload = () => {
             <div 
             className='ProfilePic'
             style={{
-                width: "400px", 
-                height: "400px",   
+                width: "500px", 
+                height: "500px",   
             }}
             >
                 
@@ -129,32 +128,39 @@ const ProfilePicUpload = () => {
                 <div
                 className='ProfilePic'
                 style={{
-                height: "400px",
-                width: "400px"
+                height: "500px",
+                width: "500px"
                 }}
                 
                 >
                     {picURL
                     ?
-                    <img src={picURL} width="99%" height="99%"/>
+                    <img src={picURL} width="100%" height="100%"/>
                     :
                     <></>
                     
                     }
+                    {updateClickedWhole
+                    ?
+                    <button 
+                    className='UpdateButton'
+                    style={{width: "20%", marginLeft: "auto", marginRight: "auto", marginTop: "10px"}}
+                    onClick={() => {setUpdateClickedPic(true)}}
+                    >
+                        Update
+                    </button>
+                    :
+                    <></>
+                    }
                 </div>
                 }
+                
             </div>
             }
 
 
-        <br></br>
-        <button 
-        className='UpdateButton'
-        style={{width: "30%", marginLeft: "auto", marginRight: "auto"}}
-        onClick={() => {setUpdateClickedPic(true)}}
-        >
-            Update Picture
-        </button>
+        
+       
     </div>
   )
 }

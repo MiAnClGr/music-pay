@@ -7,7 +7,8 @@ const AboutMe : FC = () : ReactElement => {
         createArtistProfileInstance,
         artistProfileAddress,
         updateClickedAbout,
-        setUpdateClickedAbout
+        setUpdateClickedAbout,
+        updateClickedWhole
     } = useContext(ArtistContext)
 
     console.log(updateClickedAbout)
@@ -15,7 +16,15 @@ const AboutMe : FC = () : ReactElement => {
     
     const [update, setUpdate] = useState<string>("")
     const [aboutArtist, setAboutArtist] = useState<string>("")
-    const [bioUpdated, setBioUpdated] = useState<boolean>(false)
+    const [name, setName] = useState("")
+
+
+    const getArtistName = async () => {
+        const artistProfile = createArtistProfileInstance(artistProfileAddress)
+        const name = await artistProfile.artistName()
+        console.log(name)
+        setName(name)
+    }
 
     console.log(aboutArtist)
 
@@ -41,7 +50,6 @@ const AboutMe : FC = () : ReactElement => {
         }finally{
             getAboutMe()
             setUpdateClickedAbout(!updateClickedAbout)
-            setBioUpdated(true)
             console.log("submitted")
         }
         
@@ -49,17 +57,25 @@ const AboutMe : FC = () : ReactElement => {
  
     useEffect(() => {
         getAboutMe()
+        getArtistName()
     },[])
 
   return (
     <div
     style={{
-        width: "400px", 
+        width: "500px", 
         height: "500px", 
         display: "flex",
-        flexDirection: "column",   
+        flexDirection: "column", 
+        textAlign: "center"
         }}
-    >   
+    > 
+        <h2 className='Text' style={{
+            fontSize: "40px", 
+            fontWeight: "bold", 
+            marginTop: 0,
+            marginBottom: "30px"
+            }}>{name}</h2>
     
         {updateClickedAbout
         ?
@@ -76,7 +92,7 @@ const AboutMe : FC = () : ReactElement => {
                 </textarea> 
                 <button
                 className='UpdateButton'
-                style={{width: "30%", marginLeft: "auto", marginRight: "auto", marginTop: "3.5%"}}
+                style={{width: "20%", marginRight: "auto", marginTop: "10px"}}
                 onClick={handleSubmitAboutMe}
                 >Save</button>
             </div> 
@@ -84,23 +100,9 @@ const AboutMe : FC = () : ReactElement => {
         <div 
             className='AboutMeBox'
         >
-            {aboutArtist === ""
-            ?
-                <button 
-                className='UpdateButton'
-                style={{
-                    marginTop: "45%", 
-                    width: "30%", 
-                    marginLeft: "auto", 
-                    marginRight: "auto", 
-                    borderColor: "#323232"}}
-                onClick= {() => setUpdateClickedAbout(true)}
-                >Update Bio
-                </button>
-            :
+           
             <div 
-            className='AboutMeBox'
-            style={{padding: "20px", width: "360px", height: "360px", textAlign: "left"}}
+            className='AboutMeBoxInside'
             >   
                 {aboutArtist !== ""
                 ?
@@ -113,22 +115,21 @@ const AboutMe : FC = () : ReactElement => {
                 
                
             </div>
-            }
+            
         </div>
         }
-        <br></br>
-            {(aboutArtist !== "") && (!updateClickedAbout)
+       
+            {(updateClickedWhole) && (!updateClickedAbout)
             ?
                 <button 
                 className='UpdateButton'
                 style={{
-                    width: "30%", 
-                    marginLeft: "auto", 
+                    width: "20%", 
                     marginRight: "auto",
-                    
+                    marginTop: "10px"
                 }}
                 onClick= {() => setUpdateClickedAbout(true)}
-                >Update Bio
+                >Update
                 </button>
             :
             <></>
