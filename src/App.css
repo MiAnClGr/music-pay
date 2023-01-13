@@ -61,23 +61,6 @@ body {
   opacity: 0.6;
 }
 
-.UploadProfilePic::-webkit-file-upload-button {
-  height: 100%;
-  width: 100%;
-  color: white;
-  opacity: 0.8;
-  background-color: black;
-  border-style: solid;
-  border-color: grey;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 12px;
-  font-family: "Clarkson",Helvetica,sans-serif;
-  padding: 12px;
-  cursor: pointer;
-  
-}
-
 /*Buttons*/
 
 .Submit {
@@ -389,20 +372,36 @@ body {
 }
 
 .AboutMeBox {
+  opacity: 0.9;
   width: 400px;
-  height: 401px;
+  height: 400px;
   text-align: center;
-  border: solid 2px #191919;
+  border: solid 1px #191919;
   border-radius: 20px;
-}
-
-.AboutMeBox:hover {
-  background-color: #191919;
 }
 
 .AboutMeBox h4 {
   margin-top: 2px;
   font-weight: lighter;
+}
+
+.UpdateButton {
+  color: white;
+  opacity: 0.8;
+  background-color: black;
+  border-style: solid;
+  border-color: #323232;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.UpdateButton:hover {
+  background-color: #323232;
+  border-color: grey;
 }
 
 
@@ -411,9 +410,19 @@ body {
   background-color: black;
   color: #eaeaea;
   width: 400px;
-  height: 400px;
+  height: 500px;
   text-align: left;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.AboutMeUpdate textarea:hover {
+  background-color: #323232;
+}
+
+.AboutMeUpdate textarea:focus {
+  background-color: #191919;
 }
 
 .AboutMeUpDateBox ::-webkit-input-placeholder {
@@ -430,30 +439,46 @@ body {
   resize: none;
   font-size: 16px;
   outline: none;
-  border: none;
   font-family: "Clarkson",Helvetica,sans-serif;
   letter-spacing: 1px;
   font-weight: normal;
   margin-top: 0;
   border-radius: 20px;
+  border: solid 2px #7f7f7f;
 
 }
 
-.AboutMeUpdate button {
-  width: 60px;
-  transform: scale(1.25);
-  color: #eaeaea;
-  background-color: black;
-  font-family: "Clarkson",Helvetica,sans-serif;
+.AboutMeUpDateBox :focus {
+  background-color: #323232;
 }
 
 .ProfilePic {
-  border: solid 2px #191919;
+  border: solid 1px #191919;
   border-radius: 20px;
 }
 
 .ProfilePic:hover {
   background-color: #191919;
+}
+
+.UploadProfilePic::-webkit-file-upload-button {
+  height: 100%;
+  width: 100%;
+  color: white;
+  opacity: 0.8;
+  background-color: black;
+  border-style: solid;
+  border-color: #323232;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: "Clarkson",Helvetica,sans-serif;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.UploadProfilePic::-webkit-file-upload-button:hover {
+  background-color: #323232;
 }
 
 /*Header*/

@@ -30,6 +30,7 @@ const ProfilePicUpload = () => {
     } = useContext(ArtistContext)
 
     console.log(updateClickedPic)
+    console.log(picURL)
 
     const handleUpload = async (e : any) => {
         const profilePic : any = e.target.files[0]
@@ -41,49 +42,119 @@ const ProfilePicUpload = () => {
             await artistProfileContract.updateProfilePicURL(url)
         }catch(error){
             console.log(error)
+        }finally{
+            setUpdateClickedPic(false)
         }
     }
 
 
   return (
-    <div 
+    <div
     style={{
-    width: "400px", 
-    height: "500px", 
-    // display: "flex",
-    // flexDirection: "column",   
-    }}>
-        
+        width: "400px", 
+        height: "500px",
+        display: "flex",
+        flexDirection: "column",
+    }}
+    >
         {updateClickedPic
         ?
-        <input
-        style={{
-            height: "400px",
-            width: "400px"
+            <div 
+            className='ProfilePic'
+            style={{
+                width: "400px", 
+                height: "400px", 
+                border: "solid 2px #7f7f7f",
+                opacity: "0.9" 
             }}
-        type= 'file'
-        className='UploadProfilePic'
-        onChange={handleUpload}
-        />
+            >
+                
+                {updateClickedPic
+                ?
+                <input
+                style={{
+                    height: "10%",
+                    width: "30%",
+                    marginTop: "45%",
+                    marginLeft: "35%",
+                    marginRight: "auto"
+                    }}
+                type= 'file'
+                className='UploadProfilePic'
+                onChange={handleUpload}
+                />
+                :
+                <div
+                className='ProfilePic'
+                style={{
+                height: "400px",
+                width: "400px"
+                }}
+                
+                >
+                    {picURL
+                    ?
+                    <img src={picURL} width="99%" height="99%"/>
+                    :
+                    <></>
+                    
+                    }
+                </div>
+                }
+            </div>
         :
-        <div
-        className='ProfilePic'
-        onClick={() => {setUpdateClickedPic(true)}}
-        style={{
-        height: "400px",
-        width: "400px"
-        }}
-        
-        >
-            {picURL
-            ?
-            <img src={picURL} width="99%" height="99%"/>
-            :
-            <></>
-            
+            <div 
+            className='ProfilePic'
+            style={{
+                width: "400px", 
+                height: "400px",   
+            }}
+            >
+                
+                {updateClickedPic
+                ?
+                <input
+                style={{
+                    height: "10%",
+                    width: "30%",
+                    marginTop: "45%",
+                    marginLeft: "35%",
+                    marginRight: "auto"
+                    }}
+                type= 'file'
+                className='UploadProfilePic'
+                onChange={handleUpload}
+                />
+                :
+                <div
+                className='ProfilePic'
+                style={{
+                height: "400px",
+                width: "400px"
+                }}
+                
+                >
+                    {picURL
+                    ?
+                    <img src={picURL} width="99%" height="99%"/>
+                    :
+                    <></>
+                    
+                    }
+                </div>
+                }
+            </div>
             }
-        </div>
-        }
+
+
+        <br></br>
+        <button 
+        className='UpdateButton'
+        style={{width: "30%", marginLeft: "auto", marginRight: "auto"}}
+        onClick={() => {setUpdateClickedPic(true)}}
+        >
+            Update Picture
+        </button>
     </div>
   )
 }

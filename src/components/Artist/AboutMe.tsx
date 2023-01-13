@@ -10,9 +10,14 @@ const AboutMe : FC = () : ReactElement => {
         setUpdateClickedAbout
     } = useContext(ArtistContext)
 
+    console.log(updateClickedAbout)
+    
     
     const [update, setUpdate] = useState<string>("")
     const [aboutArtist, setAboutArtist] = useState<string>("")
+    const [bioUpdated, setBioUpdated] = useState<boolean>(false)
+
+    console.log(aboutArtist)
 
     const getAboutMe = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
@@ -36,6 +41,7 @@ const AboutMe : FC = () : ReactElement => {
         }finally{
             getAboutMe()
             setUpdateClickedAbout(!updateClickedAbout)
+            setBioUpdated(true)
             console.log("submitted")
         }
         
@@ -54,55 +60,84 @@ const AboutMe : FC = () : ReactElement => {
         flexDirection: "column",   
         }}
     >   
-        {!updateClickedAbout
-        ?
-            <div 
-            className='AboutMeBox'
-            onClick={() => setUpdateClickedAbout(true)}
-            >
-                <h3 className='Text' style={{marginTop: "45%"}}>Update Bio</h3>
-                
-            {!updateClickedAbout
-            ?
-            <h4 style={{color: "white"}}>
-                {aboutArtist}
-            </h4>
-            :
-            <></> 
-            }
-            </div>
-        :
-            <div className='AboutMeUpdate'>
-            <textarea
-            className='AboutMeUpdateBox'
-            style={{opacity: "0.7"}}
-            placeholder='About...'
-            onChange= {updateAboutMe}
-            >
-                {aboutArtist}
-            </textarea> 
-            </div>    
-        }
-        
-       
-        
-              
-      
-        
-        <br></br>
+    
         {updateClickedAbout
         ?
-        <button
-        className='Submit'
-        onClick={handleSubmitAboutMe}
+
+            <div 
+            className='AboutMeUpdate'>
+                <textarea
+                className='AboutMeUpdateBox'
+                style={{opacity: "0.7"}}
+                placeholder='About...'
+                onChange= {updateAboutMe}
+                >
+                    {aboutArtist}
+                </textarea> 
+                <button
+                className='UpdateButton'
+                style={{width: "30%", marginLeft: "auto", marginRight: "auto", marginTop: "3.5%"}}
+                onClick={handleSubmitAboutMe}
+                >Save</button>
+            </div> 
+        :    
+        <div 
+            className='AboutMeBox'
         >
-            Save    
-        </button>  
-        :
-        <></>    
+            {aboutArtist === ""
+            ?
+                <button 
+                className='UpdateButton'
+                style={{
+                    marginTop: "45%", 
+                    width: "30%", 
+                    marginLeft: "auto", 
+                    marginRight: "auto", 
+                    borderColor: "#323232"}}
+                onClick= {() => setUpdateClickedAbout(true)}
+                >Update Bio
+                </button>
+            :
+            <div 
+            className='AboutMeBox'
+            style={{padding: "20px", width: "360px", height: "360px", textAlign: "left"}}
+            >   
+                {aboutArtist !== ""
+                ?
+                <h4 style={{color: "white"}}>
+                    {aboutArtist}
+                </h4>
+                :
+                <h4></h4>
+                }
+                
+               
+            </div>
+            }
+        </div>
         }
+        <br></br>
+            {(aboutArtist !== "") && (!updateClickedAbout)
+            ?
+                <button 
+                className='UpdateButton'
+                style={{
+                    width: "30%", 
+                    marginLeft: "auto", 
+                    marginRight: "auto",
+                    
+                }}
+                onClick= {() => setUpdateClickedAbout(true)}
+                >Update Bio
+                </button>
+            :
+            <></>
+
+            }
+            
+
     </div>
   )
-}
 
+}
 export default AboutMe
