@@ -137,22 +137,36 @@ const ProfilePicUpload = () => {
                     ?
                     <img src={picURL} width="100%" height="100%"/>
                     :
-                    <></>
+                    <h3 
+                    className='Link' 
+                    style={{
+                        fontSize: "16px",
+                        fontWeight: "lighter",
+                        marginTop: "45%", 
+                        marginLeft: 'auto', 
+                        marginRight: 'auto',
+                        width: '40%',
+                        cursor: "pointer",
+                        border: "none"
+                    }}
+                    onClick= {() => setUpdateClickedPic(true)}
+                    >Upload Profile Picture</h3>
                     
                     }
-                    {updateClickedWhole
-                    ?
-                    <button 
-                    className='UpdateButton'
-                    style={{width: "20%", marginLeft: "auto", marginRight: "auto", marginTop: "10px"}}
-                    onClick={() => {setUpdateClickedPic(true)}}
-                    >
-                        Update
-                    </button>
-                    :
-                    <></>
-                    }
+                  
                 </div>
+                }
+                {updateClickedWhole
+                ?
+                <button 
+                className='UpdateButton'
+                style={{width: "20%", marginLeft: "auto", marginRight: "auto", marginTop: "10px"}}
+                onClick={() => {setUpdateClickedPic(true)}}
+                >
+                    Update
+                </button>
+                :
+                <></>
                 }
                 
             </div>

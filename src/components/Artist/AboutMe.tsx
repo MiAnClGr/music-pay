@@ -71,10 +71,16 @@ const AboutMe : FC = () : ReactElement => {
         }}
     > 
         <h2 className='Text' style={{
-            fontSize: "40px", 
+            fontSize: "35px", 
             fontWeight: "bold", 
             marginTop: 0,
-            marginBottom: "30px"
+            marginBottom: "20px",
+            backgroundColor: "black",
+            display: "inline",
+            marginLeft: "auto",
+            marginRight: "auto",
+            padding: "10px",
+            borderRadius: "10px"
             }}>{name}</h2>
     
         {updateClickedAbout
@@ -82,6 +88,7 @@ const AboutMe : FC = () : ReactElement => {
 
             <div 
             className='AboutMeUpdate'>
+                
                 <textarea
                 className='AboutMeUpdateBox'
                 style={{opacity: "0.7"}}
@@ -110,7 +117,21 @@ const AboutMe : FC = () : ReactElement => {
                     {aboutArtist}
                 </h4>
                 :
-                <h4></h4>
+                <h3 
+                className='Link'
+                style={{
+                    fontSize: "16px",
+                    fontWeight: "lighter",
+                    marginTop: "40%", 
+                    marginLeft: 'auto', 
+                    marginRight: 'auto',
+                    width: '40%',
+                    cursor: "pointer",
+                    border: "none",
+                }}
+                onClick= {() => setUpdateClickedAbout(true)}
+                >Update Bio
+                </h3>
                 }
                 
                
