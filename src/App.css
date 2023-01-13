@@ -365,6 +365,8 @@ body {
   padding-bottom: 0;
   width: 60%;
   height: 60%;
+  min-height: 600px;
+  min-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   border: solid 2px #191919;
