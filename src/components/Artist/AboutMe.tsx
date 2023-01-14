@@ -58,7 +58,7 @@ const AboutMe : FC = () : ReactElement => {
     useEffect(() => {
         getAboutMe()
         getArtistName()
-    },[])
+    },[artistProfileAddress])
 
   return (
     <div
