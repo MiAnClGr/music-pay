@@ -10,17 +10,18 @@ To interact with the dApp please connect via metamask to the mumbai network
 
 Currently:
 
-An artist can create a profile and log in with their Metamask wallet. The profile is stored on chain as a smart contract that can receive the bookings and payment.
+An artist can create a profile and log in with their Metamask wallet, the profile is stored on chain as a smart contract that can receive the bookings and payment.
 
-A booking agent can search for an artist and make a booking.
+An artist can upload a profile picture to their Artist page, the file is saved on IPFS and the file url is stored in the Artist Profile contract.
 
-Bookings will be displayed dynamically on the artist profile page.
+A booking agent can search for an artist, view their profile and make a booking.
 
-Accepting a booking will direct to an Escrow component and deploy and Escrow smart contract
+If an Artist accepts a booking they will be directed to an Escrow page, an Escrow smart contract that controls the flow of the transaction will be deployed to the Blockchain, the contract will be accessible through the Escrow page by both the Artist and Agent 
+
+Booking agents are able to view a list of current escrows that they are a part of and access the escrow page through this list
+
 
 Soon to be added:
-
-Booking payment
 
 Proof of booking and proof of payment NFTs that will be minted to both artist and agent
 
