@@ -193,7 +193,7 @@ export default [
     "outputs": [
       {
         "internalType": "address",
-        "name": "artist",
+        "name": "artistProfile",
         "type": "address"
       },
       {
@@ -329,7 +329,7 @@ export default [
     "inputs": [
       {
         "internalType": "address",
-        "name": "_artist",
+        "name": "_artistProfile",
         "type": "address"
       },
       {

@@ -88,6 +88,19 @@ export default [
   },
   {
     "inputs": [],
+    "name": "artistProfile",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "bookingAgent",
     "outputs": [
       {

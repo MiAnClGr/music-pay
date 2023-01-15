@@ -31,7 +31,7 @@ export default [
     "inputs": [
       {
         "internalType": "address payable",
-        "name": "_artist",
+        "name": "_artistProfile",
         "type": "address"
       },
       {
