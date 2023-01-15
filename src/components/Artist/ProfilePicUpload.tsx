@@ -53,7 +53,7 @@ const ProfilePicUpload = () => {
     <div
     style={{
         width: "500px", 
-        height: "500%"
+        height: "500px"
     }}
     >
         {updateClickedPic
@@ -62,9 +62,8 @@ const ProfilePicUpload = () => {
             className='ProfilePic'
             style={{
                 width: "500px", 
-                height: "500%", 
-                border: "solid 2px #7f7f7f",
-                opacity: "0.9" 
+                height: "500px", 
+                border: "solid 2px #7f7f7f"
             }}
             >
                 
@@ -93,7 +92,7 @@ const ProfilePicUpload = () => {
                 >
                     {picURL
                     ?
-                    <img src={picURL} width="99%" height="99%"/>
+                    <img src={picURL} width="100%" height="100%"/>
                     :
                     <></>
                     

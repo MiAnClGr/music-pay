@@ -206,18 +206,69 @@ body {
 /*Booking*/
 
 .ArtistPage {
+  display: flex;
+  flex-direction: column;
+  padding-right: 2%;
+  padding-left: 2%;
+  padding-bottom: 0;
+  width: 60%;
   height: 70%;
-  width: 70%;
+  min-height: 600px;
+  min-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30px;
+  margin-top: 2%;
+  border: solid 2px #191919;
+  border-radius: 20px;
+  background-color: #171717;
 }
 
-.BookArtist {
+.ArtistPageInner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5%;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 90%;
+  height: 80%;
+  min-height: 540px;
+  min-width: 1080px;
+  margin-top: 1%;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #171717;
+}
+
+.BookArtistButton {
+  color: white;
+  opacity: 0.8;
+  background-color: black;
+  height: 10%;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  text-align: center;
+  border: solid 1px #323232;
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 22px;
+  font-weight: lighter;
+}
+
+.BookArtistButton:hover {
+  background-color: #323232;
+  cursor: pointer;
+  border-color: grey;
+}
+
+/* .BookArtist {
   width: 250px;
   margin-left: 83%;
   margin-top: 5px;
-}
+} */
 
 .ArtistBooking {
   height: 100vh;
@@ -374,7 +425,6 @@ body {
 .ProfilePageInner {
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   gap: 5%;
   padding-right: 20px;
   padding-left: 20px;
@@ -442,7 +492,7 @@ body {
   background-color: #171717;
   color: #eaeaea;
   width: 500px;
-  height: 500%;
+  height: 500px;
   text-align: left;
   border-radius: 20px;
   display: flex;

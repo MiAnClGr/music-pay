@@ -81,7 +81,8 @@ const AboutMe : FC = () : ReactElement => {
             marginRight: "auto",
             padding: "10px",
             borderRadius: "10px"
-            }}>{name}</h2>
+            }}>{name}
+        </h2>
     
         {updateClickedAbout
         ?

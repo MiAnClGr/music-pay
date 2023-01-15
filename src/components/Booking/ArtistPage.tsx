@@ -53,35 +53,26 @@ const ArtistPage = () => {
         }}
         >
             <div
-            style={{
-                height: "450px", 
-                display: "flex", 
-                justifyContent: "center", 
-                alignItems: "center",
-                gap: "5%",
-            }}
+            className='ArtistPageInner'
             >
                  <div
+                 className='ProfilePic'
                 style={{
-                    height: "400px",
-                    width: "400px",
-                    left: "10%",
+                    height: "500px",
+                    width: "500px"
+                
                 }}
                 >
                     <img 
                     src= {artistProfilePicURL} 
-                    width= "98%" 
-                    height= "98%" 
-                    style={{
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        border: "solid 1px #191919"
-                    }}/>
+                    width= "100%" 
+                    height= "100%" 
+                    />
                 </div>
                 <div
                 style={{
-                    height: "400px",
-                    width: "400px",
+                    height: "500px",
+                    width: "500px",
                     textAlign: "center",
                     display: "flex",
                     flexDirection: "column",
@@ -89,37 +80,40 @@ const ArtistPage = () => {
 
                 }}
                 >
-                    <div>
-                        <h3 
-                        className='ArtistNameBooking'
-                        style={{
-                            fontSize: "60px"
-                        }}
-                        >{artistName}
-                        </h3>
-                        <h4 className='Text'>{artistAboutMe}</h4>
-                    </div>
-                    <h4 
-                    className='HeaderMenuTitle'
-                    style={{
-                        width: "30%",
+                    <h2 className='Text' style={{
+                        fontSize: "35px", 
+                        fontWeight: "bold", 
+                        marginTop: 0,
+                        marginBottom: "20px",
+                        backgroundColor: "black",
+                        display: "inline",
                         marginLeft: "auto",
                         marginRight: "auto",
-                        marginBottom: "5%",
-                        textAlign: "center",
-                        border: "solid 1px grey",
                         padding: "10px",
-                        borderRadius: "20px",
-                        fontSize: "20px"
+                        borderRadius: "10px"
+                        }}>{artistName}
+                    </h2>
+                    <div
+                    className='AboutMeBox'
+                    style={{
+                        width: "460px", 
+                        height: "425px",
+                        padding: "20px"
                     }}
-                    onClick={() => navigate("/ArtistBooking")}
-                    >BOOK {artistName}
-                    </h4>
+                    >
+                        <h4 className='Text'>{artistAboutMe}</h4>
+                    </div>
+                    
                 </div>
                 
                
             </div>
             <br></br>
+            <button 
+            className='BookArtistButton'
+            onClick={() => navigate("/ArtistBooking")}
+            >BOOK {artistName}
+            </button>
             
         </div>
     </div>
