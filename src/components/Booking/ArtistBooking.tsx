@@ -84,7 +84,14 @@ const ArtistBooking : FC = () : ReactElement => {
         >
           <h3 
           className='Text'
-          style={{fontSize: "45px", marginTop: "0", marginBottom: "10px", width: "500px"}}
+          style={{
+            fontSize: "45px", 
+            marginTop: "0", 
+            marginBottom: "10px", 
+            width: "500px",
+            backgroundColor: "black",
+            display: "inline"
+          }}
           >You are now booking</h3>
           <h3 
           className='ArtistNameBooking'
@@ -95,9 +102,12 @@ const ArtistBooking : FC = () : ReactElement => {
           <input 
             className='Input'
             style={{
+              height: "5%",
+              width: "60%",
               borderBottom: "solid",
               borderWidth: "1px",
-              borderColor: "grey"
+              borderColor: "grey",
+              backgroundColor: "#171717"
             }}
             autoComplete='off'
             placeholder="Booking Agent Name" 
@@ -107,9 +117,12 @@ const ArtistBooking : FC = () : ReactElement => {
             <input 
             className='Input'
             style={{
+              height: "5%",
+              width: "60%",
               borderBottom: "solid",
               borderWidth: "1px",
-              borderColor: "grey"
+              borderColor: "grey",
+              backgroundColor: "#171717"
             }}
             autoComplete='off'
             placeholder="Payment" 
@@ -119,9 +132,12 @@ const ArtistBooking : FC = () : ReactElement => {
             <input 
             className='Input'
             style={{
+              height: "5%",
+              width: "60%",
               borderBottom: "solid",
               borderWidth: "1px",
-              borderColor: "grey"
+              borderColor: "grey",
+              backgroundColor: "#171717"
             }}
             autoComplete='off'
             placeholder="Time" 
@@ -131,9 +147,12 @@ const ArtistBooking : FC = () : ReactElement => {
             <input 
             className='Input'
             style={{
+              height: "5%",
+              width: "60%",
               borderBottom: "solid",
               borderWidth: "1px",
-              borderColor: "grey"
+              borderColor: "grey",
+              backgroundColor: "#171717"
             }}
             autoComplete='off'
             placeholder="Venue" 
@@ -143,9 +162,12 @@ const ArtistBooking : FC = () : ReactElement => {
             <input 
             className='Input'
             style={{
+              height: "5%",
+              width: "60%",
               borderBottom: "solid",
               borderWidth: "1px",
-              borderColor: "grey"
+              borderColor: "grey",
+              backgroundColor: "#171717"
             }}
             autoComplete='off'
             placeholder="Date" 
@@ -160,7 +182,7 @@ const ArtistBooking : FC = () : ReactElement => {
             type= 'submit'
             onClick= {handleSubmit}
             >
-              BOOK ARTIST
+              CONFIRM
             </button>
         </motion.div>
       </motion.div>

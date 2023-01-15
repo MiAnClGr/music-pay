@@ -181,7 +181,6 @@ body {
 
 .LoadingScreen {
   display: flex;
-  margin-top: 20%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -271,7 +270,10 @@ body {
 } */
 
 .ArtistBooking {
-  height: 100vh;
+  background-color: #171717;
+  border: solid 2px #191919;
+  border-radius: 20px;
+  height: 80%;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -299,19 +301,20 @@ body {
 
 .ArtistNameBooking {
   color: #eaeaea;
+  display: inline;
+  background-color: black;
   text-align: center;
   margin: 0;
+  padding: 10px;
 }
 
 .BookingForm {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  height: 150px;
+  width: 80%;
+  height: 80%;
   align-items: center;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
 }
 
 .BookingForm input {
@@ -322,7 +325,7 @@ body {
 
 .BookingForm input::-webkit-input-placeholder {
   font-weight: lighter;
-  font-size: 14px;
+  font-size: 16px;
   
 }
 
@@ -330,17 +333,24 @@ body {
   color: white;
   opacity: 0.8;
   background-color: black;
-  width: 113%;
-  height: 30%;
-  font-size: 12px;
-  font-family: "Clarkson",Helvetica,sans-serif;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-  border-style: solid;
-  border-color: grey;
-  border-radius: 10px;
+  height: 10%;
+  width: 30%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  text-align: center;
+  border: solid 1px #323232;
   padding: 10px;
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: lighter;
+}
+
+.SubmitBooking:hover {
+  background-color: #323232;
+  cursor: pointer;
+  border-color: grey;
 }
 
 .BookingsList {
