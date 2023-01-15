@@ -21,7 +21,7 @@ contract ArtistProfile {
 // State Variables
 
     struct Booking {
-        address artist;
+        address artistProfile;
         string artistName;
         address bookingAgent; 
         string bookingAgentName;
@@ -80,7 +80,7 @@ contract ArtistProfile {
 /// External
 
     function updateBooking(
-        address _artist,
+        address _artistProfile,
         string memory _artistName,
         address _bookingAgent,
         string memory _bookingAgentName,
@@ -94,7 +94,7 @@ contract ArtistProfile {
         Booking storage booking = bookings[gigNumber];
 
         {
-        booking.artist = _artist;
+        booking.artistProfile = _artistProfile;
         booking.artistName = _artistName;
         booking.bookingAgent = _bookingAgent;
         booking.bookingAgentName  = _bookingAgentName;
@@ -109,7 +109,7 @@ contract ArtistProfile {
 
         gigNumber ++;
 
-        emit BookingMade(_artist, _bookingAgent);
+        emit BookingMade(_artistProfile, _bookingAgent);
     }
 
  
@@ -126,7 +126,7 @@ contract ArtistProfile {
         booking.agreed = true;
 
         escrow =  new BookingEscrow(
-            booking.artist,
+            artist,
             booking.artistName,
             booking.bookingAgent,
             booking.bookingAgentName,

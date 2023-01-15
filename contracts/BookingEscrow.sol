@@ -29,6 +29,7 @@ contract BookingEscrow {
     PaymentState public currentState;
 
     address public artist;
+    address public artistProfile;
     string public artistName;
     address public bookingAgent;
     string public bookingAgentName;
@@ -68,6 +69,7 @@ contract BookingEscrow {
         address _artistFactoryAddress
         ) payable {
         artist = _artist;
+        artistProfile = msg.sender;
         artistName = _artistName;
         bookingAgent = _bookingAgent;
         bookingAgentName = _bookingAgentName;
@@ -79,7 +81,7 @@ contract BookingEscrow {
         DAI = ERC20(_daiAddress);
         artistFactory = ArtistFactory(_artistFactoryAddress);
         artistFactory.addEscrowAgent(_bookingAgent);
-        artistFactory.addEscrowArtist(_artist);
+        artistFactory.addEscrowArtist(msg.sender);
         currentState = PaymentState.NO_PAYMENT_MADE;
         
     }
@@ -95,15 +97,14 @@ contract BookingEscrow {
     }
 
     function confirmPerformance() external {
-        require(currentState == PaymentState.DEPOSIT_PAID);
-        if(msg.sender == artist) {
+        if(msg.sender == artist && currentState == PaymentState.DEPOSIT_PAID) {
             performanceConfirmedArtist = true;
             currentState = PaymentState.PERFORMANCE_FINALISED_ARTIST;    
         }
-        else if(msg.sender == bookingAgent) {
+        else if(msg.sender == bookingAgent && currentState == PaymentState.PERFORMANCE_FINALISED_ARTIST) {
             performanceConfirmedAgent = true;
             currentState = PaymentState.PERFORMANCE_FINALISED_AGENT;
-        }if(performanceConfirmedArtist && performanceConfirmedAgent){
+        }else if(performanceConfirmedArtist && performanceConfirmedAgent){
             currentState = PaymentState.PERFORMANCE_FINALISED;
         }
     }

@@ -34,7 +34,7 @@ contract PerformanceContract {
     // Create the Booking - intialiased by the booking agent
 
     function createBooking(
-        address payable _artist,
+        address payable _artistProfile,
         string memory _artistName,
         string memory _bookingAgentName,
         uint _payment, 
@@ -45,10 +45,10 @@ contract PerformanceContract {
         ) external {       
         require(artistFactory.doesArtistExist(_artistName));
         
-        ArtistProfile artist = ArtistProfile(_artist);
+        ArtistProfile artistProfile = ArtistProfile(_artistProfile);
         
-        artist.updateBooking(
-            _artist,
+        artistProfile.updateBooking(
+            _artistProfile,
             _artistName,  
             msg.sender, 
             _bookingAgentName,

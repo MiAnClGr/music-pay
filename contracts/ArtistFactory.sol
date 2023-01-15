@@ -48,7 +48,7 @@ contract ArtistFactory {
     }
 
     function addEscrowArtist(address _artist) external {
-        agentToCurrentEscrow[_artist].push(msg.sender);
+        artistToCurrentEscrow[_artist].push(msg.sender);
     }
 
     function getEscrow(address _bookingAgent, uint _index) external view returns(address){
