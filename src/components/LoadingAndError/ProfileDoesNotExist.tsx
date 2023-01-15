@@ -5,13 +5,19 @@ const ProfileDoesNotExist = () : ReactElement => {
 
   return (
     <div className='LoadingScreen'>
-        <h1 className='HeaderText'>
-        This Profile does not exist    
-        </h1>
-        <br></br>
-        <div className='HomeNotOwner'>
+      <div 
+      style={{height: "80px", display: "flex", alignItems: "center"}}
+      >
           <Home/>
-        </div>
+      </div>
+      <h1 
+      className='HeaderText'
+      style={{marginTop: "18%"}}
+      >
+      This Profile does not exist    
+      </h1>
+      <br></br>
+        
     </div>
   )
 }
