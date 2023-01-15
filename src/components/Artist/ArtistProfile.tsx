@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useContext, ReactElement} from 'react'
 import AboutMe from "./AboutMe"
 import ArtistHeader from "./ArtistHeader"
-import BookingsList from "./BookingsList"
 import ArtistContext from '../../Context/ArtistContext'
-import {motion, AnimatePresence} from 'framer-motion'
+import {motion} from 'framer-motion'
+import { Link } from 'react-router-dom'
 import LogOut from '../shared/LogOut'
 import ProfilePicUpload from './ProfilePicUpload'
 import ArtistHeaderMobile from './Mobile/ArtistHeaderMobile'
@@ -19,7 +19,8 @@ const ArtistProfile :FC = () : ReactElement => {
         bookings,
         getBookings,
         getProfilePicURL,
-        setUpdateClickedPic
+        updateClickedWhole,
+        setUpdateClickedWhole
     } = useContext(ArtistContext)
 
     console.log(artistProfileAddress)
@@ -51,20 +52,40 @@ const ArtistProfile :FC = () : ReactElement => {
         
         >
             <ArtistHeader/>   
-            <ArtistHeaderMobile/>   
+            <ArtistHeaderMobile/>  
             <motion.div 
             className='ProfilePage'
             initial= {{opacity: 0}}
             animate= {{opacity: 1}}
             exit= {{opacity: 0}}
             >
-                <ProfilePicUpload/>
                 {artistLoggedIn 
                 ?
-                <AboutMe/>
+                <button 
+                className='UpdateButton'
+                style={{
+                    width: "5%",
+                    marginLeft: "97%",
+                    marginTop: "1%"
+                }}
+                onClick={() => setUpdateClickedWhole(!updateClickedWhole)}
+                >
+                    Edit
+                </button>
                 :
-                <></>       
-                }
+                <></>
+                } 
+                <div
+                className='ProfilePageInner'
+                >
+                    <ProfilePicUpload/>
+                    {artistLoggedIn 
+                    ?
+                    <AboutMe/>
+                    :
+                    <></>       
+                    }
+                </div>
                 
             </motion.div>
             

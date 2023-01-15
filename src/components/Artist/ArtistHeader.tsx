@@ -63,17 +63,6 @@ const ArtistHeader : FC = () : ReactElement => {
 					</Link>
 					{artistLoggedIn 
 					?
-					<h4  
-					className='HeaderMenuTitle'
-					onClick={() => setUpdateClickedWhole(!updateClickedWhole)}
-					>
-						Update
-					</h4>
-					:
-					<></>
-					}
-					{artistLoggedIn 
-					?
 					<h4
 					className='HeaderMenuTitle'
 					onClick={displayBookings}

@@ -53,7 +53,7 @@ const ProfilePicUpload = () => {
     <div
     style={{
         width: "500px", 
-        height: "500px"
+        height: "500%"
     }}
     >
         {updateClickedPic
@@ -62,7 +62,7 @@ const ProfilePicUpload = () => {
             className='ProfilePic'
             style={{
                 width: "500px", 
-                height: "500px", 
+                height: "500%", 
                 border: "solid 2px #7f7f7f",
                 opacity: "0.9" 
             }}
@@ -106,7 +106,7 @@ const ProfilePicUpload = () => {
             className='ProfilePic'
             style={{
                 width: "500px", 
-                height: "500px",   
+                height: "500px",  
             }}
             >
                 
@@ -131,6 +131,7 @@ const ProfilePicUpload = () => {
                 height: "500px",
                 width: "500px"
                 }}
+                onClick= {() => setUpdateClickedPic(true)}
                 
                 >
                     {picURL

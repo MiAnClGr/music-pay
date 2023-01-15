@@ -64,7 +64,7 @@ const AboutMe : FC = () : ReactElement => {
     <div
     style={{
         width: "500px", 
-        height: "500px", 
+        height: "500%", 
         display: "flex",
         flexDirection: "column", 
         textAlign: "center"
@@ -110,6 +110,7 @@ const AboutMe : FC = () : ReactElement => {
            
             <div 
             className='AboutMeBoxInside'
+            onClick= {() => setUpdateClickedAbout(true)}
             >   
                 {aboutArtist !== ""
                 ?

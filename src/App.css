@@ -134,7 +134,7 @@ body {
 .CreateOrLogInArtist {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   gap: 40px;
   margin:auto;
   /* margin-top: 12%; */
@@ -356,22 +356,36 @@ body {
 }
 
 .ProfilePage {
-  display: flex;
-  justify-content: space-between;
-  gap: 5%;
-  padding-right: 20px;
-  padding-left: 20px;
-  padding: 2%;
+  padding-right: 2%;
+  padding-left: 2%;
   padding-bottom: 0;
   width: 60%;
-  height: 60%;
+  height: 70%;
   min-height: 600px;
   min-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 2%;
   border: solid 2px #191919;
   border-radius: 20px;
-  margin-top: 2%;
+  background-color: #171717;
+}
+
+.ProfilePageInner {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  gap: 5%;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 90%;
+  height: 80%;
+  min-height: 540px;
+  min-width: 1080px;
+  margin-top: 1%;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #171717;
 }
 
@@ -391,6 +405,11 @@ body {
   border-radius: 20px;
   border: solid 1px #191919;
   padding: 20px
+}
+
+.AboutMeBoxInside:hover {
+  background-color: #1C1C1C;
+  cursor: pointer;
 }
 
 .AboutMeBox h4 {
@@ -423,7 +442,7 @@ body {
   background-color: #171717;
   color: #eaeaea;
   width: 500px;
-  height: 500px;
+  height: 500%;
   text-align: left;
   border-radius: 20px;
   display: flex;
@@ -457,6 +476,10 @@ body {
   background-color: black;
   border: solid 1px #191919;
   border-radius: 20px;
+}
+
+.ProfilePic:hover {
+  background-color: #1C1C1C;
 }
 
 .UploadProfilePic::-webkit-file-upload-button {
