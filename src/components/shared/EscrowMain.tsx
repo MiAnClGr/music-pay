@@ -250,7 +250,7 @@ const EscrowMain : FC = () : ReactElement => {
       :
       <></>
       }
-      {(escrowState > 4)
+      {(escrowState >= 5)
       ?
         <div
         className= "EscrowMainDiv"
