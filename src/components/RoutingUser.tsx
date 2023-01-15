@@ -10,6 +10,10 @@ const RoutingUser : FC = () : ReactElement => {
   return (
     <motion.div 
     className='TitlePage'
+    style={{
+      height: "100%",
+      width: "100%"
+    }}
     initial= {{y:0, opacity: 0}}
     animate= {{opacity: 1}}
     exit= {{opacity: 0}}
