@@ -74,8 +74,11 @@ const EscrowMain : FC = () : ReactElement => {
 
 ///Confirming the Performance
 
-  const confirmPerformance = async () => {
+  const confirmPerformanceArtist = async () => {
     await EscrowContractArtist.confirmPerformance()
+  }
+
+  const confirmPerformanceAgent = async () => {
     await EscrowContractAgent.confirmPerformance()
   }
 
@@ -187,7 +190,7 @@ const EscrowMain : FC = () : ReactElement => {
          
 
       </div>
-      {(escrowState > 0)
+      {(escrowState >= 1)
       ?
         <div
         className= "EscrowMainDiv"
@@ -201,7 +204,7 @@ const EscrowMain : FC = () : ReactElement => {
           :
           <button 
           className='Submit'
-          onClick={confirmPerformance}
+          onClick={confirmPerformanceArtist}
           >Confirm
           </button>
           }
@@ -209,7 +212,7 @@ const EscrowMain : FC = () : ReactElement => {
       :
       <></>
       }
-      {(escrowState > 1)
+      {(escrowState >= 2)
       ?
         <div
         className= "EscrowMainDiv"
@@ -217,13 +220,13 @@ const EscrowMain : FC = () : ReactElement => {
           <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 3:</h3>
           <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Booking Agent to confirm performance</h3>
           
-          {(escrowState > 2)
+          {(escrowState > 3)
           ?
           <h3 className='Text' style= {{fontSize: "18px"}}>Completed</h3>
           :
           <button 
           className='Submit'
-          onClick={confirmPerformance}
+          onClick={confirmPerformanceAgent}
           >Confirm
           </button> 
           }
@@ -231,7 +234,7 @@ const EscrowMain : FC = () : ReactElement => {
       :
       <></>
       }
-      {(escrowState > 2)
+      {(escrowState >= 4)
       ?
         <div
         className= "EscrowMainDiv"
