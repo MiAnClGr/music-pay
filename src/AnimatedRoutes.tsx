@@ -14,6 +14,7 @@ import EscrowMain from './components/shared/EscrowMain'
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import ProfileDoesNotExist from './components/LoadingAndError/ProfileDoesNotExist';
+import ArtistDoesNotExist from './components/LoadingAndError/ArtistDoesNotExist';
 import RoutingUser from './components/RoutingUser';
 import About from './components/shared/About';
 import BookingsList from './components/Artist/BookingsList';
@@ -61,6 +62,8 @@ const AnimatedRoutes = () => {
         <Route path = "/NotOwner" element = {<NotOwner/>}/>
 
         <Route path = "/ProfileDoesNotExist" element = {<ProfileDoesNotExist/>}/>
+
+        <Route path = "/ArtistDoesNotExist" element = {<ArtistDoesNotExist/>}/>
 
         <Route path = "/MetamaskNotDetected" element = {<MetamaskNotDetected/>}/>
         

@@ -5,13 +5,20 @@ const NotOwner = () : ReactElement => {
 
   return (
     <div className='LoadingScreen'>
-        <h1 className='HeaderText'>
-        You are not the owner of this profile :(    
-        </h1>
-        <br></br>
-        <div className='HomeNotOwner'>
+      <div 
+      className='HomeNotOwner'
+      style={{height: "80px", display: "flex", alignItems: "center"}}
+      >
           <Home/>
         </div>
+        <h1 
+        className='HeaderText'
+        style={{marginTop: "18%"}}
+        >
+        You are not the owner of this profile   
+        </h1>
+        <br></br>
+        
     </div>
   )
 }
