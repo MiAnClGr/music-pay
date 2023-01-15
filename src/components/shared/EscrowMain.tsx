@@ -5,8 +5,11 @@ import ArtistContext from '../../Context/ArtistContext'
 import BookingContext from '../../Context/BookingContext'
 import EscrowContext from '../../Context/EscrowContext'
 import Home from './Home'
+import { useNavigate } from 'react-router'
 
 const EscrowMain : FC = () : ReactElement => {
+
+  const navigate = useNavigate()
 
   const {
     bookingNumberArtist, 
@@ -17,13 +20,15 @@ const EscrowMain : FC = () : ReactElement => {
 
   const {
     escrowAddressAgent, 
-    EscrowContractAgent
+    EscrowContractAgent,
+    setEscrowAddressAgent
   } = useContext(BookingContext)
 
   const {
     artistName, 
     getArtistName, 
     userIsAgent,
+    setUserIsAgent,
     bookingAgentName,
     getBookingAgentName,
     getCurrentState,
@@ -37,6 +42,8 @@ const EscrowMain : FC = () : ReactElement => {
   console.log(currentAddress)
   console.log(escrowAddressAgent)
   console.log(escrowState)
+
+/// Paying Deposit
   
   const payDeposit = async () => {
     const deposit = await EscrowContractAgent.payment()/5
@@ -51,6 +58,7 @@ const EscrowMain : FC = () : ReactElement => {
   }
 
   const finaliseDeposit = async () =>{
+    navigate("/Loading")
     try{
       const pay = await EscrowContractAgent.payDeposit()
       await pay.wait()
@@ -58,17 +66,49 @@ const EscrowMain : FC = () : ReactElement => {
       console.log(error)
     }finally{
       console.log("payment complete")
+      setUserIsAgent(true)
+      setEscrowAddressAgent(currentAddress)
+      navigate("/EscrowMain")
     }
   }
+
+///Confirming the Performance
 
   const confirmPerformance = async () => {
     await EscrowContractArtist.confirmPerformance()
     await EscrowContractAgent.confirmPerformance()
   }
 
-  const finalisePayment = async () => {
-    await EscrowContractAgent.finalisePayment()
+///Finalising Payment
+
+  const payPayment = async () => {
+    const payment = await EscrowContractAgent.payment()
+    try{
+      const approval = await MockDai.approve(escrowAddressAgent, utils.parseEther(payment.toString()) )
+      await approval.wait()
+    }catch(error){
+      console.log(error)
+    }finally{
+      finalisePayment()
+    }
   }
+
+  const finalisePayment = async () =>{
+    navigate("/Loading")
+    try{
+      const pay = await EscrowContractAgent.finalisePayment()
+      await pay.wait()
+    }catch(error){
+      console.log(error)
+    }finally{
+      console.log("payment complete")
+      setUserIsAgent(true)
+      setEscrowAddressAgent(currentAddress)
+      navigate("/EscrowMain")
+    }
+  }
+
+///Confirming the Payment
 
   const confirmPayment = async () => {
     await EscrowContractArtist.confirmPayment()
@@ -77,6 +117,8 @@ const EscrowMain : FC = () : ReactElement => {
   const completeBooking = async () => {
     await EscrowContractArtist.completeBooking()
   }
+
+
   
 
   useEffect(() => {
@@ -91,6 +133,7 @@ const EscrowMain : FC = () : ReactElement => {
     getBookingAgentName(currentContract)
     getCurrentState(currentContract)
   }, [currentAddress])
+
 
 
   return (
@@ -131,7 +174,7 @@ const EscrowMain : FC = () : ReactElement => {
         <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 1:</h3>
         <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>Booking agent to pay deposit</h3>
 
-        {(escrowState == 1)
+        {(escrowState > 0)
         ?
         <h3 className='Text' style= {{fontSize: "18px"}}>Completed</h3>
         :
@@ -144,7 +187,7 @@ const EscrowMain : FC = () : ReactElement => {
          
 
       </div>
-      {(escrowState == 1)
+      {(escrowState > 0)
       ?
         <div
         className= "EscrowMainDiv"
@@ -152,32 +195,43 @@ const EscrowMain : FC = () : ReactElement => {
           <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 2:</h3>
           <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>Artist to confirm performance</h3>
           
+          {(escrowState > 1)
+          ?
+          <h3 className='Text' style= {{fontSize: "18px"}}>Completed</h3>
+          :
           <button 
           className='Submit'
           onClick={confirmPerformance}
           >Confirm
           </button>
+          }
         </div>
       :
       <></>
       }
-      {(escrowState == 2)
+      {(escrowState > 1)
       ?
         <div
         className= "EscrowMainDiv"
         >
           <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 3:</h3>
           <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Booking Agent to confirm performance</h3>
+          
+          {(escrowState > 2)
+          ?
+          <h3 className='Text' style= {{fontSize: "18px"}}>Completed</h3>
+          :
           <button 
           className='Submit'
           onClick={confirmPerformance}
           >Confirm
-          </button>
+          </button> 
+          }
         </div>
       :
       <></>
       }
-      {(escrowState == 4)
+      {(escrowState > 2)
       ?
         <div
         className= "EscrowMainDiv"
@@ -186,14 +240,14 @@ const EscrowMain : FC = () : ReactElement => {
           <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Booking Agent to finalise payment</h3>
           <button 
           className='Submit'
-          onClick={finalisePayment}
+          onClick={payPayment}
           >Confirm
           </button>
         </div>
       :
       <></>
       }
-      {(escrowState == 5)
+      {(escrowState > 4)
       ?
         <div
         className= "EscrowMainDiv"

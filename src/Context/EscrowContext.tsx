@@ -1,5 +1,7 @@
 import React, {createContext, useState, ReactNode} from 'react'
+
 import {Contract} from 'ethers'
+
 
 interface EscrowContextInterface {
 artistName : string
@@ -20,9 +22,6 @@ getPayment : (EscrowContract: Contract) => Promise<void>
 const EscrowContext = createContext<EscrowContextInterface>({} as EscrowContextInterface)
 
 export const EscrowProvider  = ({children} : {children : ReactNode}) => {
-
-  
-  const [escrowState, setEscrowState] = useState<number>(0)
 
 ///Fetch artist name from selected Escrow
 
@@ -63,6 +62,8 @@ export const EscrowProvider  = ({children} : {children : ReactNode}) => {
 
 ///Fetches the current escrow state
 
+  const [escrowState, setEscrowState] = useState<number>(0)
+
   const getCurrentState = async (EscrowContract : Contract) => {
     const state = await EscrowContract.currentState()
     setEscrowState(state)
@@ -83,8 +84,7 @@ export const EscrowProvider  = ({children} : {children : ReactNode}) => {
       setUserIsAgent,
       getArtistAddress,
       payment,
-      getPayment
-
+      getPayment,
       }}
       >
         {children}

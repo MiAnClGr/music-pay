@@ -56,12 +56,12 @@ const Escrow : FC<props>= ({escrowAddress}) : ReactElement => {
     setPayment(payment.toNumber())
   }
 
-
-  const handleSubmitAcceptBooking = async () => {
+  const handleSubmitLoadEscrowAgent = async (escrowAddress : string) => {
     setUserIsAgent(true)
     setEscrowAddressAgent(escrowAddress)
     navigate("/EscrowMain") 
   }
+  
 
   useEffect(() => {
     createEscrowInstance()
@@ -99,7 +99,7 @@ const Escrow : FC<props>= ({escrowAddress}) : ReactElement => {
       <button 
       className='Submit'
       style={{height: "50%", width: "6%", minWidth: "100px"}}
-      onClick={handleSubmitAcceptBooking}
+      onClick={() => handleSubmitLoadEscrowAgent(escrowAddress)}
       >Open</button>
     </div>
     )
