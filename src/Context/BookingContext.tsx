@@ -52,7 +52,7 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
                 console.log(searchedAddress)
                 navigate("/Artist")
             }else{
-                navigate("/NotOwner")
+                navigate("/ArtistDoesNotExist")
             }
         }
     }
