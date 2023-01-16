@@ -96,15 +96,23 @@ contract BookingEscrow {
 
     }
 
-    function confirmPerformance() external {
+    function confirmPerformanceArtist() external {
         if(msg.sender == artist && currentState == PaymentState.DEPOSIT_PAID) {
             performanceConfirmedArtist = true;
             currentState = PaymentState.PERFORMANCE_FINALISED_ARTIST;    
         }
-        else if(msg.sender == bookingAgent && currentState == PaymentState.PERFORMANCE_FINALISED_ARTIST) {
+    }
+
+    function confirmPerformanceAgent() external {
+        if(msg.sender == bookingAgent && currentState == PaymentState.PERFORMANCE_FINALISED_ARTIST) {
             performanceConfirmedAgent = true;
             currentState = PaymentState.PERFORMANCE_FINALISED_AGENT;
-        }else if(performanceConfirmedArtist && performanceConfirmedAgent){
+        } 
+        finalisePerformance();
+    }
+
+    function finalisePerformance() internal {
+        if(performanceConfirmedArtist && performanceConfirmedAgent){
             currentState = PaymentState.PERFORMANCE_FINALISED;
         }
     }

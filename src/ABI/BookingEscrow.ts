@@ -141,7 +141,14 @@ export default [
   },
   {
     "inputs": [],
-    "name": "confirmPerformance",
+    "name": "confirmPerformanceAgent",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "confirmPerformanceArtist",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
