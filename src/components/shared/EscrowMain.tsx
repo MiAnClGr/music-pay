@@ -169,7 +169,9 @@ const EscrowMain : FC = () : ReactElement => {
     await EscrowContractArtist.confirmPayment()
   }
 
-  const completeBooking = async () => {
+///Completing the Booking - Escrow contract destoryed and payment transferred to the Artist Profile Contract
+  
+const completeBooking = async () => {
     await EscrowContractArtist.completeBooking()
   }
 
@@ -177,7 +179,7 @@ const EscrowMain : FC = () : ReactElement => {
     if(!userIsAgent){
       getEscrowAddressArtist()
     }
-      console.log(escrowAddressArtist)
+      console.log(escrowAddressArtist)  
   },[])
 
   ///Determine is user is agent or artist
