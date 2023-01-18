@@ -3,7 +3,6 @@ import AboutMe from "./AboutMe"
 import ArtistHeader from "./ArtistHeader"
 import ArtistContext from '../../Context/ArtistContext'
 import {motion} from 'framer-motion'
-import { Link } from 'react-router-dom'
 import LogOut from '../shared/LogOut'
 import ProfilePicUpload from './ProfilePicUpload'
 import ArtistHeaderMobile from './Mobile/ArtistHeaderMobile'
