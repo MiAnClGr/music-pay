@@ -11,6 +11,7 @@ import ArtistPage from './components/Booking/ArtistPage';
 import ArtistBooking from './components/Booking/ArtistBooking';
 import BookingComplete from './components/Booking/BookingComplete';
 import EscrowMain from './components/shared/EscrowMain'
+import EscrowComplete from './components/shared/EscrowComplete';
 import Loading from './components/LoadingAndError/Loading';
 import NotOwner from './components/LoadingAndError/NotOwner';
 import ProfileDoesNotExist from './components/LoadingAndError/ProfileDoesNotExist';
@@ -54,6 +55,8 @@ const AnimatedRoutes = () => {
         <Route path = "/BookingsList" element = {<BookingsList/>}/>
 
         <Route path = "/EscrowMain" element = {<EscrowMain/>}/>
+
+        <Route path = "/EscrowComplete" element = {<EscrowComplete/>}/>
 
         <Route path = "/EscrowList" element = {<EscrowList/>}/>
 

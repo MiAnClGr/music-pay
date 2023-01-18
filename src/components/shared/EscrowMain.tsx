@@ -1,11 +1,13 @@
-  import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
+import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
 import {utils} from 'ethers'
 import {MockDai, signer} from "../../Contracts/ContractObjects"
 import ArtistContext from '../../Context/ArtistContext'
 import BookingContext from '../../Context/BookingContext'
 import EscrowContext from '../../Context/EscrowContext'
 import Home from './Home'
+import EscrowComplete from './EscrowComplete'
 import { useNavigate } from 'react-router'
+import {motion} from 'framer-motion'
 
 const EscrowMain : FC = () : ReactElement => {
 
@@ -188,7 +190,17 @@ const EscrowMain : FC = () : ReactElement => {
 ///Completing the Booking - Escrow contract destoryed and payment transferred to the Artist Profile Contract
   
 const completeBooking = async () => {
-    await EscrowContractArtist.completeBooking()
+    
+    navigate("/Loading")
+    try{
+      const complete = await EscrowContractArtist.completeBooking()
+      await complete.wait()
+    }catch(error){
+      console.log(error)
+    }finally{
+      console.log("Escrow Completed")
+      navigate("/EscrowComplete")
+    }
   }
 
   useEffect(() => {
@@ -222,8 +234,12 @@ const completeBooking = async () => {
         >
             <Home/>
       </div>
-      <div className='EscrowMain'>
-
+      <motion.div 
+      className='EscrowMain'
+      initial= {{opacity: 0}}
+      animate= {{opacity: 1}}
+      exit= {{opacity: 0}}
+      >
 
         <div>
           <h1 
@@ -370,7 +386,7 @@ const completeBooking = async () => {
         onClick={completeBooking}
         >Complete Booking
         </button>
-      </div>
+      </motion.div>
     </div>
   )
 }

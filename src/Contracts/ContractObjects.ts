@@ -14,9 +14,22 @@ declare var window: any
 
 ///Mumbai
 
-const MockDaiAddress = "0x1023acA55D6aA1A8Dd0AcA62C6d559EdD09486F8"
-const ArtistFactoryAddress = "0x41A68550EcE02B3D223C4c168e045b335B2A098f"
-const PerformanceContractAddress = "0x9E86c84A90744F774f54aD51273E7B6f38082910"
+// const MockDaiAddress = "0x1023acA55D6aA1A8Dd0AcA62C6d559EdD09486F8"
+// const ArtistFactoryAddress = "0x41A68550EcE02B3D223C4c168e045b335B2A098f"
+// const PerformanceContractAddress = "0x9E86c84A90744F774f54aD51273E7B6f38082910"
+
+///Polygon ZKEVM
+
+// const MockDaiAddress = "0xf6631457ea66A3E2C08339C5cc422dF559077687"
+// const ArtistFactoryAddress = "0xbf5590d4aBcB60f6996ffc7164394c47Fd67f1f2"
+// const PerformanceContractAddress = "0x918Df7ce46b61Bd9De3222Ab42c7A633451F1e5E"
+
+///LocalHost
+
+const MockDaiAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+const ArtistFactoryAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+const PerformanceContractAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+
 
 let provider : ethers.providers.Web3Provider
 let signer : ethers.providers.JsonRpcSigner

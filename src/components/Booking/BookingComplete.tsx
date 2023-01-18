@@ -23,7 +23,7 @@ const BookingComplete = () => {
 
   return (
     <motion.div
-    className='BookingComplete'
+    className='Complete'
     style={{height: "100%"}}
     initial= {{opacity: 0}}
     animate= {{opacity: 1}}
