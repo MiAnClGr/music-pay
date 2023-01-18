@@ -34,8 +34,7 @@ contract ArtistProfile {
         string venueName;
         string date;
         bool agreed;
-    
-        State currentState;   
+        bool completed;   
     }
 
 
@@ -53,8 +52,6 @@ contract ArtistProfile {
     mapping(address => address) public bookingAgentToEscrow;
 
     mapping(uint => address) public bookingNumberToEscrow;
-
-    enum State {notCompleted, bookingComplete, performanceCompleted, paymentComplete}
 
 /// Modifiers 
 
@@ -151,6 +148,12 @@ contract ArtistProfile {
     function withdraw() external {
         require(msg.sender == artist);
         DAI.transfer(msg.sender, DAI.balanceOf(address(this)));
+    }
+
+    function completeBooking(uint _gigNumber) external {
+        Booking storage booking = bookings[_gigNumber];
+        
+        booking.completed = true;
     }
 
 /// View
