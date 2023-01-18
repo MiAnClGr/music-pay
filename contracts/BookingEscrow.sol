@@ -119,9 +119,8 @@ contract BookingEscrow {
 
     function finalisePayment() external onlyBookingAgent {
         require(currentState == PaymentState.PERFORMANCE_FINALISED);
-        // bool confirmed = performanceContract.confirmPerformance(gigNumber);
-        bool success = DAI.transferFrom(msg.sender, address(this), payment * 4/5);
-        // require(confirmed);
+        uint _payment = (payment*10**18);
+        bool success = DAI.transferFrom(msg.sender, address(this), _payment * 4/5);
         require(success);
 
         currentState = PaymentState.PAYMENT_FINALISED;
@@ -135,7 +134,8 @@ contract BookingEscrow {
     function completeBooking() external {
         require(currentState == PaymentState.PAYMENT_CONFIRMED);
         if(currentState == PaymentState.PAYMENT_CONFIRMED){
-            selfdestruct(payable(artist));
+            selfdestruct(payable(artistProfile));
+            DAI.transfer(artistProfile, DAI.balanceOf(address(this)));
         }
     }
 }
