@@ -32,7 +32,13 @@ const EscrowMain : FC = () : ReactElement => {
     bookingAgentName,
     getBookingAgentName,
     getCurrentState,
-    escrowState
+    escrowState,
+    venue,
+    getVenue,
+    payment,
+    getPayment,
+    date,
+    getDate
   } = useContext(EscrowContext)
 
 
@@ -41,7 +47,7 @@ const EscrowMain : FC = () : ReactElement => {
 
   const [deposit, setDeposit] = useState<number>()
 
-  const getPayment = async () => {
+  const getDeposit = async () => {
     const payment = await currentContract.payment()
     const dep = payment /5
     setDeposit(dep)
@@ -58,11 +64,11 @@ const EscrowMain : FC = () : ReactElement => {
     if(user === artist){
       setIsUserArtist(true)
       setIsUserAgent(false)
-      setCurrentUser("Artist")
+      setCurrentUser(artistName)
     }else if(user === agent){
       setIsUserAgent(true)
       setIsUserArtist(false)
-      setCurrentUser("Agent")
+      setCurrentUser(bookingAgentName)
     }
   }
 
@@ -167,6 +173,16 @@ const EscrowMain : FC = () : ReactElement => {
 
   const confirmPayment = async () => {
     await EscrowContractArtist.confirmPayment()
+    navigate("/Loading")
+    try{
+      const confirm = await EscrowContractAgent.finalisePayment()
+      await confirm.wait()
+    }catch(error){
+      console.log(error)
+    }finally{
+      console.log("payment confirmed")
+      navigate("/EscrowMain")
+    }
   }
 
 ///Completing the Booking - Escrow contract destoryed and payment transferred to the Artist Profile Contract
@@ -188,147 +204,173 @@ const completeBooking = async () => {
     getArtistName(currentContract)
     getBookingAgentName(currentContract)
     getCurrentState(currentContract)
-    getPayment()
+    getPayment(currentContract)
+    getDeposit()
+    getVenue(currentContract)
+    getDate(currentContract)
     getCurrentUser()
   }, [currentAddress])
 
 
 
   return (
-    <div className='EscrowMain'>
+    <div
+    style={{height: "100%"}}
+    >
       <div
-        style={{height: "80px", display: "flex", alignItems: "center"}}
+        style={{height: "80px", width: "20%", display: "flex", alignItems: "center"}}
         >
             <Home/>
-        </div>
-      <h1 
-      className='HeaderText'
-      style={{fontSize: "60px"}}
-      >ESCROW</h1>
-     
-      <h3 
-      className='Text'
-      style={{fontSize: "20px"}}
-      >Viewing as: {currentUser}
-      </h3>
-      
-      <br></br>
-      <br></br>
-      <div className='EscrowMainDiv'>
-        <h3 className='Text' style={{fontSize: "20px"}}>Booking Number: {bookingNumberArtist}</h3>
-        <h3 className='Text' style={{fontSize: "20px"}}>Artist : {artistName}</h3>
-        <h3 className='Text' style={{fontSize: "20px"}}>Booking Agent: {bookingAgentName}</h3>
       </div>
-      <div
-      className= "EscrowMainDiv"
-      >
-        <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 1:</h3>
-        <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>Booking agent to pay deposit of ${deposit}</h3>
+      <div className='EscrowMain'>
 
-        {(escrowState > 0)
+
+        <div>
+          <h1 
+          className='HeaderText'
+          style={{fontSize: "60px"}}
+          >ESCROW
+          </h1>
+          <br></br>
+          <h3 
+          className='Text'
+          style={{fontSize: "18px", marginTop: "1%", marginBottom: "0.75%"}}
+          >Viewing as: {currentUser}
+          </h3>
+          <br></br>
+        </div>
+        <div className='EscrowDetails'>
+          <div
+          style={{width: "100%", display: "flex", gap: "5%", justifyContent: "space-between"}}
+          >
+            <h3 className='Text' style={{width: "30%", marginTop: "1.5%", marginBottom: "1.5%", fontSize: "18px", textAlign: "left"}}>Booking Number: {bookingNumberArtist}</h3>
+            <h3 className='Text' style={{width: "30%", marginTop: "1.5%", marginBottom: "1.5%", fontSize: "18px"}}>Artist : {artistName}</h3>
+            <h3 className='Text' style={{width: "30%", marginTop: "1.5%", marginBottom: "1.5%", fontSize: "18px", textAlign: "right"}}>Booking Agent: {bookingAgentName}</h3>
+          </div>
+          <div
+          style={{width: "100%", display: "flex", gap: "5%", justifyContent: "space-between"}}
+          >
+            <h3 className='Text' style={{width: "30%", marginTop: "1.5%", marginBottom: "1.5%", fontSize: "18px", textAlign: "left"}}>Venue: {venue}</h3>
+            <h3 className='Text' style={{width: "30%", marginTop: "1.5%", marginBottom: "1.5%", fontSize: "18px"}}>Payment: ${payment}</h3>
+            <h3 className='Text' style={{width: "30%", marginTop: "1.5%", marginBottom: "1.5%", fontSize: "18px", textAlign: "right"}}>Date: {date}</h3>      
+          </div>
+        </div>
+        <div
+        className= "EscrowMainDiv"
+        >
+          <h3 className='Text' style={{width: "30%", color: "grey", fontSize: "20px"}}> Step 1:</h3>
+          <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>{bookingAgentName} to pay deposit of ${deposit}</h3>
+
+          {(escrowState > 0)
+          ?
+          <h3 className='Text' style= {{width: "30%", fontSize: "18px", textAlign: "center"}}>Completed</h3>
+          :
+          <button 
+          className='Submit'
+          onClick={payDeposit}
+          >Pay
+          </button>
+          }
+          
+
+        </div>
+        {(escrowState >= 1)
         ?
-        <h3 className='Text' style= {{fontSize: "18px"}}>Completed</h3>
+          <div
+          className= "EscrowMainDiv"
+          >
+            <h3 className='Text' style={{width: "30%", color: "grey", fontSize: "20px"}}> Step 2:</h3>
+            <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>{artistName} to confirm performance</h3>
+            
+            {(escrowState > 1)
+            ?
+            <h3 className='Text' style= {{width: "30%", fontSize: "18px", textAlign: "center"}}>Completed</h3>
+            :
+            <button 
+            className='Submit'
+            onClick={confirmPerformanceArtist}
+            >Confirm
+            </button>
+            }
+          </div>
         :
+        <></>
+        }
+        {(escrowState >= 2)
+        ?
+          <div
+          className= "EscrowMainDiv"
+          >
+            <h3 className='Text' style={{width: "30%", color: "grey", fontSize: "20px"}}> Step 3:</h3>
+            <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>{bookingAgentName} to confirm performance</h3>
+            
+            {(escrowState > 3)
+            ?
+            <h3 className='Text' style= {{width: "30%", fontSize: "18px", textAlign: "center"}}>Completed</h3>
+            :
+            <button 
+            className='Submit'
+            onClick={confirmPerformanceAgent}
+            >Confirm
+            </button> 
+            }
+          </div>
+        :
+        <></>
+        }
+        {(escrowState >= 4)
+        ?
+          <div
+          className= "EscrowMainDiv"
+          >
+            <h3 className='Text' style={{width: "30%", color: "grey", fontSize: "20px"}}> Step 4:</h3>
+            <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>{bookingAgentName} to finalise payment</h3>
+            
+            {(escrowState > 4)
+            ?
+            <h3 className='Text' style= {{width: "30%", fontSize: "18px", textAlign: "center"}}>Completed</h3>
+            :
+            <button 
+            className='Submit'
+            onClick={payPayment}
+            >Confirm
+            </button>
+            }
+          </div>
+            
+        :
+        <></>
+        }
+        {(escrowState >= 5)
+        ?
+          <div
+          className= "EscrowMainDiv"
+          >
+            <h3 className='Text' style={{width: "30%", color: "grey", fontSize: "20px"}}> Step 5:</h3>
+            <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>{artistName} to confirm payment</h3>
+            
+            {(escrowState > 5)
+            ?
+            <h3 className='Text' style= {{width: "30%", fontSize: "18px", textAlign: "center"}}>Completed</h3>
+            :
+            <button 
+            className='Submit'
+            onClick={confirmPayment}
+            >Confirm
+            </button>
+            }
+          </div>
+        :
+        <></>
+        }
+        <br></br>
         <button 
         className='Submit'
-        onClick={payDeposit}
-        >Pay
+        style={{fontSize: "18px"}}
+        onClick={completeBooking}
+        >Complete Booking
         </button>
-        }
-         
-
       </div>
-      {(escrowState >= 1)
-      ?
-        <div
-        className= "EscrowMainDiv"
-        >
-          <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 2:</h3>
-          <h3 className='Text' style={{width: "80%", fontSize: "18px"}}>Artist to confirm performance</h3>
-          
-          {(escrowState > 1)
-          ?
-          <h3 className='Text' style= {{fontSize: "18px"}}>Completed</h3>
-          :
-          <button 
-          className='Submit'
-          onClick={confirmPerformanceArtist}
-          >Confirm
-          </button>
-          }
-        </div>
-      :
-      <></>
-      }
-      {(escrowState >= 2)
-      ?
-        <div
-        className= "EscrowMainDiv"
-        >
-          <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 3:</h3>
-          <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Booking Agent to confirm performance</h3>
-          
-          {(escrowState > 3)
-          ?
-          <h3 className='Text' style= {{fontSize: "18px"}}>Completed</h3>
-          :
-          <button 
-          className='Submit'
-          onClick={confirmPerformanceAgent}
-          >Confirm
-          </button> 
-          }
-        </div>
-      :
-      <></>
-      }
-      {(escrowState >= 4)
-      ?
-        <div
-        className= "EscrowMainDiv"
-        >
-          <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 4:</h3>
-          <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Booking Agent to finalise payment</h3>
-          
-          {(escrowState > 4)
-          ?
-          <h3 className='Text' style= {{fontSize: "18px"}}>Completed</h3>
-          :
-          <button 
-          className='Submit'
-          onClick={payPayment}
-          >Confirm
-          </button>
-          }
-        </div>
-          
-      :
-      <></>
-      }
-      {(escrowState >= 5)
-      ?
-        <div
-        className= "EscrowMainDiv"
-        >
-          <h3 className='Text' style={{width: "20%", color: "grey", fontSize: "20px"}}> Step 5:</h3>
-          <h3 className= "Text" style={{width: "80%", fontSize: "18px"}}>Artist to confirm payment</h3>
-          <button 
-          className='Submit'
-          onClick={confirmPayment}
-          >Confirm
-          </button>
-        </div>
-      :
-      <></>
-      }
-      <br></br>
-      <br></br>
-      <br></br>
-      <button 
-      className='Submit'
-      onClick={completeBooking}
-      >Complete Booking
-      </button>
     </div>
   )
 }

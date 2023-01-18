@@ -15,6 +15,10 @@ setUserIsAgent : React.Dispatch<React.SetStateAction<boolean>>
 getArtistAddress : (EscrowContract: Contract) => Promise<void>
 payment : number | undefined
 getPayment : (EscrowContract: Contract) => Promise<void>
+venue : string
+getVenue : (EscrowContract: Contract) => Promise<void>
+date : string
+getDate : (EscrowContract: Contract) => Promise<void>
 
 
 }
@@ -44,7 +48,7 @@ export const EscrowProvider  = ({children} : {children : ReactNode}) => {
 
 ///Fetch artist address from selected Escrow
 
-  const [artistAddress, setArtistAddress] = React.useState("")
+  const [artistAddress, setArtistAddress] = useState<string>("")
 
   const getArtistAddress = async (EscrowContract : Contract) => {
     const artistAddress = await EscrowContract.artist()
@@ -53,12 +57,30 @@ export const EscrowProvider  = ({children} : {children : ReactNode}) => {
 
 ///Fetch payment from selected Escrow
 
-  const [payment, setPayment] = React.useState<number>()
+  const [payment, setPayment] = useState<number>()
 
   const getPayment = async (EscrowContract : Contract) => {
     const payment = await EscrowContract.payment()
     setPayment(payment.toNumber())
   }
+
+///Fetches the Venue name 
+
+  const [venue, setVenue] = useState<string>("")
+
+const getVenue = async (EscrowContract : Contract) => {
+  const venue = await EscrowContract.venueName()
+  setVenue(venue)
+}
+
+///Fetches the Booking Date
+
+const [date, setDate] = useState<string>("")
+
+const getDate = async (EscrowContract : Contract) => {
+  const date = await EscrowContract.date()
+  setDate(date)
+}
 
 ///Fetches the current escrow state
 
@@ -85,6 +107,11 @@ export const EscrowProvider  = ({children} : {children : ReactNode}) => {
       getArtistAddress,
       payment,
       getPayment,
+      venue,
+      getVenue,
+      date,
+      getDate
+
       }}
       >
         {children}
