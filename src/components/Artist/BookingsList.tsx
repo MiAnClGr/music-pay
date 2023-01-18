@@ -20,6 +20,7 @@ const BookingsList :FC = () : ReactElement => {
         date = {booking[3]}
         venue = {booking[4]}
         agreed = {booking[6]}
+        completed = {booking[7]}
         />
     )
 

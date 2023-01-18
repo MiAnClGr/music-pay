@@ -9,7 +9,8 @@ type props = {
   time : string,
   date : string,
   venue : string,
-  agreed : boolean
+  agreed : boolean,
+  completed : boolean
 }
 
 const Booking : FC<props>= ({
@@ -18,7 +19,8 @@ const Booking : FC<props>= ({
   time,
   date, 
   venue,
-  agreed 
+  agreed,
+  completed 
   }) : ReactElement => {
 
     console.log(agreed)
@@ -34,10 +36,16 @@ const Booking : FC<props>= ({
   const {setUserIsAgent} = useContext(EscrowContext)
 
   const [bookingAccepted, setBookingAccepted] = useState(false)
+  const [bookingCompleted, setBookingCompleted] = useState(false)
 
   const getBookingAccepted = () => {
     agreed ? setBookingAccepted(true) : setBookingAccepted(false)
   }
+
+  const getBookingCompleted = () => {
+    completed ? setBookingCompleted(true) : setBookingCompleted(false)
+  }
+
   const handleSubmitAcceptBooking = async () => {
     setBookingNumberArtist(gigNumber)
     const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
@@ -60,7 +68,10 @@ const Booking : FC<props>= ({
 
   useEffect(() => {
     getBookingAccepted()
+    getBookingCompleted()
   }, [])
+
+  //////FINISH DISPLAY IF BOOKING COMPLETED <BookingsDiv> with "Completed"
   
   return (
     <div 
