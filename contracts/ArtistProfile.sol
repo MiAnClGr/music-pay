@@ -167,6 +167,7 @@ contract ArtistProfile {
             string memory,
             string memory,
             address,
+            bool,
             bool
             ) {
 
@@ -179,7 +180,8 @@ contract ArtistProfile {
             booking.date, 
             booking.venueName,
             booking.bookingAgent,
-            booking.agreed
+            booking.agreed,
+            booking.completed
             );
     }
 

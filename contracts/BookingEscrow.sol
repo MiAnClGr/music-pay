@@ -2,6 +2,7 @@
 
 import "./ProofOfPayment.sol";
 import "./ArtistFactory.sol";
+import "./ArtistProfile.sol";
 import "./PerformanceContract.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
@@ -14,6 +15,7 @@ contract BookingEscrow {
     ERC20 DAI;
     ArtistFactory artistFactory;
     ProofOfPayment proofOfPayment;
+    ArtistProfile profile;
 
     enum PaymentState {
         NO_PAYMENT_MADE, 
@@ -80,6 +82,7 @@ contract BookingEscrow {
         date = _date;
         DAI = ERC20(_daiAddress);
         artistFactory = ArtistFactory(_artistFactoryAddress);
+        profile = ArtistProfile(payable(msg.sender));
         artistFactory.addEscrowAgent(_bookingAgent);
         artistFactory.addEscrowArtist(msg.sender);
         currentState = PaymentState.NO_PAYMENT_MADE;
@@ -134,7 +137,7 @@ contract BookingEscrow {
     function completeBooking() external {
         require(currentState == PaymentState.PAYMENT_CONFIRMED);
         if(currentState == PaymentState.PAYMENT_CONFIRMED){
-            selfdestruct(payable(artistProfile));
+            profile.completeBooking(gigNumber);
             DAI.transfer(artistProfile, DAI.balanceOf(address(this)));
         }
     }
