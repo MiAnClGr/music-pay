@@ -242,12 +242,25 @@ export default [
         "type": "bool"
       },
       {
-        "internalType": "enum ArtistProfile.State",
-        "name": "currentState",
-        "type": "uint8"
+        "internalType": "bool",
+        "name": "completed",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_gigNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "completeBooking",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -289,6 +302,11 @@ export default [
         "internalType": "address",
         "name": "",
         "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       },
       {
         "internalType": "bool",
