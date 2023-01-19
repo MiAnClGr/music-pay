@@ -1,16 +1,10 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import {create} from 'ipfs-http-client'
 import {Buffer} from 'buffer'
 import ArtistContext from '../../Context/ArtistContext'
-import * as dotenv from "dotenv";
 
-dotenv.config()
-
-const {INFURA_PROJECT_ID, INFURA_PROJECT_SECRET} = process.env
-
-
-const ID = INFURA_PROJECT_ID
-const SECRET = INFURA_PROJECT_SECRET
+const ID = process.env.REACT_APP_INFURA_PROJECT_ID
+const SECRET = process.env.REACT_APP_INFURA_PROJECT_SECRET
 
 const auth = 'Basic ' + Buffer.from(ID + ':' + SECRET).toString('base64');
 const client = create({
