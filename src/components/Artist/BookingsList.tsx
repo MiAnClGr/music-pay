@@ -59,12 +59,13 @@ const BookingsList :FC = () : ReactElement => {
                     
                 }}
                 >
-                    <h4 style={{width: "100px", minWidth: "80px"}}>Booking</h4>
-                    <h4 style={{width: "200px", minWidth: "150px"}}>Venue</h4>
-                    <h4 style={{width: "200px", minWidth: "150px"}}>Date</h4>
-                    <h4 style={{width: "200px", minWidth: "150px"}}>Payment</h4>
-                    <h4 style={{width: "100px", minWidth: "80px"}}>Time</h4>
-                    <h4 style={{width: "6%", minWidth: "82px", color: "black"}}>Hidden</h4>
+                    <h4 style={{width: "7.5%"}}>Booking</h4>
+                    <h4 style={{width: "7.5%"}}>Venue</h4>
+                    <h4 style={{width: "7.5%"}}>Date</h4>
+                    <h4 style={{width: "7.5%"}}>Payment</h4>
+                    <h4 style={{width: "7.5%"}}>Time</h4>
+                    <h4 style={{width: "7.5%"}}>Status</h4>
+                    <h4 style={{width: "7.5%", color: "black"}}>Hidden</h4>
                     
                 </div>
                 }
