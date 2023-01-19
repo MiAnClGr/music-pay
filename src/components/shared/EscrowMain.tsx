@@ -174,10 +174,9 @@ const EscrowMain : FC = () : ReactElement => {
 ///Confirming the Payment
 
   const confirmPayment = async () => {
-    await EscrowContractArtist.confirmPayment()
     navigate("/Loading")
     try{
-      const confirm = await EscrowContractAgent.finalisePayment()
+      const confirm = await EscrowContractArtist.confirmPayment()
       await confirm.wait()
     }catch(error){
       console.log(error)
@@ -380,12 +379,18 @@ const completeBooking = async () => {
         <></>
         }
         <br></br>
+
+        {(escrowState >= 6)
+        ?
         <button 
         className='Submit'
         style={{fontSize: "18px"}}
         onClick={completeBooking}
         >Complete Booking
         </button>
+        :
+        <></>
+        }
       </motion.div>
     </div>
   )
