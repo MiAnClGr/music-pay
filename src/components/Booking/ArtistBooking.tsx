@@ -88,9 +88,7 @@ const ArtistBooking : FC = () : ReactElement => {
             fontSize: "45px", 
             marginTop: "0", 
             marginBottom: "10px", 
-            width: "500px",
-            backgroundColor: "black",
-            display: "inline"
+            width: "500px"
           }}
           >You are now booking</h3>
           <h3 

@@ -64,6 +64,8 @@ const Booking : FC<props>= ({
     }
   }
 
+  console.log(bookingAccepted)
+  console.log(bookingCompleted)
   console.log(bookingStatus)
 
   const handleSubmitAcceptBooking = async () => {
@@ -89,10 +91,12 @@ const Booking : FC<props>= ({
   useEffect(() => {
     getBookingAccepted()
     getBookingCompleted()
-    setStatus()
   }, [])
 
-  //////FINISH DISPLAY IF BOOKING COMPLETED <BookingsDiv> with "Completed"
+  useEffect(() => {
+    setStatus()
+  }, [bookingAccepted, bookingCompleted])
+
   
   return (
     <div 
