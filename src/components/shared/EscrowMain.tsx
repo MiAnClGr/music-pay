@@ -225,6 +225,10 @@ const completeBooking = async () => {
     getCurrentUser()
   }, [currentAddress])
 
+  useEffect(() => {
+    getCurrentUser()
+  }, [])
+
 
 
   return (
