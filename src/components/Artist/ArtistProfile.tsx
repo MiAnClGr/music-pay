@@ -1,9 +1,10 @@
-import React, {FC, useEffect, useContext, ReactElement} from 'react'
+import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
 import AboutMe from "./AboutMe"
 import ArtistHeader from "./ArtistHeader"
 import ArtistContext from '../../Context/ArtistContext'
 import {motion} from 'framer-motion'
 import LogOut from '../shared/LogOut'
+import ArtistInfo from './ArtistInfo'
 import ProfilePicUpload from './ProfilePicUpload'
 import ArtistHeaderMobile from './Mobile/ArtistHeaderMobile'
 
@@ -19,10 +20,12 @@ const ArtistProfile :FC = () : ReactElement => {
         getBookings,
         getProfilePicURL,
         updateClickedWhole,
-        setUpdateClickedWhole
+        setUpdateClickedWhole,
+        isHovering
     } = useContext(ArtistContext)
 
     console.log(artistProfileAddress)
+    
 
     useEffect(() => {
         localStorage.setItem("bookings", JSON.stringify(bookings))
@@ -52,6 +55,12 @@ const ArtistProfile :FC = () : ReactElement => {
         >
             <ArtistHeader/>   
             <ArtistHeaderMobile/>  
+            {isHovering
+            ?
+            <ArtistInfo/>
+            :
+            <></>
+            }
             <motion.div 
             className='ProfilePage'
             initial= {{opacity: 0}}

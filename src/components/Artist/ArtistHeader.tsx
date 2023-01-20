@@ -14,8 +14,8 @@ const ArtistHeader : FC = () : ReactElement => {
 			createArtistProfileInstance,
 			getArtistConnected,
 			displayBookings,
-			updateClickedWhole,
-			setUpdateClickedWhole
+			handleMouseOut,
+			handleMouseOver
 		} = useContext(ArtistContext)
 
 
@@ -85,6 +85,8 @@ const ArtistHeader : FC = () : ReactElement => {
 				? 
 				<h1 className='ArtistName'
 				onClick={() => navigate("/ArtistProfile")}
+				onMouseOver = {handleMouseOver}
+				onMouseOut= {handleMouseOut}
 				>{name}</h1>
 				: 
 				<Link

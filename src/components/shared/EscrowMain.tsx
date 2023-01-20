@@ -4,10 +4,12 @@ import {MockDai, signer} from "../../Contracts/ContractObjects"
 import ArtistContext from '../../Context/ArtistContext'
 import BookingContext from '../../Context/BookingContext'
 import EscrowContext from '../../Context/EscrowContext'
-import Home from './Home'
 import EscrowComplete from './EscrowComplete'
+import ArtistInfo from '../Artist/ArtistInfo'
 import { useNavigate } from 'react-router'
 import {motion} from 'framer-motion'
+import ArtistHeader from '../Artist/ArtistHeader'
+import BookingHeader from '../Booking/BookingHeader'
 
 const EscrowMain : FC = () : ReactElement => {
 
@@ -17,7 +19,8 @@ const EscrowMain : FC = () : ReactElement => {
     bookingNumberArtist, 
     escrowAddressArtist, 
     getEscrowAddressArtist, 
-    EscrowContractArtist
+    EscrowContractArtist,
+    isHovering
   } = useContext(ArtistContext)
 
   const {
@@ -228,11 +231,23 @@ const completeBooking = async () => {
     <div
     style={{height: "100%"}}
     >
-      <div
-        style={{height: "80px", width: "20%", display: "flex", alignItems: "center"}}
-        >
-            <Home/>
-      </div>
+      {isUserArtist
+      ?
+      <ArtistHeader/>
+      
+      :
+      <BookingHeader/>
+
+      }
+      
+      {isHovering && isUserArtist
+      ?
+      <ArtistInfo/>
+      :
+      <></>
+      }
+      
+      <br></br>
       <motion.div 
       className='EscrowMain'
       initial= {{opacity: 0}}
@@ -282,6 +297,7 @@ const completeBooking = async () => {
           :
           <button 
           className='Submit'
+          style={{width: "30%"}}
           onClick={payDeposit}
           >Pay
           </button>
@@ -303,6 +319,7 @@ const completeBooking = async () => {
             :
             <button 
             className='Submit'
+            style={{width: "30%"}}
             onClick={confirmPerformanceArtist}
             >Confirm
             </button>
@@ -325,6 +342,7 @@ const completeBooking = async () => {
             :
             <button 
             className='Submit'
+            style={{width: "30%"}}
             onClick={confirmPerformanceAgent}
             >Confirm
             </button> 
@@ -347,6 +365,7 @@ const completeBooking = async () => {
             :
             <button 
             className='Submit'
+            style={{width: "30%"}}
             onClick={payPayment}
             >Confirm
             </button>
@@ -370,6 +389,7 @@ const completeBooking = async () => {
             :
             <button 
             className='Submit'
+            style={{width: "30%"}}
             onClick={confirmPayment}
             >Confirm
             </button>
@@ -382,14 +402,14 @@ const completeBooking = async () => {
 
         {(escrowState >= 6)
         ?
+        <></>
+        :
         <button 
         className='Submit'
         style={{fontSize: "18px"}}
         onClick={completeBooking}
         >Complete Booking
         </button>
-        :
-        <></>
         }
       </motion.div>
     </div>

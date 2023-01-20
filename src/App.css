@@ -456,6 +456,19 @@ body {
   background-color: #171717;
 }
 
+.ArtistInfo{
+  width: 5%;
+  height: 2%;
+  text-align: center;
+  background-color: black;
+  position: absolute;
+  border: solid 2px grey;
+  border-radius: 10px;
+  right: 2%;
+  padding: 0.5%;
+  font-weight: bold;
+}
+
 .AboutMeBox {
   width: 500px;
   height: 425px;

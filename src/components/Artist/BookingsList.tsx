@@ -5,10 +5,11 @@ import ArtistContext from '../../Context/ArtistContext'
 import {motion} from 'framer-motion'
 import ArtistHeader from './ArtistHeader'
 import LogOut from '../shared/LogOut'
+import ArtistInfo from './ArtistInfo'
 
 const BookingsList :FC = () : ReactElement => {
 
-    const {bookings, artistLoggedIn} = useContext(ArtistContext)
+    const {bookings, artistLoggedIn, isHovering} = useContext(ArtistContext)
 
     console.log(bookings.length)
 
@@ -34,6 +35,12 @@ const BookingsList :FC = () : ReactElement => {
         }}
         > 
             <ArtistHeader/>
+            {isHovering
+            ?
+            <ArtistInfo/>
+            :
+            <></>
+            }
             <motion.div 
             initial= {{opacity: 0}}
             animate= {{opacity: 1}}

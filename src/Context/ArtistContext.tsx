@@ -1,9 +1,11 @@
 import React, {createContext, useState, ReactNode} from 'react'
 import {ethers, Contract} from 'ethers'
-import {ArtistFactoryContract, signer} from '../Contracts/ContractObjects'
+import {ArtistFactoryContract, MockDai, signer} from '../Contracts/ContractObjects'
 import ArtistProfileABI from '../ABI/ArtistProfile'
+import MockDaiq from '../ABI/MockDai'
 import EscrowABI from '../ABI/BookingEscrow'
 import { useNavigate } from 'react-router'
+import { NavLinkProps } from 'react-router-dom'
 
 interface ArtistContextInterface {
     artistAddress : string
@@ -33,6 +35,11 @@ interface ArtistContextInterface {
     picURL : string
     setPicURL : React.Dispatch<React.SetStateAction<string>>
     getProfilePicURL : () => Promise<void>
+    artistBalance : number
+    getBalance : () => Promise<void>
+    handleMouseOver : () => void
+    handleMouseOut : () => void
+    isHovering : boolean
 
 }
 
@@ -107,6 +114,25 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
         }
     }
 
+/// Fetches the Artist Balance
+
+    const [artistBalance, setArtistBalance] = useState<number>(0)
+
+    const getBalance = async () => {
+        const balance = await MockDai.balanceOf(artistProfileAddress)
+        setArtistBalance(balance)
+    }
+
+    const [isHovering, setIsHovering] = useState<boolean>(false)
+
+    const handleMouseOver = () => {
+        setIsHovering(true)
+    }
+
+    const handleMouseOut = () => {
+        setIsHovering(false)
+    }
+
 /// Displays about me update box if update is clicked    
 
     const [updateClickedWhole, setUpdateClickedWhole] = useState<boolean>(false)
@@ -115,15 +141,15 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
 /// Fetches and sets the profile pic URL
 
-const [picURL, setPicURL] = useState("")
+    const [picURL, setPicURL] = useState("")
 
-const getProfilePicURL = async () => {
-    const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-    const url = await artistProfileContract.profilePicURL()
-    console.log(url)
-    setPicURL(url)
-}
-    
+    const getProfilePicURL = async () => {
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
+        const url = await artistProfileContract.profilePicURL()
+        console.log(url)
+        setPicURL(url)
+    }
+        
 /// Displays current bookings on the profile page    
 
     const [updateDisplayBookings, setUpdateDisplayBookings] = useState<boolean>(false)
@@ -204,7 +230,12 @@ const getProfilePicURL = async () => {
             EscrowContractArtist,
             picURL,
             setPicURL,
-            getProfilePicURL         
+            getProfilePicURL,
+            artistBalance,  
+            getBalance,
+            handleMouseOver,
+            handleMouseOut,
+            isHovering       
         }}
         >
             {children}
