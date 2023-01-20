@@ -400,7 +400,7 @@ const completeBooking = async () => {
         }
         <br></br>
 
-        {(escrowState >= 6)
+        {(escrowState > 6)
         ?
         <></>
         :
