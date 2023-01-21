@@ -50,6 +50,13 @@ const EscrowMain : FC = () : ReactElement => {
   console.log(escrowAddressAgent)
   console.log(escrowState)
 
+  const [balance, setBalance] = useState<number>(0)
+
+  const getBalance = async () => {
+    const bal = await currentContract.getBalance()
+    setBalance(bal)
+  }
+
   const [deposit, setDeposit] = useState<number>()
 
   const getDeposit = async () => {
@@ -222,7 +229,7 @@ const completeBooking = async () => {
     getDeposit()
     getVenue(currentContract)
     getDate(currentContract)
-    getCurrentUser()
+    getBalance()
   }, [currentAddress])
 
   useEffect(() => {
@@ -266,11 +273,20 @@ const completeBooking = async () => {
           >ESCROW
           </h1>
           <br></br>
-          <h3 
-          className='Text'
-          style={{fontSize: "18px", marginTop: "1%", marginBottom: "0.75%"}}
-          >Viewing as: {currentUser}
-          </h3>
+          <div
+          style={{display: "flex", justifyContent: "center", gap: "10%"}}
+          >
+            <h3 
+            className='Text'
+            style={{fontSize: "18px", marginTop: "1%", marginBottom: "0.75%"}}
+            >Viewing as: {currentUser}
+            </h3>
+            <h3 
+            className='Text'
+            style={{fontSize: "18px", marginTop: "1%", marginBottom: "0.75%"}}
+            >Escrow Balance: ${balance.toString()}
+            </h3>
+          </div>
           <br></br>
         </div>
         <div className='EscrowDetails'>
@@ -406,14 +422,14 @@ const completeBooking = async () => {
 
         {(escrowState > 6)
         ?
-        <></>
-        :
         <button 
         className='Submit'
         style={{fontSize: "18px"}}
         onClick={completeBooking}
         >Complete Booking
         </button>
+        :
+        <></>
         }
       </motion.div>
     </div>

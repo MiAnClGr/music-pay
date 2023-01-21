@@ -89,6 +89,8 @@ contract BookingEscrow {
         
     }
 
+///External
+
     function payDeposit() external {
         require(currentState == PaymentState.NO_PAYMENT_MADE);
         uint deposit = (payment*10**18) /5;
@@ -114,11 +116,6 @@ contract BookingEscrow {
         finalisePerformance();
     }
 
-    function finalisePerformance() internal {
-        if(performanceConfirmedArtist && performanceConfirmedAgent){
-            currentState = PaymentState.PERFORMANCE_FINALISED;
-        }
-    }
 
     function finalisePayment() external onlyBookingAgent {
         require(currentState == PaymentState.PERFORMANCE_FINALISED);
@@ -140,5 +137,19 @@ contract BookingEscrow {
             profile.completeBooking(gigNumber);
             DAI.transfer(artistProfile, DAI.balanceOf(address(this)));
         }
+    }
+
+///Internal
+
+    function finalisePerformance() internal {
+        if(performanceConfirmedArtist && performanceConfirmedAgent){
+            currentState = PaymentState.PERFORMANCE_FINALISED;
+        }
+    }
+
+///View    
+
+    function getBalance() external view returns(uint) {
+        return DAI.balanceOf(address(this))/10**18;
     }
 }
