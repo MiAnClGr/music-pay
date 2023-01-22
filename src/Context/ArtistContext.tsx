@@ -2,10 +2,9 @@ import React, {createContext, useState, ReactNode} from 'react'
 import {ethers, Contract} from 'ethers'
 import {ArtistFactoryContract, MockDai, signer} from '../Contracts/ContractObjects'
 import ArtistProfileABI from '../ABI/ArtistProfile'
-import MockDaiq from '../ABI/MockDai'
 import EscrowABI from '../ABI/BookingEscrow'
 import { useNavigate } from 'react-router'
-import { NavLinkProps } from 'react-router-dom'
+
 
 interface ArtistContextInterface {
     artistAddress : string
@@ -23,8 +22,6 @@ interface ArtistContextInterface {
     setUpdateClickedAbout : React.Dispatch<React.SetStateAction<boolean>>
     setUpdateClickedPic : React.Dispatch<React.SetStateAction<boolean>>
     setUpdateClickedWhole : React.Dispatch<React.SetStateAction<boolean>>
-    displayBookings : () => void
-    updateDisplayBookings : Boolean
     bookings : any[]
     getBookings :  () => Promise<void>
     bookingNumberArtist : string
@@ -150,14 +147,6 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
         setPicURL(url)
     }
         
-/// Displays current bookings on the profile page    
-
-    const [updateDisplayBookings, setUpdateDisplayBookings] = useState<boolean>(false)
-
-    const displayBookings = () => {
-        // setUpdateDisplayBookings(!updateDisplayBookings) 
-        navigate("/BookingsList")  
-    }
 
 /// Fetches the Bookings from the Artist Profile contract and saves them to state    
 
@@ -219,8 +208,6 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             setUpdateClickedAbout,
             setUpdateClickedPic,
             setUpdateClickedWhole,
-            displayBookings,
-            updateDisplayBookings,
             bookings,
             getBookings,
             bookingNumberArtist,
