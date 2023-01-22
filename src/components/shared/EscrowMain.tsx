@@ -4,7 +4,6 @@ import {MockDai, signer} from "../../Contracts/ContractObjects"
 import ArtistContext from '../../Context/ArtistContext'
 import BookingContext from '../../Context/BookingContext'
 import EscrowContext from '../../Context/EscrowContext'
-import EscrowComplete from './EscrowComplete'
 import ArtistInfo from '../Artist/ArtistInfo'
 import { useNavigate } from 'react-router'
 import {motion} from 'framer-motion'
