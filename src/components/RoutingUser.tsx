@@ -5,7 +5,7 @@ import {motion} from 'framer-motion'
 
 const RoutingUser : FC = () : ReactElement => {
 
-  const {artistLoggedIn, artistConnected} = useContext(ArtistContext)
+  const {artistLoggedIn} = useContext(ArtistContext)
 
   return (
     <motion.div 
@@ -21,7 +21,7 @@ const RoutingUser : FC = () : ReactElement => {
     >
       <h1 className='Music-Pay-Title'>Music-Pay</h1>
       <div className='Route'>
-        {artistLoggedIn && artistConnected
+        {artistLoggedIn
         ?
         <Link
         className='Link'

@@ -10,7 +10,6 @@ const ArtistDropdownMenu = () => {
 
     const {
         artistLoggedIn, 
-        displayBookings,
     } = useContext(ArtistContext)
 
   return (
@@ -68,7 +67,7 @@ const ArtistDropdownMenu = () => {
             
             <h4
             className='DisplayBookingsMobile'
-            onClick={displayBookings}
+            onClick={()=> navigate("/BookingsList")}
             >
                 Bookings
             </h4>

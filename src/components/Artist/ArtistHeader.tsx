@@ -13,8 +13,6 @@ const ArtistHeader : FC = () : ReactElement => {
 			artistLoggedIn, 
 			createArtistProfileInstance,
 			getArtistConnected,
-			displayBookings,
-			handleMouseOut,
 			handleMouseOver
 		} = useContext(ArtistContext)
 
@@ -65,7 +63,7 @@ const ArtistHeader : FC = () : ReactElement => {
 					?
 					<h4
 					className='HeaderMenuTitle'
-					onClick={displayBookings}
+					onClick={()=> navigate("/BookingsList")}
 					>
 						Bookings
 					</h4>
