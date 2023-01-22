@@ -2,11 +2,6 @@ MUSIC-PAY
 
 A web3 solution for reliable and trustless payment from Booking agent to Artist
 
-Currently deployed at https://music-pay.vercel.app/
-
-Smart contracts are deployed on Mumbai
-
-To interact with the dApp please connect via metamask to the mumbai network
 
 Currently:
 
