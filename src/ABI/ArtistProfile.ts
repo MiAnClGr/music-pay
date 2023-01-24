@@ -106,7 +106,7 @@ export default [
   },
   {
     "inputs": [],
-    "name": "artistFactory",
+    "name": "artistFactoryAddress",
     "outputs": [
       {
         "internalType": "address",
@@ -266,6 +266,49 @@ export default [
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_artistProfile",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_artistName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_bookingAgentName",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_payment",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_time",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_venueName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_date",
+        "type": "string"
+      }
+    ],
+    "name": "createBooking",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "_gigNumber",
         "type": "uint256"
@@ -339,54 +382,6 @@ export default [
       }
     ],
     "name": "updateAboutMe",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_artistProfile",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "_artistName",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "_bookingAgent",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "_bookingAgentName",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_payment",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_time",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_venueName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_date",
-        "type": "string"
-      }
-    ],
-    "name": "updateBooking",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
