@@ -68,8 +68,15 @@ const EscrowMain : FC = () : ReactElement => {
   const [isUserArtist, setIsUserArtist] = useState<boolean>(false)
   const [isUserAgent, setIsUserAgent] = useState<boolean>(false)
 
+  const currentContract = isUserAgent ? EscrowContractAgent : EscrowContractArtist
+  const currentAddress = isUserAgent ? escrowAddressAgent : escrowAddressArtist
+
+  console.log(currentContract)
+  console.log(currentAddress)
+
   const getCurrentUser = async () => {
     const user = await signer.getAddress()
+    console.log(user)
     const artist = await currentContract.artist()
     const agent = await currentContract.bookingAgent()
     if(user === artist){
@@ -83,11 +90,7 @@ const EscrowMain : FC = () : ReactElement => {
     }
   }
 
-  const currentContract = isUserAgent ? EscrowContractAgent : EscrowContractArtist
-  const currentAddress = isUserAgent ? escrowAddressAgent : escrowAddressArtist
-
-  console.log(currentContract)
-  console.log(currentAddress)
+ 
 
   console.log(`current user is ${currentUser}`)
   console.log(`is user artist? ${isUserArtist}`)
