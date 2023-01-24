@@ -1,9 +1,9 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
-import {PerformanceContract} from "../../Contracts/ContractObjects"
 import BookingHeader from "./BookingHeader"
 import BookingContext from '../../Context/BookingContext'
 import { useNavigate } from 'react-router'
 import {motion} from 'framer-motion'
+import ArtistContext from '../../Context/ArtistContext'
 
 const ArtistBooking : FC = () : ReactElement => {
 
@@ -14,6 +14,8 @@ const ArtistBooking : FC = () : ReactElement => {
     artistName,
     getArtistName
   } = useContext(BookingContext)
+
+  const {createArtistProfileInstance} = useContext(ArtistContext)
 
   const navigate = useNavigate()
 
@@ -28,8 +30,9 @@ const ArtistBooking : FC = () : ReactElement => {
 
   const handleSubmit = async () => {
     navigate("/Loading")
+    const artistProfileContract = createArtistProfileInstance(searchedAddress)
     try{
-      const booking = await PerformanceContract.createBooking(
+      const booking = await artistProfileContract.createBooking(
         searchedAddress,
         artistName,
         artistBooking.bookingAgent,
@@ -38,7 +41,7 @@ const ArtistBooking : FC = () : ReactElement => {
         artistBooking.venue,
         artistBooking.date
       )
-      await booking.wait()
+    await booking.wait()
     }catch(e){
       console.log(e)
     }finally{

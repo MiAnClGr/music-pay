@@ -3,7 +3,6 @@
 import "./ProofOfPayment.sol";
 import "./ArtistFactory.sol";
 import "./ArtistProfile.sol";
-import "./PerformanceContract.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
 

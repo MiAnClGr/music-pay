@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 contract ArtistProfile {
     using Strings for uint256;
 
+    ArtistFactory artistFactory;
     BookingEscrow escrow;
     ERC20 DAI;
 
@@ -42,7 +43,7 @@ contract ArtistProfile {
 
     string public artistName;
     address public artist;
-    address public artistFactory;
+    address public artistFactoryAddress;
 
     string public aboutMe;
     string public profilePicURL;
@@ -66,7 +67,8 @@ contract ArtistProfile {
         artistName = _artistName;
         artist = payable(_artist);
         DAI = ERC20(_daiAddress);
-        artistFactory = msg.sender;
+        artistFactoryAddress = msg.sender;
+        artistFactory = ArtistFactory(msg.sender);
         
     }
 
@@ -76,10 +78,9 @@ contract ArtistProfile {
 
 /// External
 
-    function updateBooking(
+    function createBooking(
         address _artistProfile,
         string memory _artistName,
-        address _bookingAgent,
         string memory _bookingAgentName,
         uint _payment, 
         uint _time,
@@ -87,13 +88,14 @@ contract ArtistProfile {
         string memory _date
         
         ) external {
+        require(artistFactory.doesArtistExist(_artistName));
 
         Booking storage booking = bookings[gigNumber];
 
         {
         booking.artistProfile = _artistProfile;
         booking.artistName = _artistName;
-        booking.bookingAgent = _bookingAgent;
+        booking.bookingAgent = msg.sender;
         booking.bookingAgentName  = _bookingAgentName;
         booking.payment = _payment;
         booking.time = _time;
@@ -106,7 +108,7 @@ contract ArtistProfile {
 
         gigNumber ++;
 
-        emit BookingMade(_artistProfile, _bookingAgent);
+        emit BookingMade(_artistProfile, msg.sender);
     }
 
  
@@ -133,7 +135,7 @@ contract ArtistProfile {
             booking.venueName,
             booking.date,
             payable(address(DAI)),
-            artistFactory
+            artistFactoryAddress
             
         );
 
