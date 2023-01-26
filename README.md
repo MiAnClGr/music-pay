@@ -2,10 +2,12 @@ MUSIC-PAY
 
 A web3 solution for reliable and trustless payment from Booking agent to Artist
 
+Music-Pay is a work in progress and new features are being added frequently
+
 
 Currently:
 
-An artist can create a profile and log in with their Metamask wallet, the profile is stored on chain as a smart contract that can receive the bookings and payment.
+An artist can create a profile and log in with their Ethereum address and Metamask wallet, the profile is stored on chain as a smart contract holds the logic to receive and store bookings and receive and transfer payment.
 
 An artist can upload a profile picture to their Artist page, the file is saved on IPFS and the file url is stored in the Artist Profile contract.
 
@@ -19,5 +21,3 @@ Booking agents are able to view a list of current escrows that they are a part o
 Soon to be added:
 
 Proof of booking and proof of payment NFTs that will be minted to both artist and agent
-
-Payment functionality 
