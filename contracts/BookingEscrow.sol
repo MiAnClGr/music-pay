@@ -138,6 +138,16 @@ contract BookingEscrow {
         }
     }
 
+    function rateArtist(uint rating) external {
+        require(msg.sender == bookingAgent);
+        artistFactory.ratingArtist(rating, artistProfile);
+    }
+
+    function rateAgent(uint rating) external {
+        require(msg.sender == artist);
+        artistFactory.ratingAgent(rating, bookingAgent);
+    }
+
 ///Internal
 
     function finalisePerformance() internal {

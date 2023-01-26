@@ -2,6 +2,7 @@
 
 pragma solidity 0.8.17;
 import "./ArtistProfile.sol";
+import "./BookingEscrow.sol";
 
 contract ArtistFactory {
 
@@ -16,6 +17,11 @@ contract ArtistFactory {
     mapping(address => address) public artistProfileToArtist;
     mapping(string => bool) public doesArtistExist;
 
+    mapping(address => uint) public ratingArtistUp;
+    mapping(address => uint) public ratingArtistDown;
+    mapping(address => uint) public ratingAgentUp;
+    mapping(address => uint) public ratingAgentDown;
+
     address[] public Artists;
 
     event Artist(address, string);
@@ -24,6 +30,7 @@ contract ArtistFactory {
         daiAddress = _daiAddress;
     }
 
+///External
 
     function createArtist(string memory _artistName) external {
     
@@ -50,6 +57,30 @@ contract ArtistFactory {
     function addEscrowArtist(address _artist) external {
         artistToCurrentEscrow[_artist].push(msg.sender);
     }
+
+    function ratingArtist(uint _rating, address _artist) external {
+        BookingEscrow bookingEscrow;
+        bookingEscrow = BookingEscrow(msg.sender);
+        require(_artist == bookingEscrow.artistProfile());
+        if(_rating == 0){
+            ratingArtistUp[_artist] ++;
+        }else if(_rating == 1){
+            ratingArtistDown[_artist] ++;
+        }  
+    }
+
+    function ratingAgent(uint _rating, address _agent) external {
+        BookingEscrow bookingEscrow;
+        bookingEscrow = BookingEscrow(msg.sender);
+        require(_agent == bookingEscrow.bookingAgent());
+        if(_rating == 0){
+            ratingAgentUp[_agent] ++;
+        }else if(_rating == 1){
+            ratingAgentDown[_agent] ++;
+        }  
+    }
+
+///View
 
     function getEscrow(address _bookingAgent, uint _index) external view returns(address){
         return agentToCurrentEscrow[_bookingAgent][_index];

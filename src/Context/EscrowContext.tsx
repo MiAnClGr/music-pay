@@ -5,6 +5,7 @@ import {Contract} from 'ethers'
 
 interface EscrowContextInterface {
 artistName : string
+artistAddress : string
 getArtistName :  (EscrowContract: Contract) => Promise<void>
 bookingAgentName : string
 getBookingAgentName : (EscrowContract: Contract) => Promise<void>
@@ -51,7 +52,7 @@ export const EscrowProvider  = ({children} : {children : ReactNode}) => {
   const [artistAddress, setArtistAddress] = useState<string>("")
 
   const getArtistAddress = async (EscrowContract : Contract) => {
-    const artistAddress = await EscrowContract.artist()
+    const artistAddress = await EscrowContract.artistProfile()
     setArtistAddress(artistAddress)
   }
 
@@ -97,6 +98,7 @@ const getDate = async (EscrowContract : Contract) => {
     <EscrowContext.Provider
     value={{
       artistName,
+      artistAddress,
       getArtistName,
       bookingAgentName,
       getBookingAgentName,

@@ -1,6 +1,6 @@
 import React, {FC, useState, useEffect, useContext, ReactElement} from 'react'
 import {utils} from 'ethers'
-import {MockDai, signer} from "../../Contracts/ContractObjects"
+import {ArtistFactoryContract, MockDai, signer} from "../../Contracts/ContractObjects"
 import ArtistContext from '../../Context/ArtistContext'
 import BookingContext from '../../Context/BookingContext'
 import EscrowContext from '../../Context/EscrowContext'
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router'
 import {motion} from 'framer-motion'
 import ArtistHeader from '../Artist/ArtistHeader'
 import BookingHeader from '../Booking/BookingHeader'
+
 
 const EscrowMain : FC = () : ReactElement => {
 
@@ -30,7 +31,9 @@ const EscrowMain : FC = () : ReactElement => {
 
   const {
     artistName, 
-    getArtistName, 
+    getArtistName,
+    artistAddress,
+    getArtistAddress, 
     userIsAgent,
     setUserIsAgent,
     bookingAgentName,
@@ -48,6 +51,7 @@ const EscrowMain : FC = () : ReactElement => {
 
   console.log(escrowAddressAgent)
   console.log(escrowState)
+  console.log(artistAddress)
 
   const [balance, setBalance] = useState<number>(0)
 
@@ -74,6 +78,8 @@ const EscrowMain : FC = () : ReactElement => {
   console.log(currentContract)
   console.log(currentAddress)
 
+///Determine if user is agent or artist
+
   const getCurrentUser = async () => {
     const user = await signer.getAddress()
     console.log(user)
@@ -89,8 +95,6 @@ const EscrowMain : FC = () : ReactElement => {
       setCurrentUser(bookingAgentName)
     }
   }
-
- 
 
   console.log(`current user is ${currentUser}`)
   console.log(`is user artist? ${isUserArtist}`)
@@ -149,7 +153,7 @@ const EscrowMain : FC = () : ReactElement => {
       console.log(error)
     }finally{
       console.log("Agent has confirmed performance")
-      navigate("/EscrowMain")
+      navigate("/RateArtist")
     }
   }
 
@@ -214,17 +218,24 @@ const completeBooking = async () => {
     }
   }
 
+  const rating = async () => {
+    const rating = await ArtistFactoryContract.ratingArtistUp(artistAddress)
+    return rating.toNumber()
+  }
+
+  console.log(rating())
+
+
+
   useEffect(() => {
     if(!userIsAgent){
       getEscrowAddressArtist()
-    }
-      console.log(escrowAddressArtist)  
+    }  
   },[])
-
-  ///Determine is user is agent or artist
 
   useEffect(() => {
     getArtistName(currentContract)
+    getArtistAddress(currentContract)
     getBookingAgentName(currentContract)
     getCurrentState(currentContract)
     getPayment(currentContract)
@@ -232,11 +243,9 @@ const completeBooking = async () => {
     getVenue(currentContract)
     getDate(currentContract)
     getBalance()
+    getCurrentUser()
   }, [currentAddress])
 
-  useEffect(() => {
-    getCurrentUser()
-  }, [])
 
 
 

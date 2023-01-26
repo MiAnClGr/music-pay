@@ -458,7 +458,7 @@ body {
 
 .ArtistInfo{
   width: 7%;
-  height: 10%;
+  height: 15%;
   text-align: center;
   background-color: black;
   position: absolute;
@@ -832,4 +832,16 @@ body {
   justify-content: space-between;
   text-align: center;
   align-items: center;
+}
+
+.Rating {
+  width: 60%;
+  margin-top: 15%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
 }
