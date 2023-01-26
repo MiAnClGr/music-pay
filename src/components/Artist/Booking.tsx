@@ -13,7 +13,7 @@ type props = {
   completed : boolean
 }
 
-const Booking : FC<props>= ({
+const Booking : FC<props> = ({
   gigNumber, 
   payment, 
   time,
