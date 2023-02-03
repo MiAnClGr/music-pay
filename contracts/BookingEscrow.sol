@@ -130,7 +130,7 @@ contract BookingEscrow {
         currentState = PaymentState.PAYMENT_CONFIRMED;
     }
 
-    function completeBooking() external {
+    function completeBooking() external onlyArtist {
         require(currentState == PaymentState.PAYMENT_CONFIRMED);
         if(currentState == PaymentState.PAYMENT_CONFIRMED){
             profile.completeBooking(gigNumber);
