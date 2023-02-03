@@ -5,40 +5,66 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { Contract } from "ethers"
 import { equal } from "assert";
 
-
-describe("Using the Artist Factory", () => {
+describe("Using the ArtistFactory Contract", () => {
 
   let artist : SignerWithAddress
 
   let ArtistFactoryContract : Contract
+  let MockDai : Contract
 
-  beforeEach(async () => {
+  let address : string 
 
-    [artist] = await ethers.getSigners()
 
-    await deployments.fixture("ArtistFactory")
+  describe("Creating and removing and artist", () => {
+  
+    beforeEach(async () => {
+  
+      [artist] = await ethers.getSigners()
+  
+      const MockDaiFactory = await ethers.getContractFactory("MockDai")
+      const ArtistFactoryContractFactory = await ethers.getContractFactory("ArtistFactory")
+  
+      MockDai = await MockDaiFactory.deploy()
+      ArtistFactoryContract = await ArtistFactoryContractFactory.deploy(MockDai.address)
+  
+      await ArtistFactoryContract.createArtist("ZONG")
+  
+      address = await ArtistFactoryContract.ownerToArtist(artist.address)
+    })
+  
+    it("should create a new Artist Profile contract", async () => {
+      const addressTwo = await ArtistFactoryContract.artistNameToAddress("ZONG")
+    
+      expect(addressTwo).to.equal(address)
+    })
+  
+    it("should return ZONG given the artist profile address", async () => {
+      const name = await ArtistFactoryContract.artistAddressToName(address)
+      expect(name).to.equal("ZONG")
+  
+    })
+  
+    it("should return the owner given the artist profile address", async () => {
+      const owner = await ArtistFactoryContract.artistProfileToArtist(address)
+      expect(owner).to.equal(artist.address)
+  
+    })
 
-    ArtistFactoryContract = await ethers.getContract("ArtistFactory")
+    it("should return true if the artist exists", async () => {
+      expect(await ArtistFactoryContract.doesArtistExist("ZONG")).to.equal(true)
+  
+    })
 
-    await ArtistFactoryContract.createArtist("ZONG")
-  })
+    it("should push the artistProfile address to the Aritsts array", async () => {
+      expect(await ArtistFactoryContract.Artists(0)).to.equal(address)
+    })  
 
-  it("should create a new Artist Profile contract", async () => {
-    const profileAddress = await ArtistFactoryContract.artistProfileAddress()
-    expect(await ArtistFactoryContract.artistByAddress(profileAddress)).to.equal("ZONG")
-
-  })
-
-  it("should retrieve the artist by name", async () => {
-    const profileAddress = await ArtistFactoryContract.artistProfileAddress()
-    expect(await ArtistFactoryContract.artistByName("ZONG")).to.equal(profileAddress)
-
-  })
-
-  it("should return true if the artist exists", async () => {
-    expect(await ArtistFactoryContract.doesArtistExist("ZONG")).to.equal(true)
-
+    it("should return false once the artist is removed", async () => {
+      await ArtistFactoryContract.removeArtist("ZONG")
+      expect(await ArtistFactoryContract.doesArtistExist("ZONG")).to.equal(false)
+    })
   })
 
   
-});
+})
+
