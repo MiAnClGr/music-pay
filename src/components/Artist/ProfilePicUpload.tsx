@@ -37,7 +37,7 @@ const ProfilePicUpload = () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         try{
             const added = await client.add(profilePic)
-            const url = `https://music-pay-profile-pic.infura-ipfs.io/ipfs/${added.path}`
+            const url = `https://personal-project-storage.infura-ipfs.io/ipfs/${added.path}`
             setPicURL(url)
             await artistProfileContract.updateProfilePicURL(url)
         }catch(error){
