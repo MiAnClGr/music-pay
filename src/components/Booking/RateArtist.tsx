@@ -9,9 +9,9 @@ const RateArtist = () => {
 
     const navigate = useNavigate()
 
-    const {EscrowContractAgent} = useContext(BookingContext)
+    const {createEscrowInstanceAgent} = useContext(BookingContext)
 
-    console.log(EscrowContractAgent)
+    const EscrowContractAgent = createEscrowInstanceAgent()
 
     const {artistName, artistAddress} = useContext(EscrowContext)
 

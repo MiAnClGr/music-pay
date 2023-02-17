@@ -6,9 +6,11 @@ import EscrowContext from '../../Context/EscrowContext'
 
 const RateAgent : FC = () : ReactElement => {
 
-    const {EscrowContractArtist} = useContext(ArtistContext)
+    const {createEscrowInstanceArtist} = useContext(ArtistContext)
 
     const {bookingAgentName} = useContext(EscrowContext)
+
+    const EscrowContractArtist = createEscrowInstanceArtist()
 
     const rateUp = async () => {
         await EscrowContractArtist.rateAgent(0)

@@ -19,13 +19,13 @@ const EscrowMain : FC = () : ReactElement => {
     bookingNumberArtist, 
     escrowAddressArtist, 
     getEscrowAddressArtist, 
-    EscrowContractArtist,
+    createEscrowInstanceArtist,
     isHovering
   } = useContext(ArtistContext)
 
   const {
     escrowAddressAgent, 
-    EscrowContractAgent,
+    createEscrowInstanceAgent,
     setEscrowAddressAgent
   } = useContext(BookingContext)
 
@@ -71,6 +71,9 @@ const EscrowMain : FC = () : ReactElement => {
   const [currentUser, setCurrentUser] = useState<string>("")
   const [isUserArtist, setIsUserArtist] = useState<boolean>(false)
   const [isUserAgent, setIsUserAgent] = useState<boolean>(false)
+
+  const EscrowContractAgent = createEscrowInstanceAgent()
+  const EscrowContractArtist = createEscrowInstanceArtist()
 
   const currentContract = isUserAgent ? EscrowContractAgent : EscrowContractArtist
   const currentAddress = isUserAgent ? escrowAddressAgent : escrowAddressArtist

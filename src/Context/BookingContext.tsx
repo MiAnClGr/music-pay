@@ -18,7 +18,6 @@ interface BookingContextInterface {
     getEscrowList : () => Promise<void>
     escrowAddressAgent : string
     setEscrowAddressAgent : React.Dispatch<React.SetStateAction<string>>
-    EscrowContractAgent : Contract
     bookingNumberAgent : string
     setBookingNumberAgent : React.Dispatch<React.SetStateAction<string>>
     createEscrowInstanceAgent : () => ethers.Contract
@@ -89,7 +88,6 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
         return EscrowContract
     }
 
-    const EscrowContractAgent = createEscrowInstanceAgent()
 
 ///Fetches a list of addressess of escrow contracts that the booking agent is a part of 
 
@@ -126,7 +124,6 @@ export const BookingProvider  = ({children} : {children : ReactNode}) => {
             getEscrowList, 
             escrowAddressAgent,
             setEscrowAddressAgent,
-            EscrowContractAgent,
             bookingNumberAgent,
             setBookingNumberAgent,
             createEscrowInstanceAgent

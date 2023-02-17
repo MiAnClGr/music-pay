@@ -28,7 +28,7 @@ interface ArtistContextInterface {
     setBookingNumberArtist : React.Dispatch<React.SetStateAction<string>>
     escrowAddressArtist : string
     getEscrowAddressArtist : () => void
-    EscrowContractArtist : Contract
+    createEscrowInstanceArtist : () => ethers.Contract
     picURL : string
     setPicURL : React.Dispatch<React.SetStateAction<string>>
     getProfilePicURL : () => Promise<void>
@@ -183,7 +183,6 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
         return EscrowContract
     }
 
-    const EscrowContractArtist = createEscrowInstanceArtist()
 
 /// Booking number is set during the booking and displayed in the Escrow Component    
 
@@ -214,7 +213,7 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             setBookingNumberArtist,
             escrowAddressArtist,
             getEscrowAddressArtist,
-            EscrowContractArtist,
+            createEscrowInstanceArtist,
             picURL,
             setPicURL,
             getProfilePicURL,
@@ -222,7 +221,7 @@ export const ArtistProvider  = ({children} : {children : ReactNode}) => {
             getBalance,
             handleMouseOver,
             handleMouseOut,
-            isHovering       
+            isHovering 
         }}
         >
             {children}
