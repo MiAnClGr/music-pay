@@ -1,5 +1,4 @@
-import { normalize } from 'path'
-import React, {FC, ReactElement, useEffect} from 'react'
+import React, {FC, ReactElement} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {provider} from '../Contracts/ContractObjects'
 
