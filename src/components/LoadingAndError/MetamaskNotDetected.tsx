@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 
 const MetamaskNotDetected = () => {
   return (
-    <div className='LoadingScreen'>
+    <div 
+    className='LoadingScreen'
+    style={{marginTop: "18%"}}
+    >
       <h1 className='HeaderText'>Please install Metamask to continue</h1>
       <br></br>
       <br></br>
