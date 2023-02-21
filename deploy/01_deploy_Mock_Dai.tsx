@@ -51,7 +51,7 @@ const func : DeployFunction = async (hre : HardhatRuntimeEnvironment) => {
   
     if(chainId == "5" || chainId == "80001"){
         console.log("accessed")
-        // await MockDai.mintDai(utils.parseEther('1000'))
+        await MockDai.mintDai(utils.parseEther('1000'))
         await MockDai.connect(accountTwo).mintDai(utils.parseEther('1000'))
 
         console.log(await MockDai.balanceOf(accountTwo.address))
