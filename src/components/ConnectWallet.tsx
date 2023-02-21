@@ -17,10 +17,14 @@ const ConnectWallet : FC = () : ReactElement => {
       console.log(e,"metamask is not detected")
       navigate("/MetamaskNotDetected")
     }finally{
-      if (window.ethereum.isConnected()){
-        navigate("/RoutingUser")
-    }
+      if (window.ethereum.isConnected() && window.ethereum.networkVersion === "80001"){
+        navigate('/RoutingUser')
+      }else if(window.ethereum.isConnected() && window.ethereum.networkVersion !== "80001"){
+        navigate("/SwitchNetwork")
+      }
   }
+
+  
 
 }
   return (
