@@ -2,8 +2,11 @@ MUSIC-PAY
 
 A web3 solution for reliable and trustless payment from Booking agent to Artist
 
-Music-Pay is a work in progress and new features are being added frequently
+A current version of the project is deployed on Vercel at this link https://music-pay.vercel.app/
 
+The smart contracts are deployed on the Mumbai Tesnet 
+
+A Metamask wallet is required 
 
 Currently:
 
