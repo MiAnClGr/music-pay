@@ -6,6 +6,8 @@ import ArtistContext from '../../Context/ArtistContext'
 const ID = process.env.REACT_APP_INFURA_PROJECT_ID
 const SECRET = process.env.REACT_APP_INFURA_PROJECT_SECRET
 
+console.log(ID)
+
 const auth = 'Basic ' + Buffer.from(ID + ':' + SECRET).toString('base64');
 const client = create({
     host: 'ipfs.infura.io',

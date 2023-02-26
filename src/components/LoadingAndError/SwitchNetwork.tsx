@@ -1,11 +1,7 @@
-import {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
 const SwitchNetwork = () => {
 
-    useEffect(() => {
-
-    })
 
   return (
     <div 
