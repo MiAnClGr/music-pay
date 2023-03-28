@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
 
 
-pragma solidity 0.8.17;
+pragma solidity 0.8.19;
 
 contract BookingEscrow {
 
