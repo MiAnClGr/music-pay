@@ -7,7 +7,10 @@ import LogOut from '../shared/LogOut'
 
 const ArtistMain : FC = () : ReactElement => {
 
+    /// access context state variables 
     const {artistLoggedIn, artistConnected} = useContext(ArtistContext)
+
+    /// if user is not logged in or connected to a profile, display welcome message
 
     return (      
         <motion.div
@@ -19,7 +22,7 @@ const ArtistMain : FC = () : ReactElement => {
         >
             <ArtistHeader/>
             <ArtistHeaderMobile/>
-            {artistLoggedIn === false && artistConnected === false         
+            {!artistLoggedIn && !artistConnected     
             ?           
             <motion.div 
             className='ArtistMain'

@@ -4,6 +4,7 @@ import ArtistContext from '../../Context/ArtistContext'
 
 const ArtistInfo = () => {
 
+    /// access context states and functions
     const {
         artistBalance, 
         getBalance, 
@@ -13,13 +14,20 @@ const ArtistInfo = () => {
         handleMouseOut
     } = useContext(ArtistContext)
 
+    /// state variables
     const [rating, setRating] = useState<number>(0)
 
+/// User actions
+
+    ///withdraws balance from contract
     const withdrawBalance = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         await artistProfileContract.withdraw()
     }
+ 
+/// Helper function
 
+    /// fetches rating from contract
     const getRating = async () => {
         const ratingUp = await ArtistFactoryContract.ratingArtistUp(artistProfileAddress)
         const ratingDown = await ArtistFactoryContract.ratingArtistDown(artistProfileAddress)
@@ -27,7 +35,7 @@ const ArtistInfo = () => {
         setRating(rating)
     }
 
-
+    /// calls getBalance and getRating on load
 
     useEffect(()=> {
         getBalance()

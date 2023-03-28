@@ -7,7 +7,7 @@ const ArtistHeader : FC = () : ReactElement => {
 
 	const navigate = useNavigate()
 	
-
+		// access context states and functions
 		const {
 			artistProfileAddress, 
 			artistLoggedIn, 
@@ -16,10 +16,10 @@ const ArtistHeader : FC = () : ReactElement => {
 			handleMouseOver
 		} = useContext(ArtistContext)
 
-
+		// state variables
 		const [name, setName] = useState("")
 
-
+		// fetches artist name from contract
 		const getArtistName = async () => {
 			const artistProfile = createArtistProfileInstance(artistProfileAddress)
 			const name = await artistProfile.artistName()
@@ -27,15 +27,16 @@ const ArtistHeader : FC = () : ReactElement => {
 			setName(name)
 		}
 
-			useEffect(() => {
-				getArtistConnected()
-			},[artistLoggedIn])
 
-			useEffect(() => {
-				getArtistName()
-			},[artistProfileAddress])
+		/// calls getArtistConnected and getArtistName on load
 
-			console.log(artistProfileAddress)
+		useEffect(() => {
+			getArtistConnected()
+		},[artistLoggedIn])
+
+		useEffect(() => {
+			getArtistName()
+		},[artistProfileAddress])
 
 		return(
 			

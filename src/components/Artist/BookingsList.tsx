@@ -9,10 +9,10 @@ import ArtistInfo from './ArtistInfo'
 
 const BookingsList :FC = () : ReactElement => {
 
+    /// access context state variables
     const {bookings, artistLoggedIn, isHovering} = useContext(ArtistContext)
 
-    console.log(bookings.length)
-
+    /// map through bookings array and display each booking
     const displayBooking = bookings.map((booking : any[]) =>  
         <Booking
         gigNumber= {(BigNumber.from(booking[0])).toString()}
@@ -25,8 +25,6 @@ const BookingsList :FC = () : ReactElement => {
         />
     )
 
-    console.log(bookings)
-    
     return(
         <div
         style={{

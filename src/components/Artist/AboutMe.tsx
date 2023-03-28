@@ -3,6 +3,7 @@ import ArtistContext from '../../Context/ArtistContext'
 
 const AboutMe : FC = () : ReactElement => {
 
+    // access various states and functions from ArtistContext
     const {
         createArtistProfileInstance,
         artistProfileAddress,
@@ -11,37 +12,16 @@ const AboutMe : FC = () : ReactElement => {
         updateClickedWhole
     } = useContext(ArtistContext)
 
-    console.log(updateClickedAbout)
-    
-    
+    // state variables
     const [update, setUpdate] = useState<string>("")
     const [aboutArtist, setAboutArtist] = useState<string>("")
     const [name, setName] = useState("")
 
+///User actions
 
-    const getArtistName = async () => {
-        const artistProfile = createArtistProfileInstance(artistProfileAddress)
-        const name = await artistProfile.artistName()
-        console.log(name)
-        setName(name)
-    }
-
-    console.log(aboutArtist)
-
-    const getAboutMe = async () => {
-        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        const about = await artistProfileContract.aboutMe()
-        console.log(about)
-        setAboutArtist(about)
-    }
-
-    const updateAboutMe = (e : React.ChangeEvent<HTMLTextAreaElement>) => {
-        setUpdate(e.target.value)
-    }
-
+    // submits about me update to contract
     const handleSubmitAboutMe = async () => {
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
-        
         try{
             const updated = await artistProfileContract.updateAboutMe(update)
             await updated.wait()
@@ -54,6 +34,37 @@ const AboutMe : FC = () : ReactElement => {
         }
         
     }
+
+
+/// Event handlers
+
+    //updates about me state
+    const updateAboutMe = (e : React.ChangeEvent<HTMLTextAreaElement>) => {
+        setUpdate(e.target.value)
+    }
+
+
+/// Helper functions
+
+    //fetches artist name from contract
+    const getArtistName = async () => {
+        const artistProfile = createArtistProfileInstance(artistProfileAddress)
+        const name = await artistProfile.artistName()
+        console.log(name)
+        setName(name)
+    }
+
+    // fetches about me from contract  
+    const getAboutMe = async () => {
+        const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
+        const about = await artistProfileContract.aboutMe()
+        console.log(about)
+        setAboutArtist(about)
+    }
+
+
+
+    // fetches artist name and about me on load
  
     useEffect(() => {
         getAboutMe()
@@ -83,7 +94,7 @@ const AboutMe : FC = () : ReactElement => {
             borderRadius: "10px"
             }}>{name}
         </h2>
-    
+
         {updateClickedAbout
         ?
 
@@ -113,6 +124,7 @@ const AboutMe : FC = () : ReactElement => {
             className='AboutMeBoxInside'
             onClick= {() => setUpdateClickedAbout(true)}
             >   
+            
                 {aboutArtist !== ""
                 ?
                 <h4 style={{color: "white"}}>
@@ -141,7 +153,7 @@ const AboutMe : FC = () : ReactElement => {
             
         </div>
         }
-       
+            
             {(updateClickedWhole) && (!updateClickedAbout)
             ?
                 <button 

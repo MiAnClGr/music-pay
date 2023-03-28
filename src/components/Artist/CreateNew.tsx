@@ -1,6 +1,4 @@
 import React, {useState, useContext, FC, ReactElement} from 'react'
-import ArtistHeader from './ArtistHeader'
-import BookingHeader from '../Booking/BookingHeader'
 import ArtistContext from '../../Context/ArtistContext'
 import {useNavigate} from 'react-router-dom'
 import {ArtistFactoryContract} from "../../Contracts/ContractObjects"
@@ -11,16 +9,38 @@ import Home from '../shared/Home'
 
 const CreateNew : FC = () : ReactElement => {
 
-    const {artistLoggedIn} = useContext(ArtistContext)
-
-    const [inputArtistName, setInputArtistName] = useState("")
-
     const navigate = useNavigate()
 
+    /// access artistLoggedIn state variable from context
+    const {artistLoggedIn} = useContext(ArtistContext)
+
+    /// state variables
+    const [inputArtistName, setInputArtistName] = useState("")
+
+///User Actions
+
+    /// submits the creation of a new artist to the contract
+    const handleSubmitCreate = async () => {
+        navigate("/Loading")
+        try{
+            const transaction = await ArtistFactoryContract.createArtist(inputArtistName)
+            await transaction.wait()
+            
+        }catch(error){
+            console.log(error)
+        }finally{ 
+            navigate("/ArtistProfile")
+        }    
+    }
+
+///Event Handlers
+
+    /// handles the change of the name input field
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
         setInputArtistName(e.target.value)
     }  
 
+    /// handles the keydown event of the name input field
     const handleKeyDownCreate = async (e : React.KeyboardEvent<HTMLElement>) => {
         if(e.key === 'Enter'){
                 navigate("/Loading")
@@ -36,18 +56,7 @@ const CreateNew : FC = () : ReactElement => {
         }
     }
 
-    const handleSubmitCreate = async () => {
-        navigate("/Loading")
-        try{
-            const transaction = await ArtistFactoryContract.createArtist(inputArtistName)
-            await transaction.wait()
-            
-        }catch(error){
-            console.log(error)
-        }finally{ 
-            navigate("/ArtistProfile")
-        }    
-    }
+
 
   return (
     <div

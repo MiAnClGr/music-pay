@@ -28,51 +28,36 @@ const Booking : FC<props> = ({
 
   const navigate = useNavigate()
 
+  /// access context state variables and functions
   const {
     artistProfileAddress, 
     createArtistProfileInstance, 
     setBookingNumberArtist
   } = useContext(ArtistContext)
-
   const {setUserIsAgent} = useContext(EscrowContext)
-
+  
+  /// enum for booking status
   const enum status {
     NOT_ACCEPTED = "Not Accepted",
     IN_ESCROW = "In Escrow",
     COMPLETED = "Completed"
   }
 
+
+  // state variables
   const [bookingAccepted, setBookingAccepted] = useState<boolean>(false)
   const [bookingCompleted, setBookingCompleted] = useState<boolean>(false)
   const [bookingStatus, setBookingStatus] = useState<status>(status.NOT_ACCEPTED)
 
-  const getBookingAccepted = () => {
-    agreed ? setBookingAccepted(true) : setBookingAccepted(false)
-  }
+/// User Actions
 
-  const getBookingCompleted = () => {
-    completed ? setBookingCompleted(true) : setBookingCompleted(false)
-  }
-
-  const setStatus = () => {
-    if(!bookingAccepted){
-      setBookingStatus(status.NOT_ACCEPTED)
-    }else if(bookingAccepted && !bookingCompleted){
-      setBookingStatus(status.IN_ESCROW)
-    }else if(bookingAccepted && bookingCompleted){
-      setBookingStatus(status.COMPLETED)
-    }
-  }
-
-  console.log(bookingAccepted)
-  console.log(bookingCompleted)
-  console.log(bookingStatus)
-
+  /// submits the acceptence of the booking to the contract
   const handleSubmitAcceptBooking = async () => {
     setBookingNumberArtist(gigNumber)
     const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
     navigate("/Loading")
     try{
+      // calling the agreement function on artistProfileContract will deploy a new BookingEscrow contract
       const transaction = await artistProfileContract.agreement(gigNumber)
       await transaction.wait()
       navigate("/EscrowMain")
@@ -83,10 +68,37 @@ const Booking : FC<props> = ({
     }   
   }
 
+  // will navigate to the escrow page if the booking has already been accepted
   const handleSubmitToEscrow = () => {
     setBookingNumberArtist(gigNumber)
     navigate("/EscrowMain")
   }
+
+///Helper 
+
+  // sets the booking status based on bookingAccepted and bookingCompleted
+  const setStatus = () => {
+    if(!bookingAccepted){
+      setBookingStatus(status.NOT_ACCEPTED)
+    }else if(bookingAccepted && !bookingCompleted){
+      setBookingStatus(status.IN_ESCROW)
+    }else if(bookingAccepted && bookingCompleted){
+      setBookingStatus(status.COMPLETED)
+    }
+  }
+
+  // updates bookingAccepted based on agreed
+  const getBookingAccepted = () => {
+    agreed ? setBookingAccepted(true) : setBookingAccepted(false)
+  }
+
+  //updates bookingCompleted based on completed
+  const getBookingCompleted = () => {
+    completed ? setBookingCompleted(true) : setBookingCompleted(false)
+  }
+
+
+// Effect hooks for fetching booking data and updating booking status.  
 
   useEffect(() => {
     getBookingAccepted()

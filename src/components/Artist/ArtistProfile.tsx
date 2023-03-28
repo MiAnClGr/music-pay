@@ -11,12 +11,12 @@ import ArtistHeaderMobile from './Mobile/ArtistHeaderMobile'
 
 const ArtistProfile :FC = () : ReactElement => {
 
+    /// access context state variables and functions
     const {
         artistProfileAddress, 
         artistLoggedIn, 
         loginArtist,
         setArtist, 
-        bookings,
         getBookings,
         getProfilePicURL,
         updateClickedWhole,
@@ -24,29 +24,18 @@ const ArtistProfile :FC = () : ReactElement => {
         isHovering
     } = useContext(ArtistContext)
 
-    console.log(artistProfileAddress)
-    
-
-    useEffect(() => {
-        localStorage.setItem("bookings", JSON.stringify(bookings))
-    },[bookings])
-
+    /// login artist on page load
     useEffect(() => {
         loginArtist()
-        console.log("useEffect 1")
     }, [])
 
+    /// set artist get bookings and get profile pic url when artist profile address changes
     useEffect(() => {
         setArtist()
         getBookings()
         getProfilePicURL()
-        console.log("useEffect 2")
     }, [artistProfileAddress])
 
-    useEffect(() => {
-        localStorage.setItem("artistProfileAddress", artistProfileAddress)
-        console.log("useEffect 3")
-    },[artistProfileAddress])
 
     return(
         <div

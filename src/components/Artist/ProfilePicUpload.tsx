@@ -3,10 +3,12 @@ import {create} from 'ipfs-http-client'
 import {Buffer} from 'buffer'
 import ArtistContext from '../../Context/ArtistContext'
 
+/// Environment Variables
+
 const ID = process.env.REACT_APP_INFURA_PROJECT_ID
 const SECRET = process.env.REACT_APP_INFURA_PROJECT_SECRET
 
-console.log(ID)
+/// IPFS Client
 
 const auth = 'Basic ' + Buffer.from(ID + ':' + SECRET).toString('base64');
 const client = create({
@@ -21,6 +23,7 @@ const client = create({
 
 const ProfilePicUpload = () => {
 
+    ///access context state variables and functions
     const {
         picURL, 
         setPicURL, 
@@ -31,16 +34,17 @@ const ProfilePicUpload = () => {
         updateClickedWhole
     } = useContext(ArtistContext)
 
-    console.log(updateClickedPic)
-    console.log(picURL)
-
+    /// handles the upload of the profile picture
     const handleUpload = async (e : any) => {
         const profilePic : any = e.target.files[0]
         const artistProfileContract = createArtistProfileInstance(artistProfileAddress)
         try{
+            /// adding the profile picture to IPFS
             const added = await client.add(profilePic)
+            /// creating a URL for the profile picture using the CID
             const url = `https://personal-project-storage.infura-ipfs.io/ipfs/${added.path}`
             setPicURL(url)
+            /// updating the profile picture URL in the Artist Profile contract
             await artistProfileContract.updateProfilePicURL(url)
         }catch(error){
             console.log(error)

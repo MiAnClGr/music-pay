@@ -8,14 +8,37 @@ import Home from '../shared/Home'
 
 const Login : FC = () : ReactElement => {
 
-    const [inputArtistName, setInputArtistName] = useState("")
-
     const navigate = useNavigate()
 
+    /// state
+    const [inputArtistName, setInputArtistName] = useState("")
+
+/// User Actions
+
+    /* 
+    checks if the artist exists and if the user is the owner of the artist
+    profile before logging in and navigating to the artist profile page 
+    */
+    const handleSubmitLogIn = async () => {
+        const address = await ArtistFactoryContract.artistNameToAddress(inputArtistName)
+            const user = await signer.getAddress()
+            if(await ArtistFactoryContract.doesArtistExist(inputArtistName) === false){
+                navigate("/ProfileDoesNotExist")
+            }else if(await ArtistFactoryContract.ownerToArtist(user) === address){
+                navigate("/ArtistProfile")
+            }else{
+                navigate("/NotOwner")
+            }  
+    }
+
+/// Event Handlers
+
+    /// handles the change of the name input field
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
         setInputArtistName(e.target.value)
     }  
 
+    /// handles the keydown event of the name input field
     const handleKeyDownLogIn = async (e : React.KeyboardEvent<HTMLElement>) => {
         if(e.key === 'Enter'){
 
@@ -31,17 +54,7 @@ const Login : FC = () : ReactElement => {
         }
     }
 
-    const handleSubmitLogIn = async () => {
-        const address = await ArtistFactoryContract.artistNameToAddress(inputArtistName)
-            const user = await signer.getAddress()
-            if(await ArtistFactoryContract.doesArtistExist(inputArtistName) === false){
-                navigate("/ProfileDoesNotExist")
-            }else if(await ArtistFactoryContract.ownerToArtist(user) === address){
-                navigate("/ArtistProfile")
-            }else{
-                navigate("/NotOwner")
-            }  
-    }
+
 
   return (
     <div
