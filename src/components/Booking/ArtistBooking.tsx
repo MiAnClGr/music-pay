@@ -7,6 +7,9 @@ import ArtistContext from '../../Context/ArtistContext'
 
 const ArtistBooking : FC = () : ReactElement => {
 
+  const navigate = useNavigate()
+
+  /// access context variables and functions
   const {
     searchedAddress, 
     artistBooking, 
@@ -17,17 +20,9 @@ const ArtistBooking : FC = () : ReactElement => {
 
   const {createArtistProfileInstance} = useContext(ArtistContext)
 
-  const navigate = useNavigate()
+/// User Actions
 
-  const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-    setArtistBooking(prevFormData => {
-      return {
-      ...prevFormData,
-      [e.target.name] : e.target.value  
-      }  
-    })
-  }
-
+  /// Submit booking
   const handleSubmit = async () => {
     navigate("/Loading")
     const artistProfileContract = createArtistProfileInstance(searchedAddress)
@@ -49,19 +44,19 @@ const ArtistBooking : FC = () : ReactElement => {
     } 
   }
 
-  console.log(artistBooking)
-  console.log(searchedAddress)
- 
+/// Event Handlers
 
+  /// Handle change in booking input fields
+  const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+    setArtistBooking(prevFormData => {
+      return {
+      ...prevFormData,
+      [e.target.name] : e.target.value  
+      }  
+    })
+  }
 
-  useEffect(() => {
-    localStorage.setItem("artistName", artistName)
-  },[artistName])
-
-  useEffect(() => {
-    localStorage.setItem("searchedAddress", searchedAddress)
-  },[searchedAddress])
-
+  /// Get artist name when searchedAddress changes
   useEffect(() => {
     getArtistName()
   }, [searchedAddress])

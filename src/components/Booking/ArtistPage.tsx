@@ -8,6 +8,7 @@ const ArtistPage = () => {
 
     const navigate = useNavigate()
 
+    /// access context variables and functions
     const {
         searchedAddress, 
         artistName,
@@ -16,15 +17,20 @@ const ArtistPage = () => {
 
     const {createArtistProfileInstance} = useContext(ArtistContext)
 
+    /// state variables
     const [artistProfilePicURL, setArtistProfilePicURL] = useState<string>("")
     const [artistAboutMe, setArtistAboutMe] = useState<string>("")
 
+/// Helper Functions    
+
+    /// fetches the profile pic url from the artist profile contract
     const getProfilePicURL = async () => {
         const artistProfileContract = createArtistProfileInstance(searchedAddress)
         const url = await artistProfileContract.profilePicURL()
         setArtistProfilePicURL(url)
     }
 
+    /// fetches the about me text from the artist profile contract
     const getAboutMe = async () => {
         const artistProfileContract = createArtistProfileInstance(searchedAddress)
         const about = await artistProfileContract.aboutMe()
@@ -32,6 +38,7 @@ const ArtistPage = () => {
         setArtistAboutMe(about)
     }
 
+    /// calls getArtistname, getProfilePicURL, and getAboutMe when searchedAddress changes
     useEffect(() => {
       getArtistName()
       getProfilePicURL()

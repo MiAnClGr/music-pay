@@ -45,7 +45,6 @@ const ArtistContext = createContext<ArtistContextInterface>({} as ArtistContextI
 
 export const ArtistProvider  = ({children} : {children : ReactNode}) => {
 
-    const navigate = useNavigate()
 
 /// Creates an instance of the Artist Profile Contract
 

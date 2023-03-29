@@ -14,60 +14,79 @@ const Escrow : FC<props>= ({escrowAddress}) : ReactElement => {
 
   const navigate = useNavigate()
 
+  /// access context variables and functions
+  const {setEscrowAddressAgent} = useContext(BookingContext)
+  const {setUserIsAgent} = useContext(EscrowContext)
+
+  /// state variables
   const [payment, setPayment] = useState<number>()
   const [artistName, setArtistName] = useState<string>("")
   const [venueName, setVenueName] = useState<string>("")
   const [date, setDate] = useState<string>("")
   const [time, setTime] = useState<number>()
   
-  const {setEscrowAddressAgent} = useContext(BookingContext)
+ 
 
-  const {setUserIsAgent} = useContext(EscrowContext)
+  
 
-  const createEscrowInstance = () => {
-    const EscrowContract : Contract = new ethers.Contract(escrowAddress, EscrowABI, signer) 
-    return EscrowContract
-  }
+/// User Actions
 
-  const EscrowContract = createEscrowInstance()
-
-  const getArtistName = async () => {
-    const name = await EscrowContract.artistName()
-    setArtistName(name)
-  }
-
-  const getVenue = async () => {
-    const venue = await EscrowContract.venueName()
-    setVenueName(venue)
-  }
-
-  const getDate = async () => {
-    const date = await EscrowContract.date()
-    setDate(date)
-  }
-
-  const getTime = async () => {
-    const time = await EscrowContract.time()
-    setTime(time.toNumber())
-  }
-
-  const getPayment = async () => {
-    const payment = await EscrowContract.payment()
-    setPayment(payment.toNumber())
-  }
-
+  /// Submit booking
   const handleSubmitLoadEscrowAgent = async (escrowAddress : string) => {
     setUserIsAgent(true)
     setEscrowAddressAgent(escrowAddress)
     navigate("/EscrowMain") 
   }
-  
 
+/// Helper Functions  
+
+  /// Create instance of Escrow contract
+  const createEscrowInstance = () => {
+    const EscrowContract : Contract = new ethers.Contract(escrowAddress, EscrowABI, signer) 
+    return EscrowContract
+  }
+
+  /// sets the EscrowContract
+  const EscrowContract = createEscrowInstance()
+
+  /// fetches the artist name from the Escrow Contract
+  const getArtistName = async () => {
+    const name = await EscrowContract.artistName()
+    setArtistName(name)
+  }
+
+  /// fetches the venue name from the Escrow Contract
+  const getVenue = async () => {
+    const venue = await EscrowContract.venueName()
+    setVenueName(venue)
+  }
+
+  /// fetches the date from the Escrow Contract
+  const getDate = async () => {
+    const date = await EscrowContract.date()
+    setDate(date)
+  }
+
+  /// fetches the time from the Escrow Contract
+  const getTime = async () => {
+    const time = await EscrowContract.time()
+    setTime(time.toNumber())
+  }
+
+  /// fetches the payment from the Escrow Contract
+  const getPayment = async () => {
+    const payment = await EscrowContract.payment()
+    setPayment(payment.toNumber())
+  }
+
+ 
+  
+  /// create instance of Escrow Contract on page load
   useEffect(() => {
     createEscrowInstance()
   }, [])
 
-
+  /// fetches the artist name, venue name, date, time, and payment from the Escrow Contract on page load
   useEffect(() => {
     getArtistName()
     getVenue()

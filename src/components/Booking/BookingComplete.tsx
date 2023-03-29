@@ -7,8 +7,12 @@ const BookingComplete = () => {
 
     const navigate = useNavigate()
 
+    /// access context variables and functions
     const {artistBooking, setArtistBooking, artistName, setArtistName} = useContext(BookingContext)
 
+/// Helper Functions
+
+    /// reset booking state variables and navigate to BookingMain
     const resetBooking = () => {
         setArtistBooking({
             bookingAgent: "",

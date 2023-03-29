@@ -6,6 +6,7 @@ import {AnimatePresence} from 'framer-motion'
 
 const BookingHeader : FC= () : ReactElement => {
 
+  /// state variables
   const [searchClicked, setSearchClicked] = useState(false)
   
   return(
