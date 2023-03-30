@@ -8,6 +8,9 @@ import ArtistInfo from './ArtistInfo'
 import ProfilePicUpload from './ProfilePicUpload'
 import ArtistHeaderMobile from './Mobile/ArtistHeaderMobile'
 
+/*
+ * The profile page of the artist user. Containing the about me and profile pic upload components.
+ */
 
 const ArtistProfile :FC = () : ReactElement => {
 

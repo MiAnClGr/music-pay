@@ -5,6 +5,10 @@ import ArtistContext from '../../Context/ArtistContext'
 import {motion} from 'framer-motion'
 import LogOut from '../shared/LogOut'
 
+/*
+ * Artist users will be directed to this page if they don't yet have a profile.
+ */
+
 const ArtistMain : FC = () : ReactElement => {
 
     /// access context state variables 

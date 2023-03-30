@@ -3,16 +3,24 @@ import BookingContext from '../../Context/BookingContext'
 import Escrow from '../Booking/Escrow'
 import BookingHeader from './BookingHeader'
 
+
+/// Displays list of Escrow Contracts in which the user addres is assigned as the agent
+
+
 const EscrowList = () => {
 
+    /// access context variables and functions
     const {escrowList, getEscrowList} = useContext(BookingContext)
 
+
+    /// maps the escrowList array to display each Escrow Contract
     const displayEscrow = escrowList.map((escrowAddress : string) => 
       <Escrow
       escrowAddress= {escrowAddress}
       />
     )
-      
+
+    /// calls getEscrowList on page load  
     useEffect(() => {
         getEscrowList()
     },[])

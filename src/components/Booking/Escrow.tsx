@@ -31,7 +31,7 @@ const Escrow : FC<props>= ({escrowAddress}) : ReactElement => {
 
 /// User Actions
 
-  /// Submit booking
+  /// loads the main Escrow page for the agent  
   const handleSubmitLoadEscrowAgent = async (escrowAddress : string) => {
     setUserIsAgent(true)
     setEscrowAddressAgent(escrowAddress)
@@ -40,7 +40,7 @@ const Escrow : FC<props>= ({escrowAddress}) : ReactElement => {
 
 /// Helper Functions  
 
-  /// Create instance of Escrow contract
+  /// create instance of Escrow contract
   const createEscrowInstance = () => {
     const EscrowContract : Contract = new ethers.Contract(escrowAddress, EscrowABI, signer) 
     return EscrowContract
@@ -81,12 +81,12 @@ const Escrow : FC<props>= ({escrowAddress}) : ReactElement => {
 
  
   
-  /// create instance of Escrow Contract on page load
+  /// create instance of Escrow Contract on component load
   useEffect(() => {
     createEscrowInstance()
   }, [])
 
-  /// fetches the artist name, venue name, date, time, and payment from the Escrow Contract on page load
+  /// fetches the artist name, venue name, date, time, and payment from the Escrow Contract on component load
   useEffect(() => {
     getArtistName()
     getVenue()

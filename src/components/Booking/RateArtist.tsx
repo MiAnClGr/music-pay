@@ -1,7 +1,6 @@
 import React, {FC, ReactElement, useContext} from 'react'
 import BookingContext from '../../Context/BookingContext'
 import EscrowContext from '../../Context/EscrowContext'
-import { ArtistFactoryContract } from '../../Contracts/ContractObjects'
 import { useNavigate } from 'react-router'
 
 
@@ -9,12 +8,16 @@ const RateArtist = () => {
 
     const navigate = useNavigate()
 
+    /// access context variables and functions
     const {createEscrowInstanceAgent} = useContext(BookingContext)
+    const {artistName} = useContext(EscrowContext)
 
+    /// create instance of Escrow contract
     const EscrowContractAgent = createEscrowInstanceAgent()
 
-    const {artistName, artistAddress} = useContext(EscrowContext)
-
+/// User Actions    
+    
+    /// rates the artist up
     const rateUp = async () => {
         try{
             const rate = await EscrowContractAgent.rateArtist(0)
@@ -26,6 +29,7 @@ const RateArtist = () => {
         }
     }
 
+    /// rates the artist down
     const rateDown = async () => {
         try{
             const rate = await EscrowContractAgent.rateArtist(1)

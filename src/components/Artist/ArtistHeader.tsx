@@ -3,6 +3,11 @@ import {Link, useNavigate} from 'react-router-dom'
 import Home from "../shared/Home"
 import ArtistContext from '../../Context/ArtistContext'
 
+/**
+ * The ArtistHeader component will display the artist's name and allow them to navigate to the CreateNew and About pages.
+ * It is displayed on every page of the artists section.
+ */
+
 const ArtistHeader : FC = () : ReactElement => {
 
 	const navigate = useNavigate()

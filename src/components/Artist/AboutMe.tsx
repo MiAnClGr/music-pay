@@ -1,6 +1,11 @@
 import React, {FC, ReactElement, useEffect, useState, useContext} from 'react'
 import ArtistContext from '../../Context/ArtistContext'
 
+/** 
+ * The AboutMe component will display the current about me fetched from the contract and allow the artist to update it. 
+ */
+
+
 const AboutMe : FC = () : ReactElement => {
 
     // access various states and functions from ArtistContext

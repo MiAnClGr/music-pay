@@ -6,6 +6,9 @@ import {motion} from 'framer-motion'
 import LogOut from '../shared/LogOut'
 import Home from '../shared/Home'
 
+/*
+ * A form for creating a new artist profile.
+ */
 
 const CreateNew : FC = () : ReactElement => {
 

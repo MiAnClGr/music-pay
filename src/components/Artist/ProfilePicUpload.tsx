@@ -3,6 +3,10 @@ import {create} from 'ipfs-http-client'
 import {Buffer} from 'buffer'
 import ArtistContext from '../../Context/ArtistContext'
 
+/*
+ * This component handles the upload of the profile picture to IPFS.
+ */
+
 /// Environment Variables
 
 const ID = process.env.REACT_APP_INFURA_PROJECT_ID

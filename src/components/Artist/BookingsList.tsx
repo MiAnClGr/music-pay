@@ -7,6 +7,11 @@ import ArtistHeader from './ArtistHeader'
 import LogOut from '../shared/LogOut'
 import ArtistInfo from './ArtistInfo'
 
+
+/**
+ * Displays all current bookings for the artist user  
+ */
+
 const BookingsList :FC = () : ReactElement => {
 
     /// access context state variables

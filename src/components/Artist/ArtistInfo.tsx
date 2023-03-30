@@ -2,6 +2,10 @@ import React, {useState, useContext, useEffect} from 'react'
 import { ArtistFactoryContract } from '../../Contracts/ContractObjects'
 import ArtistContext from '../../Context/ArtistContext'
 
+/*
+ * ArtistInfo displays the artist's rating and allows them to withdraw their balance.
+ */
+
 const ArtistInfo = () => {
 
     /// access context states and functions

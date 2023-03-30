@@ -3,6 +3,11 @@ import {useNavigate} from 'react-router-dom'
 import ArtistContext from '../../Context/ArtistContext'
 import EscrowContext from '../../Context/EscrowContext'
 
+/*
+ * The booking component will display the details of a booking and allow the artist to accept or decline the booking.
+ * It is displayed on the Bookings page and accepts props from the BookingList component.
+ */
+
 type props = {
   gigNumber : string,
   payment : string,

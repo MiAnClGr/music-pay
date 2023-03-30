@@ -4,7 +4,9 @@ import {ArtistFactoryContract, signer} from "../../Contracts/ContractObjects"
 import {motion} from 'framer-motion'
 import Home from '../shared/Home'
 
-
+/*
+ * A form for logging in to an existing artist profile.
+ */
 
 const Login : FC = () : ReactElement => {
 
